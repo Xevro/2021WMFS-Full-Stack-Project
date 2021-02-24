@@ -51,7 +51,8 @@
                                 <table class="table table-hover progress-table text-center">
                                     <thead class="text-uppercase">
                                     <tr>
-                                        <th scope="col">Naam student</th>
+                                        <th scope="col">Naam Bedrijf</th>
+                                        <th scope="col">Aantal geïnteresseerden</th>
                                         <th scope="col">Bedrijf</th>
                                         <th scope="col">status</th>
                                         <th scope="col">Actie</th>
@@ -61,6 +62,7 @@
                                     @foreach($proposals as $proposal)
                                         <tr>
                                             <td>{{ $proposal->id }}</td>
+                                            <td>{{ $proposal->amount_likes }}</td>
                                             <td>{{ $proposal->period }}</td>
                                             @if ($proposal->proposal_status)
                                                 <td><span class="status-p bg-success">{{ $proposal->status }}</span></td>

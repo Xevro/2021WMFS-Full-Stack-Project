@@ -18,7 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('KBO_number');
-            $table->string('full_name');
+            $table->string('name');
             $table->timestamps();
         });
     }
