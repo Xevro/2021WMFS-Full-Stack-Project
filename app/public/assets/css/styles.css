@@ -143,12 +143,12 @@
     background: #303641;
     border-bottom: 1px solid #343e50;
 }
-.sidebar-menu .logo{
+.sidebar-menu .logo {
     text-align: center;
 }
-.logo a {
+.logo h2 {
     display: inline-block;
-    max-width: 120px;
+    color: #FFF;
 }
 
 .metismenu >li >a {

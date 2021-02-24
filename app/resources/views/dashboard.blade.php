@@ -96,7 +96,7 @@
                                             @endif
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3"><a href="#" class="">Bekijk</a></li>
+                                                    <li class="mr-3"><a href="#" class="">info</a></li>
                                                     <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                 </ul>
                                             </td>
@@ -132,7 +132,7 @@
         <!-- footer area start-->
         <footer>
             <div class="footer-area">
-                <p>© Copyright 2021. All right reserved. <a href="https://odisee.be/">Odisee</a>.</p>
+                <p>© Copyright 2021. All right reserved. <a href="https://odisee.be/">Odisee</a> Technologiecampus.</p>
             </div>
         </footer>
         <!-- footer area end-->

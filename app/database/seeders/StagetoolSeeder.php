@@ -16,9 +16,21 @@ class StagetoolSeeder extends Seeder {
         DB::table('companies')->insert([
             'email' => "company@comp.com",
             'password' => 'azerty123',
-            'KBO_number' => 1,
+            'KBO_number' => 18272,
             'name' => "BVBA IT consulent",
             'website' => "company.com",
+            'amount_proposals' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('companies')->insert([
+            'email' => "hr@fleetmaster.com",
+            'password' => 'azerty123',
+            'KBO_number' => 1928273,
+            'name' => "Fleetmaster",
+            'website' => "fleetmaster.com",
+            'amount_proposals' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -27,6 +39,15 @@ class StagetoolSeeder extends Seeder {
             'firstname' => 'joris',
             'lastname' => 'Maervoet',
             'email' => 'joris.maervoet@odisee.be',
+            'password' => 'azerty123',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('mentors')->insert([
+            'firstname' => 'Sven',
+            'lastname' => 'Knockaert',
+            'email' => 'sven.knockaert@odisee.be',
             'password' => 'azerty123',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

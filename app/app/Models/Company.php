@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model {
     use HasFactory;
 
-    protected $fillable = ['email', 'password', 'KBO_number', 'name', 'website'];
+    protected $fillable = ['email', 'password', 'KBO_number', 'name', 'website', 'amount_proposals'];
 
     public function proposal() {
         return $this->hasMany(Proposal::class);

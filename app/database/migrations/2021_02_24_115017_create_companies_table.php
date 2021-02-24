@@ -20,6 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('KBO_number');
             $table->string('name');
             $table->string('website');
+            $table->integer('amount_proposals')->default(0);
             $table->timestamps();
         });
     }
