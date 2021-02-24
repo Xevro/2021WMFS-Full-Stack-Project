@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Proposals;
+use App\Models\Proposal;
 
 class StageController extends Controller
 {
     //
 
     public function overview() {
-       // dd(Proposals::find(1)->brand->name);
+        dd(Proposal::find(1)->brand->name);
     }
 }
