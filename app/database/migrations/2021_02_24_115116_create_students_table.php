@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('approved');
-            $table->integer('preference');
+            $table->integer('preference_proposal');
             $table->integer('completed_days');
             $table->foreignId('mentor_id')->constrained();
             $table->timestamps();

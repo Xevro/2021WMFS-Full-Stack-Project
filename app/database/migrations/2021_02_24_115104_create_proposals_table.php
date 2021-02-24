@@ -15,10 +15,11 @@ class CreateProposalsTable extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
-            $table->boolean('proposal_status');
-            $table->text('description');
-            $table->dateTime('period');
+            $table->boolean('visibility');
             $table->string('status');
+            $table->text('description');
+            $table->date('start_period');
+            $table->date('end_period');
             $table->string('contract_file_location');
             $table->integer('amount_likes');
             $table->foreignId('companies_id_company')->constrained();

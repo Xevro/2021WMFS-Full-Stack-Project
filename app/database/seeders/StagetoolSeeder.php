@@ -17,13 +17,14 @@ class StagetoolSeeder extends Seeder {
             'email' => "company@comp.com",
             'password' => 'azerty123',
             'KBO_number' => 1,
-            'full_name' => "Company name",
+            'name' => "BVBA IT consulent",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('mentors')->insert([
-            'name' => 'joris Maervoet',
+            'firstname' => 'joris',
+            'lastname' => 'Maervoet',
             'email' => 'joris.maervoet@odisee.be',
             'password' => 'azerty123',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -31,10 +32,12 @@ class StagetoolSeeder extends Seeder {
         ]);
 
         DB::table('students')->insert([
+            'firstname' => 'Louis',
+            'lastname' => 'D\'Hont',
             'email' => 'student@student.odisee.be',
             'password' => 'azerty123',
             'approved' => 'not approved',
-            'preference' => 0,
+            'preference_proposal' => 0,
             'completed_days' => 0,
             'mentor_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -42,11 +45,13 @@ class StagetoolSeeder extends Seeder {
         ]);
 
         DB::table('proposals')->insert([
-            'proposal_status' => 0,
+            'visibility' => 0,
+            'status' => 'In afwachting',
             'description' => 'een stage tool ontwikkelen.',
-            'period' => Carbon::now()->format('Y-m-d H:i:s'),
-            'status' => 'not approved',
+            'start_period' => Carbon::now()->format('Y-m-d'),
+            'end_period' => Carbon::now()->format('Y-m-d'),
             'contract_file_location' => '/',
+            'amount_likes' => 0,
             'companies_id_company' => 1,
             'mentor_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

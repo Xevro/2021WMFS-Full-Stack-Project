@@ -45,15 +45,16 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Stage voorstellen</h4>
+                        <h4 class="header-title">Stage voorstellen overzicht</h4>
                         <div class="single-table">
                             <div class="table-responsive">
                                 <table class="table table-hover progress-table text-center">
                                     <thead class="text-uppercase">
                                     <tr>
-                                        <th scope="col">Naam Bedrijf</th>
-                                        <th scope="col">Aantal geïnteresseerden</th>
                                         <th scope="col">Bedrijf</th>
+                                        <th scope="col">Aantal geïnteresseerden</th>
+                                        <th scope="col">Start datum</th>
+                                        <th scope="col">End datum</th>
                                         <th scope="col">status</th>
                                         <th scope="col">Actie</th>
                                     </tr>
@@ -61,9 +62,10 @@
                                     <tbody>
                                     @foreach($proposals as $proposal)
                                         <tr>
-                                            <td>{{ $proposal->id }}</td>
+                                            <td><a href="/companies/{{ $companies->id }}">{{ $companies->name }}</a></td>
                                             <td>{{ $proposal->amount_likes }}</td>
-                                            <td>{{ $proposal->period }}</td>
+                                            <td>{{ $proposal->start_period }}</td>
+                                            <td>{{ $proposal->end_period }}</td>
                                             @if ($proposal->proposal_status)
                                                 <td><span class="status-p bg-success">{{ $proposal->status }}</span></td>
                                             @else
@@ -73,6 +75,7 @@
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
                                                     <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    <li class="last"><a href="#" class="text-black-50"><i class="ti-info-alt"></i></a></li>
                                                 </ul>
                                             </td>
                                         </tr>

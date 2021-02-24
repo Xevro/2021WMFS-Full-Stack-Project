@@ -2835,3 +2835,8 @@ table.dataTable thead td {
 }
 
 /*-------------------- END Offset Sidebar ------------------- */
+
+
+.last {
+    margin-left: 12px;
+}
