@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    Route::get('/dashboard', 'App\Http\Controllers\ProductController@overview');
+    return redirect('/dashboard');
 });
+
+Route::get('/dashboard', 'App\Http\Controllers\StageController@overview');

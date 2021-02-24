@@ -8,6 +8,6 @@ class StageController extends Controller
 {
 
     public function overview() {
-       // dd(Proposal::find(1)->brand->name);
+        return view('dashboard', ['proposals' => Proposal::all()]);
     }
 }
