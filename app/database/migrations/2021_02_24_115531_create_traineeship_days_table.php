@@ -15,6 +15,8 @@ class CreateTraineeshipDaysTable extends Migration
     {
         Schema::create('traineeship_days', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->foreignId('student_id_student')->constrained();
             $table->timestamps();
         });
     }

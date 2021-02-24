@@ -15,6 +15,12 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('email');
+            $table->string('password');
+            $table->boolean('approved');
+            $table->integer('preference');
+            $table->integer('completed_days');
+            $table->foreignId('mentors_id')->constrained();
             $table->timestamps();
         });
     }

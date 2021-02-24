@@ -15,6 +15,13 @@ class CreateProposalsTable extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
+            $table->boolean('proposal_status');
+            $table->text('description');
+            $table->dateTime('period');
+            $table->string('status');
+            $table->string('contract_file_location');
+            $table->foreignId('companies_id_company')->constrained();
+            $table->foreignId('mentors_id')->constrained();
             $table->timestamps();
         });
     }

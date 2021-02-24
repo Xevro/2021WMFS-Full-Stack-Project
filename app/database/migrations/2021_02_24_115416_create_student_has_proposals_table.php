@@ -14,8 +14,13 @@ class CreateStudentHasProposalsTable extends Migration
     public function up()
     {
         Schema::create('student_has_proposals', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+           // $table->id();
+           // $table->timestamps();
+            $table->unsignedInteger('student_id')->index();
+            $table->foreign('students_id')->references('id')->on('students')->onDelete('cascade');
+            $table->unsignedInteger('product_id')->index();
+            $table->foreign('proposals_id')->references('id')->on('proposals')->onDelete('cascade');
+            $table->primary(['student_id', 'proposals_id']);
         });
     }
 

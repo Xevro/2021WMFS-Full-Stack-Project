@@ -15,6 +15,10 @@ class CreateMentorsTable extends Migration
     {
         Schema::create('mentors', function (Blueprint $table) {
             $table->id();
+            $table->string('student_name');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
             $table->timestamps();
         });
     }
