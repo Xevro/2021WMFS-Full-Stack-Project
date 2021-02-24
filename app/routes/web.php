@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', 'App\Http\Controllers\StageController@overview');
+Route::get('/students', 'App\Http\Controllers\StageController@students');
+Route::get('/companies', 'App\Http\Controllers\StageController@companies');

@@ -19,6 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('password');
             $table->string('KBO_number');
             $table->string('name');
+            $table->string('website');
             $table->timestamps();
         });
     }

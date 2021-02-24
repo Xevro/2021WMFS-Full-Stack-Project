@@ -11,8 +11,8 @@
             <nav>
                 <ul class="metismenu" id="menu">
                     <li class="active"><a href="/"><i class="ti-map-alt"></i> <span>Overzicht</span></a></li>
-                    <li><a href="/"><i class="ti-map-alt"></i> <span>Studenten</span></a></li>
-                    <li><a href="/"><i class="ti-receipt"></i> <span>Bedrijven</span></a></li>
+                    <li><a href="{{ url('/students') }}"><i class="ti-map-alt"></i> <span>Studenten</span></a></li>
+                    <li><a href="{{ url('/companies') }}"><i class="ti-receipt"></i> <span>Bedrijven</span></a></li>
                 </ul>
             </nav>
         </div>

@@ -18,6 +18,7 @@ class StagetoolSeeder extends Seeder {
             'password' => 'azerty123',
             'KBO_number' => 1,
             'name' => "BVBA IT consulent",
+            'website' => "company.com",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

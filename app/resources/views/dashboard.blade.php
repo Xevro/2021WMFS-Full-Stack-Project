@@ -1,10 +1,7 @@
 @extends('layout')
 @section('title', 'Overzicht')
-@include('partials.menu')
 @include('partials.sidebar')
-
 @section('content')
-    <!-- preloader area end -->
     <!-- page container area start -->
     <div class="page-container">
         @yield('sidebar')
@@ -41,6 +38,32 @@
                     </div>
                 </div>
             </div>
+            <!--  Begin amounts -->
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-6 mt-5 mb-3">
+                        <div class="card">
+                            <div class="seo-fact sbg2">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <div class="seofct-icon"><i class="ti-thumb-up"></i>Goedgekeurde voorstellen</div>
+                                    <h2>{{ $amountApproved }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-md-5 mb-3">
+                        <div class="card">
+                            <div class="seo-fact sbg1">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <div class="seofct-icon"><i class="ti-filter"></i> Aantal goed te keuren voorstellen</div>
+                                    <h2>{{ $amountToCheck }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End amount -->
             <!-- Progress Table start -->
             <div class="col-12 mt-5">
                 <div class="card">
@@ -52,7 +75,7 @@
                                     <thead class="text-uppercase">
                                     <tr>
                                         <th scope="col">Bedrijf</th>
-                                        <th scope="col">Aantal geïnteresseerden</th>
+                                        <th scope="col">Toegevoegd op</th>
                                         <th scope="col">Start datum</th>
                                         <th scope="col">End datum</th>
                                         <th scope="col">status</th>
@@ -63,19 +86,18 @@
                                     @foreach($proposals as $proposal)
                                         <tr>
                                             <td><a href="/companies/{{ $companies->id }}">{{ $companies->name }}</a></td>
-                                            <td>{{ $proposal->amount_likes }}</td>
+                                            <td>{{ $proposal->created_at }}</td>
                                             <td>{{ $proposal->start_period }}</td>
                                             <td>{{ $proposal->end_period }}</td>
-                                            @if ($proposal->proposal_status)
+                                            @if ($proposal->visibility)
                                                 <td><span class="status-p bg-success">{{ $proposal->status }}</span></td>
                                             @else
                                                 <td><span class="status-p bg-primary">{{ $proposal->status }}</span></td>
                                             @endif
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
+                                                    <li class="mr-3"><a href="#" class="">Bekijk</a></li>
                                                     <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-                                                    <li class="last"><a href="#" class="text-black-50"><i class="ti-info-alt"></i></a></li>
                                                 </ul>
                                             </td>
                                         </tr>
