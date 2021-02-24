@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Proposal;
+use App\Models\Student;
 
 class StageController extends Controller {
 
@@ -15,7 +16,7 @@ class StageController extends Controller {
 
     public function students() {
         //dd((new \App\Models\Proposal)->company->email);
-        return view('students', ['proposals' => Proposal::all(), 'companies' => Company::first(),'menuItem' => 'students']);
+        return view('students', ['students' => Student::all(), 'menuItem' => 'students']);
     }
 
     public function companies() {
