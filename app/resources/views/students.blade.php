@@ -23,7 +23,7 @@
                             <h4 class="page-title pull-left">Overzicht studenten</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
-                                <li><span>Overzicht</span></li>
+                                <li><span>Studenten</span></li>
                             </ul>
                         </div>
                     </div>

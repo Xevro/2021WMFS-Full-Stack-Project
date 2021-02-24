@@ -23,7 +23,7 @@
                             <h4 class="page-title pull-left">Overzicht bedrijven</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
-                                <li><span>Overzicht</span></li>
+                                <li><span>Bedrijven</span></li>
                             </ul>
                         </div>
                     </div>
