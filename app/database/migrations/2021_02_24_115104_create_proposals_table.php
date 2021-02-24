@@ -21,7 +21,7 @@ class CreateProposalsTable extends Migration
             $table->string('status');
             $table->string('contract_file_location');
             $table->foreignId('companies_id_company')->constrained();
-            $table->foreignId('mentors_id')->constrained();
+            $table->foreignId('mentor_id')->constrained();
             $table->timestamps();
         });
     }

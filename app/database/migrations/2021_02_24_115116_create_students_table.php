@@ -17,10 +17,10 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('email');
             $table->string('password');
-            $table->boolean('approved');
+            $table->string('approved');
             $table->integer('preference');
             $table->integer('completed_days');
-            $table->foreignId('mentors_id')->constrained();
+            $table->foreignId('mentor_id')->constrained();
             $table->timestamps();
         });
     }
