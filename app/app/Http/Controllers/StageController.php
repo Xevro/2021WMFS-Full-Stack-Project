@@ -6,9 +6,8 @@ use App\Models\Proposal;
 
 class StageController extends Controller
 {
-    //
 
     public function overview() {
-        dd(Proposal::find(1)->brand->name);
+       // dd(Proposal::find(1)->brand->name);
     }
 }
