@@ -3,22 +3,13 @@
 @include('partials.sidebar')
 @section('content')
     <!-- page container area start -->
-    <div class="page-container">
-        @yield('sidebar')
+    <div class="horizontal-main-wrapper">
         <!-- main content area start -->
-        <div class="main-content">
             <!-- page title area start -->
-                <!-- nav and search button -->
-
             <div class="page-title-area">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="breadcrumbs-area clearfix">
-                                <div class="nav-btn pull-left" style="margin-top: 0;">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
                             <h4 class="page-title pull-left">Overzicht stages</h4>
                             <ul class="breadcrumbs pull-left">
                                 <li><a href="/">Home</a></li>
@@ -38,6 +29,7 @@
                     </div>
                 </div>
             </div>
+    @yield('sidebar')
             <!--  Begin amounts -->
             <div class="col-lg-8">
                 <div class="row">
@@ -136,7 +128,6 @@
             </div>
         </footer>
         <!-- footer area end-->
-    </div>
     <!-- page container area end -->
     <!-- offset settings start -->
     <!--<div class="offset-area">
