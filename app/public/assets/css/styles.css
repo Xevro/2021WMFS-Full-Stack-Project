@@ -1628,8 +1628,13 @@ table.dbkit-table tr td {
 
 /*-------------------- 8. Accroding ------------------- */
 
+.according {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 .according .card {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .according .card:last-child {
@@ -2837,4 +2842,10 @@ table.dataTable thead td {
 
 .last {
     margin-left: 12px;
+}
+
+.stage-termijn p {
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
 }

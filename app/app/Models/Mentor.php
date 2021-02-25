@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mentor extends Model {
     use HasFactory;
 
-    protected $fillable = ['firstname', 'lastname', 'email', 'password', 'student_name'];
+    protected $fillable = ['firstname', 'lastname', 'email', 'password'];
 
     public function students() {
         return $this->hasMany(Student::class);

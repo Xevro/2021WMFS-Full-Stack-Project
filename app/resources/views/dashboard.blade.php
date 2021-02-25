@@ -53,7 +53,7 @@
                                     <tbody>
                                     @foreach($proposals as $proposal)
                                         <tr>
-                                            <td><a href="/companies/{{ $proposal->companies_id_company }}">{{ $proposal->name }}</a></td>
+                                            <td><a href="/company/{{ $proposal->company->id }}">{{ $proposal->company->name }}</a></td>
                                             <td>{{ $proposal->created_at }}</td>
                                             <td>{{ $proposal->start_period }}</td>
                                             <td>{{ $proposal->end_period }}</td>
@@ -64,7 +64,7 @@
                                             @endif
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3"><a href="#" class="">info</a></li>
+                                                    <li class="mr-3"><a href="{{ url('/proposal/' . $proposal->id) }}" class="">info</a></li>
                                                     <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                 </ul>
                                             </td>

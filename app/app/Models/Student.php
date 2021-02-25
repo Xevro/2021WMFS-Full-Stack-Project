@@ -18,6 +18,10 @@ class Student extends Model {
         return $this->hasMany(Traineeship_day::class);
     }
 
+    public function mentors() {
+        return $this->belongsTo(Mentor::class);
+    }
+
     public function proposals() {
         return $this->belongsToMany(Proposal::class);
     }

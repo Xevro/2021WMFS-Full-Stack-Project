@@ -22,7 +22,7 @@ class CreateProposalsTable extends Migration
             $table->date('end_period');
             $table->string('contract_file_location');
             $table->integer('amount_likes');
-            $table->foreignId('companies_id_company')->constrained();
+            $table->foreignId('company_id')->constrained();
             $table->foreignId('mentor_id')->constrained();
             $table->timestamps();
         });

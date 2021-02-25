@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::get('/overview', 'App\Http\Controllers\StageController@overview');
 Route::get('/students', 'App\Http\Controllers\StageController@students');
+
 Route::get('/companies', 'App\Http\Controllers\StageController@companies');
+Route::get('/company/{id}', 'App\Http\Controllers\StageController@company');
 
 Route::get('/proposal/{id}', 'App\Http\Controllers\StageController@proposal');
+

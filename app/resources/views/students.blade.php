@@ -28,7 +28,7 @@
                                         <tr>
                                             <td>{{ $student->firstname . ' ' . $student->lastname }}</td>
                                             <td>{{ $student->email }}</td>
-                                            <td>{{ $student->mentor_id }}</td>
+                                            <td>{{ $student->mentor }}</td>
                                             <td>{{ $student->completed_days }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">

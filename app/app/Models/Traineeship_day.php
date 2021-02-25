@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Traineeship_day extends Model {
     use HasFactory;
 
-    protected $fillable = ['date', 'student_id_student'];
+    protected $fillable = ['date', 'student_id'];
 
     public function students() {
         return $this->belongsTo(Student::class);

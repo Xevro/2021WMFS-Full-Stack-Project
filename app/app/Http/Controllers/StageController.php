@@ -11,14 +11,15 @@ class StageController extends Controller {
     public function overview() {
         $amountApproved = Proposal::where('visibility', '=', 1)->count();
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
-        $proposals = Proposal::select("*")->join('companies', 'proposals.companies_id_company', '=', 'companies.id')->get();
+        $proposals = Proposal::with('company')->get();
 
         return view('dashboard', ['proposals' => $proposals, 'amountToCheck' => $amountToCheck,
             'amountApproved' => $amountApproved,'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
     public function students() {
-        return view('students', ['students' => Student::all(), 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
+        $students = Student::with('mentors')->get();
+        return view('students', ['students' => $students, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
     }
 
     public function companies() {
@@ -26,7 +27,7 @@ class StageController extends Controller {
     }
 
     public function proposal($id) {
-        $proposal = Proposal::where('id', $id)->first();
-        return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'voorstel #' . $proposal->id]);
+        $proposal = Proposal::with('company')->where('id', $id)->first();
+        return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'stagevoorstel']);
     }
 }

@@ -17,7 +17,7 @@ class CreateActivitiesTable extends Migration
             $table->id();
             $table->text('activity');
             $table->date('date');
-            $table->foreignId('student_id_student')->constrained();
+            $table->foreignId('student_id')->constrained();
             $table->timestamps();
         });
     }
