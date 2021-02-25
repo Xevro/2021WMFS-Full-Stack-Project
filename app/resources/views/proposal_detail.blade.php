@@ -41,9 +41,7 @@
                                 </div>
                                 <div id="accordion1" class="according">
                                     <div class="card">
-                                        <div class="card-header">
-                                            <a class="card-link" data-toggle="collapse" href="#accordion11">Bedrijving voorstel</a>
-                                        </div>
+                                        <div class="card-header"><a class="card-link" data-toggle="collapse" href="#accordion11">Voorstel beschrijving</a></div>
                                         <div id="accordion11" class="collapse show" data-parent="#accordion1">
                                             <div class="card-body">
                                                 {{ $proposal->description }}
@@ -53,9 +51,11 @@
                                 </div>
                             </div>
                             <div class="text-left">
+                                <form action="/" method="post">
                                 <a href="#" class="btn btn-success">Keur voorstel goed</a>
                                 <a href="#" class="btn btn-primary">Geef feedback</a>
                                 <a href="#" class="btn btn-danger">Weiger voorstel</a>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\StageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +17,16 @@ Route::get('/', function () {
     return redirect('/overview');
 });
 
-Route::get('/overview', 'App\Http\Controllers\StageController@overview');
-Route::get('/students', 'App\Http\Controllers\StageController@students');
 
-Route::get('/companies', 'App\Http\Controllers\StageController@companies');
-Route::get('/company/{id}', 'App\Http\Controllers\StageController@company');
+Route::get('/tasks', [StageController::class, 'index']);
 
-Route::get('/proposal/{id}', 'App\Http\Controllers\StageController@proposal');
+Route::get('/overview', [StageController::class, 'overview']);
+
+Route::get('/students', [StageController::class, 'students']);
+Route::get('/student/{id}', [StageController::class, 'student-details']);
+
+Route::get('/companies', [StageController::class, 'companies']);
+Route::get('/company/{id}', [StageController::class, 'company']);
+
+Route::get('/proposal/{id}', [StageController::class, 'proposal']);
 
