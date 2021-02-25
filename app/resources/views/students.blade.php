@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title', 'Studenten')
-@include('partials.sidebar')
+@include('partials.navbar')
 
 @section('content')
     <!-- page container area start -->

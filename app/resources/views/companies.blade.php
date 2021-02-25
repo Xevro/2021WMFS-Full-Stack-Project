@@ -1,7 +1,6 @@
 @extends('layout')
 @section('title', 'Bedrijven')
-@include('partials.sidebar')
-
+@include('partials.navbar')
 @section('content')
     <!-- page container area start -->
     <!-- main content area start -->

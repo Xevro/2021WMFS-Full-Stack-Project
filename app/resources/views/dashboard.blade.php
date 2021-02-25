@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title', 'Overzicht')
-@include('partials.sidebar')
+@include('partials.navbar')
 @section('content')
     <!-- page container area start -->
     <div class="horizontal-main-wrapper">
