@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Mentor;
 use App\Models\Proposal;
 use App\Models\Student;
 
@@ -18,7 +19,8 @@ class StageController extends Controller {
     }
 
     public function students() {
-        $students = Student::with('mentors')->get();
+        $students = Student::with('mentor')->get();
+
         return view('students', ['students' => $students, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
     }
 

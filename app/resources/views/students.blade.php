@@ -28,12 +28,11 @@
                                         <tr>
                                             <td>{{ $student->firstname . ' ' . $student->lastname }}</td>
                                             <td>{{ $student->email }}</td>
-                                            <td>{{ $student->mentor }}</td>
+                                            <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
                                             <td>{{ $student->completed_days }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3"><a href="#" class="">info</a></li>
-                                                    <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    <li class="mr-3"><a href="{{ url('/student/' . $student->id) }}" class="">info</a></li>
                                                 </ul>
                                             </td>
                                         </tr>

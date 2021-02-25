@@ -18,7 +18,7 @@ class Student extends Model {
         return $this->hasMany(Traineeship_day::class);
     }
 
-    public function mentors() {
+    public function mentor() {
         return $this->belongsTo(Mentor::class);
     }
 

@@ -14,7 +14,7 @@ class Proposal extends Model {
         return $this->belongsToMany(Student::class);
     }
 
-    public function mentor() {
+    public function mentors() {
         return $this->belongsTo(Mentor::class);
     }
 
