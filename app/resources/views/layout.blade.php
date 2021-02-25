@@ -2,14 +2,11 @@
 <html class="no-js" lang="nl">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Stagetool - @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/icon/favicon.ico')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/metisMenu.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/slicknav.min.css')}}">
     <!-- others css -->
     <link rel="stylesheet" href="{{ asset('assets/css/typography.css')}}">
@@ -29,7 +26,6 @@
 <!-- bootstrap 4 js -->
 <script src="{{ asset('assets/js/popper.min.js')}}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
-<script src="{{ asset('assets/js/metisMenu.min.js')}}"></script>
 <script src="{{ asset('assets/js/jquery.slimscroll.min.js')}}"></script>
 <script src="{{ asset('assets/js/jquery.slicknav.min.js')}}"></script>
 <!-- others plugins -->

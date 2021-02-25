@@ -11,16 +11,22 @@ class StageController extends Controller {
     public function overview() {
         $amountApproved = Proposal::where('visibility', '=', 1)->count();
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
-        return view('dashboard', ['proposals' => Proposal::all(), 'companies' => Company::first(), 'amountToCheck' => $amountToCheck, 'amountApproved' => $amountApproved,'menuItem' => 'dashboard']);
+        $proposals = Proposal::select("*")->join('companies', 'proposals.companies_id_company', '=', 'companies.id')->get();
+
+        return view('dashboard', ['proposals' => $proposals, 'amountToCheck' => $amountToCheck,
+            'amountApproved' => $amountApproved,'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
     public function students() {
-        //dd((new \App\Models\Proposal)->company->email);
-        return view('students', ['students' => Student::all(), 'menuItem' => 'students']);
+        return view('students', ['students' => Student::all(), 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
     }
 
     public function companies() {
-        //dd((new \App\Models\Proposal)->company->email);
-        return view('companies', ['companies' => Company::all(),'menuItem' => 'companies']);
+        return view('companies', ['companies' => Company::all(), 'menuItem' => 'companies', 'pageTitle' => 'Overzicht bedrijven']);
+    }
+
+    public function proposal($id) {
+        $proposal = Proposal::where('id', $id)->first();
+        return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'voorstel #' . $proposal->id]);
     }
 }

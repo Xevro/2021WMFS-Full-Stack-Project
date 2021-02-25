@@ -5,31 +5,7 @@
     <!-- page container area start -->
     <!-- main content area start -->
         <div class="horizontal-main-wrapper">
-            <!-- page title area start -->
-            <div class="page-title-area">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">Overzicht bedrijven</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="/">Home</a></li>
-                                <li><span>Bedrijven</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 clearfix pull-right">
-                        <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Gebruikersnaam <i class="fa fa-angle-down"></i></h4>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/settings">Settings</a>
-                                <a class="dropdown-item" href="/logout">Log Out</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @yield('sidebar')
+        @yield('navbar')
             <!-- Progress Table start -->
             <div class="col-12 mt-5">
                 <div class="card">
@@ -43,6 +19,7 @@
                                         <th scope="col">Bedrijfsnaam</th>
                                         <th scope="col">e-mail adres</th>
                                         <th scope="col">KBO nummer</th>
+                                        <th scope="col">Website</th>
                                         <th scope="col">Aantal voorstellen</th>
                                         <th scope="col">Actie</th>
                                     </tr>
@@ -53,6 +30,7 @@
                                             <td>{{ $company->name }}</td>
                                             <td>{{ $company->email }}</td>
                                             <td>{{ $company->KBO_number }}</td>
+                                            <td>{{ $company->website }}</td>
                                             <td>{{ $company->amount_proposals }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">

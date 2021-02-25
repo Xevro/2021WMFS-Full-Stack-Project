@@ -5,31 +5,7 @@
 @section('content')
     <!-- page container area start -->
     <div class="horizontal-main-wrapper">
-        <!-- page title area start -->
-            <div class="page-title-area">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <div class="breadcrumbs-area clearfix">
-                            <h4 class="page-title pull-left">Overzicht studenten</h4>
-                            <ul class="breadcrumbs pull-left">
-                                <li><a href="/">Home</a></li>
-                                <li><span>Studenten</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 clearfix pull-right">
-                        <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Gebruikersnaam <i class="fa fa-angle-down"></i></h4>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/settings">Settings</a>
-                                <a class="dropdown-item" href="/logout">Log Out</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @yield('sidebar')
+            @yield('navbar')
             <!-- Progress Table start -->
             <div class="col-12 mt-5">
                 <div class="card">
