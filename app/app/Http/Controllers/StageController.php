@@ -15,7 +15,7 @@ class StageController extends Controller {
         $proposals = Proposal::with('company')->get();
 
         return view('dashboard', ['proposals' => $proposals, 'amountToCheck' => $amountToCheck,
-            'amountApproved' => $amountApproved,'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
+            'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
     public function students() {
@@ -43,7 +43,7 @@ class StageController extends Controller {
         $proposalsLiked = Proposal::with('students')->whereHas('Likes', function (Builder $query) use ($id) {
             $query->where('student_id', $id);
         })->get();
-        return view('student_detail', ['student' => $student, 'proposals' => $proposals,'proposalsLiked' => $proposalsLiked, 'menuItem' => 'students', 'pageTitle' => 'Detail Student']);
+        return view('student_detail', ['student' => $student, 'proposals' => $proposals, 'proposalsLiked' => $proposalsLiked, 'menuItem' => 'students', 'pageTitle' => 'Detail Student']);
     }
 
     public function proposalDetail($id) {

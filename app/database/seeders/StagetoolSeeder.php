@@ -109,11 +109,11 @@ class StagetoolSeeder extends Seeder {
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        DB::table('students_proposals')->insert([
+        DB::table('likes')->insert([
             'student_id' => 1,
             'proposal_id' => 1,
         ]);
-        DB::table('students_proposals')->insert([
+        DB::table('likes')->insert([
             'student_id' => 1,
             'proposal_id' => 2,
         ]);

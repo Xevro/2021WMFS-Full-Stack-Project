@@ -13,6 +13,7 @@ class Proposal extends Model {
     public function students() {
         return $this->hasMany(Student::class);
     }
+
     public function likes() {
         return $this->hasMany(Likes::class);
     }
