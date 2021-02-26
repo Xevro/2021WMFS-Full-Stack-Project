@@ -23,7 +23,6 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-4">
                                         <div class="invoice-address">
-                                            <p>KBO nummer: {{ $student->email }}</p>
                                             <p>E-mail adres: {{ $student->email }}</p>
                                         </div>
                                     </div>
@@ -46,6 +45,7 @@
                                             <th scope="col">Toegevoegd op</th>
                                             <th scope="col">Start datum</th>
                                             <th scope="col">End datum</th>
+                                            <th scope="col">Mentor</th>
                                             <th scope="col">status</th>
                                             <th scope="col">Actie</th>
                                         </tr>
@@ -58,6 +58,7 @@
                                                 <td>{{ $proposal->created_at }}</td>
                                                 <td>{{ $proposal->start_period }}</td>
                                                 <td>{{ $proposal->end_period }}</td>
+                                                <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
                                                 <td><span class="status-p bg-success">{{ $student->approved }}</span></td>
                                                 <td>
                                                     <ul class="d-flex justify-content-center">

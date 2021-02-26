@@ -13,7 +13,7 @@ class CreateStudentsHasProposalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students_proposals', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
            // $table->id();
            // $table->timestamps();
             $table->unsignedBigInteger('student_id')->index();
