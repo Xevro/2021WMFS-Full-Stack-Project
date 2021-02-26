@@ -23,10 +23,10 @@ Route::get('/tasks', [StageController::class, 'index']);
 Route::get('/overview', [StageController::class, 'overview']);
 
 Route::get('/students', [StageController::class, 'students']);
-Route::get('/student/{id}', [StageController::class, 'student-details']);
+Route::get('/student/{id}', [StageController::class, 'studentDetail']);
 
 Route::get('/companies', [StageController::class, 'companies']);
-Route::get('/company/{id}', [StageController::class, 'company']);
+Route::get('/company/{id}', [StageController::class, 'companyDetail']);
 
-Route::get('/proposal/{id}', [StageController::class, 'proposal']);
+Route::get('/proposal/{id}', [StageController::class, 'proposalDetail']);
 

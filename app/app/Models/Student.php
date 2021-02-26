@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model {
     use HasFactory;
 
-    protected $fillable = ['firstname', 'lastname', 'email', 'password', 'approved', 'preference_proposal', 'completed_days', 'mentor_id'];
+    protected $fillable = ['firstname', 'lastname', 'email', 'password', 'approved', 'proposal_id', 'completed_days', 'mentor_id'];
 
     public function activities() {
         return $this->hasMany(Activity::class);

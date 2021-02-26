@@ -64,8 +64,7 @@
                                             @endif
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3"><a href="{{ url('/proposal/' . $proposal->id) }}">info</a></li>
-                                                    <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    <li><a href="{{ url('/proposal/' . $proposal->id) }}">info</a></li>
                                                 </ul>
                                             </td>
                                         </tr>
