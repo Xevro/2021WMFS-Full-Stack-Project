@@ -80,6 +80,20 @@ class StagetoolSeeder extends Seeder {
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
+        DB::table('proposals')->insert([
+            'visibility' => 0,
+            'status' => 'In afwachting',
+            'description' => 'een stage tool ontwikkelen.',
+            'start_period' => Carbon::now()->format('Y-m-d'),
+            'end_period' => Carbon::now()->format('Y-m-d'),
+            'contract_file_location' => '/',
+            'amount_likes' => 0,
+            'company_id' => 2,
+            'mentor_id' => 2,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
         DB::table('activities')->insert([
             'activity' => 'Vandaag de migrations en seeder geschreven',
             'date' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -95,9 +109,13 @@ class StagetoolSeeder extends Seeder {
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        DB::table('students_has_proposals')->insert([
+        DB::table('students_proposals')->insert([
             'student_id' => 1,
             'proposal_id' => 1,
+        ]);
+        DB::table('students_proposals')->insert([
+            'student_id' => 1,
+            'proposal_id' => 2,
         ]);
     }
 }

@@ -13,6 +13,9 @@ class Proposal extends Model {
     public function students() {
         return $this->hasMany(Student::class);
     }
+    public function StudentProposals() {
+        return $this->hasMany(StudentProposals::class);
+    }
 
     public function mentors() {
         return $this->belongsTo(Mentor::class);
