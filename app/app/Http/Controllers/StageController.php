@@ -39,7 +39,11 @@ class StageController extends Controller {
         $proposals = Proposal::whereHas('students', function (Builder $query) use ($id) {
             $query->where('id', $id);
         })->get();
-        return view('student_detail', ['student' => $student, 'proposals' => $proposals, 'menuItem' => 'students', 'pageTitle' => 'Detail Student']);
+
+        $proposalsLiked = Proposal::whereHas('students', function (Builder $query) use ($id) {
+            $query->where('id', $id);
+        })->get();
+        return view('student_detail', ['student' => $student, 'proposals' => $proposals,'proposalsLiked' => $proposalsLiked, 'menuItem' => 'students', 'pageTitle' => 'Detail Student']);
     }
 
     public function proposalDetail($id) {

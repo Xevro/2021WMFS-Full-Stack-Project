@@ -11,7 +11,7 @@ class Student_Proposal extends Model {
     protected $fillable = ['student_id', 'proposal_id'];
 
     public function student() {
-        return $this->belongsTo(Student::class);
+        return $this->hasMany(Student::class);
     }
 
     public function proposals() {

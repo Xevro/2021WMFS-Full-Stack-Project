@@ -36,12 +36,13 @@
                 <div class="col-12 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Stage voorstellen van {{ $student->name}}</h4>
+                            <h4 class="header-title">Definitief stagevoorstel van {{ $student->firstname . ' ' . $student->lastname }}</h4>
                             <div class="single-table">
                                 <div class="table-responsive">
                                     <table class="table table-hover progress-table text-center">
                                         <thead class="text-uppercase">
                                         <tr>
+                                            <th scope="col">Bedrijf</th>
                                             <th scope="col">Toegevoegd op</th>
                                             <th scope="col">Start datum</th>
                                             <th scope="col">End datum</th>
@@ -50,16 +51,56 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        @if ($student->approved == 'Approved')
                                         @foreach($proposals as $proposal)
                                             <tr>
+                                                <td>{{ $proposal->company->name }}</td>
                                                 <td>{{ $proposal->created_at }}</td>
                                                 <td>{{ $proposal->start_period }}</td>
                                                 <td>{{ $proposal->end_period }}</td>
-                                                @if ($proposal->visibility)
-                                                    <td><span class="status-p bg-success">{{ $proposal->status }}</span></td>
-                                                @else
-                                                    <td><span class="status-p bg-primary">{{ $proposal->status }}</span></td>
-                                                @endif
+                                                <td><span class="status-p bg-success">{{ $student->approved }}</span></td>
+                                                <td>
+                                                    <ul class="d-flex justify-content-center">
+                                                        <li class="mr-3"><a href="{{ url('/proposal/' . $proposal->id) }}">info</a></li>
+                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Progress Table end -->
+
+                <!-- Progress Table start -->
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">Stage voorstellen die {{ $student->firstname . ' ' . $student->lastname }} leuk vindt</h4>
+                            <div class="single-table">
+                                <div class="table-responsive">
+                                    <table class="table table-hover progress-table text-center">
+                                        <thead class="text-uppercase">
+                                        <tr>
+                                            <th scope="col">Bedrijf</th>
+                                            <th scope="col">Toegevoegd op</th>
+                                            <th scope="col">Start datum</th>
+                                            <th scope="col">End datum</th>
+                                            <th scope="col">Actie</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($proposalsLiked as $proposal)
+                                            <tr>
+                                                <td>{{ $proposal->company->name }}</td>
+                                                <td>{{ $proposal->created_at }}</td>
+                                                <td>{{ $proposal->start_period }}</td>
+                                                <td>{{ $proposal->end_period }}</td>
                                                 <td>
                                                     <ul class="d-flex justify-content-center">
                                                         <li class="mr-3"><a href="{{ url('/proposal/' . $proposal->id) }}">info</a></li>
