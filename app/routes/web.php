@@ -28,5 +28,5 @@ Route::get('/student/{id}', [StageController::class, 'studentDetail']);
 Route::get('/companies', [StageController::class, 'companies']);
 Route::get('/company/{id}', [StageController::class, 'companyDetail']);
 
-Route::get('/proposal/{id}', [StageController::class, 'proposalDetail']);
+Route::get('/company/proposal/{id}', [StageController::class, 'proposalDetail']);
 
