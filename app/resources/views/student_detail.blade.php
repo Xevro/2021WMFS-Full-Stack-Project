@@ -62,7 +62,7 @@
                                                 <td><span class="status-p bg-success">{{ $student->approved }}</span></td>
                                                 <td>
                                                     <ul class="d-flex justify-content-center">
-                                                        <li class="mr-3"><a href="{{ url('/proposal/' . $proposal->id) }}">info</a></li>
+                                                        <li class="mr-3"><a href="{{ url('/dashboard/company/proposal/' . $proposal->id) }}">info</a></li>
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>
@@ -104,7 +104,7 @@
                                                 <td>{{ $proposal->end_period }}</td>
                                                 <td>
                                                     <ul class="d-flex justify-content-center">
-                                                        <li class="mr-3"><a href="{{ url('/proposal/' . $proposal->id) }}">info</a></li>
+                                                        <li class="mr-3"><a href="{{ url('/dashboard/company/proposal/' . $proposal->id) }}">info</a></li>
                                                         <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>

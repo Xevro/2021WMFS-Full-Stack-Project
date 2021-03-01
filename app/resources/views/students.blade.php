@@ -32,7 +32,7 @@
                                             <td>{{ $student->completed_days }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3"><a href="{{ url('/student/' . $student->id) }}" class="">info</a></li>
+                                                    <li class="mr-3"><a href="{{ url('/dashboard/student/' . $student->id) }}" class="">info</a></li>
                                                 </ul>
                                             </td>
                                         </tr>

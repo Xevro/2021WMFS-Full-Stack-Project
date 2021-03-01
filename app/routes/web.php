@@ -14,19 +14,15 @@ use App\Http\Controllers\StageController;
 */
 
 Route::get('/', function () {
-    return redirect('/overview');
+    return redirect('/dashboard');
 });
 
+Route::get('/dashboard', [StageController::class, 'overview']);
 
-Route::get('/tasks', [StageController::class, 'index']);
+Route::get('/dashboard/students', [StageController::class, 'students']);
+Route::get('/dashboard/student/{id}', [StageController::class, 'studentDetail']);
 
-Route::get('/overview', [StageController::class, 'overview']);
+Route::get('/dashboard/companies', [StageController::class, 'companies']);
+Route::get('/dashboard/company/{id}', [StageController::class, 'companyDetail']);
 
-Route::get('/students', [StageController::class, 'students']);
-Route::get('/student/{id}', [StageController::class, 'studentDetail']);
-
-Route::get('/companies', [StageController::class, 'companies']);
-Route::get('/company/{id}', [StageController::class, 'companyDetail']);
-
-Route::get('/company/proposal/{id}', [StageController::class, 'proposalDetail']);
-
+Route::get('/dashboard/company/proposal/{id}', [StageController::class, 'proposalDetail']);
