@@ -15,24 +15,33 @@ class StageController extends Controller {
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
         if ($request->has('search')) {
             $proposals = Proposal::with('company')->whereHas('company', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->search . '%')->where('visibility', '=', (bool) $request->status);
-            })->paginate(8);
+                $q->where('name', 'like', '%' . $request->search . '%')->where('visibility', '=', (bool)$request->status);
+            })->paginate(10);
         } else {
-            $proposals = Proposal::with('company')->paginate(8);
+            $proposals = Proposal::with('company')->paginate(10);
         }
         return view('dashboard', ['proposals' => $proposals, 'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck,
             'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
+    public function students(Request $request) {
+        if ($request->has('search')) {
+            $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->paginate(10);
+        } else {
+            $students = Student::paginate(8);
+        }
 
-    public function students() {
-        $students = Student::paginate(8);
-        return view('students', ['students' => $students, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
+        return view('students', ['students' => $students, 'term' => $request->search, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
     }
 
-    public function companies() {
-        $companies = Company::paginate(8);
-        return view('companies', ['companies' => $companies, 'menuItem' => 'companies', 'pageTitle' => 'Overzicht bedrijven']);
+    public function companies(Request $request) {
+        if ($request->has('search')) {
+            $companies = Company::where('name', 'like', '%' . $request->search . '%')->paginate(10);
+        } else {
+            $companies = Company::paginate(8);
+        }
+
+        return view('companies', ['companies' => $companies, 'term' => $request->search, 'menuItem' => 'companies', 'pageTitle' => 'Overzicht bedrijven']);
     }
 
     public function companyDetail($id) {
@@ -56,5 +65,21 @@ class StageController extends Controller {
     public function proposalDetail($id) {
         $proposal = Proposal::with('company')->where('id', $id)->first();
         return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'stagevoorstel']);
+    }
+
+    public function addCompany() {
+
+    }
+
+    public function addStudent() {
+
+    }
+
+    public function assignStudentToProposal() {
+
+    }
+
+    public function validateProposal() {
+
     }
 }

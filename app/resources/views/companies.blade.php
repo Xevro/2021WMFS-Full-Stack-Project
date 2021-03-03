@@ -10,9 +10,23 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
+                        <div class="search-box pull-right pb-3">
+                            <form method="get" action="/dashboard/companies">
+                                <div class="row">
+                                    <div class="pr-4">
+                                        <input type="text" class="form-control" name="search" id="search" value="{{ $term ?? '' }}" placeholder="Zoekterm"/>
+                                    </div>
+                                    <div class="pr-3">
+                                        <button type="submit" class="btn btn-primary">Zoek</button>
+                                    </div>
+                                </div>
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                         <h4 class="header-title">Bedrijven overzicht</h4>
                         <div class="single-table">
                             <div class="table-responsive">
+                                @if($companies->count() > 0)
                                 <table class="table table-hover progress-table text-center">
                                     <thead class="text-uppercase">
                                     <tr>
@@ -45,6 +59,9 @@
                                 <div class="p-3 pull-right">
                                     {{ $companies->links() }}
                                 </div>
+                                @else
+                                    <p>Geen resultaten gevonden die {{ $term }} bevatte.</p>
+                                @endif
                             </div>
                         </div>
                     </div>

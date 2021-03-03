@@ -26,3 +26,15 @@ Route::get('/dashboard/companies', [StageController::class, 'companies']);
 Route::get('/dashboard/company/{id}', [StageController::class, 'companyDetail']);
 
 Route::get('/dashboard/company/proposal/{id}', [StageController::class, 'proposalDetail']);
+
+//add company
+Route::get('/dashboard/company/add', [StageController::class, 'addCompany']);
+
+//add student
+Route::get('/dashboard/students/add', [StageController::class, 'addStudent']);
+
+//add student to proposal
+Route::get('/dashboard/company/proposal/{id}/assign', [StageController::class, 'assignStudentToProposal']);
+
+//Accept proposal on other page
+Route::get('/dashboard/company/proposal/{id}/validate', [StageController::class, 'validateProposal']);
