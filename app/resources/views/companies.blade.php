@@ -34,8 +34,8 @@
                                             <td>{{ $company->amount_proposals }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li class="mr-3"><a href="{{ url('/dashboard/company/' . $company->id) }}">info</a></li>
-                                                    <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                    <li><a href="{{ url('/dashboard/company/' . $company->id) }}">info</a></li>
+                                                   <!-- class="mr-3"<li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>-->
                                                 </ul>
                                             </td>
                                         </tr>

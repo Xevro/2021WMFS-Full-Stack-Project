@@ -12,7 +12,7 @@ class StageController extends Controller {
     public function overview() {
         $amountApproved = Proposal::where('visibility', '=', 1)->count();
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
-        $proposals = Proposal::with('company')->get();
+        $proposals = Proposal::with('company')->paginate(4);
 
         return view('dashboard', ['proposals' => $proposals, 'amountToCheck' => $amountToCheck,
             'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);

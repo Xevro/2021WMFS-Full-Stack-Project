@@ -29,7 +29,7 @@
                     <div class="horizontal-menu">
                         <nav>
                             <ul>
-                                <li @if($menuItem == 'overzicht') class="active"@endif><a href="{{ url('/dashboard/overview') }}"><i class="ti-layout-list-thumb-alt"></i> <span>Overzicht stages</span></a></li>
+                                <li @if($menuItem == 'overzicht') class="active"@endif><a href="{{ url('/dashboard') }}"><i class="ti-layout-list-thumb-alt"></i> <span>Overzicht stages</span></a></li>
                                 <li @if($menuItem == 'students') class="active"@endif><a href="{{ url('/dashboard/students') }}"><i class="fa fa-male"></i> <span>Studenten</span></a></li>
                                 <li @if($menuItem == 'companies') class="active"@endif><a href="{{ url('/dashboard/companies') }}"><i class="fa fa-building-o"></i> <span>Bedrijven</span></a></li>
                             </ul>
