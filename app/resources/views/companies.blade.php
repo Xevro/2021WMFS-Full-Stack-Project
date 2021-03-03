@@ -27,7 +27,7 @@
                                     <tbody>
                                     @foreach($companies as $company)
                                         <tr>
-                                            <td><a href="/company/{{ $company->id }}">{{ $company->name }}</a></td>
+                                            <td><a href="{{ url('/dashboard/company/' . $company->id) }}">{{ $company->name }}</a></td>
                                             <td>{{ $company->email }}</td>
                                             <td>{{ $company->KBO_number }}</td>
                                             <td>{{ $company->website }}</td>

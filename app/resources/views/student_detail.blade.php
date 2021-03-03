@@ -51,7 +51,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if ($student->approved == 'Approved')
+                                        @if ($student->approved == 'Goedgekeurd')
                                         @foreach($proposals as $proposal)
                                             <tr>
                                                 <td>{{ $proposal->company->name }}</td>
