@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="search-box pull-right pb-3">
-                            <form method="get" action="/dashboard/companies">
+                            <form method="get" action="{{ url('/dashboard/companies') }}">
                                 <div class="row">
                                     <div class="pr-4">
                                         <input type="text" class="form-control" name="search" id="search" value="{{ $term ?? '' }}" placeholder="Zoekterm"/>

@@ -37,7 +37,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="search-box pull-right pb-3">
-                            <form method="get" action="/dashboard">
+                            <form method="get" action="{{ url('/dashboard') }}">
                                     <div class="row">
                                         <div class="pr-3 pt-2">
                                             <div class="custom-control custom-checkbox">

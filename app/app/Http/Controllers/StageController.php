@@ -67,19 +67,35 @@ class StageController extends Controller {
         return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'stagevoorstel']);
     }
 
-    public function addCompany() {
+    public function showAddCompany() {
+        return view('company_add', ['menuItem' => 'addCompany', 'pageTitle' => 'Voeg bedrijf toe']);
+    }
+
+    public function addCompany(Request $request) {
 
     }
 
-    public function addStudent() {
+    public function showAddStudent() {
+        return view('student_add', ['menuItem' => 'addStudent', 'pageTitle' => 'Voeg Student toe']);
+    }
+
+    public function addStudent(Request $request) {
 
     }
 
-    public function assignStudentToProposal() {
+    public function showAssignStudentToProposal() {
 
     }
 
-    public function validateProposal() {
+    public function assignStudentToProposal(Request $request) {
+
+    }
+
+    public function showValidateProposal() {
+
+    }
+
+    public function validateProposal(Request $request) {
 
     }
 }
