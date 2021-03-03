@@ -36,9 +36,17 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
+                        <div class="search-box pull-right pb-3">
+                            <form method="get" action="/dashboard">
+                                {{ csrf_field() }}
+                                <input type="text" class="form-control" name="search" id="search" value="{{ $term ?? '' }}" placeholder="Zoekterm"/>
+                                <i class="ti-search"></i>
+                            </form>
+                        </div>
                         <h4 class="header-title">Stage voorstellen overzicht</h4>
                         <div class="single-table">
                             <div class="table-responsive">
+                                @if($proposals != [])
                                 <table class="table table-hover progress-table text-center">
                                     <thead class="text-uppercase">
                                     <tr>
@@ -53,7 +61,7 @@
                                     <tbody>
                                     @foreach($proposals as $proposal)
                                         <tr>
-                                            <td><a href="/company/{{ $proposal->company->id }}">{{ $proposal->company->name }}</a></td>
+                                            <td><a href="{{ url('/dashboard/company/' . $proposal->company->id) }}">{{ $proposal->company->name }}</a></td>
                                             <td>{{ $proposal->created_at }}</td>
                                             <td>{{ $proposal->start_period }}</td>
                                             <td>{{ $proposal->end_period }}</td>
@@ -72,8 +80,11 @@
                                     </tbody>
                                 </table>
                                 <div class="p-3 pull-right">
-                                {{ $proposals->links() }}
+                                    {{ $proposals->links() }}
                                 </div>
+                                @else
+                                <p>Geen voorstellen gevonden.</p>
+                                @endif
                             </div>
                         </div>
                     </div>

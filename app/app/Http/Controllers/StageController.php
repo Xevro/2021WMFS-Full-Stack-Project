@@ -6,25 +6,32 @@ use App\Models\Company;
 use App\Models\Proposal;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class StageController extends Controller {
 
-    public function overview() {
+    public function overview(Request $request) {
         $amountApproved = Proposal::where('visibility', '=', 1)->count();
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
-        $proposals = Proposal::with('company')->paginate(4);
-
-        return view('dashboard', ['proposals' => $proposals, 'amountToCheck' => $amountToCheck,
+        if ($request->has('search')) {
+            $proposals = Proposal::with('company')->whereHas('company', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%');
+            })->paginate(8);
+        } else {
+            $proposals = Proposal::with('company')->paginate(8);
+        }
+        return view('dashboard', ['proposals' => $proposals, 'term' => $request->search, 'amountToCheck' => $amountToCheck,
             'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
+
     public function students() {
-        $students = Student::all();
+        $students = Student::paginate(8);
         return view('students', ['students' => $students, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
     }
 
     public function companies() {
-        $companies = Company::all();
+        $companies = Company::paginate(8);
         return view('companies', ['companies' => $companies, 'menuItem' => 'companies', 'pageTitle' => 'Overzicht bedrijven']);
     }
 

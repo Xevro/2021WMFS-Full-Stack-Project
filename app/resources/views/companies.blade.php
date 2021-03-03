@@ -42,6 +42,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="p-3 pull-right">
+                                    {{ $companies->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>

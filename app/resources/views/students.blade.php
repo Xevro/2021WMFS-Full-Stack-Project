@@ -39,6 +39,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="p-3 pull-right">
+                                    {{ $students->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
