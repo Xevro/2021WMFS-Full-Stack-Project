@@ -42,7 +42,7 @@
                                         <div class="pr-3 pt-2">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" @if ($status == 'on') checked @endif class="custom-control-input" name="status" id="status">
-                                                <label class="custom-control-label" for="status">Status</label>
+                                                <label class="custom-control-label" for="status">Status Goedgekeurd?</label>
                                             </div>
                                         </div>
                                         <div class="pr-4">
