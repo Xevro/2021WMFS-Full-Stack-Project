@@ -15,12 +15,12 @@ class StageController extends Controller {
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
         if ($request->has('search')) {
             $proposals = Proposal::with('company')->whereHas('company', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->search . '%');
+                $q->where('name', 'like', '%' . $request->search . '%')->where('visibility', '=', (bool) $request->status);
             })->paginate(8);
         } else {
             $proposals = Proposal::with('company')->paginate(8);
         }
-        return view('dashboard', ['proposals' => $proposals, 'term' => $request->search, 'amountToCheck' => $amountToCheck,
+        return view('dashboard', ['proposals' => $proposals, 'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck,
             'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 

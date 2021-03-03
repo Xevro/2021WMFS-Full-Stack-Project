@@ -38,15 +38,27 @@
                     <div class="card-body">
                         <div class="search-box pull-right pb-3">
                             <form method="get" action="/dashboard">
+                                    <div class="row">
+                                        <div class="pr-3 pt-2">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" @if ($status == 'on') checked @endif class="custom-control-input" name="status" id="status">
+                                                <label class="custom-control-label" for="status">Status</label>
+                                            </div>
+                                        </div>
+                                        <div class="pr-4">
+                                            <input type="text" class="form-control" name="search" id="search" value="{{ $term ?? '' }}" placeholder="Zoekterm"/>
+                                        </div>
+                                        <div class="pr-3">
+                                            <button type="submit" class="btn btn-primary">Zoek</button>
+                                        </div>
+                                    </div>
                                 {{ csrf_field() }}
-                                <input type="text" class="form-control" name="search" id="search" value="{{ $term ?? '' }}" placeholder="Zoekterm"/>
-                                <i class="ti-search"></i>
                             </form>
                         </div>
                         <h4 class="header-title">Stage voorstellen overzicht</h4>
                         <div class="single-table">
                             <div class="table-responsive">
-                                @if($proposals != [])
+                                @if($proposals->count() > 0)
                                 <table class="table table-hover progress-table text-center">
                                     <thead class="text-uppercase">
                                     <tr>
@@ -83,7 +95,7 @@
                                     {{ $proposals->links() }}
                                 </div>
                                 @else
-                                <p>Geen voorstellen gevonden.</p>
+                                <p>Geen resultaten gevonden die {{ $term }} bevatte.</p>
                                 @endif
                             </div>
                         </div>
