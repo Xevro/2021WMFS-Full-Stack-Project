@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,7 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::prefix('dashboard')->group(function(){
+Route::prefix('dashboard')->group(function () {
     Route::get('/', [StageController::class, 'overview']);
 
     Route::get('/students', [StageController::class, 'students']);

@@ -72,7 +72,16 @@ class StageController extends Controller {
     }
 
     public function addCompany(Request $request) {
-
+        $request->validate([
+            'email' => 'required|email|unique:companies',
+            'kbo_number' => 'required|unique:companies|numeric',
+            'name' => 'required|unique:companies|max:125',
+            'website' => 'nullable',
+            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:8'
+        ]);
+        Company::create($request->all());
+        return redirect('dashboard/companies');
     }
 
     public function showAddStudent() {
@@ -84,7 +93,7 @@ class StageController extends Controller {
     }
 
     public function showAssignStudentToProposal() {
-
+        return view('assign_student_to_proposal', ['menuItem' => 'Students', 'pageTitle' => 'Wijs student toe aan stagevoorstel']);
     }
 
     public function assignStudentToProposal(Request $request) {

@@ -16,11 +16,11 @@
                             <form method="POST" action="{{ url('/dashboard/student/add') }}">
                                 <div class="form-group">
                                     <label for="email">Email adres</label>
-                                    <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email adres">
+                                    <input type="email" class="form-control" name="email" id="email" aria-describedby="email" placeholder="Email adres">
                                 </div>
                                 <div class="form-group">
                                     <label for="firstname">Voornaam</label>
-                                    <input type="text" class="form-control" id="firstname" aria-describedby="firstname" placeholder="Voornaam">
+                                    <input type="text" class="form-control" name="firstname" id="firstname" aria-describedby="firstname" placeholder="Voornaam">
                                 </div>
                                 <div class="form-group">
                                     <label for="lastname">Achternaam</label>
@@ -34,6 +34,7 @@
                                     <label for="password-confirm">Wachtwoord control</label>
                                     <input type="password" class="form-control" id="password-confirm" placeholder="Wachtwoord bedrijf controle">
                                 </div>
+                                {{ csrf_field() }}
                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Voeg toe</button>
                             </form>
                         </div>

@@ -17,7 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string('email');
             $table->string('password');
-            $table->string('KBO_number');
+            $table->string('kbo_number');
             $table->string('name');
             $table->string('website');
             $table->integer('amount_proposals')->default(0);

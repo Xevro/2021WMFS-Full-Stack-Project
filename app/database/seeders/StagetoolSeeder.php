@@ -16,7 +16,7 @@ class StagetoolSeeder extends Seeder {
         DB::table('companies')->insert([
             'email' => "company@comp.com",
             'password' => 'azerty123',
-            'KBO_number' => 18272,
+            'kbo_number' => 18272,
             'name' => "BVBA IT consulent",
             'website' => "company.com",
             'amount_proposals' => 0,
@@ -27,7 +27,7 @@ class StagetoolSeeder extends Seeder {
         DB::table('companies')->insert([
             'email' => "hr@fleetmaster.com",
             'password' => 'azerty123',
-            'KBO_number' => 1928273,
+            'kbo_number' => 1928273,
             'name' => "Fleetmaster",
             'website' => "fleetmaster.com",
             'amount_proposals' => 0,
