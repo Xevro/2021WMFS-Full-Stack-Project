@@ -8,6 +8,8 @@ use App\Models\Proposal;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class StageController extends Controller {
 
@@ -77,16 +79,26 @@ class StageController extends Controller {
             'email' => 'required|email|unique:companies',
             'kbo_number' => 'required|unique:companies|numeric',
             'name' => 'required|unique:companies|max:125',
-          //  'website' => 'nullable',
             'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:8'
+            'password_confirmation' => 'required|min:8',
+            'profile_image' => 'image|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        Company::create($request->all());
+
+        $company = new Company($request->input());
+
+        if ($request->profile_image) {
+            $imageName = time() . '.' . $request->profile_image->extension();
+            $request->profile_image->move(public_path('images'), $imageName);
+            $company->profile_image = $imageName;
+        }
+        $company->save();
+
+        //Company::create($request->all());
         return redirect('dashboard/companies');
     }
 
     public function showAddStudent() {
-        return view('student_add', ['mentors'=> Mentor::all(), 'menuItem' => 'addStudent', 'pageTitle' => 'Voeg Student toe']);
+        return view('student_add', ['mentors' => Mentor::all(), 'menuItem' => 'addStudent', 'pageTitle' => 'Voeg Student toe']);
     }
 
     public function addStudent(Request $request) {

@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->string('website');
             $table->integer('amount_proposals')->default(0);
+            $table->integer('profile_image')->nullable();
             $table->timestamps();
         });
     }

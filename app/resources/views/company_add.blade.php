@@ -40,6 +40,11 @@
                                     <label for="password_confirmation">Wachtwoord control</label>
                                     <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Wachtwoord bedrijf controle">
                                 </div>
+                                <div class="form-group">
+                                    <label for="profile_image">Profielfoto</label>
+                                    <input type="file" name="profile_image"/>
+                                </div>
+
                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Voeg bedrijf toe</button>
                             </form>
                         </div>
