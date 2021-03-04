@@ -31,7 +31,7 @@
                             <ul>
                                 <li @if($menuItem == 'overzicht') class="active"@endif><a href="{{ url('/dashboard') }}"><i class="ti-layout-list-thumb-alt"></i> <span>Overzicht stages</span></a></li>
                                 <li @if($menuItem == 'students' || $menuItem == 'addStudent') class="active"@endif>
-                                    <a href="javascript:void(0)"><i class="fa fa-male"></i><span>Bedrijven</span></a>
+                                    <a href="javascript:void(0)"><i class="fa fa-male"></i><span>Studenten</span></a>
                                     <ul class="submenu">
                                         <li @if($menuItem == 'students') class="active"@endif><a href="{{ url('/dashboard/students') }}">Studenten</a></li>
                                         <li @if($menuItem == 'addStudent') class="active"@endif><a href="{{ url('/dashboard/student/add') }}">Voeg student toe</a></li>

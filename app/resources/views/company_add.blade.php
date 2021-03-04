@@ -28,10 +28,10 @@
                                     <label for="name">Naam bedrijf</label>
                                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name', '') }}" aria-describedby="name" placeholder="Bedrijfsnaam">
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="website">Website bedrijf</label>
                                     <input type="text" class="form-control" id="website" name="website" value="{{ old('website', '') }}" aria-describedby="website" placeholder="Website url">
-                                </div>
+                                </div>-->
                                 <div class="form-group">
                                     <label for="password">Wachtwoord</label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="Wachtwoord bedrijf">

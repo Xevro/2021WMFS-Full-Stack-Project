@@ -43,7 +43,7 @@
                                         <tr>
                                             <td><a href="{{ url('/dashboard/company/' . $company->id) }}">{{ $company->name }}</a></td>
                                             <td>{{ $company->email }}</td>
-                                            <td>{{ $company->KBO_number }}</td>
+                                            <td>{{ $company->kbo_number }}</td>
                                             <td>{{ $company->website }}</td>
                                             <td>{{ $company->amount_proposals }}</td>
                                             <td>

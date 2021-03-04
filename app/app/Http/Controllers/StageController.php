@@ -77,7 +77,7 @@ class StageController extends Controller {
             'email' => 'required|email|unique:companies',
             'kbo_number' => 'required|unique:companies|numeric',
             'name' => 'required|unique:companies|max:125',
-            'website' => 'nullable',
+          //  'website' => 'nullable',
             'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'required|min:8'
         ]);
