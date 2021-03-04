@@ -12,30 +12,41 @@
                 <div class="col-md-6 offset-md-3 pt-4">
                     <div class="card">
                         <div class="card-body">
+                            @include('errors')
                             <h4 class="header-title">Voeg een student toe</h4>
-                            <form method="POST" action="{{ url('/dashboard/student/add') }}">
+                            <form action="{{ url('/dashboard/student/add') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="email">Email adres</label>
-                                    <input type="email" class="form-control" name="email" id="email" aria-describedby="email" placeholder="Email adres">
+                                    <input type="email" class="form-control" name="email" id="email" value="{{ old('email', '') }}"  aria-describedby="email" placeholder="Email adres">
                                 </div>
                                 <div class="form-group">
                                     <label for="firstname">Voornaam</label>
-                                    <input type="text" class="form-control" name="firstname" id="firstname" aria-describedby="firstname" placeholder="Voornaam">
+                                    <input type="text" class="form-control" name="firstname" id="firstname" value="{{ old('firstname', '') }}" aria-describedby="firstname" placeholder="Voornaam">
                                 </div>
                                 <div class="form-group">
                                     <label for="lastname">Achternaam</label>
-                                    <input type="text" class="form-control" id="lastname" aria-describedby="lastname" placeholder="Achternaam">
+                                    <input type="text" class="form-control" name="lastname" id="lastname" value="{{ old('lastname', '') }}" aria-describedby="lastname" placeholder="Achternaam">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Wachtwoord</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Wachtwoord bedrijf">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Wachtwoord student">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password-confirm">Wachtwoord control</label>
-                                    <input type="password" class="form-control" id="password-confirm" placeholder="Wachtwoord bedrijf controle">
+                                    <label for="password_confirmation">Wachtwoord control</label>
+                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Wachtwoord student controle">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mentor_id" class="control-label">Mentor</label>
+                                    <div class="col-sm-3">
+                                        <select name="mentor_id" id="mentor_id" class="form-control">
+                                            @foreach ($mentors as $mentor)
+                                                <option value="{{ $mentor->id }}" @if (old('mentor_id', '') == $mentor->id) selected="selected" @endif>{{ $mentor->firstname . ' ' . $mentor->lastname }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 {{ csrf_field() }}
-                                <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Voeg toe</button>
+                                <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Voeg student toe</button>
                             </form>
                         </div>
                     </div>

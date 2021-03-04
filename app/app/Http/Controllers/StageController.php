@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Mentor;
 use App\Models\Proposal;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder;
@@ -85,11 +86,20 @@ class StageController extends Controller {
     }
 
     public function showAddStudent() {
-        return view('student_add', ['menuItem' => 'addStudent', 'pageTitle' => 'Voeg Student toe']);
+        return view('student_add', ['mentors'=> Mentor::all(), 'menuItem' => 'addStudent', 'pageTitle' => 'Voeg Student toe']);
     }
 
     public function addStudent(Request $request) {
-
+        $request->validate([
+            'email' => 'required|email|unique:students',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:8',
+            'mentor_id' => 'required|exists:mentors,id'
+        ]);
+        Student::create($request->all());
+        return redirect('dashboard/students');
     }
 
     public function showAssignStudentToProposal() {

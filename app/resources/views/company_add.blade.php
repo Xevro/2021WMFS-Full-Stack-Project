@@ -14,7 +14,7 @@
                         <div class="card-body">
                             @include('errors')
                             <h4 class="header-title">Voeg een bedrijf toe</h4>
-                            <form action="{{ url('/dashboard/company/add') }}" method="post">
+                            <form action="{{ url('/dashboard/company/add') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="email">Email adres</label>
