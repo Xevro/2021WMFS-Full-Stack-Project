@@ -94,8 +94,6 @@ class StageController extends Controller {
             'email' => 'required|email|unique:students',
             'firstname' => 'required',
             'lastname' => 'required',
-            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:8',
             'mentor_id' => 'required|exists:mentors,id'
         ]);
         Student::create($request->all());
@@ -103,7 +101,7 @@ class StageController extends Controller {
     }
 
     public function showAssignStudentToProposal() {
-        return view('assign_student_to_proposal', ['menuItem' => 'Students', 'pageTitle' => 'Wijs student toe aan stagevoorstel']);
+        return view('assign_student_to_proposal', ['menuItem' => 'Students', 'pageTitle' => 'stagevoorstel']);
     }
 
     public function assignStudentToProposal(Request $request) {
