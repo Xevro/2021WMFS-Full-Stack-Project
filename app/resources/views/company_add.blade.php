@@ -17,15 +17,15 @@
                             <form action="{{ url('/dashboard/company/add') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <label for="email">Email adres</label>
+                                    <label for="email">* Email adres</label>
                                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email', '') }}" placeholder="Email adres">
                                 </div>
                                 <div class="form-group">
-                                    <label for="kbo_number">KBO nummer</label>
+                                    <label for="kbo_number">* KBO nummer</label>
                                     <input type="text" class="form-control" id="kbo_number" name="kbo_number" value="{{ old('kbo_number', '') }}" aria-describedby="kbo_number" placeholder="KBO nummer">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Naam bedrijf</label>
+                                    <label for="name">* Naam bedrijf</label>
                                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name', '') }}" aria-describedby="name" placeholder="Bedrijfsnaam">
                                 </div>
                                 <!--<div class="form-group">
@@ -33,11 +33,11 @@
                                     <input type="text" class="form-control" id="website" name="website" value="{{ old('website', '') }}" aria-describedby="website" placeholder="Website url">
                                 </div>-->
                                 <div class="form-group">
-                                    <label for="password">Wachtwoord</label>
+                                    <label for="password">* Wachtwoord</label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="Wachtwoord bedrijf">
                                 </div>
                                <div class="form-group">
-                                    <label for="password_confirmation">Wachtwoord control</label>
+                                    <label for="password_confirmation">* Wachtwoord controle</label>
                                     <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Wachtwoord bedrijf controle">
                                 </div>
                                 <div class="form-group">

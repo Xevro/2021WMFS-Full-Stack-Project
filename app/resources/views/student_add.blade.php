@@ -16,19 +16,19 @@
                             <h4 class="header-title">Voeg een student toe</h4>
                             <form action="{{ url('/dashboard/student/add') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="email">Email adres</label>
+                                    <label for="email">* Email adres</label>
                                     <input type="email" class="form-control" name="email" id="email" value="{{ old('email', '') }}"  aria-describedby="email" placeholder="Email adres">
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstname">Voornaam</label>
+                                    <label for="firstname">* Voornaam</label>
                                     <input type="text" class="form-control" name="firstname" id="firstname" value="{{ old('firstname', '') }}" aria-describedby="firstname" placeholder="Voornaam">
                                 </div>
                                 <div class="form-group">
-                                    <label for="lastname">Achternaam</label>
+                                    <label for="lastname">* Achternaam</label>
                                     <input type="text" class="form-control" name="lastname" id="lastname" value="{{ old('lastname', '') }}" aria-describedby="lastname" placeholder="Achternaam">
                                 </div>
                                 <div class="form-group">
-                                    <label for="mentor_id" class="control-label">Mentor</label>
+                                    <label for="mentor_id" class="control-label">* Mentor</label>
                                     <div class="col-sm-3">
                                         <select name="mentor_id" id="mentor_id" class="form-control">
                                             @foreach ($mentors as $mentor)
