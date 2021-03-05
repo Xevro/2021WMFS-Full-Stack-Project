@@ -35,7 +35,7 @@
                 <div class="col-12 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Definitief stagevoorstel van {{ $student->firstname . ' ' . $student->lastname }}</h4>
+                            <h4 class="header-title">Stage van {{ $student->firstname . ' ' . $student->lastname }}</h4>
                             <div class="single-table">
                                 <div class="table-responsive">
                                     <table class="table table-hover progress-table text-center">
@@ -82,7 +82,7 @@
                 <div class="col-12 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Stage voorstellen die {{ $student->firstname . ' ' . $student->lastname }} leuk vindt</h4>
+                            <h4 class="header-title">Stage voorkeuren van {{ $student->firstname . ' ' . $student->lastname }}</h4>
                             <div class="single-table">
                                 <div class="table-responsive">
                                     <table class="table table-hover progress-table text-center">

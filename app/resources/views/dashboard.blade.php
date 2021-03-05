@@ -66,6 +66,7 @@
                                         <th scope="col">Toegevoegd op</th>
                                         <th scope="col">Start datum</th>
                                         <th scope="col">End datum</th>
+                                        <th scope="col">Beschrijving</th>
                                         <th scope="col">status</th>
                                         <th scope="col">Actie</th>
                                     </tr>
@@ -77,6 +78,7 @@
                                             <td>{{ $proposal->created_at }}</td>
                                             <td>{{ $proposal->start_period }}</td>
                                             <td>{{ $proposal->end_period }}</td>
+                                            <td>{{ \Illuminate\Support\Str::words($proposal->description, 10) }}</td>
                                             @if ($proposal->visibility)
                                                 <td><span class="status-p bg-success">{{ $proposal->status }}</span></td>
                                             @else
