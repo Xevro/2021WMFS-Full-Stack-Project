@@ -1,4 +1,12 @@
-# Web &amp; Mobile Full-Stack - workshop on Laravel
+# Web &amp; Mobile Full-Stack - Stagetool
+
+### Description
+
+* This internship tool will make it possible to manage internships and companies. Each user has it's own role and can do specific things
+* The tool will be able to manage students, companies and proposals
+* A coordinator wil be able remove, add or change those things
+* A company will be able to add proposals
+* A student wil be able to write his reports about the internship
 
 ## Installation instructions
 
@@ -7,16 +15,16 @@
 * Start the Docker Desktop application
 * Run from your terminal/cmd
 ```shell
-git clone https://github.com/mjoris/workshops-wmfs-laravel.git
+git clone https://git.ikdoeict.be/louis.dhont/2021wmfs-louisdhont.git
 ```
 * When Docker is up and running, run from your terminal/cmd
 ```shell
-cd workshops-wmfs-laravel
+cd 2021wmfs-louisdhont
 docker-compose up
 ```
 * When the containers are up and running, run from a new terminal/cmd
 ```shell
-cd workshops-wmfs-laravel
+cd 2021wmfs-louisdhont
 docker-compose exec php-web bash
 ```
 From the Bash terminal in the php-web container, run the following commands:
@@ -35,7 +43,7 @@ docker-compose down
 ## Recipes and troubleshooting
 
 ### Updating the course materials 
-* Run from your terminal/cmd, in your <code>workshops-wmfs-laravel</code> directory
+* Run from your terminal/cmd, in your <code>2021wmfs-louisdhont</code> directory
 ```shell
 git reset --hard
 git pull origin master
