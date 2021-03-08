@@ -8,8 +8,6 @@ use App\Models\Proposal;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class StageController extends Controller {
 
@@ -19,7 +17,7 @@ class StageController extends Controller {
         if ($request->has('search')) {
             $proposals = Proposal::with('company')->whereHas('company', function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')->where('visibility', '=', (bool)$request->status);
-            })->paginate(10);
+            })->orWhere('description', 'like', '%' . $request->search . '%')->paginate(10);
         } else {
             $proposals = Proposal::with('company')->paginate(10);
         }
@@ -70,31 +68,21 @@ class StageController extends Controller {
         return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'stagevoorstel']);
     }
 
-    public function showAddCompany() {
-        return view('company_add', ['menuItem' => 'addCompany', 'pageTitle' => 'Voeg bedrijf toe']);
+    public function showAddProposal() {
+        return view('proposal_add', ['mentors' => Mentor::all(), 'companies' => Company::all(), 'menuItem' => 'addProposal', 'pageTitle' => 'Voeg Voorstel toe']);
     }
 
-    public function addCompany(Request $request) {
+    public function addProposal(Request $request) {
         $request->validate([
-            'email' => 'required|email|unique:companies',
-            'kbo_number' => 'required|unique:companies|numeric',
-            'name' => 'required|unique:companies|max:125',
-            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:8',
-            'profile_image' => 'image|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'description' => 'required|min:3|max:1000',
+            'start_period' => 'required|date_format:Y-m-d',
+            'end_period' => 'required|date_format:Y-m-d',
+            'company_id' => 'required|exists:companies,id',
+            'mentor_id' => 'required|exists:mentors,id'
         ]);
+        Proposal::create($request->all());
 
-        $company = new Company($request->input());
-
-        if ($request->profile_image) {
-            $imageName = time() . '.' . $request->profile_image->extension();
-            $request->profile_image->move(public_path('images'), $imageName);
-            $company->profile_image = $imageName;
-        }
-        $company->save();
-
-        //Company::create($request->all());
-        return redirect('dashboard/companies');
+        return redirect('dashboard');
     }
 
     public function showAddStudent() {
@@ -111,7 +99,7 @@ class StageController extends Controller {
         Student::create($request->all());
         return redirect('dashboard/students');
     }
-
+    
     public function showAssignStudentToProposal() {
         return view('assign_student_to_proposal', ['menuItem' => 'Students', 'pageTitle' => 'stagevoorstel']);
     }

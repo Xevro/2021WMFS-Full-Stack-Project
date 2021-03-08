@@ -46,6 +46,7 @@
                                             <th scope="col">Toegevoegd op</th>
                                             <th scope="col">Start datum</th>
                                             <th scope="col">End datum</th>
+                                            <th scope="col">Beschrijving</th>
                                             <th scope="col">status</th>
                                             <th scope="col">Actie</th>
                                         </tr>
@@ -56,6 +57,7 @@
                                                 <td>{{ $proposal->created_at }}</td>
                                                 <td>{{ $proposal->start_period }}</td>
                                                 <td>{{ $proposal->end_period }}</td>
+                                                <td>{{ \Illuminate\Support\Str::words($proposal->description, 10) }}</td>
                                                 @if ($proposal->visibility)
                                                     <td><span class="status-p bg-success">{{ $proposal->status }}</span></td>
                                                 @else
@@ -64,7 +66,7 @@
                                                 <td>
                                                     <ul class="d-flex justify-content-center">
                                                         <li class="mr-3"><a href="{{ url('/dashboard/company/proposal/' . $proposal->id) }}">info</a></li>
-                                                        <li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                        <li><a href="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" class="text-danger"><i class="ti-trash"></i></a></li>
                                                     </ul>
                                                 </td>
                                             </tr>

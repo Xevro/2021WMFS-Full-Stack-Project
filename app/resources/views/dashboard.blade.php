@@ -86,7 +86,8 @@
                                             @endif
                                             <td>
                                                 <ul class="d-flex justify-content-center">
-                                                    <li><a href="{{ url('/dashboard/company/proposal/' . $proposal->id) }}">info</a></li>
+                                                    <li class="mr-3"><a href="{{ url('/dashboard/company/proposal/' . $proposal->id) }}">info</a></li>
+                                                    <li><a href="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" class="text-danger"><i class="ti-trash"></i></a></li>
                                                 </ul>
                                             </td>
                                         </tr>
