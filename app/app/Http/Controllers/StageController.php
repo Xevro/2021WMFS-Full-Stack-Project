@@ -16,7 +16,7 @@ class StageController extends Controller {
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
         if ($request->has('search')) {
             $proposals = Proposal::with('company')->whereHas('company', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->search . '%')->where('visibility', '=', (bool)$request->status);
+                $q->where('visibility', '=', (bool)$request->status)->where('name', 'like', '%' . $request->search . '%');
             })->orWhere('description', 'like', '%' . $request->search . '%')->paginate(10);
         } else {
             $proposals = Proposal::with('company')->paginate(10);
@@ -99,7 +99,7 @@ class StageController extends Controller {
         Student::create($request->all());
         return redirect('dashboard/students');
     }
-    
+
     public function showAssignStudentToProposal() {
         return view('assign_student_to_proposal', ['menuItem' => 'Students', 'pageTitle' => 'stagevoorstel']);
     }
