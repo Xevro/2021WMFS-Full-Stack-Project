@@ -29,20 +29,23 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('/company/proposal/{id}', [StageController::class, 'proposalDetail'])->where(['id' => '[0-9]+']);
 
-    Route::get('/company/proposal/{id}/delete', [StageController::class, 'proposalDelete'])->where(['id' => '[0-9]+']);
-
     //add proposal
     Route::get('/proposal/add', [StageController::class, 'showAddProposal']);
     Route::post('/proposal/add', [StageController::class, 'addProposal']);
+
+    //Delete proposal
+    Route::get('/company/proposal/{id}/delete', [StageController::class, 'showProposalDelete'])->where(['id' => '[0-9]+']);
+    Route::post('/company/proposal/{id}/delete', [StageController::class, 'proposalDelete'])->where(['id' => '[0-9]+']);
+
     //add student
     Route::get('/student/add', [StageController::class, 'showAddStudent']);
     Route::post('/student/add', [StageController::class, 'addStudent']);
+
     //add student to proposal
     Route::get('/company/proposal/{id}/assign', [StageController::class, 'showAssignStudentToProposal'])->where(['id' => '[0-9]+']);
     Route::post('/company/proposal/{id}/assign', [StageController::class, 'assignStudentToProposal'])->where(['id' => '[0-9]+']);
+
     //Accept proposal on other page
     Route::get('/company/proposal/{id}/validate', [StageController::class, 'showValidateProposal'])->where(['id' => '[0-9]+']);
     Route::post('/company/proposal/{id}/validate', [StageController::class, 'validateProposal'])->where(['id' => '[0-9]+']);
-
-
 });

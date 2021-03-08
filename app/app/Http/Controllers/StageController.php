@@ -100,6 +100,23 @@ class StageController extends Controller {
         return redirect('dashboard/students');
     }
 
+    public function showProposalDelete($id) {
+        $proposal = Proposal::where('id', $id)->first();
+        return view('delete_proposal', ['proposal' => $proposal, 'menuItem' => 'addStudent', 'pageTitle' => 'Verwijder voorstel']);
+    }
+
+    public function proposalDelete(Request $request) {
+        if (Proposal::find($request->id)) {
+            if (Proposal::destroy($request->id)) {
+                return redirect('dashboard');
+            } else {
+                return view('errors.something_went_wrong');
+            }
+        } else {
+            return view('errors.something_went_wrong');
+        }
+    }
+
     public function showAssignStudentToProposal() {
         return view('assign_student_to_proposal', ['menuItem' => 'Students', 'pageTitle' => 'stagevoorstel']);
     }
