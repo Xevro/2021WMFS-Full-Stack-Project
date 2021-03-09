@@ -42,6 +42,7 @@
                                     <ul class="submenu">
                                         <li @if($menuItem == 'companies') class="active"@endif><a href="{{ url('/dashboard/companies') }}">Bedrijven</a></li>
                                         <li @if($menuItem == 'addProposal') class="active"@endif><a href="{{ url('/dashboard/proposal/add') }}">Voeg voorstel toe</a></li>
+                                        <li @if($menuItem == 'addCompany') class="active"@endif><a href="{{ url('/dashboard/company/add') }}">Voeg bedrijf toe</a></li>
                                     </ul>
                                 </li>
                             </ul>

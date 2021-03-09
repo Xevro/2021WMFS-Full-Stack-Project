@@ -29,6 +29,10 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('/company/proposal/{id}', [StageController::class, 'proposalDetail'])->where(['id' => '[0-9]+']);
 
+    //add company
+    Route::get('/company/add', [StageController::class, 'showAddCompany']);
+    Route::post('/company/add', [StageController::class, 'addCompany']);
+
     //add proposal
     Route::get('/proposal/add', [StageController::class, 'showAddProposal']);
     Route::post('/proposal/add', [StageController::class, 'addProposal']);
