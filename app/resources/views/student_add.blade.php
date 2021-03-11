@@ -37,7 +37,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                {{ csrf_field() }}
+                                @csrf
                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Voeg student toe</button>
                             </form>
                         </div>

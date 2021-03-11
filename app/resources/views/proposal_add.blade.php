@@ -15,7 +15,7 @@
                             @include('errors')
                             <h4 class="header-title">Voeg een voorstel toe</h4>
                             <form action="{{ url('/dashboard/proposal/add') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <div class="form-group">
                                     <label for="description">* Voorstel beschrijving</label>
                                     <textarea id="description" name="description" class="form-control" rows="4" cols="50">{{ old('description', '') }}</textarea>

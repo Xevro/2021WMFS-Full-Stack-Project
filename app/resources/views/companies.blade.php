@@ -20,7 +20,6 @@
                                         <button type="submit" class="btn btn-primary">Zoek</button>
                                     </div>
                                 </div>
-                                {{ csrf_field() }}
                             </form>
                         </div>
                         <h4 class="header-title">Bedrijven overzicht</h4>

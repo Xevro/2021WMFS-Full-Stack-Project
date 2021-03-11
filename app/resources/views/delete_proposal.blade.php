@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <h4 class="header-title">Verwijder voorstel # {{ $proposal->id }}</h4>
                             <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4">Verwijder voorstel</button>
                                 <a href="/dashboard" class="btn btn-primary mt-4 pr-4 pl-4 ml-2">Annuleer</a>
                             </form>

@@ -15,7 +15,7 @@
                             @include('errors')
                             <h4 class="header-title">Voeg een bedrijf toe</h4>
                             <form action="{{ url('/dashboard/company/add') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                                @csrf
                                 <div class="form-group">
                                     <label for="email">* Email adres</label>
                                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email', '') }}" placeholder="Email adres">
