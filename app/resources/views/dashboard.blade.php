@@ -117,13 +117,20 @@
             <!-- overview area start -->
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
-                    <!-- main content area end -->
-                    <!-- footer area start-->
-                    <footer>
-                        <div class="footer-area">
-                            <p>© Copyright 2021. All right reserved. <a href="https://odisee.be/">Odisee</a>Technologiecampus.</p>
-                        </div>
-                    </footer>
-                    <!-- footer area end-->
-                    <!-- page container area end -->
+
+                </div>
+                <div class="col-xl-3 col-lg-4 coin-distribution">
+
+                </div>
+            </div>
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2021. All right reserved. <a href="https://odisee.be/">Odisee</a> Technologiecampus.</p>
+            </div>
+        </footer>
+        <!-- footer area end-->
+        <!-- page container area end -->
 @endsection
