@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             //$table->string('password');
             $table->string('kbo_number');
             $table->string('name');
-            $table->string('website');
+            $table->string('website')->nullable();
             $table->integer('amount_proposals')->default(0);
             $table->integer('profile_image')->nullable();
             $table->timestamps();
