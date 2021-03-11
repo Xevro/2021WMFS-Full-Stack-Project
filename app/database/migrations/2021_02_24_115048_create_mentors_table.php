@@ -18,7 +18,7 @@ class CreateMentorsTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            $table->string('password');
+          //  $table->string('password');
             $table->timestamps();
         });
     }

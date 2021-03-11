@@ -46,7 +46,7 @@ class StageController extends Controller {
     }
 
     public function companyDetail($id) {
-        $company = Company::where('id', $id)->first();
+        $company = Company::where('id', $id)->first(); //findorfail
         $proposals = Proposal::where('company_id', $id)->get();
         return view('company_detail', ['company' => $company, 'proposals' => $proposals, 'menuItem' => 'companies', 'pageTitle' => 'Detail Bedrijf']);
     }
@@ -106,7 +106,7 @@ class StageController extends Controller {
             $request->profile_image->move(public_path('images'), $imageName);
             $company->profile_image = $imageName;
         }
-        $company->save();
+        $company->save(); // store
 
         //Company::create($request->all());
         return redirect('dashboard/companies');

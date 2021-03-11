@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StagetoolSeeder extends Seeder {
     /**
@@ -15,8 +16,8 @@ class StagetoolSeeder extends Seeder {
     public function run() {
         DB::table('companies')->insert([
             'email' => "company@comp.com",
-            'password' => 'azerty123',
-            'kbo_number' => 18272,
+            'password' => Hash::make('Azerty123'),
+            'kbo_number' => 182722,
             'name' => "BVBA IT consulent",
             'website' => "company.com",
             'amount_proposals' => 0,
@@ -26,7 +27,7 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('companies')->insert([
             'email' => "hr@fleetmaster.com",
-            'password' => 'azerty123',
+            'password' => Hash::make('Azerty123'),
             'kbo_number' => 1928273,
             'name' => "Fleetmaster",
             'website' => "fleetmaster.com",
@@ -39,7 +40,7 @@ class StagetoolSeeder extends Seeder {
             'firstname' => 'joris',
             'lastname' => 'Maervoet',
             'email' => 'joris.maervoet@odisee.be',
-            'password' => 'azerty123',
+//            'password' => Hash::make('Azerty123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -48,7 +49,7 @@ class StagetoolSeeder extends Seeder {
             'firstname' => 'Sven',
             'lastname' => 'Knockaert',
             'email' => 'sven.knockaert@odisee.be',
-            'password' => 'azerty123',
+         //   'password' => Hash::make('Azerty123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -57,11 +58,24 @@ class StagetoolSeeder extends Seeder {
             'firstname' => 'Louis',
             'lastname' => 'D\'Hont',
             'email' => 'student@student.odisee.be',
-            'password' => 'azerty123',
+          //  'password' => Hash::make('Azerty123'),
             'approved' => 'not approved',
             'preference_proposal' => 0,
             'completed_days' => 0,
             'mentor_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('students')->insert([
+            'firstname' => 'Bert',
+            'lastname' => 'Test',
+            'email' => 'student@student.odisee.be',
+            //  'password' => Hash::make('Azerty123'),
+            'approved' => 'not approved',
+            'preference_proposal' => 0,
+            'completed_days' => 0,
+            'mentor_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -75,6 +89,20 @@ class StagetoolSeeder extends Seeder {
             'contract_file_location' => '/',
             'amount_likes' => 0,
             'company_id' => 1,
+            'mentor_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('proposals')->insert([
+            'visibility' => 1,
+            'status' => 'Gedgekeurd',
+            'description' => 'een stage tool ontwikkelen voor studenten.',
+            'start_period' => Carbon::now()->format('Y-m-d'),
+            'end_period' => Carbon::now()->format('Y-m-d'),
+            'contract_file_location' => '/',
+            'amount_likes' => 0,
+            'company_id' => 2,
             'mentor_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
