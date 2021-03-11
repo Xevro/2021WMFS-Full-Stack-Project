@@ -16,8 +16,8 @@ class StageController extends Controller {
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
         if ($request->has('search')) {
             $proposals = Proposal::with('company')->whereHas('company', function ($q) use ($request) {
-                $q->where('visibility', '=', (bool)$request->status)->where('name', 'like', '%' . $request->search . '%');
-            })->orWhere('description', 'like', '%' . $request->search . '%')->paginate(10);
+                $q->where('name', 'like', '%' . $request->search . '%')->orWhere('description', 'like', '%' . $request->search . '%');
+            })->where('visibility', '=', (bool)$request->status)->paginate(10);
         } else {
             $proposals = Proposal::with('company')->paginate(10);
         }
@@ -46,7 +46,7 @@ class StageController extends Controller {
     }
 
     public function companyDetail($id) {
-        $company = Company::where('id', $id)->first(); //findorfail
+        $company = Company::findOrFail($id); //findorfail
         $proposals = Proposal::where('company_id', $id)->get();
         return view('company_detail', ['company' => $company, 'proposals' => $proposals, 'menuItem' => 'companies', 'pageTitle' => 'Detail Bedrijf']);
     }
@@ -94,8 +94,6 @@ class StageController extends Controller {
             'email' => 'required|email|unique:companies',
             'kbo_number' => 'required|unique:companies|numeric',
             'name' => 'required|unique:companies|max:125',
-            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:8',
             'profile_image' => 'image|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 

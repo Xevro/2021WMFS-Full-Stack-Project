@@ -16,7 +16,7 @@ class StagetoolSeeder extends Seeder {
     public function run() {
         DB::table('companies')->insert([
             'email' => "company@comp.com",
-            'password' => Hash::make('Azerty123'),
+           // 'password' => Hash::make('Azerty123'),
             'kbo_number' => 182722,
             'name' => "BVBA IT consulent",
             'website' => "company.com",
@@ -27,7 +27,7 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('companies')->insert([
             'email' => "hr@fleetmaster.com",
-            'password' => Hash::make('Azerty123'),
+            //'password' => Hash::make('Azerty123'),
             'kbo_number' => 1928273,
             'name' => "Fleetmaster",
             'website' => "fleetmaster.com",
@@ -60,7 +60,7 @@ class StagetoolSeeder extends Seeder {
             'email' => 'student@student.odisee.be',
           //  'password' => Hash::make('Azerty123'),
             'approved' => 'not approved',
-            'preference_proposal' => 0,
+            'proposal_id' => 0,
             'completed_days' => 0,
             'mentor_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -73,7 +73,7 @@ class StagetoolSeeder extends Seeder {
             'email' => 'student@student.odisee.be',
             //  'password' => Hash::make('Azerty123'),
             'approved' => 'not approved',
-            'preference_proposal' => 0,
+            'proposal_id' => 0,
             'completed_days' => 0,
             'mentor_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -96,7 +96,7 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('proposals')->insert([
             'visibility' => 1,
-            'status' => 'Gedgekeurd',
+            'status' => 'Goedgekeurd',
             'description' => 'een stage tool ontwikkelen voor studenten.',
             'start_period' => Carbon::now()->format('Y-m-d'),
             'end_period' => Carbon::now()->format('Y-m-d'),
