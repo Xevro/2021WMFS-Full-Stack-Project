@@ -15,13 +15,15 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            //$table->string('password');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('kbo_number');
             $table->string('name');
             $table->string('website')->nullable();
             $table->integer('amount_proposals')->default(0);
             $table->integer('profile_image')->nullable();
+            $table->enum('role', ['company'])->default('company');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

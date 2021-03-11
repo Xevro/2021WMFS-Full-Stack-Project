@@ -18,11 +18,12 @@ class CreateStudentsTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            //$table->string('password');
+            $table->string('password');
             $table->string('approved')->default('In afwachting');
             $table->integer('proposal_id')->nullable();
             $table->integer('completed_days')->default(0);
             $table->foreignId('mentor_id')->constrained();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

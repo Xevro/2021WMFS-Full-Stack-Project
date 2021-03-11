@@ -16,22 +16,24 @@ class StagetoolSeeder extends Seeder {
     public function run() {
         DB::table('companies')->insert([
             'email' => "company@comp.com",
-           // 'password' => Hash::make('Azerty123'),
+            'password' => Hash::make('Azerty123'),
             'kbo_number' => 182722,
-            'name' => "BVBA IT consulent",
+            'name' => "BVBA E&Y",
             'website' => "company.com",
             'amount_proposals' => 0,
+            'role' => 'company',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('companies')->insert([
             'email' => "hr@fleetmaster.com",
-            //'password' => Hash::make('Azerty123'),
+            'password' => Hash::make('Azerty123'),
             'kbo_number' => 1928273,
             'name' => "Fleetmaster",
             'website' => "fleetmaster.com",
             'amount_proposals' => 0,
+            'role' => 'company',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -40,16 +42,18 @@ class StagetoolSeeder extends Seeder {
             'firstname' => 'joris',
             'lastname' => 'Maervoet',
             'email' => 'joris.maervoet@odisee.be',
-//            'password' => Hash::make('Azerty123'),
+            'password' => Hash::make('Azerty123'),
+            'role' => 'mentor',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('mentors')->insert([
             'firstname' => 'Sven',
-            'lastname' => 'Knockaert',
-            'email' => 'sven.knockaert@odisee.be',
-         //   'password' => Hash::make('Azerty123'),
+            'lastname' => 'Sanders',
+            'email' => 'sven.sanders@odisee.be',
+            'password' => Hash::make('Azerty123'),
+            'role' => 'coordinator',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -57,8 +61,8 @@ class StagetoolSeeder extends Seeder {
         DB::table('students')->insert([
             'firstname' => 'Louis',
             'lastname' => 'D\'Hont',
-            'email' => 'student@student.odisee.be',
-          //  'password' => Hash::make('Azerty123'),
+            'email' => 'louis.dhont@student.odisee.be',
+            'password' => Hash::make('Azerty123'),
             'approved' => 'not approved',
             'proposal_id' => 0,
             'completed_days' => 0,
@@ -68,10 +72,10 @@ class StagetoolSeeder extends Seeder {
         ]);
 
         DB::table('students')->insert([
-            'firstname' => 'Bert',
-            'lastname' => 'Test',
-            'email' => 'student@student.odisee.be',
-            //  'password' => Hash::make('Azerty123'),
+            'firstname' => 'guido',
+            'lastname' => 'pallemans',
+            'email' => 'guido.pallemans@student.odisee.be',
+            'password' => Hash::make('Azerty123'),
             'approved' => 'not approved',
             'proposal_id' => 0,
             'completed_days' => 0,
