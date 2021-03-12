@@ -18,6 +18,11 @@
                 <x-label for="kbo_number" :value="__('kbo_number')" />
                 <x-input id="kbo_number" class="block mt-1 w-full" type="text" name="kbo_number" :value="old('kbo_number')" required autofocus />
             </div>
+            <!-- Name -->
+            <!--<div>
+                <x-label for="name" :value="__('name')" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            </div>-->
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />

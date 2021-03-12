@@ -18,7 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('kbo_number')->unique();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->integer('amount_proposals')->default(0);
             $table->integer('profile_image')->nullable();
             $table->enum('role', ['company'])->default('company');

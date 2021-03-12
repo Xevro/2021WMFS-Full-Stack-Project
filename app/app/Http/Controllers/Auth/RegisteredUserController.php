@@ -36,15 +36,17 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'kbo_number' => 'required|int|unique:companies',
+           // 'name' => 'required|string',
             'email' => 'required|string|email|max:255|unique:companies',
             'password' => 'required|string|confirmed|min:8',
         ]);
 
         Auth::login($user = Company::create([
+            //'name', $request->email,
             'kbo_number' => $request->kbo_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            //'role' => 'mentor',
+            //'role' => 'company'
         ]));
 
         event(new Registered($user));
