@@ -46,13 +46,13 @@ class StageController extends Controller {
     }
 
     public function companyDetail($id) {
-        $company = Company::findOrFail($id); //findorfail
+        $company = Company::findOrFail($id);
         $proposals = Proposal::where('company_id', $id)->get();
         return view('company_detail', ['company' => $company, 'proposals' => $proposals, 'menuItem' => 'companies', 'pageTitle' => 'Detail Bedrijf']);
     }
 
     public function studentDetail($id) {
-        $student = Student::find($id);
+        $student = Student::findOrFail($id);
         $proposals = Proposal::whereHas('students', function (Builder $query) use ($id) {
             $query->where('id', $id);
         })->get();
