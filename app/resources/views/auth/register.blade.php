@@ -9,46 +9,29 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <p class="mb-4">Register your company</p>
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
-            <!-- Name -->
+            <!-- kbo_number -->
             <div>
-                <x-label for="firstname" :value="__('firstname')" />
-
-                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
+                <x-label for="kbo_number" :value="__('kbo_number')" />
+                <x-input id="kbo_number" class="block mt-1 w-full" type="text" name="kbo_number" :value="old('kbo_number')" required autofocus />
             </div>
-            <!-- lastname -->
-            <div>
-                <x-label for="lastname" :value="__('lastname')" />
-
-                <x-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus />
-            </div>
-
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
-
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
-
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
-
             <!-- Confirm Password -->
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
             </div>
 
             <div class="flex items-center justify-end mt-4">

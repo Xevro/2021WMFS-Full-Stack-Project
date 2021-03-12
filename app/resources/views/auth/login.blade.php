@@ -4,6 +4,7 @@
         <x-auth-session-status class="mb-4" :status="session('status')" />
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <p class="mb-4">Login as a mentor or coordinator</p>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
@@ -29,9 +30,10 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <!--<a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
-                    </a>
+                        </a>-->
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">Register your company</a>
                 @endif
                 <x-button class="ml-3">
                     {{ __('Log in') }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Mentor;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -34,18 +35,16 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:mentors',
+            'kbo_number' => 'required|int|unique:companies',
+            'email' => 'required|string|email|max:255|unique:companies',
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        Auth::login($user = Mentor::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
+        Auth::login($user = Company::create([
+            'kbo_number' => $request->kbo_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'mentor',
+            //'role' => 'mentor',
         ]));
 
         event(new Registered($user));

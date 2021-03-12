@@ -12,6 +12,7 @@ class Mentor extends Authenticatable {
 
     protected $fillable = ['firstname', 'lastname', 'email', 'password'];
     protected $hidden = [''];
+
     public function students() {
         return $this->hasMany(Student::class);
     }
