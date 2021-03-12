@@ -32,7 +32,6 @@
                                         <th scope="col">Bedrijfsnaam</th>
                                         <th scope="col">e-mail adres</th>
                                         <th scope="col">KBO nummer</th>
-                                        <th scope="col">Website</th>
                                         <th scope="col">Aantal voorstellen</th>
                                         <th scope="col">Actie</th>
                                     </tr>
@@ -43,7 +42,6 @@
                                             <td><a href="{{ url('/dashboard/company/' . $company->id) }}">{{ $company->name }}</a></td>
                                             <td>{{ $company->email }}</td>
                                             <td>{{ $company->kbo_number }}</td>
-                                            <td>{{ $company->website }}</td>
                                             <td>{{ $company->amount_proposals }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">

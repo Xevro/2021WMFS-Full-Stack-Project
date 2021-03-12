@@ -17,7 +17,7 @@ class CreateMentorsTable extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->enum('role', ['mentor', 'coordinator'])->default('mentor');
             $table->rememberToken();

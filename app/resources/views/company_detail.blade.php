@@ -24,7 +24,6 @@
                                     <div class="col-md-4">
                                         <div class="invoice-address">
                                             <p>KBO nummer: {{ $company->kbo_number }}</p>
-                                            <p>Website: <a href="{{ url('http://' . $company->website) }}">{{ $company->website }}</a></p>
                                             <p>E-mail adres: {{ $company->email }}</p>
                                         </div>
                                     </div>
