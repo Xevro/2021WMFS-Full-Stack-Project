@@ -21,7 +21,8 @@ class StageController extends Controller {
         } else {
             $proposals = Proposal::with('company')->paginate(10);
         }
-        return view('dashboard', ['proposals' => $proposals, 'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck,
+        $proposalsApproved = Proposal::with('company')->where('visibility', '=', 1)->paginate(10);
+        return view('dashboard', ['proposals' => $proposals, 'proposalsApproved' => $proposalsApproved, 'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck,
             'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
