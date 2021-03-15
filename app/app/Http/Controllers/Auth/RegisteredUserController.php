@@ -41,12 +41,12 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        Auth::login($user = Company::create([
-            //'name', $request->email,
+        Auth::login($user = User::create([
+            //'name', $request->email, //change blade form
             'kbo_number' => $request->kbo_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            //'role' => 'company'
+            'role' => 'student'
         ]));
 
         event(new Registered($user));

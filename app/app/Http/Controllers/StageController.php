@@ -6,8 +6,10 @@ use App\Models\Company;
 use App\Models\Mentor;
 use App\Models\Proposal;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StageController extends Controller {
 

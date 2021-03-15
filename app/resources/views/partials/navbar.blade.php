@@ -12,7 +12,7 @@
             </div>
             <div class="col-sm-6 clearfix pull-right">
                 <div class="user-profile pull-right">
-                    <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->firstname . ' ' . auth()->user()->lastname }}<i class="fa fa-angle-down"></i></h4>
+                    <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->mentor->firstname . ' ' .auth()->user()->mentor->lastname }}<i class="fa fa-angle-down"></i></h4>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="/settings">Account instellingen</a>
                         <a class="dropdown-item" href="/logout">Log Out</a>
