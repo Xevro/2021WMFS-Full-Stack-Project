@@ -15,11 +15,10 @@ class CreateMentorsTable extends Migration
     {
         Schema::create('mentors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('role', ['mentor', 'coordinator'])->default('mentor');
             $table->rememberToken();
             $table->timestamps();
         });

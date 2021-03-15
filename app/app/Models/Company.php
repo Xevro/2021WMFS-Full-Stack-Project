@@ -10,9 +10,13 @@ use Illuminate\Notifications\Notifiable;
 class Company extends Authenticatable {
     use HasFactory, Notifiable;
 
-    protected $fillable = ['email', 'password', 'kbo_number', 'name', 'amount_proposals', 'profile_image'];
+    protected $fillable = ['user_id', 'email', 'password', 'kbo_number', 'name', 'amount_proposals', 'profile_image'];
 
     public function proposal() {
         return $this->hasMany(Proposal::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

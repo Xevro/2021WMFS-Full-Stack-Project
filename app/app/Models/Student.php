@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model {
     use HasFactory;
 
-    protected $fillable = ['firstname', 'lastname', 'email', 'approved', 'proposal_id', 'completed_days', 'mentor_id'];
+    protected $fillable = ['user_id', 'firstname', 'lastname', 'r_number', 'email', 'approved', 'proposal_id', 'completed_days', 'mentor_id'];
 
     public function activities() {
         return $this->hasMany(Activity::class);
@@ -24,5 +24,9 @@ class Student extends Model {
 
     public function proposals() {
         return $this->belongsToMany(Proposal::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

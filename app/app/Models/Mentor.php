@@ -10,8 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class Mentor extends Authenticatable {
     use HasFactory, Notifiable;
 
-    protected $fillable = ['firstname', 'lastname', 'email', 'password'];
-    protected $hidden = [''];
+    protected $fillable = ['user_id', 'firstname', 'lastname', 'email', 'password'];
 
     public function students() {
         return $this->hasMany(Student::class);
@@ -19,5 +18,9 @@ class Mentor extends Authenticatable {
 
     public function proposals() {
         return $this->hasMany(Proposal::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

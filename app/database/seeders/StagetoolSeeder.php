@@ -14,53 +14,97 @@ class StagetoolSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        DB::table('companies')->insert([
-            'email' => "company@comp.com",
-            'password' => Hash::make('Azerty123'),
-            'kbo_number' => 182722,
-            'name' => "BVBA E&Y",
-            'amount_proposals' => 0,
-            'role' => 'company',
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-
-        DB::table('companies')->insert([
-            'email' => "hr@fleetmaster.com",
-            'password' => Hash::make('Azerty123'),
-            'kbo_number' => 1928273,
-            'name' => "Fleetmaster",
-            'amount_proposals' => 0,
-            'role' => 'company',
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-
-        DB::table('mentors')->insert([
-            'firstname' => 'joris',
-            'lastname' => 'Maervoet',
+        DB::table('users')->insert([
             'email' => 'joris.maervoet@odisee.be',
             'password' => Hash::make('Azerty123'),
             'role' => 'mentor',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-
-        DB::table('mentors')->insert([
-            'firstname' => 'Sven',
-            'lastname' => 'Sanders',
-            'email' => 'sven.sanders@odisee.be',
+        DB::table('users')->insert([
+            'email' => 'sven.knockaert@odisee.be',
             'password' => Hash::make('Azerty123'),
             'role' => 'coordinator',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
+        DB::table('users')->insert([
+            'email' => "company@comp.com",
+            'password' => Hash::make('Azerty123'),
+            'role' => 'company',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => "hr@fleetmaster.com",
+            'password' => Hash::make('Azerty123'),
+            'role' => 'company',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'louis.dhont@student.odisee.be',
+            'password' => Hash::make('Azerty123'),
+            'role' => 'student',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('users')->insert([
+            'email' => 'guido.pallemans@student.odisee.be',
+            'password' => Hash::make('Azerty123'),
+            'role' => 'student',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('companies')->insert([
+            'user_id' => 3,
+            'email' => "company@comp.com",
+            'kbo_number' => 182722,
+            'name' => "BVBA E&Y",
+            'amount_proposals' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('companies')->insert([
+            'user_id' => 4,
+            'email' => "hr@fleetmaster.com",
+            'kbo_number' => 1928273,
+            'name' => "Fleetmaster",
+            'amount_proposals' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('mentors')->insert([
+            'user_id' => 1,
+            'firstname' => 'joris',
+            'lastname' => 'Maervoet',
+            'email' => 'joris.maervoet@odisee.be',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('mentors')->insert([
+            'user_id' => 2,
+            'firstname' => 'Sven',
+            'lastname' => 'knockaert',
+            'email' => 'sven.knockaert@odisee.be',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
         DB::table('students')->insert([
+            'user_id' => 5,
             'firstname' => 'Louis',
             'lastname' => 'D\'Hont',
             'email' => 'louis.dhont@student.odisee.be',
-            'password' => Hash::make('Azerty123'),
+            'r_number' => 'r1039382',
             'approved' => 'not approved',
             'proposal_id' => 0,
             'completed_days' => 0,
@@ -70,10 +114,11 @@ class StagetoolSeeder extends Seeder {
         ]);
 
         DB::table('students')->insert([
+            'user_id' => 6,
             'firstname' => 'guido',
             'lastname' => 'pallemans',
             'email' => 'guido.pallemans@student.odisee.be',
-            'password' => Hash::make('Azerty123'),
+            'r_number' => 'r0284739',
             'approved' => 'not approved',
             'proposal_id' => 0,
             'completed_days' => 0,
