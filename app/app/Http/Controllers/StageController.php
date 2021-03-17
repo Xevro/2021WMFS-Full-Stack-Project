@@ -6,10 +6,9 @@ use App\Models\Company;
 use App\Models\Mentor;
 use App\Models\Proposal;
 use App\Models\Student;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class StageController extends Controller {
 
@@ -24,11 +23,13 @@ class StageController extends Controller {
             $proposals = Proposal::with('company')->paginate(10);
         }
         $proposalsApproved = Proposal::with('company')->where('visibility', '=', 1)->paginate(10);
+
         return view('dashboard', ['proposals' => $proposals, 'proposalsApproved' => $proposalsApproved, 'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck,
             'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
     public function students(Request $request) {
+         //Gate::authorize('view-students');
         if ($request->has('search')) {
             $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->paginate(10);
         } else {
@@ -72,10 +73,12 @@ class StageController extends Controller {
     }
 
     public function showAddProposal() {
+        Gate::authorize('add-proposal');
         return view('proposal_add', ['mentors' => Mentor::all(), 'companies' => Company::all(), 'menuItem' => 'addProposal', 'pageTitle' => 'Voeg Voorstel toe']);
     }
 
     public function addProposal(Request $request) {
+        Gate::authorize('add-proposal');
         $request->validate([
             'description' => 'required|min:3|max:1000',
             'start_period' => 'required|date_format:Y-m-d',
@@ -89,10 +92,12 @@ class StageController extends Controller {
     }
 
     public function showAddCompany() {
+        Gate::authorize('add-company');
         return view('company_add', ['menuItem' => 'addCompany', 'pageTitle' => 'Voeg bedrijf toe']);
     }
 
     public function addCompany(Request $request) {
+        Gate::authorize('add-company');
         $request->validate([
             'email' => 'required|email|unique:companies',
             'kbo_number' => 'required|unique:companies|numeric',
@@ -114,10 +119,12 @@ class StageController extends Controller {
     }
 
     public function showAddStudent() {
+        Gate::authorize('add-student');
         return view('student_add', ['mentors' => Mentor::all(), 'menuItem' => 'addStudent', 'pageTitle' => 'Voeg Student toe']);
     }
 
     public function addStudent(Request $request) {
+        Gate::authorize('add-student');
         $request->validate([
             'email' => 'required|email|unique:students',
             'firstname' => 'required',
@@ -129,11 +136,13 @@ class StageController extends Controller {
     }
 
     public function showProposalDelete($id) {
+        Gate::authorize('delete-proposal');
         $proposal = Proposal::where('id', $id)->first();
         return view('delete_proposal', ['proposal' => $proposal, 'menuItem' => 'addStudent', 'pageTitle' => 'Verwijder voorstel']);
     }
 
     public function proposalDelete(Request $request) {
+        Gate::authorize('delete-proposal');
         if (Proposal::find($request->id)) {
             if (Proposal::destroy($request->id)) {
                 return redirect('dashboard');

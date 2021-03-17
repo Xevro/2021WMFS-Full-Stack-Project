@@ -34,15 +34,19 @@
                                     <a href="javascript:void(0)"><i class="fa fa-male"></i><span>Studenten</span></a>
                                     <ul class="submenu">
                                         <li @if($menuItem == 'students') class="active"@endif><a href="{{ url('/dashboard/students') }}">Studenten</a></li>
+                                        @can('add-student')
                                         <li @if($menuItem == 'addStudent') class="active"@endif><a href="{{ url('/dashboard/student/add') }}">Voeg student toe</a></li>
+                                        @endcan
                                     </ul>
                                 </li>
                                 <li @if($menuItem == 'companies' || $menuItem == 'addCompany') class="active"@endif>
                                     <a href="javascript:void(0)"><i class="fa fa-building-o"></i><span>Bedrijven</span></a>
                                     <ul class="submenu">
                                         <li @if($menuItem == 'companies') class="active"@endif><a href="{{ url('/dashboard/companies') }}">Bedrijven</a></li>
+                                        @can('add-companies')
                                         <li @if($menuItem == 'addProposal') class="active"@endif><a href="{{ url('/dashboard/proposal/add') }}">Voeg voorstel toe</a></li>
                                         <li @if($menuItem == 'addCompany') class="active"@endif><a href="{{ url('/dashboard/company/add') }}">Voeg bedrijf toe</a></li>
+                                        @endcan
                                     </ul>
                                 </li>
                             </ul>
