@@ -18,6 +18,13 @@
                                             <span>Stagevoorstel </span>
                                             <span>#{{ $proposal->id }}</span>
                                         </div>
+                                        <div class="proposal-status">
+                                        @if ($proposal->status == 'Goedgekeurd')
+                                            <td><span class="status-p bg-success">{{ $proposal->status }}</span></td>
+                                        @else
+                                            <td><span class="status-p bg-primary">{{ $proposal->status }}</span></td>
+                                        @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row align-items-center">

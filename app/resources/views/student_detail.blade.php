@@ -55,7 +55,7 @@
                                         @if ($student->approved == 'Goedgekeurd')
                                         @foreach($proposals as $proposal)
                                             <tr>
-                                                <td>{{ $proposal->company->name }}</td>
+                                                <td><a href="{{ url('/dashboard/company/' . $proposal->company->id) }}">{{ $proposal->company->name }}</a></td>
                                                 <td>{{ $proposal->created_at }}</td>
                                                 <td>{{ $proposal->start_period }}</td>
                                                 <td>{{ $proposal->end_period }}</td>
@@ -99,7 +99,7 @@
                                         <tbody>
                                         @foreach($proposalsLiked as $proposal)
                                             <tr>
-                                                <td>{{ $proposal->company->name }}</td>
+                                                <td><a href="{{ url('/dashboard/company/' . $proposal->company->id) }}">{{ $proposal->company->name }}</a></td>
                                                 <td>{{ $proposal->created_at }}</td>
                                                 <td>{{ $proposal->start_period }}</td>
                                                 <td>{{ $proposal->end_period }}</td>

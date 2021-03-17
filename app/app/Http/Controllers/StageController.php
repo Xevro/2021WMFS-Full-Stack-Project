@@ -27,7 +27,7 @@ class StageController extends Controller {
         $proposalsApproved = Proposal::with('company')->where('visibility', '=', 1)->paginate(10);
 
         if ($request->has('search_student')) {
-            if($request->has('status_student') && $request->status_student == 'on') {
+            if ($request->has('status_student') && $request->status_student == 'on') {
                 $students = Student::where(function ($q) use ($request) {
                     $q->where('firstname', 'like', '%' . $request->search_student . '%')->orWhere('lastname', 'like', '%' . $request->search_student . '%');
                 })->paginate(10);
@@ -37,7 +37,7 @@ class StageController extends Controller {
                 })->paginate(10);
             }
         } else {
-            if($request->has('status_student') && $request->status_student == 'on') {
+            if ($request->has('status_student') && $request->status_student == 'on') {
                 $students = Student::where(function ($q) use ($request) {
                     $q->where('firstname', 'like', '%' . $request->search_student . '%')->orWhere('lastname', 'like', '%' . $request->search_student . '%');
                 })->paginate(10);
@@ -53,9 +53,9 @@ class StageController extends Controller {
     public function students(Request $request) {
         //Gate::authorize('view-students');
         if ($request->has('search')) {
-            $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->paginate(8);
+            $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->where('allowed', 1)->paginate(8);
         } else {
-            $students = Student::paginate(8);
+            $students = Student::where('allowed', 1)->paginate(8);
         }
 
         return view('students', ['students' => $students, 'term' => $request->search, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
