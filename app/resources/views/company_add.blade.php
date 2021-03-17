@@ -29,6 +29,14 @@
                                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name', '') }}" aria-describedby="name" placeholder="Bedrijfsnaam">
                                 </div>
                                 <div class="form-group">
+                                    <label for="password">* Wachtwoord</label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Wachtwoord bedrijf">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_confirmation">* Wachtwoord controle</label>
+                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Wachtwoord bedrijf controle">
+                                </div>
+                                <div class="form-group">
                                     <label for="profile_image">Profielfoto</label>
                                     <input type="file" name="profile_image"/>
                                 </div>

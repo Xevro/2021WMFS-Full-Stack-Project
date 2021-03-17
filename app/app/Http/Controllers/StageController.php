@@ -6,10 +6,12 @@ use App\Models\Company;
 use App\Models\Mentor;
 use App\Models\Proposal;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class StageController extends Controller {
 
@@ -124,19 +126,16 @@ class StageController extends Controller {
             'email' => 'required|email|unique:companies',
             'kbo_number' => 'required|unique:companies|numeric',
             'name' => 'required|unique:companies|max:125',
+            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:8',
             'profile_image' => 'image|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+        User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'company']);
+        Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number, 'user_id' => User::where('email', $request->email)->first()->id]);
 
-        $company = new Company($request->input());
-
-        if ($request->profile_image) {
-            $imageName = time() . '.' . $request->profile_image->extension();
-            $request->profile_image->move(public_path('images'), $imageName);
-            $company->profile_image = $imageName;
+        if ($request->file()) {
+            $request->file('profile_image')->store('images');
         }
-        $company->save(); // store
-
-        //Company::create($request->all());
         return redirect('dashboard/companies');
     }
 
