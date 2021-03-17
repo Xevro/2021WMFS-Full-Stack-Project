@@ -42,7 +42,7 @@
                                             <td><a href="{{ url('/dashboard/company/' . $company->id) }}">{{ $company->name }}</a></td>
                                             <td>{{ $company->email }}</td>
                                             <td>{{ $company->kbo_number }}</td>
-                                            <td>{{ $company->amount_proposals }}</td>
+                                            <td>{{ $company->proposals->count() }}</td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li><a href="{{ url('/dashboard/company/' . $company->id) }}">info</a></li>

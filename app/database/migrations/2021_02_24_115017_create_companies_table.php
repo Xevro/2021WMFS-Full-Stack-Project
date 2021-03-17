@@ -19,7 +19,6 @@ class CreateCompaniesTable extends Migration
             $table->string('email')->unique();
             $table->string('kbo_number')->unique();
             $table->string('name')->nullable();
-            $table->integer('amount_proposals')->default(0);
             $table->integer('profile_image')->nullable();
             $table->rememberToken();
             $table->timestamps();

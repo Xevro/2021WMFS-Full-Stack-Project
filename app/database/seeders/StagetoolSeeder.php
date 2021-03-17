@@ -66,7 +66,6 @@ class StagetoolSeeder extends Seeder {
             'email' => "company@comp.com",
             'kbo_number' => 182722,
             'name' => "BVBA E&Y",
-            'amount_proposals' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -76,7 +75,6 @@ class StagetoolSeeder extends Seeder {
             'email' => "hr@fleetmaster.com",
             'kbo_number' => 1928273,
             'name' => "Fleetmaster",
-            'amount_proposals' => 0,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

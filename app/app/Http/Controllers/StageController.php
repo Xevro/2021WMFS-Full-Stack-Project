@@ -53,7 +53,7 @@ class StageController extends Controller {
     public function students(Request $request) {
         //Gate::authorize('view-students');
         if ($request->has('search')) {
-            $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->paginate(10);
+            $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->paginate(8);
         } else {
             $students = Student::paginate(8);
         }
@@ -63,7 +63,7 @@ class StageController extends Controller {
 
     public function companies(Request $request) {
         if ($request->has('search')) {
-            $companies = Company::where('name', 'like', '%' . $request->search . '%')->paginate(10);
+            $companies = Company::where('name', 'like', '%' . $request->search . '%')->paginate(8);
         } else {
             $companies = Company::paginate(8);
         }
@@ -73,7 +73,7 @@ class StageController extends Controller {
 
     public function companyDetail($id) {
         $company = Company::findOrFail($id);
-        $proposals = Proposal::where('company_id', $id)->get();
+        $proposals = Proposal::where('company_id', $id)->paginate(8);
         return view('company_detail', ['company' => $company, 'proposals' => $proposals, 'menuItem' => 'companies', 'pageTitle' => 'Detail Bedrijf']);
     }
 
