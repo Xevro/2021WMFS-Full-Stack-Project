@@ -177,11 +177,13 @@ class StageController extends Controller {
     }
 
     public function showAssignStudentToProposal() {
-        return view('assign_student_to_proposal', ['menuItem' => 'Students', 'pageTitle' => 'stagevoorstel']);
+        return view('assign_student_to_proposal', ['proposals' => Proposal::where('visibility', 0)->get(), 'students' => Student::where('proposal_id', 0)->get(), 'menuItem' => 'AssignProposal', 'pageTitle' => 'Koppel student aan een voorstel']);
     }
 
     public function assignStudentToProposal(Request $request) {
-
+        Student::where('id', $request->student_id)->update(['proposal_id' => $request->proposal_id, 'approved' => 'Goedgekeurd']);
+        Proposal::where('id', $request->proposal_id)->update(['visibility' => 1, 'status' => 'Goedgekeurd']);
+        return redirect('dashboard/student/' . $request->student_id);
     }
 
     public function showValidateProposal() {

@@ -51,8 +51,8 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/student/add', [StageController::class, 'addStudent'])->middleware(['auth']);
 
     //add student to proposal
-    Route::get('/company/proposal/{id}/assign', [StageController::class, 'showAssignStudentToProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
-    Route::post('/company/proposal/{id}/assign', [StageController::class, 'assignStudentToProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::get('/proposal/assign', [StageController::class, 'showAssignStudentToProposal'])->middleware(['auth']);
+    Route::post('/proposal/assign', [StageController::class, 'assignStudentToProposal'])->middleware(['auth']);
 
     //Accept proposal on other page
     Route::get('/company/proposal/{id}/validate', [StageController::class, 'showValidateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);

@@ -34,6 +34,7 @@
                                     <a href="javascript:void(0)"><i class="fa fa-male"></i><span>Studenten</span></a>
                                     <ul class="submenu">
                                         <li @if($menuItem == 'students') class="active"@endif><a href="{{ url('/dashboard/students') }}">Studenten</a></li>
+                                        <li @if($menuItem == 'AssignProposal') class="active"@endif><a href="{{ url('/dashboard/proposal/assign') }}">Koppel student aan voorstel</a></li>
                                         @can('add-student')
                                         <li @if($menuItem == 'addStudent') class="active"@endif><a href="{{ url('/dashboard/student/add') }}">Voeg student toe</a></li>
                                         @endcan

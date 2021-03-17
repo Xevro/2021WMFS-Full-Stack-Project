@@ -21,7 +21,6 @@ class CreateProposalsTable extends Migration
             $table->date('start_period');
             $table->date('end_period');
             $table->string('contract_file_location')->nullable();
-            $table->integer('amount_likes')->default(0)->nullable();
             $table->foreignId('company_id')->constrained();
             $table->foreignId('mentor_id')->constrained();
             $table->timestamps();
