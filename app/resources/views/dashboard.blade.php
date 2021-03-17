@@ -174,7 +174,7 @@
                                             <div class="pr-3 pt-2">
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" @if ($statusStudent == 'on') checked @endif class="custom-control-input" name="status_student" id="status_student">
-                                                    <label class="custom-control-label" for="status_student">Status Goedgekeurd?</label>
+                                                    <label class="custom-control-label" for="status_student">Alle studenten tonen</label>
                                                 </div>
                                             </div>
                                             <div class="pr-4">

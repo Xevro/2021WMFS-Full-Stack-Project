@@ -26,10 +26,24 @@ class StageController extends Controller {
         }
         $proposalsApproved = Proposal::with('company')->where('visibility', '=', 1)->paginate(10);
 
-        if ($request->has('search-students')) {
-            $students = Student::where('name', 'like', '%' . $request->search_student . '%')->where('approved', '=', $request->status_student)->where('mentor_id', 1)->paginate(10);
+        if ($request->has('search_student')) {
+            if($request->has('status_student') && $request->status_student == 'on') {
+                $students = Student::where(function ($q) use ($request) {
+                    $q->where('firstname', 'like', '%' . $request->search_student . '%')->orWhere('lastname', 'like', '%' . $request->search_student . '%');
+                })->paginate(10);
+            } else {
+                $students = Student::where('mentor_id', Auth::user()->id)->where(function ($q) use ($request) {
+                    $q->where('firstname', 'like', '%' . $request->search_student . '%')->orWhere('lastname', 'like', '%' . $request->search_student . '%');
+                })->paginate(10);
+            }
         } else {
-            $students = Student::where('mentor_id', 1)->paginate(10);
+            if($request->has('status_student') && $request->status_student == 'on') {
+                $students = Student::where(function ($q) use ($request) {
+                    $q->where('firstname', 'like', '%' . $request->search_student . '%')->orWhere('lastname', 'like', '%' . $request->search_student . '%');
+                })->paginate(10);
+            } else {
+                $students = Student::where('mentor_id', Auth::user()->id)->paginate(10);
+            }
         }
 
         return view('dashboard', ['students' => $students, 'termStudent' => $request->search_student, 'statusStudent' => $request->status_student, 'proposals' => $proposals, 'proposalsApproved' => $proposalsApproved,
