@@ -130,10 +130,13 @@ class StageController extends Controller {
             'password_confirmation' => 'required|min:8',
             'profile_image' => 'image|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'company']);
-        Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number, 'user_id' => User::where('email', $request->email)->first()->id]);
 
-        if ($request->file()) {
+        User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'company']);
+        Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number,
+             'user_id' => User::where('email', $request->email)->first()->id]);
+        // add profile image url - name
+        // fix role => company (will be mentor in every way)
+        if ($request->file('profile_image')) {
             $request->file('profile_image')->store('images');
         }
         return redirect('dashboard/companies');
