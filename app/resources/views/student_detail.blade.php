@@ -24,6 +24,7 @@
                                     <div class="col-md-4">
                                         <div class="invoice-address">
                                             <p>E-mail adres: {{ $student->email }}</p>
+                                            <p>R-nummer: {{ $student->r_number }}</p>
                                         </div>
                                     </div>
                                 </div>

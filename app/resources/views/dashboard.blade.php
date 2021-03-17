@@ -164,6 +164,76 @@
             @can('view-student-tasks')
                 <!-- view all students that belong to the mentor
                      Also show button to view tasks of that student -->
+                    <!-- Progress Table start -->
+                    <div class="col-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="search-box pull-right pb-3">
+                                    <form method="get" action="{{ url('/dashboard') }}">
+                                        <div class="row">
+                                            <div class="pr-3 pt-2">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" @if ($statusStudent == 'on') checked @endif class="custom-control-input" name="status_student" id="status_student">
+                                                    <label class="custom-control-label" for="status_student">Status Goedgekeurd?</label>
+                                                </div>
+                                            </div>
+                                            <div class="pr-4">
+                                                <input type="text" class="form-control" name="search_student" id="search_student" value="{{ $termStudent ?? '' }}" placeholder="Zoekterm"/>
+                                            </div>
+                                            <div class="pr-3">
+                                                <button type="submit" class="btn btn-primary">Zoek</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <h4 class="header-title">Mijn studenten</h4>
+                                <div class="single-table">
+                                    <div class="table-responsive">
+                                        @if($students->count() > 0)
+                                            <table class="table table-hover progress-table text-center">
+                                                <thead class="text-uppercase">
+                                                <tr>
+                                                    <th scope="col">Naam</th>
+                                                    <th scope="col">email</th>
+                                                    <th scope="col">R-nummer</th>
+                                                    <th scope="col">Aantal dagen gelopen stage</th>
+                                                    <th scope="col">status stage</th>
+                                                    <th scope="col">Actie</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($students as $student)
+                                                    <tr>
+                                                        <td>{{ $student->firstname . ' ' . $student->lastname }}</td>
+                                                        <td>{{ $student->email }}</td>
+                                                        <td>{{ $student->r_number }}</td>
+                                                        <td>{{ $student->completed_days }}</td>
+                                                        @if ($student->approved == 'Goedgekeurd')
+                                                            <td><span class="status-p bg-success">{{ $student->approved }}</span></td>
+                                                        @else
+                                                            <td><span class="status-p bg-primary">{{ $student->approved }}</span></td>
+                                                        @endif
+                                                        <td>
+                                                            <ul class="d-flex justify-content-center">
+                                                                <li class="mr-3"><a href="{{ url('/dashboard/student/' . $student->id) }}">info</a></li>
+                                                                <li class="mr-3"><a href="{{ url('/dashboard/' . $student->id . '/tasks') }}">Taken</a></li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                            <div class="p-3 pull-right">
+                                                {{ $proposals->links() }}
+                                            </div>
+                                        @else
+                                            <p>Geen resultaten gevonden die {{ $term }} bevatte.</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Progress Table end -->
             @endcan
             <!-- Progress Table end -->
                 <!-- footer area start-->

@@ -31,6 +31,7 @@
                                     <tr>
                                         <th scope="col">Naam</th>
                                         <th scope="col">e-mail adres</th>
+                                        <th scope="col">R-nummer</th>
                                         <th scope="col">Mentor</th>
                                         <th scope="col">Aantal dagen gelopen stage</th>
                                         <th scope="col">Actie</th>
@@ -41,6 +42,7 @@
                                         <tr>
                                             <td>{{ $student->firstname . ' ' . $student->lastname }}</td>
                                             <td>{{ $student->email }}</td>
+                                            <td>{{ $student->r_number }}</td>
                                             <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
                                             <td>{{ $student->completed_days }}</td>
                                             <td>

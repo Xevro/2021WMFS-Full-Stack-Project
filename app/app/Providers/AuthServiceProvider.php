@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider {
     public function boot() {
         $this->registerPolicies();
 
-        //gates algemeen
+        // gates algemeen
         Gate::define('view-dashboard', function (User $user) {
             return $user->role == 'coordinator';
         });
@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'mentor';
         });
 
-        //gates studenten
+        // gates studenten
         Gate::define('view-students', function (User $user) {
             return $user->role == 'coordinator';
         });
@@ -41,7 +41,7 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'coordinator';
         });
 
-        //gates companies
+        // gates companies
         Gate::define('view-companies', function (User $user) {
             return $user->role == 'coordinator';
         });

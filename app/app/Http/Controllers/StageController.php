@@ -8,6 +8,7 @@ use App\Models\Proposal;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class StageController extends Controller {
@@ -15,6 +16,7 @@ class StageController extends Controller {
     public function overview(Request $request) {
         $amountApproved = Proposal::where('visibility', '=', 1)->count();
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
+
         if ($request->has('search')) {
             $proposals = Proposal::with('company')->whereHas('company', function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')->orWhere('description', 'like', '%' . $request->search . '%');
@@ -24,12 +26,18 @@ class StageController extends Controller {
         }
         $proposalsApproved = Proposal::with('company')->where('visibility', '=', 1)->paginate(10);
 
-        return view('dashboard', ['proposals' => $proposals, 'proposalsApproved' => $proposalsApproved, 'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck,
-            'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
+        if ($request->has('search-students')) {
+            $students = Student::where('name', 'like', '%' . $request->search_student . '%')->where('approved', '=', $request->status_student)->where('mentor_id', 1)->paginate(10);
+        } else {
+            $students = Student::where('mentor_id', 1)->paginate(10);
+        }
+
+        return view('dashboard', ['students' => $students, 'termStudent' => $request->search_student, 'statusStudent' => $request->status_student, 'proposals' => $proposals, 'proposalsApproved' => $proposalsApproved,
+            'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck, 'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
     public function students(Request $request) {
-         //Gate::authorize('view-students');
+        //Gate::authorize('view-students');
         if ($request->has('search')) {
             $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->paginate(10);
         } else {
