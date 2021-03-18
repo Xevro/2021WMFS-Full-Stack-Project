@@ -13,9 +13,9 @@ class CreateActivitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->text('activity');
+            $table->text('task');
             $table->date('date');
             $table->foreignId('student_id')->constrained();
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateActivitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('tasks');
     }
 }

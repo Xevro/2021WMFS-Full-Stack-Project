@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Mentor;
 use App\Models\Proposal;
 use App\Models\Student;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -133,7 +134,7 @@ class StageController extends Controller {
 
         User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'company']);
         Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number,
-             'user_id' => User::where('email', $request->email)->first()->id]);
+            'user_id' => User::where('email', $request->email)->first()->id]);
         // add profile image url - name
         // fix role => company (will be mentor in every way)
         if ($request->file('profile_image')) {
@@ -186,6 +187,11 @@ class StageController extends Controller {
         Student::where('id', $request->student_id)->update(['proposal_id' => $request->proposal_id, 'approved' => 'Goedgekeurd']);
         Proposal::where('id', $request->proposal_id)->update(['visibility' => 1, 'status' => 'Goedgekeurd']);
         return redirect('dashboard/student/' . $request->student_id);
+    }
+
+    public function showStudentTasks($id) {
+        $tasks = Task::where('student_id', $id)->get();
+        return view('student_tasks', ['tasks' => $tasks, 'menuItem' => 'companies', 'pageTitle' => 'Overzicht taken van student']);
     }
 
     public function showValidateProposal() {

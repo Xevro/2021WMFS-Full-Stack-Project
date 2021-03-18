@@ -216,7 +216,7 @@
                                                         <td>
                                                             <ul class="d-flex justify-content-center">
                                                                 <li class="mr-3"><a href="{{ url('/dashboard/student/' . $student->id) }}">info</a></li>
-                                                                <li class="mr-3"><a href="{{ url('/dashboard/' . $student->id . '/tasks') }}">Taken</a></li>
+                                                                <li class="mr-3"><a href="{{ url('/dashboard/student/' . $student->id . '/tasks') }}">Taken</a></li>
                                                             </ul>
                                                         </td>
                                                     </tr>

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Activity extends Model {
+class Task extends Model {
     use HasFactory;
 
-    protected $fillable = ['activity', 'date', 'student_id'];
+    protected $fillable = ['task', 'date', 'student_id'];
 
     public function student() {
         return $this->belongsTo(Student::class);

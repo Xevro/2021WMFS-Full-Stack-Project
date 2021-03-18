@@ -50,6 +50,9 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/student/add', [StageController::class, 'showAddStudent'])->middleware(['auth']);
     Route::post('/student/add', [StageController::class, 'addStudent'])->middleware(['auth']);
 
+    //view tasks
+    Route::get('/student/{id}/tasks', [StageController::class, 'showStudentTasks'])->middleware(['auth']);
+
     //add student to proposal
     Route::get('/proposal/assign', [StageController::class, 'showAssignStudentToProposal'])->middleware(['auth']);
     Route::post('/proposal/assign', [StageController::class, 'assignStudentToProposal'])->middleware(['auth']);
