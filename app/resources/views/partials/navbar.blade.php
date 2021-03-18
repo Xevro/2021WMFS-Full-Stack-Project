@@ -15,7 +15,10 @@
                     <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->mentor->firstname . ' ' .auth()->user()->mentor->lastname }}<i class="fa fa-angle-down"></i></h4>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="/settings">Account instellingen</a>
-                        <a class="dropdown-item" href="/logout">Log Out</a>
+                        <form method="post" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="dropdown-item" type="submit">Log out</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -34,8 +37,8 @@
                                     <a href="javascript:void(0)"><i class="fa fa-male"></i><span>Studenten</span></a>
                                     <ul class="submenu">
                                         <li @if($menuItem == 'students') class="active"@endif><a href="{{ url('/dashboard/students') }}">Studenten</a></li>
-                                        <li @if($menuItem == 'AssignProposal') class="active"@endif><a href="{{ url('/dashboard/proposal/assign') }}">Koppel student aan voorstel</a></li>
                                         @can('add-student')
+                                        <li @if($menuItem == 'AssignProposal') class="active"@endif><a href="{{ url('/dashboard/proposal/assign') }}">Koppel student aan voorstel</a></li>
                                         <li @if($menuItem == 'addStudent') class="active"@endif><a href="{{ url('/dashboard/student/add') }}">Voeg student toe</a></li>
                                         @endcan
                                     </ul>

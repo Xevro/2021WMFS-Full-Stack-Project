@@ -191,7 +191,7 @@ class StageController extends Controller {
 
     public function showStudentTasks($id) {
         $tasks = Task::where('student_id', $id)->get();
-        return view('student_tasks', ['tasks' => $tasks, 'menuItem' => 'companies', 'pageTitle' => 'Overzicht taken van student']);
+        return view('student_tasks', ['student' => Student::findOrFail($id),'tasks' => $tasks, 'menuItem' => 'students', 'pageTitle' => 'Overzicht taken van student']);
     }
 
     public function showValidateProposal() {
