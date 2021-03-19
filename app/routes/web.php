@@ -42,6 +42,9 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/proposal/add', [StageController::class, 'showAddProposal'])->middleware(['auth']);
     Route::post('/proposal/add', [StageController::class, 'addProposal'])->middleware(['auth']);
 
+    //evaluate proposal
+    Route::post('/company/proposal/{id}/approve', [StageController::class, 'evaluateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+
     //Delete proposal
     Route::get('/company/proposal/{id}/delete', [StageController::class, 'showProposalDelete'])->where(['id' => '[0-9]+'])->middleware(['auth']);
     Route::post('/company/proposal/{id}/delete', [StageController::class, 'proposalDelete'])->where(['id' => '[0-9]+'])->middleware(['auth']);
@@ -51,15 +54,11 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/student/add', [StageController::class, 'addStudent'])->middleware(['auth']);
 
     //view tasks
-    Route::get('/student/{id}/tasks', [StageController::class, 'showStudentTasks'])->middleware(['auth']);
+    Route::get('/student/{id}/tasks', [StageController::class, 'showStudentTasks'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
     //add student to proposal
     Route::get('/proposal/assign', [StageController::class, 'showAssignStudentToProposal'])->middleware(['auth']);
     Route::post('/proposal/assign', [StageController::class, 'assignStudentToProposal'])->middleware(['auth']);
-
-    //Accept proposal on other page
-    Route::get('/company/proposal/{id}/validate', [StageController::class, 'showValidateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
-    Route::post('/company/proposal/{id}/validate', [StageController::class, 'validateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 });
 
 require __DIR__ . '/auth.php';

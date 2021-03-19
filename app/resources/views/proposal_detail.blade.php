@@ -42,7 +42,7 @@
                                             <p>Stage termijn</p>
                                             </div>
                                             <li>Start datum: {{ $proposal->start_period }}</li>
-                                            <li>Due Date : {{ $proposal->end_period }}</li>
+                                            <li>Eind datum : {{ $proposal->end_period }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -50,20 +50,27 @@
                                     <div class="card">
                                         <div class="card-header"><a class="card-link" data-toggle="collapse" href="#accordion11">Voorstel beschrijving</a></div>
                                         <div id="accordion11" class="collapse show" data-parent="#accordion1">
-                                            <div class="card-body">
-                                                {{ $proposal->description }}
-                                            </div>
+                                            <div class="card-body">{{ $proposal->description }}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @can('evaluate-proposal')
+                            @if($proposal->visibility == 0)
                             <div class="text-left">
-                                <form action="/" method="post">
-                                <a href="#" class="btn btn-success">Keur voorstel goed</a>
-                                <a href="#" class="btn btn-primary">Geef feedback</a>
-                                <a href="#" class="btn btn-danger">Weiger voorstel</a>
-                                </form>
+                                <div class="d-flex">
+                                    <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/approve') }}" method="post" class="form-horizontal">
+                                        @csrf
+                                    <button type="submit" class="btn btn-success mt-4 pr-4 pl-4">keur voorstel goed</button>
+                                    </form>
+                                    <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" method="post" class="form-horizontal">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger ml-4 mt-4 pr-4 pl-4">keur voorstel af</button>
+                                    </form>
+                                </div>
                             </div>
+                                @endif
+                            @endcan
                         </div>
                     </div>
                 </div>

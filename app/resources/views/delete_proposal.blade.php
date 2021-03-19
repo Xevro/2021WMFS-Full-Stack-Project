@@ -12,7 +12,7 @@
                 <div class="col-md-6 offset-md-3 pt-4">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Verwijder voorstel # {{ $proposal->id }}</h4>
+                            <h4 class="header-title">Verwijder voorstel #{{ $proposal->id }}</h4>
                             <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 @csrf
                                 <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4">Verwijder voorstel</button>
@@ -36,7 +36,7 @@
                                                         <p>Stage termijn</p>
                                                     </div>
                                                     <li>Start datum: {{ $proposal->start_period }}</li>
-                                                    <li>Due Date : {{ $proposal->end_period }}</li>
+                                                    <li>Eind datum : {{ $proposal->end_period }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -44,9 +44,7 @@
                                             <div class="card">
                                                 <div class="card-header"><a class="card-link" data-toggle="collapse" href="#accordion11">Voorstel beschrijving</a></div>
                                                 <div id="accordion11" class="collapse show" data-parent="#accordion1">
-                                                    <div class="card-body">
-                                                        {{ $proposal->description }}
-                                                    </div>
+                                                    <div class="card-body">{{ $proposal->description }}</div>
                                                 </div>
                                             </div>
                                         </div>

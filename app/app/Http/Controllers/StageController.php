@@ -180,7 +180,7 @@ class StageController extends Controller {
     }
 
     public function showAssignStudentToProposal() {
-        return view('assign_student_to_proposal', ['proposals' => Proposal::where('visibility', 0)->get(), 'students' => Student::where('proposal_id', 0)->get(), 'menuItem' => 'AssignProposal', 'pageTitle' => 'Koppel student aan een voorstel']);
+        return view('assign_student_to_proposal', ['proposals' => Proposal::all(), 'students' => Student::where('proposal_id', 0)->where('allowed', 1)->get(), 'menuItem' => 'AssignProposal', 'pageTitle' => 'Koppel student aan een voorstel']);
     }
 
     public function assignStudentToProposal(Request $request) {
@@ -191,14 +191,12 @@ class StageController extends Controller {
 
     public function showStudentTasks($id) {
         $tasks = Task::where('student_id', $id)->get();
-        return view('student_tasks', ['student' => Student::findOrFail($id),'tasks' => $tasks, 'menuItem' => 'students', 'pageTitle' => 'Overzicht taken van student']);
+        return view('student_tasks', ['student' => Student::findOrFail($id), 'tasks' => $tasks, 'menuItem' => 'students', 'pageTitle' => 'Overzicht taken van student']);
     }
 
-    public function showValidateProposal() {
-
-    }
-
-    public function validateProposal(Request $request) {
-
+    public function evaluateProposal(Request $request, $id) {
+        Gate::authorize('evaluate-proposal');
+        Proposal::where('id', $id)->update(['visibility' => 1, 'status' => 'Goedgekeurd']);
+        return redirect('dashboard/company/proposal/' . $id);
     }
 }
