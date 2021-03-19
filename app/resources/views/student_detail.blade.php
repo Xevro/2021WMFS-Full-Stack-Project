@@ -28,6 +28,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="pt-3">
+                                    <a href="{{ url('/dashboard/student/' . $student->id . '/tasks') }}" class="btn mt-2 pr-2 pl-2 btn-primary">Bekijk stage activiteiten</a>
+                                </div>
                             </div>
                         </div>
                     </div>

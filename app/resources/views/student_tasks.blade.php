@@ -14,6 +14,7 @@
                         <div class="card-body">
                             <h4 class="header-title">Stage activiteiten van {{ $student->firstname . ' ' . $student->lastname }}</h4>
                             <div class="single-table">
+                                @if($tasks->count() > 0)
                                 <div class="table-responsive">
                                     <table class="table table-hover progress-table text-center">
                                         <thead class="text-uppercase">
@@ -38,6 +39,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                @else
+                                    <p>Geen activiteiten gevonden.</p>
+                                @endif
                             </div>
                         </div>
                     </div>
