@@ -187,7 +187,7 @@ class StageController extends Controller {
     }
 
     public function showAssignStudentToProposal() {
-        return view('assign_student_to_proposal', ['proposals' => Proposal::all(), 'students' => Student::where('proposal_id', 0)->where('allowed', 1)->get(), 'menuItem' => 'AssignProposal', 'pageTitle' => 'Koppel student aan een voorstel']);
+        return view('assign_student_to_proposal', ['proposals' => Proposal::doesntHave('students')->get(), 'students' => Student::where('proposal_id', 0)->where('allowed', 1)->get(), 'menuItem' => 'AssignProposal', 'pageTitle' => 'Koppel student aan een voorstel']);
     }
 
     public function assignStudentToProposal(Request $request) {
