@@ -28,6 +28,18 @@
                                     <input type="text" class="form-control" name="lastname" id="lastname" value="{{ old('lastname', '') }}" aria-describedby="lastname" placeholder="Achternaam">
                                 </div>
                                 <div class="form-group">
+                                    <label for="r_number">* R-nummer</label>
+                                    <input type="text" class="form-control" name="r_number" id="r_number" value="{{ old('r_number', '') }}" aria-describedby="r_number" placeholder="r-nummer">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">* Wachtwoord</label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Wachtwoord student">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_confirmation">* Wachtwoord controle</label>
+                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Wachtwoord student controle">
+                                </div>
+                                <div class="form-group">
                                     <label for="mentor_id" class="control-label">* Mentor</label>
                                     <div class="col-sm-3">
                                         <select name="mentor_id" id="mentor_id" class="form-control">

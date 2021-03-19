@@ -154,9 +154,14 @@ class StageController extends Controller {
             'email' => 'required|email|unique:students',
             'firstname' => 'required',
             'lastname' => 'required',
+            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:8',
             'mentor_id' => 'required|exists:mentors,id'
         ]);
-        Student::create($request->all());
+        User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'student']);
+        Student::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email, 'r_number' => $request->r_number,
+            'mentor_id' => $request->mentor_id, 'allowed' => 1, 'user_id' => User::where('email', $request->email)->first()->id]);
+        //Student::create($request->all());
         return redirect('dashboard/students');
     }
 
@@ -169,6 +174,7 @@ class StageController extends Controller {
     public function proposalDelete(Request $request) {
         Gate::authorize('delete-proposal');
         // also make option to inform the company that it has been declined
+        // or save it to a database and also send the data
         if (Proposal::find($request->id)) {
             if (Proposal::destroy($request->id)) {
                 return redirect('dashboard');
