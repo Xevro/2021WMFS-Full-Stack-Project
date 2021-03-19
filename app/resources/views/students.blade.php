@@ -34,6 +34,7 @@
                                         <th scope="col">R-nummer</th>
                                         <th scope="col">Mentor</th>
                                         <th scope="col">Aantal dagen gelopen stage</th>
+                                        <th scope="col">Stage status</th>
                                         <th scope="col">Actie</th>
                                     </tr>
                                     </thead>
@@ -45,6 +46,11 @@
                                             <td>{{ $student->r_number }}</td>
                                             <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
                                             <td>{{ $student->completed_days }}</td>
+                                            @if ($student->approved == 'Goedgekeurd')
+                                                <td><span class="status-p bg-success">{{ $student->approved }}</span></td>
+                                            @else
+                                                <td><span class="status-p bg-primary">{{ $student->approved }}</span></td>
+                                            @endif
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-3"><a href="{{ url('/dashboard/student/' . $student->id) }}" class="">info</a></li>
