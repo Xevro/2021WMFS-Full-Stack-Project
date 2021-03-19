@@ -25,6 +25,9 @@
                             <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off">
                         </div>
                     </div>
+                    <div class="mt-4 form-group col-sm-9">
+                        <a href="{{ route('register') }}">{{ __('Nog geen mentors account?') }}</a>
+                    </div>
                     <div class="form-group col-sm-9">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox" name="remember">
@@ -32,8 +35,8 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-6">
-                            <button type="submit" class="btn btn-default">Log in</button>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-dark">{{ __('Login') }}</button>
                         </div>
                     </div>
                 </form>

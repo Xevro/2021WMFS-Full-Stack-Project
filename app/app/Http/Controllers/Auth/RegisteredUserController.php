@@ -35,19 +35,21 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kbo_number' => 'required|int|unique:companies',
-           // 'name' => 'required|string',
-            'email' => 'required|string|email|max:255|unique:companies',
-            'password' => 'required|string|confirmed|min:8',
+            'firstname' => 'required|string|max:100',
+            'lastname' => 'required|string|max:100',
+            'email' => 'required|string|email|max:255|unique:mentors',
+            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:8',
         ]);
 
         Auth::login($user = User::create([
-            //'name', $request->email, //change blade form
-            'kbo_number' => $request->kbo_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'student'
+            'role' => 'mentor'
         ]));
+
+        Mentor::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email,
+            'user_id' => User::where('email', $request->email)->first()->id]);
 
         event(new Registered($user));
 

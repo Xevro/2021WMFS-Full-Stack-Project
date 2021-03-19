@@ -1,53 +1,57 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layout')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('title', 'Webshop administration')
 
-        <p class="mb-4">Register your company</p>
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-            <!-- kbo_number -->
-            <div>
-                <x-label for="kbo_number" :value="__('kbo_number')" />
-                <x-input id="kbo_number" class="block mt-1 w-full" type="text" name="kbo_number" :value="old('kbo_number')" required autofocus />
+@section('content')
+    <div class="login-area login-s2">
+        <div class="container">
+            <div class="login-box ptb--100">
+                <form method="POST" action="{{ route('register') }}" class="form-horizontal">
+                    @csrf
+                    <div class="form-group col-sm-9">
+                        @include('errors')
+                        <p class="">Maak een mentors account aan</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-6 control-label">Voornaam</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="firstname" id="firstname" class="form-control" value="{{ old('firstname') }}" required="required" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-6 control-label">Achternaam</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="lastname" id="lastname" class="form-control" value="{{ old('lastname') }}" required="required" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-6 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}" required="required" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-6 control-label">Wachtwoord</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirmation" class="col-sm-6 control-label">Wachtwoord controle</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" value="" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="mt-4 form-group col-sm-9">
+                        <a href="{{ route('login') }}">{{ __('Al een account gemaakt?') }}</a>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-dark">{{ __('Registeer') }}</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <!-- Name -->
-            <!--<div>
-                <x-label for="name" :value="__('name')" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>-->
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+@endsection
