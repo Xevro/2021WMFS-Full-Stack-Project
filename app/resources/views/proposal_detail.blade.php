@@ -42,7 +42,7 @@
                                             <p>Stage termijn</p>
                                             </div>
                                             <li>Start datum: {{ $proposal->start_period }}</li>
-                                            <li>Eind datum : {{ $proposal->end_period }}</li>
+                                            <li>Eind datum: {{ $proposal->end_period }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -63,10 +63,7 @@
                                         @csrf
                                     <button type="submit" class="btn btn-success mt-4 pr-4 pl-4">keur voorstel goed</button>
                                     </form>
-                                    <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" method="post" class="form-horizontal">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger ml-4 mt-4 pr-4 pl-4">keur voorstel af</button>
-                                    </form>
+                                    <a href="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" class="btn ml-4 mt-4 pr-4 pl-4 btn-danger">Keur voorstel af</a>
                                 </div>
                             </div>
                                 @endif

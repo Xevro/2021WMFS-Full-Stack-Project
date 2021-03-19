@@ -43,7 +43,7 @@
                                         @endcan
                                     </ul>
                                 </li>
-                                <li @if($menuItem == 'companies' || $menuItem == 'addCompany') class="active"@endif>
+                                <li @if($menuItem == 'companies' || $menuItem == 'addCompany' || $menuItem == 'addProposal') class="active"@endif>
                                     <a href="javascript:void(0)"><i class="fa fa-building-o"></i><span>Bedrijven</span></a>
                                     <ul class="submenu">
                                         <li @if($menuItem == 'companies') class="active"@endif><a href="{{ url('/dashboard/companies') }}">Bedrijven</a></li>

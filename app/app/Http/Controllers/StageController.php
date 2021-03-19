@@ -163,11 +163,12 @@ class StageController extends Controller {
     public function showProposalDelete($id) {
         Gate::authorize('delete-proposal');
         $proposal = Proposal::where('id', $id)->first();
-        return view('delete_proposal', ['proposal' => $proposal, 'menuItem' => 'addStudent', 'pageTitle' => 'Verwijder voorstel']);
+        return view('delete_proposal', ['proposal' => $proposal, 'menuItem' => 'companies', 'pageTitle' => 'Verwijder voorstel']);
     }
 
     public function proposalDelete(Request $request) {
         Gate::authorize('delete-proposal');
+        // also make option to inform the company that it has been declined
         if (Proposal::find($request->id)) {
             if (Proposal::destroy($request->id)) {
                 return redirect('dashboard');
