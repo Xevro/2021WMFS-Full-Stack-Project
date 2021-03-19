@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-sm-3 control-label">Password</label>
+                        <label for="password" class="col-sm-3 control-label">Wachtwoord</label>
 
                         <div class="col-sm-9">
                             <input type="password" name="password" id="password" class="form-control" value="" autocomplete="off">
