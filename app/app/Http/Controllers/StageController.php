@@ -93,7 +93,7 @@ class StageController extends Controller {
     }
 
     public function proposalDetail($id) {
-        $proposal = Proposal::with('company')->where('id', $id)->first();
+        $proposal = Proposal::with('company')->findOrFail($id);
         return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'stagevoorstel']);
     }
 
@@ -167,7 +167,7 @@ class StageController extends Controller {
 
     public function showProposalDelete($id) {
         Gate::authorize('delete-proposal');
-        $proposal = Proposal::where('id', $id)->first();
+        $proposal = Proposal::findOrFail($id);
         return view('delete_proposal', ['proposal' => $proposal, 'menuItem' => 'companies', 'pageTitle' => 'Verwijder voorstel']);
     }
 

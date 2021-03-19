@@ -17,7 +17,7 @@
                             <form method="POST" action="{{ url('/dashboard/proposal/assign') }}">
                                 <div class="form-group">
                                     <label for="student_id" class="control-label">* Student</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-5">
                                         <select name="student_id" id="student_id" class="form-control">
                                             @foreach ($students as $student)
                                                 <option value="{{ $student->id }}" @if (old('student_id', '') == $student->id) selected="selected" @endif>{{ $student->firstname . ' ' . $student->lastname }}</option>
@@ -27,15 +27,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="proposal_id" class="control-label">* Bedrijfsvoorstel</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-5">
                                         <select name="proposal_id" id="proposal_id" class="form-control">
                                             @foreach ($proposals as $proposal)
-                                                <option value="{{ $proposal->id }}" @if (old('proposal_id', '') == $proposal->id) selected="selected" @endif>Voorstel #{{ $proposal->id . ' ' . $proposal->company->name }}</option>
+                                                <option value="{{ $proposal->id }}" @if (old('proposal_id', '') == $proposal->id) selected="selected" @endif>Voorstel #{{ $proposal->id . ' ' . $proposal->company->name . ' - ' . $proposal->status}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-
                                 {{ csrf_field() }}
                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Koppel stage</button>
                             </form>
@@ -44,9 +43,10 @@
                 </div>
                 <!-- basic form end -->
                 @else
-                    <p>Kan geen voorstel aan een student koppelen aangezien er geen studenten of voorstellen beschikbaar zijn.</p>
+                    <div class="col-12 text-center mt-5">
+                        <p>Kan geen voorstel aan een student koppelen aangezien er geen studenten of voorstellen beschikbaar zijn.</p>
+                    </div>
                 @endif
-
             </div>
         </div>
         <!-- main content area end -->

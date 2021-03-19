@@ -32,7 +32,6 @@
                                         <div class="invoice-address">
                                             <h5>{{ $proposal->company->name }}</h5>
                                             <p>KBO nummer: {{ $proposal->company->kbo_number }}</p>
-                                            <p>Website: <a href="{{ url('http://' . $proposal->company->website) }}">{{ $proposal->company->website }}</a></p>
                                             <p>E-mail adres: {{ $proposal->company->email }}</p>
                                         </div>
                                     </div>
