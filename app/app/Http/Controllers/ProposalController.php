@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProposalCollection;
 use App\Http\Resources\ProposalResource;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
@@ -10,10 +11,10 @@ class ProposalController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return ProposalCollection
      */
     public function index() {
-        // /api/proposal
+        return new ProposalCollection(Proposal::all());
     }
 
     /**

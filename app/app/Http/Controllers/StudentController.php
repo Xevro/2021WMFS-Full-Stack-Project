@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CompanyResource;
-use App\Models\Company;
+use App\Http\Resources\StudentResource;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller {
+class StudentController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        // /api/company
+        //
     }
 
     /**
@@ -30,10 +30,10 @@ class CompanyController extends Controller {
      * Display the specified resource.
      *
      * @param int $id
-     * @return CompanyResource
+     * @return StudentResource
      */
     public function show($id) {
-        return new CompanyResource(Company::findOrFail($id));
+        return new StudentResource(Student::findOrFail($id));
     }
 
     /**
