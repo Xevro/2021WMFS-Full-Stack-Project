@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProposalResource;
-use App\Http\Resources\ProposalResourceCollection;
 use App\Models\Proposal;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProposalController extends Controller {

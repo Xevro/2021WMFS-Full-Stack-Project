@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProposalController;
+use App\Http\Resources\ProposalCollection;
+use App\Http\Resources\ProposalResource;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/proposals', function () {
-    $proposal = Proposal::all();
-    return ['data' => $proposal];
+    return new ProposalCollection(Proposal::all()); // or paginate
 });
 
 Route::apiResource('proposal', ProposalController::class);
