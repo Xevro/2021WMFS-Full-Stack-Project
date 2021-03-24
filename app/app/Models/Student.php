@@ -22,6 +22,10 @@ class Student extends Model {
         return $this->belongsTo(Mentor::class);
     }
 
+    public function likes() {
+        return $this->belongsToMany(Likes::class);
+    }
+
     public function proposals() {
         return $this->belongsTo(Proposal::class);
     }

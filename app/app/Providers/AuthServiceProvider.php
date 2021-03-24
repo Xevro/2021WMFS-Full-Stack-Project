@@ -24,25 +24,30 @@ class AuthServiceProvider extends ServiceProvider {
     public function boot() {
         $this->registerPolicies();
 
-        // gates algemeen
+        // gates dashboard
         Gate::define('view-dashboard', function (User $user) {
             return $user->role == 'coordinator';
         });
 
-        Gate::define('view-student-tasks', function (User $user) {
-            return $user->role == 'mentor';
-        });
-
-        Gate::define('evaluate-proposal', function (User $user) {
-            return $user->role == 'coordinator';
+        Gate::define('view-dashboard-page', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
         });
 
         // gates studenten
         Gate::define('view-students', function (User $user) {
             return $user->role == 'coordinator';
         });
+        Gate::define('view-students-page', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
+        });
+        Gate::define('view-student-tasks', function (User $user) {
+            return $user->role == 'mentor';
+        });
         Gate::define('add-student', function (User $user) {
             return $user->role == 'coordinator';
+        });
+        Gate::define('view-student-details', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
         });
 
         // gates companies
@@ -52,12 +57,30 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('add-company', function (User $user) {
             return $user->role == 'coordinator';
         });
+        Gate::define('view-company-details', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
+        });
+        Gate::define('view-companies-page', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
+        });
 
         Gate::define('add-proposal', function (User $user) {
             return $user->role == 'coordinator';
         });
         Gate::define('delete-proposal', function (User $user) {
             return $user->role == 'coordinator';
+        });
+        Gate::define('evaluate-proposal', function (User $user) {
+            return $user->role == 'coordinator';
+        });
+        Gate::define('view-proposal-details', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
+        });
+        Gate::define('view-assign-to-proposal', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
+        });
+        Gate::define('view-proposals-page', function (User $user) {
+            return $user->role == 'mentor' || $user->role == 'coordinator';
         });
     }
 }

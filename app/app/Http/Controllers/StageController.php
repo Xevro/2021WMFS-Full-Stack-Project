@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 class StageController extends Controller {
 
     public function overview(Request $request) {
+        Gate::authorize('view-dashboard-page');
         $amountApproved = Proposal::where('visibility', '=', 1)->count();
         $amountToCheck = Proposal::where('visibility', '=', 0)->count();
 
@@ -48,39 +49,39 @@ class StageController extends Controller {
                 $students = Student::where('mentor_id', Auth::user()->id)->paginate(10);
             }
         }
-
         return view('dashboard', ['students' => $students, 'termStudent' => $request->search_student, 'statusStudent' => $request->status_student, 'proposals' => $proposals, 'proposalsApproved' => $proposalsApproved,
             'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck, 'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 
     public function students(Request $request) {
-        //Gate::authorize('view-students');
+        Gate::authorize('view-students-page');
         if ($request->has('search')) {
             $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->where('allowed', 1)->paginate(8);
         } else {
             $students = Student::where('allowed', 1)->paginate(8);
         }
-
         return view('students', ['students' => $students, 'term' => $request->search, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
     }
 
     public function companies(Request $request) {
+        Gate::authorize('view-companies-page');
         if ($request->has('search')) {
             $companies = Company::where('name', 'like', '%' . $request->search . '%')->paginate(8);
         } else {
             $companies = Company::paginate(8);
         }
-
         return view('companies', ['companies' => $companies, 'term' => $request->search, 'menuItem' => 'companies', 'pageTitle' => 'Overzicht bedrijven']);
     }
 
     public function companyDetail($id) {
+        Gate::authorize('view-company-details');
         $company = Company::findOrFail($id);
         $proposals = Proposal::where('company_id', $id)->paginate(8);
         return view('company_detail', ['company' => $company, 'proposals' => $proposals, 'menuItem' => 'companies', 'pageTitle' => 'Detail Bedrijf']);
     }
 
     public function studentDetail($id) {
+        Gate::authorize('view-student-details');
         $student = Student::findOrFail($id);
         $proposals = Proposal::whereHas('students', function (Builder $query) use ($id) {
             $query->where('id', $id);
@@ -93,6 +94,7 @@ class StageController extends Controller {
     }
 
     public function proposalDetail($id) {
+        Gate::authorize('view-proposal-details');
         $proposal = Proposal::with('company')->findOrFail($id);
         return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'stagevoorstel']);
     }
@@ -136,7 +138,6 @@ class StageController extends Controller {
         Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number,
             'user_id' => User::where('email', $request->email)->first()->id]);
         // add profile image url - name
-        // fix role => company (will be mentor in every way)
         if ($request->file('profile_image')) {
             $request->file('profile_image')->store('images');
         }
@@ -161,7 +162,6 @@ class StageController extends Controller {
         User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'student']);
         Student::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email, 'r_number' => $request->r_number,
             'mentor_id' => $request->mentor_id, 'allowed' => 1, 'user_id' => User::where('email', $request->email)->first()->id]);
-        //Student::create($request->all());
         return redirect('dashboard/students');
     }
 
@@ -174,7 +174,6 @@ class StageController extends Controller {
     public function proposalDelete(Request $request) {
         Gate::authorize('delete-proposal');
         // also make option to inform the company that it has been declined
-        // or save it to a database and also send the data
         if (Proposal::find($request->id)) {
             if (Proposal::destroy($request->id)) {
                 return redirect('dashboard');
@@ -187,16 +186,19 @@ class StageController extends Controller {
     }
 
     public function showAssignStudentToProposal() {
+        Gate::authorize('view-assign-to-proposal');
         return view('assign_student_to_proposal', ['proposals' => Proposal::doesntHave('students')->get(), 'students' => Student::where('proposal_id', 0)->where('allowed', 1)->get(), 'menuItem' => 'AssignProposal', 'pageTitle' => 'Koppel student aan een voorstel']);
     }
 
     public function assignStudentToProposal(Request $request) {
+        Gate::authorize('view-assign-to-proposal');
         Student::where('id', $request->student_id)->update(['proposal_id' => $request->proposal_id, 'approved' => 'Goedgekeurd']);
         Proposal::where('id', $request->proposal_id)->update(['visibility' => 1, 'status' => 'Goedgekeurd']);
         return redirect('dashboard/student/' . $request->student_id);
     }
 
     public function showStudentTasks($id) {
+        Gate::authorize('view-student-tasks');
         $tasks = Task::where('student_id', $id)->get();
         return view('student_tasks', ['student' => Student::findOrFail($id), 'tasks' => $tasks, 'menuItem' => 'students', 'pageTitle' => 'Overzicht taken van student']);
     }

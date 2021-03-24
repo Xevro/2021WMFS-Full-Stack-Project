@@ -31,3 +31,4 @@ Route::apiResource('companies', CompanyController::class);
 Route::apiResource('students', StudentController::class);
 
 //Route::resource('students.tasks', StudentController::class);
+//Route::resource('students.likes', LikeController::class);
