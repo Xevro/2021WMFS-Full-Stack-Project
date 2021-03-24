@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProposalController;
+use App\Http\Resources\CompanyCollection;
 use App\Http\Resources\ProposalCollection;
 use App\Http\Resources\ProposalResource;
+use App\Models\Company;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,9 +25,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// proposals
+Route::apiResource('proposal', ProposalController::class);
+
 Route::get('/proposals', function () {
     return new ProposalCollection(Proposal::all()); // or paginate
 });
 
-Route::apiResource('proposal', ProposalController::class);
+// companies
+Route::apiResource('company', CompanyController::class);
+
+Route::get('/companies', function () {
+    return new CompanyCollection(Company::all()); // or paginate
+});
 

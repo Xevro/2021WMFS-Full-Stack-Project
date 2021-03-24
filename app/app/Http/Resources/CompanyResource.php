@@ -17,7 +17,6 @@ class CompanyResource extends JsonResource {
             'email' => $this->email,
             'kbo_number' => $this->kbo_number,
             'name' => $this->name,
-            'start_period' => $this->start_period,
             'user' => new UserResource($this->user)
         ];
     }
