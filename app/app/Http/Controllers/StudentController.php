@@ -23,7 +23,7 @@ class StudentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        // add a student (registration)
     }
 
     /**
@@ -44,7 +44,7 @@ class StudentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        // update student information
     }
 
     /**
@@ -54,6 +54,6 @@ class StudentController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        // do not implement
+        // do not implement (only if needed)
     }
 }

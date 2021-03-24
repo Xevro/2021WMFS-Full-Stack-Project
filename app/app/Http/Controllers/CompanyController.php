@@ -23,7 +23,7 @@ class CompanyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        // add a company (register)
     }
 
     /**
@@ -44,7 +44,7 @@ class CompanyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        // update company information
     }
 
     /**
@@ -54,6 +54,6 @@ class CompanyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        // do not implement
+        // do not implement (only if needed)
     }
 }
