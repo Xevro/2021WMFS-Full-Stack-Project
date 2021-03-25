@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProposalCollection;
 use App\Http\Resources\ProposalResource;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
@@ -11,17 +10,17 @@ class ProposalController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return ProposalCollection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index() {
-        return new ProposalCollection(Proposal::all());
+        return ProposalResource::collection(Proposal::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
     public function store(Request $request) {
         // save a proposal
@@ -52,10 +51,18 @@ class ProposalController extends Controller {
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
     public function update(Request $request, $id) {
         // update a proposal
+        $reqdata = $request->all();
+        $reqdata['updated_at'] = date('Y-m-d H:i:s');
+        // only possible if company owns this proposal
+        if (Proposal::where('id', $id)->update($reqdata)) {
+            return ['message' => 'The proposal has been updated'];
+        } else {
+            return ['message' => 'Could not update the proposal details'];
+        }
     }
 
     /**
