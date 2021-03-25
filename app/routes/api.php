@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentTaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,5 @@ Route::apiResource('companies', CompanyController::class);
 // students
 Route::apiResource('students', StudentController::class);
 
-//Route::resource('students.tasks', StudentController::class);
+Route::resource('students.tasks', StudentTaskController::class);
 //Route::resource('students.likes', LikeController::class);

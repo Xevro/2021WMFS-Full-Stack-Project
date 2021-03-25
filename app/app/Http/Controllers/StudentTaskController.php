@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CompanyResource;
-use App\Models\Company;
+use App\Http\Resources\StudentTaskCollection;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller {
+class StudentTaskController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return StudentTaskCollection
      */
-    public function index() {
-        return CompanyResource::collection(Company::all());
+    public function index($id) {
+        return new StudentTaskCollection(Task::where('student_id', $id)->get());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        //
     }
 
     /**
@@ -23,17 +32,27 @@ class CompanyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        // add a company (register)
+        //
     }
 
     /**
      * Display the specified resource.
      *
      * @param int $id
-     * @return CompanyResource
+     * @return StudentTaskCollection
      */
-    public function show($id) {
-        return new CompanyResource(Company::findOrFail($id));
+    public function show($studentId, $taskId) {
+        return new StudentTaskCollection(Task::where('student_id', $studentId)->where('id', $taskId)->get());
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+        //
     }
 
     /**
@@ -44,7 +63,7 @@ class CompanyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        // update company information
+        //
     }
 
     /**
@@ -54,6 +73,6 @@ class CompanyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        // do not implement (only if needed)
+        //
     }
 }
