@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentTaskResource;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StudentTaskController extends Controller {
@@ -20,10 +21,16 @@ class StudentTaskController extends Controller {
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
-    public function store(Request $request) {
+    public function store(Request $request, $studentId) {
         // add task api/students/{student}/tasks
+        $request->validate([
+            'task' => 'required|min:3|max:1000',
+            'date' => 'required|date_format:Y-m-d'
+        ]);
+        Task::create(['task' => $request->task, 'date' => $request->date, 'student_id' => User::where('id', $studentId)->first()->id]);
+        return ['message' => 'The task has been created'];
     }
 
     /**
@@ -41,10 +48,17 @@ class StudentTaskController extends Controller {
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
     public function update(Request $request, $studentId, $taskId) {
         // update task api/students/{student}/tasks/{task}
+        $reqdata = $request->all();
+        $reqdata['updated_at'] = date('Y-m-d H:i:s');
+        if (Task::where('id', $taskId)->where('student_id', $studentId)->update($reqdata)) {
+            return ['message' => 'The student has been updated'];
+        } else {
+            return ['message' => 'Could not update the student details'];
+        }
     }
 
     /**
