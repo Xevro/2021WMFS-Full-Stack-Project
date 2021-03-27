@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
-class StageController extends Controller {
+class DashboardController extends Controller {
 
     public function overview(Request $request) {
         Gate::authorize('view-dashboard-page');

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\StudentTaskCollection;
 use App\Http\Resources\StudentTaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -15,15 +14,6 @@ class StudentTaskController extends Controller {
      */
     public function index($id) {
         return StudentTaskResource::collection(Task::where('student_id', $id)->get());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create() {
-        // api/students/{student}/tasks/create
     }
 
     /**
@@ -44,16 +34,6 @@ class StudentTaskController extends Controller {
      */
     public function show($studentId, $taskId) {
         return new StudentTaskResource(Task::where('student_id', $studentId)->where('id', $taskId)->get());
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($studentId, $taskId) {
-        // edit task api/students/{student}/tasks/{task}/edit
     }
 
     /**

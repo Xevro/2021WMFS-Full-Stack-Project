@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\StageController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,41 +24,41 @@ Route::get('/', function () {
 });
 
 Route::prefix('dashboard')->group(function () {
-    Route::get('/', [StageController::class, 'overview'])->middleware(['auth']);
+    Route::get('/', [DashboardController::class, 'overview'])->middleware(['auth']);
 
-    Route::get('/students', [StageController::class, 'students'])->middleware(['auth']);
-    Route::get('/student/{id}', [StageController::class, 'studentDetail'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::get('/students', [DashboardController::class, 'students'])->middleware(['auth']);
+    Route::get('/student/{id}', [DashboardController::class, 'studentDetail'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
-    Route::get('/companies', [StageController::class, 'companies'])->middleware(['auth']);
-    Route::get('/company/{id}', [StageController::class, 'companyDetail'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::get('/companies', [DashboardController::class, 'companies'])->middleware(['auth']);
+    Route::get('/company/{id}', [DashboardController::class, 'companyDetail'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
-    Route::get('/company/proposal/{id}', [StageController::class, 'proposalDetail'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::get('/company/proposal/{id}', [DashboardController::class, 'proposalDetail'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
     //add company
-    Route::get('/company/add', [StageController::class, 'showAddCompany'])->middleware(['auth']);
-    Route::post('/company/add', [StageController::class, 'addCompany'])->middleware(['auth']);
+    Route::get('/company/add', [DashboardController::class, 'showAddCompany'])->middleware(['auth']);
+    Route::post('/company/add', [DashboardController::class, 'addCompany'])->middleware(['auth']);
 
     //add proposal
-    Route::get('/proposal/add', [StageController::class, 'showAddProposal'])->middleware(['auth']);
-    Route::post('/proposal/add', [StageController::class, 'addProposal'])->middleware(['auth']);
+    Route::get('/proposal/add', [DashboardController::class, 'showAddProposal'])->middleware(['auth']);
+    Route::post('/proposal/add', [DashboardController::class, 'addProposal'])->middleware(['auth']);
 
     //evaluate proposal
-    Route::post('/company/proposal/{id}/approve', [StageController::class, 'evaluateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::post('/company/proposal/{id}/approve', [DashboardController::class, 'evaluateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
     //Delete proposal
-    Route::get('/company/proposal/{id}/delete', [StageController::class, 'showProposalDelete'])->where(['id' => '[0-9]+'])->middleware(['auth']);
-    Route::post('/company/proposal/{id}/delete', [StageController::class, 'proposalDelete'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::get('/company/proposal/{id}/delete', [DashboardController::class, 'showProposalDelete'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::post('/company/proposal/{id}/delete', [DashboardController::class, 'proposalDelete'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
     //add student
-    Route::get('/student/add', [StageController::class, 'showAddStudent'])->middleware(['auth']);
-    Route::post('/student/add', [StageController::class, 'addStudent'])->middleware(['auth']);
+    Route::get('/student/add', [DashboardController::class, 'showAddStudent'])->middleware(['auth']);
+    Route::post('/student/add', [DashboardController::class, 'addStudent'])->middleware(['auth']);
 
     //view tasks
-    Route::get('/student/{id}/tasks', [StageController::class, 'showStudentTasks'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::get('/student/{id}/tasks', [DashboardController::class, 'showStudentTasks'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
     //add student to proposal
-    Route::get('/proposal/assign', [StageController::class, 'showAssignStudentToProposal'])->middleware(['auth']);
-    Route::post('/proposal/assign', [StageController::class, 'assignStudentToProposal'])->middleware(['auth']);
+    Route::get('/proposal/assign', [DashboardController::class, 'showAssignStudentToProposal'])->middleware(['auth']);
+    Route::post('/proposal/assign', [DashboardController::class, 'assignStudentToProposal'])->middleware(['auth']);
 });
 
 require __DIR__ . '/auth.php';

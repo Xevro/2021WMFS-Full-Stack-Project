@@ -13,7 +13,7 @@ class ProposalController extends Controller {
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index() {
-        return ProposalResource::collection(Proposal::all());
+        return ProposalResource::collection(Proposal::paginate());
     }
 
     /**
