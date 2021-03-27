@@ -12,8 +12,8 @@ class StudentTaskController extends Controller {
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index($id) {
-        return StudentTaskResource::collection(Task::where('student_id', $id)->get());
+    public function index($studentId) {
+        return StudentTaskResource::collection(Task::where('student_id', $studentId)->get());
     }
 
     /**
@@ -30,10 +30,10 @@ class StudentTaskController extends Controller {
      * Display the specified resource.
      *
      * @param int $id
-     * @return StudentTaskResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function show($studentId, $taskId) {
-        return new StudentTaskResource(Task::where('student_id', $studentId)->where('id', $taskId)->get());
+        return StudentTaskResource::collection(Task::where('student_id', $studentId)->where('id', $taskId)->get());
     }
 
     /**
