@@ -2,39 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProposalResource;
+use App\Models\Proposal;
 use Illuminate\Http\Request;
 
 class CompanyProposalController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index($id) {
-        // api/companies/{company}/proposals
-        // show all proposals of company
+        // api/companies/{id}/proposals
+        // show all proposals of that company
+        return ProposalResource::collection(Proposal::where('company_id', $id)->get());
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
     public function store(Request $request) {
-        // add api/companies/{company}/proposals
+        // add api/companies/{id}/proposals
         // add proposal to company
+        $request->validate([
+            'description' => 'required|min:3|max:1000',
+            'start_period' => 'required|date_format:Y-m-d',
+            'end_period' => 'required|date_format:Y-m-d',
+            'company_id' => 'required|exists:companies,id'
+        ]);
+        $proposal = new Proposal($request->all());
+        $proposal->save();
+        return ['message' => 'The proposal has been created'];
     }
 
     /**
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return ProposalResource
      */
     public function show($companyId, $proposalId) {
         // api/companies/{company}/proposals/{proposal}
         // show specific proposal of specific company
+        return new ProposalResource(Proposal::where('company_id', $companyId)->where('id', $proposalId)->first());
     }
 
     /**
@@ -42,10 +55,17 @@ class CompanyProposalController extends Controller {
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
     public function update(Request $request, $companyId, $proposalId) {
-        //
+        $reqdata = $request->all();
+        $reqdata['updated_at'] = date('Y-m-d H:i:s');
+        // only possible if company owns this proposal
+        if (Proposal::where('id', $proposalId)->update($reqdata)) {
+            return ['message' => 'The proposal has been updated'];
+        } else {
+            return ['message' => 'Could not update the proposal details'];
+        }
     }
 
     /**

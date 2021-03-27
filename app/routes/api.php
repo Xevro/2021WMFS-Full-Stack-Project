@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyProposalController;
-use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentTaskController;
 use Illuminate\Http\Request;
@@ -23,11 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// proposals
-Route::apiResource('proposals', ProposalController::class);
-
 // companies
 Route::apiResource('companies', CompanyController::class);
+// proposals through company
 Route::apiResource('companies.proposals', CompanyProposalController::class);
 
 // students
