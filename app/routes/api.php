@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyProposalController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentTaskController;
@@ -27,6 +28,7 @@ Route::apiResource('proposals', ProposalController::class);
 
 // companies
 Route::apiResource('companies', CompanyController::class);
+Route::apiResource('companies.proposals', CompanyProposalController::class);
 
 // students
 Route::apiResource('students', StudentController::class);
