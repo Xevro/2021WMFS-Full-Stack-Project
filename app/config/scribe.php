@@ -1,5 +1,8 @@
 <?php
 
+// used generator: https://github.com/fruitcake/laravel-cors
+// update documentation: php artisan scribe:generate
+
 return [
 
     /*
@@ -130,7 +133,7 @@ return [
      * - "static" will generate a static HTMl page in the /public/docs folder,
      * - "laravel" will generate the documentation as a Blade view, so you can add routing and authentication.
      */
-    'type' => 'static',
+    'type' => 'laravel',
 
     /*
      * Settings for `static` type output.
@@ -304,7 +307,7 @@ INTRO
      * If you would like the package to generate the same example values for parameters on each run,
      * set this to any number (eg. 1234)
      */
-    'faker_seed' => null,
+    'faker_seed' => "qdqds",
 
     /**
      * The strategies Scribe will use to extract information about your routes at each stage.

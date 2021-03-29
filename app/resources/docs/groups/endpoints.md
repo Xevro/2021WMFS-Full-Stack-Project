@@ -51,6 +51,9 @@ fetch(url, {
 <form id="form-GETapi-user" data-method="GET" data-path="api/user" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-user" onclick="tryItOut('GETapi-user');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-user" onclick="cancelTryOut('GETapi-user');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-user" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -130,6 +133,9 @@ fetch(url, {
 <form id="form-GETapi-companies" data-method="GET" data-path="api/companies" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-companies', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-companies" onclick="tryItOut('GETapi-companies');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-companies" onclick="cancelTryOut('GETapi-companies');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-companies" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -181,6 +187,9 @@ fetch(url, {
 <form id="form-POSTapi-companies" data-method="POST" data-path="api/companies" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-companies', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-companies" onclick="tryItOut('POSTapi-companies');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-companies" onclick="cancelTryOut('POSTapi-companies');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-companies" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -198,14 +207,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/companies/temporibus" \
+    -G "http://localhost/api/companies/aut" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/temporibus"
+    "http://localhost/api/companies/aut"
 );
 
 let headers = {
@@ -225,7 +234,7 @@ fetch(url, {
 
 ```json
 {
-    "message": "No query results for model [App\\Models\\Company] temporibus",
+    "message": "No query results for model [App\\Models\\Company] aut",
     "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
     "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Exceptions\/Handler.php",
     "line": 381,
@@ -364,6 +373,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 57,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -403,20 +426,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 57,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -636,6 +645,9 @@ fetch(url, {
 <form id="form-GETapi-companies--company-" data-method="GET" data-path="api/companies/{company}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-companies--company-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-companies--company-" onclick="tryItOut('GETapi-companies--company-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-companies--company-" onclick="cancelTryOut('GETapi-companies--company-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-companies--company-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -659,14 +671,14 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/companies/quia" \
+    "http://localhost/api/companies/quas" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/quia"
+    "http://localhost/api/companies/quas"
 );
 
 let headers = {
@@ -693,6 +705,9 @@ fetch(url, {
 <form id="form-PUTapi-companies--company-" data-method="PUT" data-path="api/companies/{company}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-companies--company-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-companies--company-" onclick="tryItOut('PUTapi-companies--company-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-companies--company-" onclick="cancelTryOut('PUTapi-companies--company-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-companies--company-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
@@ -720,14 +735,14 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/companies/aut" \
+    "http://localhost/api/companies/necessitatibus" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/aut"
+    "http://localhost/api/companies/necessitatibus"
 );
 
 let headers = {
@@ -754,6 +769,9 @@ fetch(url, {
 <form id="form-DELETEapi-companies--company-" data-method="DELETE" data-path="api/companies/{company}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-companies--company-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-companies--company-" onclick="tryItOut('DELETEapi-companies--company-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-companies--company-" onclick="cancelTryOut('DELETEapi-companies--company-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-companies--company-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>
@@ -777,14 +795,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/companies/numquam/proposals" \
+    -G "http://localhost/api/companies/odit/proposals" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/numquam/proposals"
+    "http://localhost/api/companies/odit/proposals"
 );
 
 let headers = {
@@ -818,6 +836,9 @@ fetch(url, {
 <form id="form-GETapi-companies--company--proposals" data-method="GET" data-path="api/companies/{company}/proposals" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-companies--company--proposals', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-companies--company--proposals" onclick="tryItOut('GETapi-companies--company--proposals');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-companies--company--proposals" onclick="cancelTryOut('GETapi-companies--company--proposals');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-companies--company--proposals" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -841,14 +862,14 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://localhost/api/companies/fugiat/proposals" \
+    "http://localhost/api/companies/qui/proposals" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/fugiat/proposals"
+    "http://localhost/api/companies/qui/proposals"
 );
 
 let headers = {
@@ -875,6 +896,9 @@ fetch(url, {
 <form id="form-POSTapi-companies--company--proposals" data-method="POST" data-path="api/companies/{company}/proposals" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-companies--company--proposals', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-companies--company--proposals" onclick="tryItOut('POSTapi-companies--company--proposals');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-companies--company--proposals" onclick="cancelTryOut('POSTapi-companies--company--proposals');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-companies--company--proposals" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -898,14 +922,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/companies/non/proposals/optio" \
+    -G "http://localhost/api/companies/est/proposals/harum" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/non/proposals/optio"
+    "http://localhost/api/companies/est/proposals/harum"
 );
 
 let headers = {
@@ -1099,6 +1123,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 57,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -1138,20 +1176,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 57,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -1371,6 +1395,9 @@ fetch(url, {
 <form id="form-GETapi-companies--company--proposals--proposal-" data-method="GET" data-path="api/companies/{company}/proposals/{proposal}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-companies--company--proposals--proposal-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-companies--company--proposals--proposal-" onclick="tryItOut('GETapi-companies--company--proposals--proposal-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-companies--company--proposals--proposal-" onclick="cancelTryOut('GETapi-companies--company--proposals--proposal-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-companies--company--proposals--proposal-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -1399,14 +1426,14 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/companies/eum/proposals/cupiditate" \
+    "http://localhost/api/companies/quis/proposals/fugit" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/eum/proposals/cupiditate"
+    "http://localhost/api/companies/quis/proposals/fugit"
 );
 
 let headers = {
@@ -1433,6 +1460,9 @@ fetch(url, {
 <form id="form-PUTapi-companies--company--proposals--proposal-" data-method="PUT" data-path="api/companies/{company}/proposals/{proposal}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-companies--company--proposals--proposal-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-companies--company--proposals--proposal-" onclick="tryItOut('PUTapi-companies--company--proposals--proposal-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-companies--company--proposals--proposal-" onclick="cancelTryOut('PUTapi-companies--company--proposals--proposal-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-companies--company--proposals--proposal-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
@@ -1465,14 +1495,14 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/companies/eum/proposals/provident" \
+    "http://localhost/api/companies/soluta/proposals/omnis" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/companies/eum/proposals/provident"
+    "http://localhost/api/companies/soluta/proposals/omnis"
 );
 
 let headers = {
@@ -1499,6 +1529,9 @@ fetch(url, {
 <form id="form-DELETEapi-companies--company--proposals--proposal-" data-method="DELETE" data-path="api/companies/{company}/proposals/{proposal}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-companies--company--proposals--proposal-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-companies--company--proposals--proposal-" onclick="tryItOut('DELETEapi-companies--company--proposals--proposal-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-companies--company--proposals--proposal-" onclick="cancelTryOut('DELETEapi-companies--company--proposals--proposal-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-companies--company--proposals--proposal-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>
@@ -1561,6 +1594,9 @@ fetch(url, {
 <form id="form-GETapi-students" data-method="GET" data-path="api/students" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-students', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-students" onclick="tryItOut('GETapi-students');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-students" onclick="cancelTryOut('GETapi-students');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-students" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -1612,6 +1648,9 @@ fetch(url, {
 <form id="form-POSTapi-students" data-method="POST" data-path="api/students" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-students', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-students" onclick="tryItOut('POSTapi-students');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-students" onclick="cancelTryOut('POSTapi-students');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-students" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -1629,14 +1668,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/students/vero" \
+    -G "http://localhost/api/students/quibusdam" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/vero"
+    "http://localhost/api/students/quibusdam"
 );
 
 let headers = {
@@ -1656,7 +1695,7 @@ fetch(url, {
 
 ```json
 {
-    "message": "No query results for model [App\\Models\\Student] vero",
+    "message": "No query results for model [App\\Models\\Student] quibusdam",
     "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
     "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Exceptions\/Handler.php",
     "line": 381,
@@ -1795,6 +1834,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 57,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -1834,20 +1887,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 57,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -2067,6 +2106,9 @@ fetch(url, {
 <form id="form-GETapi-students--student-" data-method="GET" data-path="api/students/{student}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-students--student-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-students--student-" onclick="tryItOut('GETapi-students--student-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-students--student-" onclick="cancelTryOut('GETapi-students--student-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-students--student-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -2090,14 +2132,14 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/students/aliquid" \
+    "http://localhost/api/students/placeat" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/aliquid"
+    "http://localhost/api/students/placeat"
 );
 
 let headers = {
@@ -2124,6 +2166,9 @@ fetch(url, {
 <form id="form-PUTapi-students--student-" data-method="PUT" data-path="api/students/{student}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-students--student-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-students--student-" onclick="tryItOut('PUTapi-students--student-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-students--student-" onclick="cancelTryOut('PUTapi-students--student-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-students--student-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
@@ -2151,14 +2196,14 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/students/sunt" \
+    "http://localhost/api/students/tempora" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/sunt"
+    "http://localhost/api/students/tempora"
 );
 
 let headers = {
@@ -2185,6 +2230,9 @@ fetch(url, {
 <form id="form-DELETEapi-students--student-" data-method="DELETE" data-path="api/students/{student}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-students--student-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-students--student-" onclick="tryItOut('DELETEapi-students--student-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-students--student-" onclick="cancelTryOut('DELETEapi-students--student-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-students--student-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>
@@ -2208,14 +2256,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/students/enim/tasks" \
+    -G "http://localhost/api/students/numquam/tasks" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/enim/tasks"
+    "http://localhost/api/students/numquam/tasks"
 );
 
 let headers = {
@@ -2249,6 +2297,9 @@ fetch(url, {
 <form id="form-GETapi-students--student--tasks" data-method="GET" data-path="api/students/{student}/tasks" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-students--student--tasks', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-students--student--tasks" onclick="tryItOut('GETapi-students--student--tasks');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-students--student--tasks" onclick="cancelTryOut('GETapi-students--student--tasks');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-students--student--tasks" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -2272,14 +2323,14 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://localhost/api/students/nostrum/tasks" \
+    "http://localhost/api/students/et/tasks" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/nostrum/tasks"
+    "http://localhost/api/students/et/tasks"
 );
 
 let headers = {
@@ -2306,6 +2357,9 @@ fetch(url, {
 <form id="form-POSTapi-students--student--tasks" data-method="POST" data-path="api/students/{student}/tasks" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-students--student--tasks', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-students--student--tasks" onclick="tryItOut('POSTapi-students--student--tasks');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-students--student--tasks" onclick="cancelTryOut('POSTapi-students--student--tasks');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-students--student--tasks" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -2329,14 +2383,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/students/est/tasks/possimus" \
+    -G "http://localhost/api/students/velit/tasks/assumenda" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/est/tasks/possimus"
+    "http://localhost/api/students/velit/tasks/assumenda"
 );
 
 let headers = {
@@ -2370,6 +2424,9 @@ fetch(url, {
 <form id="form-GETapi-students--student--tasks--task-" data-method="GET" data-path="api/students/{student}/tasks/{task}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-students--student--tasks--task-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-students--student--tasks--task-" onclick="tryItOut('GETapi-students--student--tasks--task-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-students--student--tasks--task-" onclick="cancelTryOut('GETapi-students--student--tasks--task-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-students--student--tasks--task-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -2398,14 +2455,14 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/students/eius/tasks/repudiandae" \
+    "http://localhost/api/students/in/tasks/voluptas" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/eius/tasks/repudiandae"
+    "http://localhost/api/students/in/tasks/voluptas"
 );
 
 let headers = {
@@ -2432,6 +2489,9 @@ fetch(url, {
 <form id="form-PUTapi-students--student--tasks--task-" data-method="PUT" data-path="api/students/{student}/tasks/{task}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-students--student--tasks--task-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-students--student--tasks--task-" onclick="tryItOut('PUTapi-students--student--tasks--task-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-students--student--tasks--task-" onclick="cancelTryOut('PUTapi-students--student--tasks--task-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-students--student--tasks--task-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
@@ -2464,14 +2524,14 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/students/inventore/tasks/nihil" \
+    "http://localhost/api/students/quia/tasks/perspiciatis" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/students/inventore/tasks/nihil"
+    "http://localhost/api/students/quia/tasks/perspiciatis"
 );
 
 let headers = {
@@ -2498,6 +2558,9 @@ fetch(url, {
 <form id="form-DELETEapi-students--student--tasks--task-" data-method="DELETE" data-path="api/students/{student}/tasks/{task}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-students--student--tasks--task-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-students--student--tasks--task-" onclick="tryItOut('DELETEapi-students--student--tasks--task-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-students--student--tasks--task-" onclick="cancelTryOut('DELETEapi-students--student--tasks--task-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-students--student--tasks--task-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>
@@ -2577,6 +2640,9 @@ fetch(url, {
 <form id="form-GET-" data-method="GET" data-path="/" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GET-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GET-" onclick="tryItOut('GET-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GET-" onclick="cancelTryOut('GET-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GET-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -2635,6 +2701,9 @@ fetch(url, {
 <form id="form-GETdashboard" data-method="GET" data-path="dashboard" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard" onclick="tryItOut('GETdashboard');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard" onclick="cancelTryOut('GETdashboard');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -2693,6 +2762,9 @@ fetch(url, {
 <form id="form-GETdashboard-students" data-method="GET" data-path="dashboard/students" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-students', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-students" onclick="tryItOut('GETdashboard-students');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-students" onclick="cancelTryOut('GETdashboard-students');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-students" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -2710,14 +2782,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/dashboard/student/odit" \
+    -G "http://localhost/dashboard/student/provident" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/dashboard/student/odit"
+    "http://localhost/dashboard/student/provident"
 );
 
 let headers = {
@@ -2799,6 +2871,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 37,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -2838,20 +2924,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 37,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -3071,6 +3143,9 @@ fetch(url, {
 <form id="form-GETdashboard-student--id-" data-method="GET" data-path="dashboard/student/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-student--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-student--id-" onclick="tryItOut('GETdashboard-student--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-student--id-" onclick="cancelTryOut('GETdashboard-student--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-student--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -3135,6 +3210,9 @@ fetch(url, {
 <form id="form-GETdashboard-companies" data-method="GET" data-path="dashboard/companies" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-companies', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-companies" onclick="tryItOut('GETdashboard-companies');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-companies" onclick="cancelTryOut('GETdashboard-companies');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-companies" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -3152,14 +3230,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/dashboard/company/sit" \
+    -G "http://localhost/dashboard/company/cupiditate" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/dashboard/company/sit"
+    "http://localhost/dashboard/company/cupiditate"
 );
 
 let headers = {
@@ -3241,6 +3319,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 37,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -3280,20 +3372,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 37,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -3513,6 +3591,9 @@ fetch(url, {
 <form id="form-GETdashboard-company--id-" data-method="GET" data-path="dashboard/company/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-company--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-company--id-" onclick="tryItOut('GETdashboard-company--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-company--id-" onclick="cancelTryOut('GETdashboard-company--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-company--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -3536,14 +3617,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/dashboard/company/proposal/quo" \
+    -G "http://localhost/dashboard/company/proposal/cupiditate" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/dashboard/company/proposal/quo"
+    "http://localhost/dashboard/company/proposal/cupiditate"
 );
 
 let headers = {
@@ -3625,6 +3706,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 37,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -3664,20 +3759,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 37,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -3897,6 +3978,9 @@ fetch(url, {
 <form id="form-GETdashboard-company-proposal--id-" data-method="GET" data-path="dashboard/company/proposal/{id}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-company-proposal--id-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-company-proposal--id-" onclick="tryItOut('GETdashboard-company-proposal--id-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-company-proposal--id-" onclick="cancelTryOut('GETdashboard-company-proposal--id-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-company-proposal--id-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -3961,6 +4045,9 @@ fetch(url, {
 <form id="form-GETdashboard-company-add" data-method="GET" data-path="dashboard/company/add" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-company-add', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-company-add" onclick="tryItOut('GETdashboard-company-add');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-company-add" onclick="cancelTryOut('GETdashboard-company-add');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-company-add" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -4012,6 +4099,9 @@ fetch(url, {
 <form id="form-POSTdashboard-company-add" data-method="POST" data-path="dashboard/company/add" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTdashboard-company-add', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTdashboard-company-add" onclick="tryItOut('POSTdashboard-company-add');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTdashboard-company-add" onclick="cancelTryOut('POSTdashboard-company-add');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTdashboard-company-add" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -4070,6 +4160,9 @@ fetch(url, {
 <form id="form-GETdashboard-proposal-add" data-method="GET" data-path="dashboard/proposal/add" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-proposal-add', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-proposal-add" onclick="tryItOut('GETdashboard-proposal-add');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-proposal-add" onclick="cancelTryOut('GETdashboard-proposal-add');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-proposal-add" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -4121,6 +4214,9 @@ fetch(url, {
 <form id="form-POSTdashboard-proposal-add" data-method="POST" data-path="dashboard/proposal/add" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTdashboard-proposal-add', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTdashboard-proposal-add" onclick="tryItOut('POSTdashboard-proposal-add');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTdashboard-proposal-add" onclick="cancelTryOut('POSTdashboard-proposal-add');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTdashboard-proposal-add" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -4138,14 +4234,14 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://localhost/dashboard/company/proposal/veritatis/approve" \
+    "http://localhost/dashboard/company/proposal/voluptas/approve" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/dashboard/company/proposal/veritatis/approve"
+    "http://localhost/dashboard/company/proposal/voluptas/approve"
 );
 
 let headers = {
@@ -4172,6 +4268,9 @@ fetch(url, {
 <form id="form-POSTdashboard-company-proposal--id--approve" data-method="POST" data-path="dashboard/company/proposal/{id}/approve" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTdashboard-company-proposal--id--approve', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTdashboard-company-proposal--id--approve" onclick="tryItOut('POSTdashboard-company-proposal--id--approve');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTdashboard-company-proposal--id--approve" onclick="cancelTryOut('POSTdashboard-company-proposal--id--approve');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTdashboard-company-proposal--id--approve" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -4284,6 +4383,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 37,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -4323,20 +4436,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 37,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -4556,6 +4655,9 @@ fetch(url, {
 <form id="form-GETdashboard-company-proposal--id--delete" data-method="GET" data-path="dashboard/company/proposal/{id}/delete" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-company-proposal--id--delete', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-company-proposal--id--delete" onclick="tryItOut('GETdashboard-company-proposal--id--delete');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-company-proposal--id--delete" onclick="cancelTryOut('GETdashboard-company-proposal--id--delete');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-company-proposal--id--delete" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -4579,14 +4681,14 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://localhost/dashboard/company/proposal/non/delete" \
+    "http://localhost/dashboard/company/proposal/qui/delete" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/dashboard/company/proposal/non/delete"
+    "http://localhost/dashboard/company/proposal/qui/delete"
 );
 
 let headers = {
@@ -4613,6 +4715,9 @@ fetch(url, {
 <form id="form-POSTdashboard-company-proposal--id--delete" data-method="POST" data-path="dashboard/company/proposal/{id}/delete" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTdashboard-company-proposal--id--delete', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTdashboard-company-proposal--id--delete" onclick="tryItOut('POSTdashboard-company-proposal--id--delete');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTdashboard-company-proposal--id--delete" onclick="cancelTryOut('POSTdashboard-company-proposal--id--delete');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTdashboard-company-proposal--id--delete" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -4677,6 +4782,9 @@ fetch(url, {
 <form id="form-GETdashboard-student-add" data-method="GET" data-path="dashboard/student/add" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-student-add', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-student-add" onclick="tryItOut('GETdashboard-student-add');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-student-add" onclick="cancelTryOut('GETdashboard-student-add');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-student-add" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -4728,6 +4836,9 @@ fetch(url, {
 <form id="form-POSTdashboard-student-add" data-method="POST" data-path="dashboard/student/add" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTdashboard-student-add', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTdashboard-student-add" onclick="tryItOut('POSTdashboard-student-add');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTdashboard-student-add" onclick="cancelTryOut('POSTdashboard-student-add');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTdashboard-student-add" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -4745,14 +4856,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/dashboard/student/quod/tasks" \
+    -G "http://localhost/dashboard/student/et/tasks" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/dashboard/student/quod/tasks"
+    "http://localhost/dashboard/student/et/tasks"
 );
 
 let headers = {
@@ -4834,6 +4945,20 @@ fetch(url, {
             "type": "->"
         },
         {
+            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
+            "line": 37,
+            "function": "Illuminate\\Pipeline\\{closure}",
+            "class": "Illuminate\\Pipeline\\Pipeline",
+            "type": "->"
+        },
+        {
+            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
+            "line": 167,
+            "function": "handle",
+            "class": "Fruitcake\\Cors\\HandleCors",
+            "type": "->"
+        },
+        {
             "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
@@ -4873,20 +4998,6 @@ fetch(url, {
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/fruitcake\/laravel-cors\/src\/HandleCors.php",
-            "line": 37,
-            "function": "Illuminate\\Pipeline\\{closure}",
-            "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
-        },
-        {
-            "file": "\/var\/www\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php",
-            "line": 167,
-            "function": "handle",
-            "class": "Fruitcake\\Cors\\HandleCors",
             "type": "->"
         },
         {
@@ -5106,6 +5217,9 @@ fetch(url, {
 <form id="form-GETdashboard-student--id--tasks" data-method="GET" data-path="dashboard/student/{id}/tasks" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-student--id--tasks', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-student--id--tasks" onclick="tryItOut('GETdashboard-student--id--tasks');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-student--id--tasks" onclick="cancelTryOut('GETdashboard-student--id--tasks');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-student--id--tasks" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -5170,6 +5284,9 @@ fetch(url, {
 <form id="form-GETdashboard-proposal-assign" data-method="GET" data-path="dashboard/proposal/assign" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETdashboard-proposal-assign', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETdashboard-proposal-assign" onclick="tryItOut('GETdashboard-proposal-assign');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETdashboard-proposal-assign" onclick="cancelTryOut('GETdashboard-proposal-assign');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETdashboard-proposal-assign" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -5221,6 +5338,9 @@ fetch(url, {
 <form id="form-POSTdashboard-proposal-assign" data-method="POST" data-path="dashboard/proposal/assign" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTdashboard-proposal-assign', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTdashboard-proposal-assign" onclick="tryItOut('POSTdashboard-proposal-assign');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTdashboard-proposal-assign" onclick="cancelTryOut('POSTdashboard-proposal-assign');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTdashboard-proposal-assign" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -5289,7 +5409,7 @@ fetch(url, {
         <div class="container">
             <div class="login-box ptb--100">
                 <form method="POST" action="http://localhost/register" class="form-horizontal">
-                    <input type="hidden" name="_token" value="leKQEWXMROT7BQSc9ILxYWNvtZPnzxcAJBgvsQ3J">                    <div class="form-group col-sm-9">
+                    <input type="hidden" name="_token" value="Z1W01QFIg20krRJ7WcG903mGocKiSZ50uldiILwt">                    <div class="form-group col-sm-9">
                                                 <p class="">Maak een mentors account aan</p>
                     </div>
                     <div class="form-group">
@@ -5360,6 +5480,9 @@ fetch(url, {
 <form id="form-GETregister" data-method="GET" data-path="register" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETregister', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETregister" onclick="tryItOut('GETregister');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETregister" onclick="cancelTryOut('GETregister');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETregister" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -5411,6 +5534,9 @@ fetch(url, {
 <form id="form-POSTregister" data-method="POST" data-path="register" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTregister', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTregister" onclick="tryItOut('POSTregister');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTregister" onclick="cancelTryOut('POSTregister');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTregister" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -5479,7 +5605,7 @@ fetch(url, {
         <div class="container">
             <div class="login-box ptb--100">
                 <form action="http://localhost/login" method="POST" class="form-horizontal">
-                    <input type="hidden" name="_token" value="leKQEWXMROT7BQSc9ILxYWNvtZPnzxcAJBgvsQ3J">                    <div class="form-group col-sm-9">
+                    <input type="hidden" name="_token" value="Z1W01QFIg20krRJ7WcG903mGocKiSZ50uldiILwt">                    <div class="form-group col-sm-9">
                                                 <p class="">Login als een mentor of coordinator</p>
                     </div>
                     <div class="form-group">
@@ -5539,6 +5665,9 @@ fetch(url, {
 <form id="form-GETlogin" data-method="GET" data-path="login" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETlogin', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETlogin" onclick="tryItOut('GETlogin');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETlogin" onclick="cancelTryOut('GETlogin');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETlogin" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -5559,7 +5688,7 @@ curl -X POST \
     "http://localhost/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"mellie.wilderman@example.net","password":"totam"}'
+    -d '{"email":"qjerde@example.org","password":"dolore"}'
 
 ```
 
@@ -5574,8 +5703,8 @@ let headers = {
 };
 
 let body = {
-    "email": "mellie.wilderman@example.net",
-    "password": "totam"
+    "email": "qjerde@example.org",
+    "password": "dolore"
 }
 
 fetch(url, {
@@ -5597,6 +5726,9 @@ fetch(url, {
 <form id="form-POSTlogin" data-method="POST" data-path="login" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTlogin', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTlogin" onclick="tryItOut('POSTlogin');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTlogin" onclick="cancelTryOut('POSTlogin');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTlogin" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -5660,6 +5792,9 @@ fetch(url, {
 <form id="form-POSTlogout" data-method="POST" data-path="logout" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTlogout', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTlogout" onclick="tryItOut('POSTlogout');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTlogout" onclick="cancelTryOut('POSTlogout');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTlogout" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
