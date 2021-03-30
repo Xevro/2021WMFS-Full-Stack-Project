@@ -161,7 +161,7 @@
                     </div>
                 </div>
             @endcan
-            @can('view-student-tasks')
+            @can('view-student-tasks-dashboard')
                 <!-- view all students that belong to the mentor
                      Also show button to view tasks of that student -->
                     <!-- Progress Table start -->

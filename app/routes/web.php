@@ -43,7 +43,8 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/proposal/add', [DashboardController::class, 'addProposal'])->middleware(['auth']);
 
     //evaluate proposal
-    Route::post('/company/proposal/{id}/approve', [DashboardController::class, 'evaluateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::get('/company/proposal/{id}/approve', [DashboardController::class, 'evaluateProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
+    Route::post('/company/proposal/{id}/approve', [DashboardController::class, 'approveProposal'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 
     //Delete proposal
     Route::get('/company/proposal/{id}/delete', [DashboardController::class, 'showProposalDelete'])->where(['id' => '[0-9]+'])->middleware(['auth']);

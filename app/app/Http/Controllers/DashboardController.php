@@ -202,7 +202,13 @@ class DashboardController extends Controller {
         return view('student_tasks', ['student' => Student::findOrFail($id), 'tasks' => $tasks, 'menuItem' => 'students', 'pageTitle' => 'Overzicht taken van student']);
     }
 
-    public function evaluateProposal(Request $request, $id) {
+    public function evaluateProposal($id) {
+        Gate::authorize('evaluate-proposal');
+        $proposal = Proposal::findOrFail($id);
+        return view('approve_proposal', ['proposal' => $proposal, 'menuItem' => 'companies', 'pageTitle' => 'Keur voorstel goed']);
+    }
+
+    public function approveProposal($id) {
         Gate::authorize('evaluate-proposal');
         Proposal::where('id', $id)->update(['visibility' => 1, 'status' => 'Goedgekeurd']);
         return redirect('dashboard/company/proposal/' . $id);

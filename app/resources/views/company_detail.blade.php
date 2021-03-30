@@ -64,8 +64,10 @@
                                                 @endif
                                                 <td>
                                                     <ul class="d-flex justify-content-center">
-                                                        <li class="mr-3"><a href="{{ url('/dashboard/company/proposal/' . $proposal->id) }}">info</a></li>
+                                                        <li  @can('delete-proposal')class="mr-3"@endcan><a href="{{ url('/dashboard/company/proposal/' . $proposal->id) }}">info</a></li>
+                                                        @can('delete-proposal')
                                                         <li><a href="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" class="text-danger"><i class="ti-trash"></i></a></li>
+                                                        @endcan
                                                     </ul>
                                                 </td>
                                             </tr>

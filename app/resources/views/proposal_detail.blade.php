@@ -58,10 +58,7 @@
                             @if($proposal->visibility == 0)
                             <div class="text-left">
                                 <div class="d-flex">
-                                    <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/approve') }}" method="post" class="form-horizontal">
-                                        @csrf
-                                    <button type="submit" class="btn btn-success mt-4 pr-4 pl-4">keur voorstel goed</button>
-                                    </form>
+                                    <a href="{{ url('/dashboard/company/proposal/' . $proposal->id . '/approve') }}" class="btn btn-success mt-4 pr-4 pl-4">keur voorstel goed</a>
                                     <a href="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" class="btn ml-4 mt-4 pr-4 pl-4 btn-danger">Keur voorstel af</a>
                                 </div>
                             </div>
