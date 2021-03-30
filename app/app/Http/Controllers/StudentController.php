@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentResource;
+use App\Models\Mentor;
+use App\Models\Proposal;
 use App\Models\Student;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller {
@@ -77,5 +81,49 @@ class StudentController extends Controller {
      */
     public function destroy($id) {
         // do not implement (only if needed)
+    }
+
+    public function students(Request $request) {
+        Gate::authorize('view-students-page');
+        if ($request->has('search')) {
+            $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->where('allowed', 1)->paginate(8);
+        } else {
+            $students = Student::where('allowed', 1)->paginate(8);
+        }
+        return view('students', ['students' => $students, 'term' => $request->search, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
+    }
+
+    public function studentDetail($id) {
+        Gate::authorize('view-student-details');
+        $student = Student::findOrFail($id);
+        $proposals = Proposal::whereHas('students', function (Builder $query) use ($id) {
+            $query->where('id', $id);
+        })->get();
+
+        $proposalsLiked = Proposal::with('students')->whereHas('Likes', function (Builder $query) use ($id) {
+            $query->where('student_id', $id);
+        })->get();
+        return view('student_detail', ['student' => $student, 'proposals' => $proposals, 'proposalsLiked' => $proposalsLiked, 'menuItem' => 'students', 'pageTitle' => 'Detail Student']);
+    }
+
+    public function showAddStudent() {
+        Gate::authorize('add-student');
+        return view('student_add', ['mentors' => Mentor::all(), 'menuItem' => 'addStudent', 'pageTitle' => 'Voeg Student toe']);
+    }
+
+    public function addStudent(Request $request) {
+        Gate::authorize('add-student');
+        $request->validate([
+            'email' => 'required|email|unique:students',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:8',
+            'mentor_id' => 'required|exists:mentors,id'
+        ]);
+        User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'student']);
+        Student::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email, 'r_number' => $request->r_number,
+            'mentor_id' => $request->mentor_id, 'allowed' => 1, 'user_id' => User::where('email', $request->email)->first()->id]);
+        return redirect('dashboard/students');
     }
 }

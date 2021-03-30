@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProposalResource;
+use App\Models\Company;
+use App\Models\Mentor;
 use App\Models\Proposal;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CompanyProposalController extends Controller {
     /**
@@ -75,5 +79,73 @@ class CompanyProposalController extends Controller {
      */
     public function destroy($companyId, $proposalId) {
         //
+    }
+
+    public function proposalDetail($id) {
+        Gate::authorize('view-proposal-details');
+        $proposal = Proposal::with('company')->findOrFail($id);
+        return view('proposal_detail', ['proposal' => $proposal, 'menuItem' => 'overzicht', 'pageTitle' => 'stagevoorstel']);
+    }
+
+    public function showAddProposal() {
+        Gate::authorize('add-proposal');
+        return view('proposal_add', ['mentors' => Mentor::all(), 'companies' => Company::all(), 'menuItem' => 'addProposal', 'pageTitle' => 'Voeg Voorstel toe']);
+    }
+
+    public function addProposal(Request $request) {
+        Gate::authorize('add-proposal');
+        $request->validate([
+            'description' => 'required|min:3|max:1000',
+            'start_period' => 'required|date_format:Y-m-d',
+            'end_period' => 'required|date_format:Y-m-d',
+            'company_id' => 'required|exists:companies,id'
+        ]);
+        Proposal::create($request->all());
+
+        return redirect('dashboard');
+    }
+
+    public function showProposalDelete($id) {
+        Gate::authorize('delete-proposal');
+        $proposal = Proposal::findOrFail($id);
+        return view('delete_proposal', ['proposal' => $proposal, 'menuItem' => 'companies', 'pageTitle' => 'Verwijder voorstel']);
+    }
+
+    public function proposalDelete(Request $request) {
+        Gate::authorize('delete-proposal');
+        // also make option to inform the company that it has been declined
+        if (Proposal::find($request->id)) {
+            if (Proposal::destroy($request->id)) {
+                return redirect('dashboard');
+            } else {
+                return view('errors.something_went_wrong');
+            }
+        } else {
+            return view('errors.something_went_wrong');
+        }
+    }
+
+    public function showAssignStudentToProposal() {
+        Gate::authorize('view-assign-to-proposal');
+        return view('assign_student_to_proposal', ['proposals' => Proposal::doesntHave('students')->get(), 'students' => Student::where('proposal_id', 0)->where('allowed', 1)->get(), 'menuItem' => 'AssignProposal', 'pageTitle' => 'Koppel student aan een voorstel']);
+    }
+
+    public function assignStudentToProposal(Request $request) {
+        Gate::authorize('view-assign-to-proposal');
+        Student::where('id', $request->student_id)->update(['proposal_id' => $request->proposal_id, 'approved' => 'Goedgekeurd']);
+        Proposal::where('id', $request->proposal_id)->update(['visibility' => 1, 'status' => 'Goedgekeurd']);
+        return redirect('dashboard/student/' . $request->student_id);
+    }
+
+    public function evaluateProposal($id) {
+        Gate::authorize('evaluate-proposal');
+        $proposal = Proposal::findOrFail($id);
+        return view('approve_proposal', ['proposal' => $proposal, 'menuItem' => 'companies', 'pageTitle' => 'Keur voorstel goed']);
+    }
+
+    public function approveProposal($id) {
+        Gate::authorize('evaluate-proposal');
+        Proposal::where('id', $id)->update(['visibility' => 1, 'status' => 'Goedgekeurd']);
+        return redirect('dashboard/company/proposal/' . $id);
     }
 }

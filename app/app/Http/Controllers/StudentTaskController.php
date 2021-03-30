@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentTaskResource;
+use App\Models\Student;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class StudentTaskController extends Controller {
     /**
@@ -69,5 +71,11 @@ class StudentTaskController extends Controller {
      */
     public function destroy($id) {
         // api/students/{student}/tasks/{task}
+    }
+
+    public function showStudentTasks($id) {
+        Gate::authorize('view-student-tasks');
+        $tasks = Task::where('student_id', $id)->get();
+        return view('student_tasks', ['student' => Student::findOrFail($id), 'tasks' => $tasks, 'menuItem' => 'students', 'pageTitle' => 'Overzicht taken van student']);
     }
 }
