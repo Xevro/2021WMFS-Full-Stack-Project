@@ -135,7 +135,6 @@ class StagetoolSeeder extends Seeder {
             'end_period' => Carbon::now()->format('Y-m-d'),
             'contract_file_location' => '/',
             'company_id' => 1,
-            'mentor_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -148,7 +147,6 @@ class StagetoolSeeder extends Seeder {
             'end_period' => Carbon::now()->format('Y-m-d'),
             'contract_file_location' => '/',
             'company_id' => 2,
-            'mentor_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -161,7 +159,6 @@ class StagetoolSeeder extends Seeder {
             'end_period' => Carbon::now()->format('Y-m-d'),
             'contract_file_location' => '/',
             'company_id' => 2,
-            'mentor_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

@@ -24,17 +24,16 @@ class CompanyProposalController extends Controller {
      * @param \Illuminate\Http\Request $request
      * @return string[]
      */
-    public function store(Request $request) {
+    public function store(Request $request, $id) {
         // add api/companies/{id}/proposals
         // add proposal to company
         $request->validate([
             'description' => 'required|min:3|max:1000',
             'start_period' => 'required|date_format:Y-m-d',
-            'end_period' => 'required|date_format:Y-m-d',
-            'company_id' => 'required|exists:companies,id'
+            'end_period' => 'required|date_format:Y-m-d'
         ]);
-        $proposal = new Proposal($request->all());
-        $proposal->save();
+        Proposal::create(['description' => $request->description, 'start_period' => $request->start_period,
+            'end_period' => $request->end_period, 'company_id' => $id]);
         return ['message' => 'The proposal has been created'];
     }
 

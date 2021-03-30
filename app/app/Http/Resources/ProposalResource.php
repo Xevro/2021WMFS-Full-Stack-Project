@@ -20,8 +20,7 @@ class ProposalResource extends JsonResource {
             'start_period' => $this->start_period,
             'end_period' => $this->end_period,
             'contract_file_location' => $this->contract_file_location,
-            'company' => new CompanyResource($this->company),
-            'mentor' => new MentorResource($this->mentor),
+            'company' => new CompanyResource($this->company)
         ];
     }
 }

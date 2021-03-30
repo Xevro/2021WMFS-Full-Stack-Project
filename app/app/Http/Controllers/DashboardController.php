@@ -110,8 +110,7 @@ class DashboardController extends Controller {
             'description' => 'required|min:3|max:1000',
             'start_period' => 'required|date_format:Y-m-d',
             'end_period' => 'required|date_format:Y-m-d',
-            'company_id' => 'required|exists:companies,id',
-            'mentor_id' => 'required|exists:mentors,id'
+            'company_id' => 'required|exists:companies,id'
         ]);
         Proposal::create($request->all());
 

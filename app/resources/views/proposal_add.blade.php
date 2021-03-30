@@ -38,16 +38,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="mentor_id" class="control-label">* Mentor</label>
-                                    <div class="col-sm-3">
-                                        <select name="mentor_id" id="mentor_id" class="form-control">
-                                            @foreach ($mentors as $mentor)
-                                                <option value="{{ $mentor->id }}" @if (old('mentor_id', '') == $mentor->id) selected="selected" @endif>{{ $mentor->firstname . ' ' . $mentor->lastname }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Voeg voorstel toe</button>
                             </form>
                         </div>
