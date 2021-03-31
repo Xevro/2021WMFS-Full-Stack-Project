@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
@@ -52,7 +53,7 @@ class StudentController extends Controller {
      * @return StudentResource
      */
     public function show($id) {
-        return new StudentResource(Student::findOrFail($id));
+        return new StudentResource(Student::where('id', $id)->where('user_id', Auth::user()->id)->first());
     }
 
     /**
@@ -66,7 +67,8 @@ class StudentController extends Controller {
         // update student information
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
-        if (Student::where('id', $id)->update($reqdata)) {
+        if (Student::where('id', $id)->where('user_id', Auth::user()->id)->update($reqdata)) {
+            User::where('id', Student::where('id', $id)->where('user_id', Auth::user()->id)->first()->user_id)->update(['email' => $request->email]);
             return ['message' => 'The student has been updated'];
         } else {
             return ['message' => 'Could not update the student details'];

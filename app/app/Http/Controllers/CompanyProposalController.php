@@ -68,8 +68,7 @@ class CompanyProposalController extends Controller {
         Gate::authorize('api-update-proposal');
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
-        // only possible if company owns this proposal
-        if (Proposal::where('id', $proposalId)->where('company_id', $companyId)->update($reqdata)) {
+        if (Proposal::where('id', $proposalId)->where('company_id', $companyId)->where('company_id', Company::where('user_id', Auth::user()->id)->first()->id)->update($reqdata)) {
             return ['message' => 'The proposal has been updated'];
         } else {
             return ['message' => 'Could not update the proposal details'];

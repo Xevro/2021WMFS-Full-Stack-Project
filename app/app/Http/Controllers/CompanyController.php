@@ -73,6 +73,7 @@ class CompanyController extends Controller {
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
         if (Company::where('id', $id)->where('user_id', Auth::user()->id)->update($reqdata)) {
+            User::where('id', Company::where('id', $id)->where('user_id', Auth::user()->id)->first()->user_id)->update(['email' => $request->email]);
             return ['message' => 'The company has been updated'];
         } else {
             return ['message' => 'Could not update the company details'];

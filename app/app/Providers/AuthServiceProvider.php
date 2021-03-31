@@ -94,7 +94,7 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'student';
         });
         Gate::define('api-view-companies-details', function (User $user) {
-            return $user->role == 'student';
+            return $user->role == 'student' || $user->role == 'company';
         });
         Gate::define('api-update-company', function (User $user) {
             return $user->role == 'company';
@@ -119,6 +119,9 @@ class AuthServiceProvider extends ServiceProvider {
         });
         Gate::define('api-delete-proposal', function (User $user) {
             return $user->role == 'company';
+        });
+        Gate::define('api-view-student', function (User $user) {
+            return $user->role == 'student';
         });
     }
 }
