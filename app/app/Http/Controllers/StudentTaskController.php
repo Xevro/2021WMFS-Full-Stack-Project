@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\StudentTaskResource;
 use App\Models\Student;
 use App\Models\Task;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -17,6 +16,7 @@ class StudentTaskController extends Controller {
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index($studentId) {
+        Gate::authorize('api-view-tasks');
         return StudentTaskResource::collection(Task::where('student_id', $studentId)->get());
     }
 
@@ -28,11 +28,12 @@ class StudentTaskController extends Controller {
      */
     public function store(Request $request, $studentId) {
         // add task api/students/{student}/tasks
+        Gate::authorize('api-add-task');
         $request->validate([
             'task' => 'required|min:3|max:1000',
             'date' => 'required|date_format:Y-m-d'
         ]);
-        Task::create(['task' => $request->task, 'date' => $request->date, 'student_id' => User::where('id', $studentId)->first()->id]);
+        Task::create(['task' => $request->task, 'date' => $request->date, 'student_id' => Student::where('user_id', Auth::user()->id)->first()->id]);
         return ['message' => 'The task has been created'];
     }
 
@@ -43,6 +44,7 @@ class StudentTaskController extends Controller {
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function show($studentId, $taskId) {
+        Gate::authorize('api-view-tasks');
         return StudentTaskResource::collection(Task::where('student_id', $studentId)->where('id', $taskId)->get());
     }
 
@@ -55,6 +57,7 @@ class StudentTaskController extends Controller {
      */
     public function update(Request $request, $studentId, $taskId) {
         // update task api/students/{student}/tasks/{task}
+        Gate::authorize('api-update-task');
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
         if (Task::where('id', $taskId)->where('student_id', $studentId)->where('student_id', Auth::user()->id)->update($reqdata)) {

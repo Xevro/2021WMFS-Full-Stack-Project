@@ -108,6 +108,14 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-update-proposal', function (User $user) {
             return $user->role == 'company';
         });
-
+        Gate::define('api-view-tasks', function (User $user) {
+            return $user->role == 'student' || $user->role == 'company';
+        });
+        Gate::define('api-add-task', function (User $user) {
+            return $user->role == 'student';
+        });
+        Gate::define('api-update-task', function (User $user) {
+            return $user->role == 'student';
+        });
     }
 }
