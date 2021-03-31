@@ -24,12 +24,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // companies
-Route::apiResource('companies', CompanyController::class);
+Route::apiResource('companies', CompanyController::class)->middleware('auth:sanctum');
 // proposals through company
-Route::apiResource('companies.proposals', CompanyProposalController::class);
+Route::apiResource('companies.proposals', CompanyProposalController::class)->middleware('auth:sanctum');
 
 // students
-Route::apiResource('students', StudentController::class);
+Route::apiResource('students', StudentController::class)->middleware('auth:sanctum');
 
-Route::apiResource('students.tasks', StudentTaskController::class);
-Route::apiResource('students.likes', StudentLikesController::class);
+Route::apiResource('students.tasks', StudentTaskController::class)->middleware('auth:sanctum');
+Route::apiResource('students.likes', StudentLikesController::class)->middleware('auth:sanctum');

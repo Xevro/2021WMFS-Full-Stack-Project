@@ -5,7 +5,11 @@ use App\Http\Controllers\CompanyProposalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentTaskController;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +68,26 @@ Route::prefix('dashboard')->group(function () {
     //add student to proposal
     Route::get('/proposal/assign', [CompanyProposalController::class, 'showAssignStudentToProposal'])->middleware(['auth']);
     Route::post('/proposal/assign', [CompanyProposalController::class, 'assignStudentToProposal'])->middleware(['auth']);
+});
+
+Route::post('/sanctum/login', function (Request $request) {
+    $credentials = $request->only('email', 'password');
+    $role = User::where('email', $request->email)->firstOrFail()->role;
+    if (Str::contains($role, ['student', 'company'])) {
+        if (Auth::attempt($credentials)) {
+            // $request->session()->regenerate();
+            return response(['message' => 'The user has been authenticated successfully'], 200);
+        }
+        return response(['message' => 'The provided credentials do not match our records.'], 401);
+    } else {
+        return response(['message' => 'The provided credentials do not match our records.'], 401);
+    }
+});
+
+Route::post('/sanctum/logout', function (Request $request) {
+    Auth::guard('web')->logout();
+    $request->session()->invalidate();
+    return response(['message' => 'The user has been logged out successfully'], 200);
 });
 
 require __DIR__ . '/auth.php';

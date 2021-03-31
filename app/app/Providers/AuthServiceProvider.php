@@ -85,5 +85,12 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('view-proposals-page', function (User $user) {
             return $user->role == 'mentor' || $user->role == 'coordinator';
         });
+
+
+        // api gates
+        Gate::define('api-add-proposal', function (User $user) {
+            return $user->role == 'company';
+        });
+
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProposalResource;
 use App\Models\Company;
-use App\Models\Mentor;
 use App\Models\Proposal;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -31,13 +30,14 @@ class CompanyProposalController extends Controller {
     public function store(Request $request, $id) {
         // add api/companies/{id}/proposals
         // add proposal to company
+        Gate::authorize('api-add-proposal');
         $request->validate([
             'description' => 'required|min:3|max:1000',
             'start_period' => 'required|date_format:Y-m-d',
-            'end_period' => 'required|date_format:Y-m-d'
+            'end_period' => 'required|date_format:Y-m-d',
+            'company_id' => 'required|exists:companies,id'
         ]);
-        Proposal::create(['description' => $request->description, 'start_period' => $request->start_period,
-            'end_period' => $request->end_period, 'company_id' => $id]);
+        Proposal::create($request->all());
         return ['message' => 'The proposal has been created'];
     }
 
@@ -64,7 +64,7 @@ class CompanyProposalController extends Controller {
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
         // only possible if company owns this proposal
-        if (Proposal::where('id', $proposalId)->update($reqdata)) {
+        if (Proposal::where('id', $proposalId)->where('company_id', $companyId)->update($reqdata)) {
             return ['message' => 'The proposal has been updated'];
         } else {
             return ['message' => 'Could not update the proposal details'];
@@ -89,7 +89,7 @@ class CompanyProposalController extends Controller {
 
     public function showAddProposal() {
         Gate::authorize('add-proposal');
-        return view('proposal_add', ['mentors' => Mentor::all(), 'companies' => Company::all(), 'menuItem' => 'addProposal', 'pageTitle' => 'Voeg Voorstel toe']);
+        return view('proposal_add', ['companies' => Company::all(), 'menuItem' => 'addProposal', 'pageTitle' => 'Voeg Voorstel toe']);
     }
 
     public function addProposal(Request $request) {
