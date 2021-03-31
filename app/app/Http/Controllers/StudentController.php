@@ -30,20 +30,20 @@ class StudentController extends Controller {
      * @return string[]
      */
     public function store(Request $request) {
-        // add a student (registration)
+        // student can't be created on the SPA
+        /*
         $request->validate([
             'email' => 'required|email|unique:students',
             'firstname' => 'required',
             'lastname' => 'required',
             'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:8',
-            'mentor_id' => 'required|exists:mentors,id'
+            'password_confirmation' => 'required|min:8'
         ]);
         if (User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'student'])) {
             Student::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email, 'r_number' => $request->r_number,
-                'mentor_id' => $request->mentor_id, 'allowed' => 1, 'user_id' => User::where('email', $request->email)->first()->id]);
+                'allowed' => 1, 'user_id' => User::where('email', $request->email)->first()->id]);
             return ['message' => 'The student has been created'];
-        }
+        }*/
     }
 
     /**

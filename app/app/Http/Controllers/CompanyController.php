@@ -29,23 +29,6 @@ class CompanyController extends Controller {
      * @return string[]
      */
     public function store(Request $request) {
-        // add a company (register)
-        $request->validate([
-            'email' => 'required|email|unique:companies',
-            'kbo_number' => 'required|unique:companies|numeric',
-            'name' => 'required|unique:companies|max:125',
-            'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:8',
-            'profile_image' => 'image|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-        if (User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'company'])) {
-            Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number, 'user_id' => Auth::user()->id]);
-            // add profile image url - name
-            if ($request->file('profile_image')) {
-                $request->file('profile_image')->store('images');
-            }
-            return ['message' => 'The company has been created'];
-        }
     }
 
     /**
