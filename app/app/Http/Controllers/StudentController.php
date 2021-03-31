@@ -54,7 +54,7 @@ class StudentController extends Controller {
      */
     public function show($id) {
         Gate::authorize('api-view-student');
-        return new StudentResource(Student::where('id', $id)->where('user_id', Auth::user()->id)->first());
+        return new StudentResource(Student::where('id', $id)->first());
     }
 
     /**

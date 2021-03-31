@@ -39,7 +39,7 @@ class CompanyProposalController extends Controller {
             'end_period' => 'required|date_format:Y-m-d',
         ]);
         $proposal = new Proposal($request->all());
-        $proposal->company()->associate(Company::where('user_id', Auth::user()->id)->first()->id);
+        $proposal->company()->associate(Auth::user()->company->id);
         $proposal->save();
         return ['message' => 'The proposal has been created'];
     }
@@ -65,10 +65,10 @@ class CompanyProposalController extends Controller {
      * @return string[]
      */
     public function update(Request $request, $companyId, $proposalId) {
-        Gate::authorize('api-update-proposal');
+        Gate::authorize('api-update-proposal', $companyId);
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
-        if (Proposal::where('id', $proposalId)->where('company_id', $companyId)->where('company_id', Company::where('user_id', Auth::user()->id)->first()->id)->update($reqdata)) {
+        if (Proposal::where('id', $proposalId)->where('company_id', $companyId)->update($reqdata)) {
             return ['message' => 'The proposal has been updated'];
         } else {
             return ['message' => 'Could not update the proposal details'];
@@ -82,9 +82,9 @@ class CompanyProposalController extends Controller {
      * @return string[]
      */
     public function destroy($companyId, $proposalId) {
-        Gate::authorize('api-delete-proposal');
+        Gate::authorize('api-delete-proposal', $companyId);
         // also make option to inform the company that it has been declined
-        if (Proposal::where('company_id', Company::where('user_id', Auth::user()->id)->first()->id)->where('id', $proposalId)->first()) {
+        if (Proposal::where('company_id', Auth::user()->company->id)->where('id', $proposalId)->first()) {
             if (Proposal::destroy($proposalId)) {
                 return ['message' => 'The proposal has been deleted'];
             } else {

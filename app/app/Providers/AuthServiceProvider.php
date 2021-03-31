@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Proposal;
 use App\Models\Student;
 use App\Models\Task;
 use App\Models\User;
@@ -104,25 +105,25 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'company' && Auth::user()->company->id == $id;
         });
         Gate::define('api-view-proposals', function (User $user) {
-            return $user->role == 'student';
+            return $user->role == 'company' || $user->role == 'company';
         });
         Gate::define('api-view-proposal', function (User $user) {
-            return $user->role == 'student';
+            return $user->role == 'student' || $user->role == 'company';
         });
-        Gate::define('api-update-proposal', function (User $user) {
-            return $user->role == 'company';
+        Gate::define('api-update-proposal', function (User $user, $id) {
+            return $user->role == 'company' && Auth::user()->company->id == $id;
         });
         Gate::define('api-view-tasks', function (User $user) {
             return $user->role == 'student' || $user->role == 'company';
         });
-        Gate::define('api-add-task', function (User $user) {
-            return $user->role == 'student';
+        Gate::define('api-add-task', function (User $user, $id) {
+            return $user->role == 'student' && Auth::user()->student->id == $id;
         });
         Gate::define('api-update-task', function (User $user, $taskId) {
             return $user->role == 'student' && Auth::user()->student->id == Task::findOrFail($taskId)->student_id;
         });
-        Gate::define('api-delete-proposal', function (User $user) {
-            return $user->role == 'company';
+        Gate::define('api-delete-proposal', function (User $user, $id) {
+            return $user->role == 'company' && Auth::user()->company->id == $id;
         });
         Gate::define('api-view-student', function (User $user) {
             return $user->role == 'student';

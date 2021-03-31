@@ -39,8 +39,7 @@ class CompanyController extends Controller {
             'profile_image' => 'image|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         if (User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'company'])) {
-            Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number,
-                'user_id' => User::where('email', $request->email)->first()->id]);
+            Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number, 'user_id' => Auth::user()->id]);
             // add profile image url - name
             if ($request->file('profile_image')) {
                 $request->file('profile_image')->store('images');

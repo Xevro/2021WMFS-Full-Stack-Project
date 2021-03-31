@@ -28,12 +28,14 @@ class StudentTaskController extends Controller {
      */
     public function store(Request $request, $studentId) {
         // add task api/students/{student}/tasks
-        Gate::authorize('api-add-task');
+        Gate::authorize('api-add-task', $studentId);
         $request->validate([
             'task' => 'required|min:3|max:1000',
             'date' => 'required|date_format:Y-m-d'
         ]);
-        Task::create(['task' => $request->task, 'date' => $request->date, 'student_id' => Student::where('user_id', Auth::user()->id)->first()->id]);
+        $task = new Task($request->all());
+        $task->student_id = $studentId;
+        $task->save();
         return ['message' => 'The task has been created'];
     }
 
