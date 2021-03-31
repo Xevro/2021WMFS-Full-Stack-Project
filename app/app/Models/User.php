@@ -34,4 +34,12 @@ class User extends Authenticatable {
     public function mentor() {
         return $this->hasOne(Mentor::class, 'user_id', 'id');
     }
+
+    public function student() {
+        return $this->hasOne(Student::class, 'user_id', 'id');
+    }
+
+    public function  company() {
+        return $this->hasOne(Student::class, 'user_id', 'id');
+    }
 }

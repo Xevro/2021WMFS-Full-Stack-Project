@@ -53,6 +53,7 @@ class StudentController extends Controller {
      * @return StudentResource
      */
     public function show($id) {
+        Gate::authorize('api-view-student');
         return new StudentResource(Student::where('id', $id)->where('user_id', Auth::user()->id)->first());
     }
 
@@ -64,11 +65,11 @@ class StudentController extends Controller {
      * @return string[]
      */
     public function update(Request $request, $id) {
-        // update student information
+        Gate::authorize('api-update-student', $id);
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
-        if (Student::where('id', $id)->where('user_id', Auth::user()->id)->update($reqdata)) {
-            User::where('id', Student::where('id', $id)->where('user_id', Auth::user()->id)->first()->user_id)->update(['email' => $request->email]);
+        if (Auth::user()->student()->update($reqdata)) {
+            Auth::user()->update(['email' => $request->email]);
             return ['message' => 'The student has been updated'];
         } else {
             return ['message' => 'Could not update the student details'];

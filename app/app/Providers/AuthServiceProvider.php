@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Student;
+use App\Models\Task;
 use App\Models\User;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider {
@@ -114,14 +118,17 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-add-task', function (User $user) {
             return $user->role == 'student';
         });
-        Gate::define('api-update-task', function (User $user) {
-            return $user->role == 'student';
+        Gate::define('api-update-task', function (User $user, $taskId) {
+            return $user->role == 'student' && Auth::user()->student->id == Task::findOrFail($taskId)->student_id;
         });
         Gate::define('api-delete-proposal', function (User $user) {
             return $user->role == 'company';
         });
         Gate::define('api-view-student', function (User $user) {
             return $user->role == 'student';
+        });
+        Gate::define('api-update-student', function (User $user, $id) {
+            return $user->role == 'student' && Auth::user()->student->id == $id;
         });
     }
 }

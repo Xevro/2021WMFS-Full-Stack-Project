@@ -57,10 +57,10 @@ class StudentTaskController extends Controller {
      */
     public function update(Request $request, $studentId, $taskId) {
         // update task api/students/{student}/tasks/{task}
-        Gate::authorize('api-update-task');
+        Gate::authorize('api-update-task', $taskId);
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
-        if (Task::where('id', $taskId)->where('student_id', $studentId)->where('student_id', Auth::user()->id)->update($reqdata)) {
+        if (Task::where('id', $taskId)->where('student_id', $studentId)->update($reqdata)) {
             return ['message' => 'The student has been updated'];
         } else {
             return ['message' => 'Could not update the student details'];
