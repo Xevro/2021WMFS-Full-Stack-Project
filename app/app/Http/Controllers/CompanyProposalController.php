@@ -50,7 +50,7 @@ class CompanyProposalController extends Controller {
     public function show($companyId, $proposalId) {
         // api/companies/{company}/proposals/{proposal}
         // show specific proposal of specific company
-        return new ProposalResource(Proposal::where('company_id', $companyId)->where('id', $proposalId)->first());
+        return new ProposalResource(Proposal::where('company_id', $companyId)->where('id', $proposalId)->where('visibility', 1)->first());
     }
 
     /**
