@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class StudentTaskController extends Controller {
@@ -56,7 +57,7 @@ class StudentTaskController extends Controller {
         // update task api/students/{student}/tasks/{task}
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
-        if (Task::where('id', $taskId)->where('student_id', $studentId)->update($reqdata)) {
+        if (Task::where('id', $taskId)->where('student_id', $studentId)->where('student_id', Auth::user()->id)->update($reqdata)) {
             return ['message' => 'The student has been updated'];
         } else {
             return ['message' => 'Could not update the student details'];

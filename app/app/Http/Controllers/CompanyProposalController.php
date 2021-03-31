@@ -18,6 +18,7 @@ class CompanyProposalController extends Controller {
     public function index($id) {
         // api/companies/{id}/proposals
         // show all proposals of that company
+        Gate::authorize('api-view-proposals');
         return ProposalResource::collection(Proposal::where('company_id', $id)->get());
     }
 
@@ -50,6 +51,7 @@ class CompanyProposalController extends Controller {
     public function show($companyId, $proposalId) {
         // api/companies/{company}/proposals/{proposal}
         // show specific proposal of specific company
+        Gate::authorize('api-view-proposal');
         return new ProposalResource(Proposal::where('company_id', $companyId)->where('id', $proposalId)->where('visibility', 1)->first());
     }
 
@@ -61,6 +63,7 @@ class CompanyProposalController extends Controller {
      * @return string[]
      */
     public function update(Request $request, $companyId, $proposalId) {
+        Gate::authorize('api-update-proposal');
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
         // only possible if company owns this proposal

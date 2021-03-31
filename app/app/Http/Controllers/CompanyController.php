@@ -7,6 +7,7 @@ use App\Models\Company;
 use App\Models\Proposal;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,6 +18,7 @@ class CompanyController extends Controller {
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index() {
+        Gate::authorize('api-view-companies');
         return CompanyResource::collection(Company::all());
     }
 
@@ -54,6 +56,7 @@ class CompanyController extends Controller {
      * @return CompanyResource
      */
     public function show($id) {
+        Gate::authorize('api-view-companies-details');
         return new CompanyResource(Company::findOrFail($id));
     }
 
@@ -66,9 +69,10 @@ class CompanyController extends Controller {
      */
     public function update(Request $request, $id) {
         // update company information
+        Gate::authorize('api-update-company');
         $reqdata = $request->all();
         $reqdata['updated_at'] = date('Y-m-d H:i:s');
-        if (Company::where('id', $id)->update($reqdata)) {
+        if (Company::where('id', $id)->where('user_id', Auth::user()->id)->update($reqdata)) {
             return ['message' => 'The company has been updated'];
         } else {
             return ['message' => 'Could not update the company details'];
