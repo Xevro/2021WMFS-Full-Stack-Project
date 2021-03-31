@@ -80,10 +80,20 @@ class CompanyProposalController extends Controller {
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
     public function destroy($companyId, $proposalId) {
-        //
+        Gate::authorize('api-delete-proposal');
+        // also make option to inform the company that it has been declined
+        if (Proposal::where('company_id', Company::where('user_id', Auth::user()->id)->first()->id)->where('id', $proposalId)->first()) {
+            if (Proposal::destroy($proposalId)) {
+                return ['message' => 'The proposal has been deleted'];
+            } else {
+                return ['message' => 'Could not delete the proposal'];
+            }
+        } else {
+            return ['message' => 'Could not delete the proposal'];
+        }
     }
 
     public function proposalDetail($id) {
