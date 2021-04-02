@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentLikeResource;
-use App\Http\Resources\StudentTaskResource;
 use App\Models\Like;
 use App\Models\Proposal;
-use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class StudentLikeController extends Controller {
@@ -59,19 +58,24 @@ class StudentLikeController extends Controller {
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
-    public function update(Request $request, $studentId) {
-        //
+    public function update(Request $request) {
+        // no need to update the like, just delete it
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
-    public function destroy($studentId) {
-        // delete like
+    public function destroy($studentId, $proposalId) {
+        Gate::authorize('api-delete-like', $studentId);
+        if (Like::where('student_id', Auth::user()->student->id)->where('proposal_id', $proposalId)->delete()) {
+            return ['message' => 'The like has been deleted'];
+        } else {
+            return ['message' => 'Could not delete the like record'];
+        }
     }
 }

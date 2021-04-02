@@ -86,6 +86,8 @@ class StudentController extends Controller {
         // do not implement (only if needed)
     }
 
+    /* ** WEB controller methodes ** */
+
     public function students(Request $request) {
         Gate::authorize('view-students-page');
         if ($request->has('search')) {

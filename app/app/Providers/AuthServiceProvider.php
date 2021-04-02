@@ -138,5 +138,8 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-add-student-like', function (User $user, $id) {
             return $user->role == 'student' && Auth::user()->student->id == $id;
         });
+        Gate::define('api-delete-like', function (User $user, $id) {
+            return $user->role == 'student' && Auth::user()->student->id == $id;
+        });
     }
 }

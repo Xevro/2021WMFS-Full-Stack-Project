@@ -78,6 +78,8 @@ class StudentTaskController extends Controller {
         // api/students/{student}/tasks/{task}
     }
 
+    /* ** WEB controller methodes ** */
+
     public function showStudentTasks($id) {
         Gate::authorize('view-student-tasks');
         $tasks = Task::where('student_id', $id)->get();

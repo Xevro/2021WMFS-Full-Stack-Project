@@ -95,6 +95,8 @@ class CompanyProposalController extends Controller {
         }
     }
 
+    /* ** WEB controller methodes ** */
+
     public function proposalDetail($id) {
         Gate::authorize('view-proposal-details');
         $proposal = Proposal::with('company')->findOrFail($id);
