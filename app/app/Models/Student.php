@@ -23,7 +23,7 @@ class Student extends Model {
     }
 
     public function likes() {
-        return $this->belongsToMany(Likes::class);
+        return $this->belongsToMany(Like::class);
     }
 
     public function proposals() {

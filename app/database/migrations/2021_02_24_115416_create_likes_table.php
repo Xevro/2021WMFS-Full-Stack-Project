@@ -21,6 +21,7 @@ class CreateLikesTable extends Migration
             $table->unsignedBigInteger('proposal_id')->index();
             $table->foreign('proposal_id')->references('id')->on('proposals')->onDelete('cascade');
             $table->primary(['student_id', 'proposal_id']);
+            $table->timestamps();
         });
     }
 

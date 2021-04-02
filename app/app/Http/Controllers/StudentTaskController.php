@@ -6,7 +6,6 @@ use App\Http\Resources\StudentTaskResource;
 use App\Models\Student;
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class StudentTaskController extends Controller {
@@ -43,11 +42,11 @@ class StudentTaskController extends Controller {
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return StudentTaskResource
      */
     public function show($studentId, $taskId) {
         Gate::authorize('api-view-tasks');
-        return StudentTaskResource::collection(Task::where('student_id', $studentId)->where('id', $taskId)->get());
+        return new StudentTaskResource(Task::where('student_id', $studentId)->where('id', $taskId)->get());
     }
 
     /**

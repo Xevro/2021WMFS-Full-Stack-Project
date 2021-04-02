@@ -3,12 +3,11 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CompanyProposalController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\StudentLikesController;
+use App\Http\Controllers\StudentLikeController;
 use App\Http\Controllers\StudentTaskController;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
@@ -56,4 +55,4 @@ Route::apiResource('companies.proposals', CompanyProposalController::class)->mid
 Route::apiResource('students', StudentController::class)->middleware('auth:sanctum');
 
 Route::apiResource('students.tasks', StudentTaskController::class)->middleware('auth:sanctum');
-Route::apiResource('students.likes', StudentLikesController::class)->middleware('auth:sanctum');
+Route::apiResource('students.likes', StudentLikeController::class)->middleware('auth:sanctum');

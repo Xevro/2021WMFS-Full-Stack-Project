@@ -2,11 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Proposal;
-use App\Models\Student;
 use App\Models\Task;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -91,7 +88,7 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'mentor' || $user->role == 'coordinator';
         });
 
-        // api gates
+        // API gates
         Gate::define('api-add-proposal', function (User $user) {
             return $user->role == 'company';
         });
@@ -105,7 +102,7 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'company' && Auth::user()->company->id == $id;
         });
         Gate::define('api-view-proposals', function (User $user) {
-            return $user->role == 'company' || $user->role == 'company';
+            return $user->role == 'student' || $user->role == 'company';
         });
         Gate::define('api-view-proposal', function (User $user) {
             return $user->role == 'student' || $user->role == 'company';
@@ -129,6 +126,16 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'student';
         });
         Gate::define('api-update-student', function (User $user, $id) {
+            return $user->role == 'student' && Auth::user()->student->id == $id;
+        });
+
+        Gate::define('api-view-student-likes', function (User $user, $id) {
+            return $user->role == 'student' && Auth::user()->student->id == $id;
+        });
+        Gate::define('api-view-student-like', function (User $user, $id) {
+            return $user->role == 'student' && Auth::user()->student->id == $id;
+        });
+        Gate::define('api-add-student-like', function (User $user, $id) {
             return $user->role == 'student' && Auth::user()->student->id == $id;
         });
     }

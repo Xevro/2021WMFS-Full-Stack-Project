@@ -15,7 +15,7 @@ class Proposal extends Model {
     }
 
     public function likes() {
-        return $this->hasMany(Likes::class);
+        return $this->hasMany(Like::class);
     }
 
     public function company() {
