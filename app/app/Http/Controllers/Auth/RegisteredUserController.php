@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'firstname' => 'required|string|max:100',
             'lastname' => 'required|string|max:100',
-            'email' => 'required|string|email|max:255|unique:mentors',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'required|min:8',
         ]);
@@ -48,8 +48,7 @@ class RegisteredUserController extends Controller
             'role' => 'mentor'
         ]));
 
-        Mentor::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email,
-            'user_id' => User::where('email', $request->email)->first()->id]);
+        Mentor::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'user_id' => User::where('email', $request->email)->first()->id]);
 
         event(new Registered($user));
 
