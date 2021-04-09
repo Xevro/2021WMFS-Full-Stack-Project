@@ -4,21 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMentorsTable extends Migration
-{
+class CreateMentorsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('mentors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email')->unique();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -29,8 +26,7 @@ class CreateMentorsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('mentors');
     }
 }

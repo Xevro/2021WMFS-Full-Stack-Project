@@ -108,7 +108,7 @@ class CompanyController extends Controller {
         ]);
 
         User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'company']);
-        Company::create(['name' => $request->name, 'email' => $request->email, 'kbo_number' => $request->kbo_number,
+        Company::create(['name' => $request->name, 'kbo_number' => $request->kbo_number,
             'user_id' => User::where('email', $request->email)->first()->id]);
         // add profile image url - name
         if ($request->file('profile_image')) {

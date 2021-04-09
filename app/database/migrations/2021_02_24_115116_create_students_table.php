@@ -4,21 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentsTable extends Migration
-{
+class CreateStudentsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email');
             $table->string('r_number');
             $table->integer('allowed')->default(0);
             $table->string('approved')->default('In afwachting');
@@ -35,8 +32,7 @@ class CreateStudentsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('students');
     }
 }

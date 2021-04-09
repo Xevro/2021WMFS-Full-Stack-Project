@@ -61,9 +61,16 @@ class StagetoolSeeder extends Seeder {
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
+        DB::table('users')->insert([
+            'email' => 'johan.donne@odisee.be',
+            'password' => Hash::make('Azerty123'),
+            'role' => 'mentor',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
         DB::table('companies')->insert([
             'user_id' => 3,
-            'email' => "company@comp.com",
             'kbo_number' => 182722,
             'name' => "BVBA E&Y",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -72,8 +79,7 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('companies')->insert([
             'user_id' => 4,
-            'email' => "hr@fleetmaster.com",
-            'kbo_number' => 1928273,
+            'kbo_number' => 192827,
             'name' => "Fleetmaster",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -81,9 +87,8 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('mentors')->insert([
             'user_id' => 1,
-            'firstname' => 'joris',
+            'firstname' => 'Joris',
             'lastname' => 'Maervoet',
-            'email' => 'joris.maervoet@odisee.be',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -92,7 +97,14 @@ class StagetoolSeeder extends Seeder {
             'user_id' => 2,
             'firstname' => 'Sven',
             'lastname' => 'knockaert',
-            'email' => 'sven.knockaert@odisee.be',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('mentors')->insert([
+            'user_id' => 7,
+            'firstname' => 'Johan',
+            'lastname' => 'Donne',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -101,7 +113,6 @@ class StagetoolSeeder extends Seeder {
             'user_id' => 5,
             'firstname' => 'Louis',
             'lastname' => 'D\'Hont',
-            'email' => 'louis.dhont@student.odisee.be',
             'r_number' => 'r1039382',
             'allowed' => 1,
             'approved' => 'not approved',
@@ -114,9 +125,8 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('students')->insert([
             'user_id' => 6,
-            'firstname' => 'guido',
-            'lastname' => 'pallemans',
-            'email' => 'guido.pallemans@student.odisee.be',
+            'firstname' => 'Guido',
+            'lastname' => 'Pallemans',
             'r_number' => 'r0284739',
             'allowed' => 1,
             'approved' => 'not approved',
@@ -171,6 +181,22 @@ class StagetoolSeeder extends Seeder {
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
+        DB::table('tasks')->insert([
+            'task' => 'Een serverfout gefixed in de seeder',
+            'date' => Carbon::now()->format('Y-m-d H:i:s'),
+            'student_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('tasks')->insert([
+            'task' => 'Een nieuwe API gebouwd',
+            'date' => Carbon::now()->format('Y-m-d H:i:s'),
+            'student_id' => 2,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
         DB::table('traineeship_days')->insert([
             'date' => Carbon::now()->format('Y-m-d H:i:s'),
             'student_id' => 1,
@@ -182,9 +208,15 @@ class StagetoolSeeder extends Seeder {
             'student_id' => 1,
             'proposal_id' => 1,
         ]);
+
         DB::table('likes')->insert([
             'student_id' => 1,
             'proposal_id' => 2,
+        ]);
+
+        DB::table('likes')->insert([
+            'student_id' => 2,
+            'proposal_id' => 1,
         ]);
     }
 }

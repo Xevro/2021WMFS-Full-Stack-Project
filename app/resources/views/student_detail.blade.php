@@ -23,7 +23,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-md-4">
                                         <div class="invoice-address">
-                                            <p>E-mail adres: {{ $student->email }}</p>
+                                            <p>E-mail adres: {{ $student->user->email }}</p>
                                             <p>R-nummer: {{ $student->r_number }}</p>
                                         </div>
                                     </div>

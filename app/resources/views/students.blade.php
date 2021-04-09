@@ -42,7 +42,7 @@
                                     @foreach($students as $student)
                                         <tr>
                                             <td>{{ $student->firstname . ' ' . $student->lastname }}</td>
-                                            <td>{{ $student->email }}</td>
+                                            <td>{{ $student->user->email }}</td>
                                             <td>{{ $student->r_number }}</td>
                                             @if ($student->mentor)
                                                 <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>

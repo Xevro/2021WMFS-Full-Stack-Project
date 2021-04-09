@@ -4,15 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTraineeshipDaysTable extends Migration
-{
+class CreateTraineeshipDaysTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('traineeship_days', function (Blueprint $table) {
             $table->id();
             $table->date('date');
@@ -26,8 +24,7 @@ class CreateTraineeshipDaysTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('traineeship_days');
     }
 }

@@ -127,7 +127,7 @@ class StudentController extends Controller {
             'mentor_id' => 'required|exists:mentors,id'
         ]);
         User::create(['email' => $request->email, 'password' => Hash::make($request->password), 'role' => 'student']);
-        Student::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email, 'r_number' => $request->r_number,
+        Student::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'r_number' => $request->r_number,
             'mentor_id' => $request->mentor_id, 'allowed' => 1, 'user_id' => User::where('email', $request->email)->first()->id]);
         return redirect('dashboard/students');
     }

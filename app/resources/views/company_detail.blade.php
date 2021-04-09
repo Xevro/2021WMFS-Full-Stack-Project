@@ -24,7 +24,7 @@
                                     <div class="col-md-4">
                                         <div class="invoice-address">
                                             <p>KBO nummer: {{ $company->kbo_number }}</p>
-                                            <p>E-mail adres: {{ $company->email }}</p>
+                                            <p>E-mail adres: {{ $company->user->email }}</p>
                                         </div>
                                     </div>
                                 </div>

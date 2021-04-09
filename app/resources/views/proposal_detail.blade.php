@@ -32,7 +32,7 @@
                                         <div class="invoice-address">
                                             <h5>{{ $proposal->company->name }}</h5>
                                             <p>KBO nummer: {{ $proposal->company->kbo_number }}</p>
-                                            <p>E-mail adres: {{ $proposal->company->email }}</p>
+                                            <p>E-mail adres: {{ $proposal->company->user->email }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-4">

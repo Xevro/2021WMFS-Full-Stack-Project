@@ -205,7 +205,7 @@
                                                 @foreach($students as $student)
                                                     <tr>
                                                         <td><a href="{{ url('/dashboard/student/' . $student->id) }}">{{ $student->firstname . ' ' . $student->lastname }}</a></td>
-                                                        <td>{{ $student->email }}</td>
+                                                        <td>{{ $student->user->email }}</td>
                                                         <td>{{ $student->r_number }}</td>
                                                         <td>{{ $student->completed_days }}</td>
                                                         @if ($student->approved == 'Goedgekeurd')

@@ -40,7 +40,7 @@
                                     @foreach($companies as $company)
                                         <tr>
                                             <td><a href="{{ url('/dashboard/company/' . $company->id) }}">{{ $company->name }}</a></td>
-                                            <td>{{ $company->email }}</td>
+                                            <td>{{ $company->user->email }}</td>
                                             <td>{{ $company->kbo_number }}</td>
                                             <td>{{ $company->proposals->count() }}</td>
                                             <td>
