@@ -99,7 +99,7 @@ class CompanyController extends Controller {
     public function addCompany(Request $request) {
         Gate::authorize('add-company');
         $request->validate([
-            'email' => 'required|email|unique:companies',
+            'email' => 'required|email|unique:users',
             'kbo_number' => 'required|unique:companies|numeric',
             'name' => 'required|unique:companies|max:125',
             'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',

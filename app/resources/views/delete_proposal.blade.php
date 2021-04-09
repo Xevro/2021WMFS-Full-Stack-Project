@@ -13,6 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="header-title">Verwijder voorstel #{{ $proposal->id }}</h4>
+                            <p>Het voorstel zal definitief worden verwijderd.</p>
                             <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 @csrf
                                 <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4">Verwijder voorstel</button>
@@ -26,7 +27,7 @@
                                                 <div class="invoice-address">
                                                     <h5>{{ $proposal->company->name }}</h5>
                                                     <p>KBO nummer: {{ $proposal->company->kbo_number }}</p>
-                                                    <p>E-mail adres: {{ $proposal->company->email }}</p>
+                                                    <p>E-mail adres: {{ $proposal->company->user->email }}</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">

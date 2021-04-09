@@ -119,7 +119,7 @@ class StudentController extends Controller {
     public function addStudent(Request $request) {
         Gate::authorize('add-student');
         $request->validate([
-            'email' => 'required|email|unique:students',
+            'email' => 'required|email|unique:users',
             'firstname' => 'required',
             'lastname' => 'required',
             'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
