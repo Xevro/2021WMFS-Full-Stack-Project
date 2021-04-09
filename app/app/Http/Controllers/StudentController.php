@@ -93,7 +93,7 @@ class StudentController extends Controller {
         if ($request->has('search')) {
             $students = Student::where('firstname', 'like', '%' . $request->search . '%')->orWhere('lastname', 'like', '%' . $request->search . '%')->where('allowed', 1)->paginate(8);
         } else {
-            $students = Student::where('allowed', 1)->paginate(8);
+            $students = Student::where('allowed', 1)->with(['mentor'])->paginate(8);
         }
         return view('students', ['students' => $students, 'term' => $request->search, 'menuItem' => 'students', 'pageTitle' => 'Overzicht studenten']);
     }
@@ -130,5 +130,16 @@ class StudentController extends Controller {
         Student::create(['firstname' => $request->firstname, 'lastname' => $request->lastname, 'email' => $request->email, 'r_number' => $request->r_number,
             'mentor_id' => $request->mentor_id, 'allowed' => 1, 'user_id' => User::where('email', $request->email)->first()->id]);
         return redirect('dashboard/students');
+    }
+
+    public function showAssignMentorToStudent() {
+        Gate::authorize('view-assign-mentor-to-student');
+        return view('assign_mentor_to_student', ['mentors' => Mentor::all(), 'students' => Student::where('mentor_id', null)->where('allowed', 1)->get(), 'menuItem' => 'AssignMentor', 'pageTitle' => 'Koppel mentor aan een student']);
+    }
+
+    public function assignMentorToStudent(Request $request) {
+        Gate::authorize('view-assign-mentor-to-student');
+        Student::where('id', $request->student_id)->update(['mentor_id' => $request->mentor_id]);
+        return redirect('dashboard/student/' . $request->student_id);
     }
 }

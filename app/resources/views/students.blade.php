@@ -44,7 +44,11 @@
                                             <td>{{ $student->firstname . ' ' . $student->lastname }}</td>
                                             <td>{{ $student->email }}</td>
                                             <td>{{ $student->r_number }}</td>
-                                            <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
+                                            @if ($student->mentor)
+                                                <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
+                                            @else
+                                                <td>Nog niet toegewezen</td>
+                                            @endif
                                             <td>{{ $student->completed_days }}</td>
                                             @if ($student->approved == 'Goedgekeurd')
                                                 <td><span class="status-p bg-success">{{ $student->approved }}</span></td>

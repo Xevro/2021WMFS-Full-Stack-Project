@@ -62,6 +62,10 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/student/add', [StudentController::class, 'showAddStudent'])->middleware(['auth']);
     Route::post('/student/add', [StudentController::class, 'addStudent'])->middleware(['auth']);
 
+    //add mentor to student
+    Route::get('/student/assign', [StudentController::class, 'showAssignMentorToStudent'])->middleware(['auth']);
+    Route::post('/student/assign', [StudentController::class, 'assignMentorToStudent'])->middleware(['auth']);
+
     //view tasks
     Route::get('/student/{id}/tasks', [StudentTaskController::class, 'showStudentTasks'])->where(['id' => '[0-9]+'])->middleware(['auth']);
 

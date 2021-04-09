@@ -84,6 +84,9 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('view-assign-to-proposal', function (User $user) {
             return $user->role == 'mentor' || $user->role == 'coordinator';
         });
+        Gate::define('view-assign-mentor-to-student', function (User $user) {
+            return $user->role == 'coordinator';
+        });
         Gate::define('view-proposals-page', function (User $user) {
             return $user->role == 'mentor' || $user->role == 'coordinator';
         });

@@ -62,7 +62,11 @@
                                                 <td>{{ $proposal->created_at }}</td>
                                                 <td>{{ $proposal->start_period }}</td>
                                                 <td>{{ $proposal->end_period }}</td>
-                                                <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
+                                                @if ($student->mentor)
+                                                    <td>{{ $student->mentor->firstname . ' ' . $student->mentor->lastname }}</td>
+                                                @else
+                                                    <td>Nog niet toegewezen</td>
+                                                @endif
                                                 <td><span class="status-p bg-success">{{ $student->approved }}</span></td>
                                                 <td>
                                                     <ul class="d-flex justify-content-center">

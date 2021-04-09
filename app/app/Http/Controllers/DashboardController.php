@@ -49,7 +49,7 @@ class DashboardController extends Controller {
                 $students = Student::where('mentor_id', Auth::user()->id)->paginate(10);
             }
         }
-        return view('dashboard', ['students' => $students, 'termStudent' => $request->search_student, 'statusStudent' => $request->status_student, 'proposals' => $proposals, 'proposalsApproved' => $proposalsApproved,
+        return view('dashboard', ['students' => $students, 'allStudents' => Student::all(), 'termStudent' => $request->search_student, 'statusStudent' => $request->status_student, 'proposals' => $proposals, 'proposalsApproved' => $proposalsApproved,
             'term' => $request->search, 'status' => $request->status, 'amountToCheck' => $amountToCheck, 'amountApproved' => $amountApproved, 'menuItem' => 'overzicht', 'pageTitle' => 'Overzicht stages']);
     }
 }
