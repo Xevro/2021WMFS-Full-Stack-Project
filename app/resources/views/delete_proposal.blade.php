@@ -14,6 +14,7 @@
                         <div class="card-body">
                             <h4 class="header-title">Verwijder voorstel #{{ $proposal->id }}</h4>
                             <p>Het voorstel zal definitief worden verwijderd.</p>
+                            <p>Let op: Het voorstel kan mogelijks al gekoppeld zijn aan een student.</p>
                             <form action="{{ url('/dashboard/company/proposal/' . $proposal->id . '/delete') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
                                 @csrf
                                 <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4">Verwijder voorstel</button>

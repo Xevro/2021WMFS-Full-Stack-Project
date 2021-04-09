@@ -42,11 +42,11 @@ class StudentTaskController extends Controller {
      * Display the specified resource.
      *
      * @param int $id
-     * @return StudentTaskResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function show($studentId, $taskId) {
         Gate::authorize('api-view-tasks');
-        return new StudentTaskResource(Task::where('student_id', $studentId)->where('id', $taskId)->get());
+        return StudentTaskResource::collection(Task::where('student_id', $studentId)->where('id', $taskId)->get());
     }
 
     /**
