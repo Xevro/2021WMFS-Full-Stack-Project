@@ -197,13 +197,6 @@ class StagetoolSeeder extends Seeder {
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        DB::table('traineeship_days')->insert([
-            'date' => Carbon::now()->format('Y-m-d H:i:s'),
-            'student_id' => 1,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-
         DB::table('likes')->insert([
             'student_id' => 1,
             'proposal_id' => 1,

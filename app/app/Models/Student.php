@@ -14,10 +14,6 @@ class Student extends Model {
         return $this->hasMany(Task::class);
     }
 
-    public function traineeshipdays() {
-        return $this->hasMany(Traineeship_day::class);
-    }
-
     public function mentor() {
         return $this->belongsTo(Mentor::class);
     }
