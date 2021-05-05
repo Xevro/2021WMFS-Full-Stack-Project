@@ -59,3 +59,32 @@ Might be necessary when this repository contains *raw* database updates.
 * Before running <code>docker-compose up</code>, delete all files in the <code>mysql-data</code> directory
 
 Nevertheless, Laravel-related database updates will be provided in the form of Migrations, which can be administered by running ```php artisan migrate``` from the php-web container
+
+
+## Laravel API & Vue routes
+
+### Vue routes
+
+
+
+### Laravel API
+
+* PUT|PATCH | api/students/{student}/tasks/{task} 		   | students.tasks.update
+* PUT|PATCH | api/companies/{company}/proposals/{proposal} | companies.proposals.update
+* GET  		| api/companies/{company}/proposals/{proposal} | companies.proposals.show
+* GET   	| api/companies/{company}/proposals            | companies.proposals.index
+* POST      | api/companies/{company}/proposals            | companies.proposals.store
+* POST      | api/students/{student}/tasks                 | students.tasks.store
+* GET	    | api/students/{student}/tasks/{task}          | students.tasks.show
+* GET	    | api/students/{student}/tasks                 | students.tasks.index
+* PUT|PATCH | api/students/{student}                       | students.update
+* GET		| api/students/{student}                   	   | students.show 
+* PUT|PATCH | api/proposals/{proposal}                     | proposals.update
+* POST      | api/proposals                            	   | proposals.stor
+* GET  		| api/proposals/{proposal}                     | proposals.show
+* GET  		| api/proposals                                | proposals.index
+* PUT|PATCH | api/companies/{company}                 	   | companies.update
+* GET	    | api/companies/{company}                      | companies.show
+* GET       | api/companies                           	   | companies.index 
+* POST      | api/students                            	   | students.store
+* POST      | api/companies                                | companies.store
