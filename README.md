@@ -71,22 +71,22 @@ Nevertheless, Laravel-related database updates will be provided in the form of M
 
 ### Laravel API
 
-* PUT|PATCH | api/students/{student}/tasks/{task} 		   | students.tasks.update
-* PUT|PATCH | api/companies/{company}/proposals/{proposal} | companies.proposals.update
-* GET  		| api/companies/{company}/proposals/{proposal} | companies.proposals.show
-* GET   	| api/companies/{company}/proposals            | companies.proposals.index
-* POST      | api/companies/{company}/proposals            | companies.proposals.store
-* POST      | api/students/{student}/tasks                 | students.tasks.store
-* GET	    | api/students/{student}/tasks/{task}          | students.tasks.show
-* GET	    | api/students/{student}/tasks                 | students.tasks.index
-* PUT|PATCH | api/students/{student}                       | students.update
-* GET		| api/students/{student}                   	   | students.show 
-* PUT|PATCH | api/proposals/{proposal}                     | proposals.update
-* POST      | api/proposals                            	   | proposals.stor
-* GET  		| api/proposals/{proposal}                     | proposals.show
-* GET  		| api/proposals                                | proposals.index
-* PUT|PATCH | api/companies/{company}                 	   | companies.update
-* GET	    | api/companies/{company}                      | companies.show
-* GET       | api/companies                           	   | companies.index 
-* POST      | api/students                            	   | students.store
-* POST      | api/companies                                | companies.store
+* PUT|PATCH | api/students/{student}/tasks/{task}
+* PUT|PATCH | api/companies/{company}/proposals/{proposal}
+* GET		| api/companies/{company}/proposals/{proposal}
+* GET		| api/companies/{company}/proposals
+* POST		| api/companies/{company}/proposals
+* POST		| api/students/{student}/tasks
+* GET		| api/students/{student}/tasks/{task}
+* GET		| api/students/{student}/tasks
+* PUT|PATCH | api/students/{student}
+* GET		| api/students/{student}
+* PUT|PATCH | api/proposals/{proposal}
+* POST		| api/proposals
+* GET		| api/proposals/{proposal}
+* GET		| api/proposals
+* PUT|PATCH | api/companies/{company}
+* GET		| api/companies/{company}
+* GET		| api/companies
+* POST		| api/students
+* POST		| api/companies
