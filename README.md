@@ -33,7 +33,9 @@ composer install
 cp .env.example .env
 php artisan key:generate
 ```
-* Browse to [http://localhost:8080](http://localhost:8080)
+* Browse to [http://localhost:8083](http://localhost:8083) to view the administrator page
+* Browse to [http://localhost:8080](http://localhost:8080) to view the stagetool SPA
+* Browse to [http://localhost:8082](http://localhost:8082) to view the stagetool SPA in developer mode
 * Stop the environment in your terminal/cmd by pressing <code>Ctrl+C</code>
 * In order to avoid conflicts with your lab environment, run from your terminal/cmd
 ```shell
