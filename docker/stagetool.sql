@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysqldb
--- Gegenereerd op: 29 apr 2021 om 13:13
+-- Gegenereerd op: 05 mei 2021 om 20:46
 -- Serverversie: 5.7.33
 -- PHP-versie: 7.4.15
 
@@ -265,28 +265,6 @@ INSERT INTO `tasks` (`id`, `task`, `date`, `student_id`, `created_at`, `updated_
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `traineeship_days`
---
-
-DROP TABLE IF EXISTS `traineeship_days`;
-CREATE TABLE `traineeship_days` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `date` date NOT NULL,
-  `student_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `traineeship_days`
---
-
-INSERT INTO `traineeship_days` (`id`, `date`, `student_id`, `created_at`, `updated_at`) VALUES
-(1, '2021-04-09', 1, '2021-04-09 14:56:23', '2021-04-09 14:56:23');
-
--- --------------------------------------------------------
-
---
 -- Tabelstructuur voor tabel `users`
 --
 
@@ -391,13 +369,6 @@ ALTER TABLE `tasks`
   ADD KEY `tasks_student_id_foreign` (`student_id`);
 
 --
--- Indexen voor tabel `traineeship_days`
---
-ALTER TABLE `traineeship_days`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `traineeship_days_student_id_foreign` (`student_id`);
-
---
 -- Indexen voor tabel `users`
 --
 ALTER TABLE `users`
@@ -457,12 +428,6 @@ ALTER TABLE `tasks`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT voor een tabel `traineeship_days`
---
-ALTER TABLE `traineeship_days`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
@@ -509,12 +474,6 @@ ALTER TABLE `students`
 --
 ALTER TABLE `tasks`
   ADD CONSTRAINT `tasks_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
-
---
--- Beperkingen voor tabel `traineeship_days`
---
-ALTER TABLE `traineeship_days`
-  ADD CONSTRAINT `traineeship_days_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
