@@ -1,5 +1,6 @@
 <template>
   <div class="column-wide">
+    <h2>{{ title }}</h2>
           <table class="table">
             <thead>
             <tr>
@@ -31,11 +32,14 @@
 
 export default {
   name: 'List',
-  props: ['data']
+  props: ['data', 'title']
 }
 </script>
 
 <style scoped>
+h2 {
+  text-align: left;
+}
 
 .column-wide {
   margin-left: 100px;

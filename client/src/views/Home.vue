@@ -1,9 +1,11 @@
 <template>
+  <div class="page">
   <Header/>
   <div class="lists">
-    <List :data="companies"></List>
+    <List :data="companies" title="Overzicht van alle stage voorstellen"></List>
   </div>
   <Footer/>
+  </div>
 </template>
 
 <script lang="ts">
@@ -32,6 +34,10 @@ export default class Home extends Vue {
 </script>
 
 <style scoped>
+.page {
+  position: relative;
+}
+
 .lists {
   padding-top: 120px;
 }

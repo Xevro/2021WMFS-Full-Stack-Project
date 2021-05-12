@@ -11,8 +11,8 @@
       </button>
       <div class='navbar-menu'>
         <ul class='navbar-links'>
-          <li class='navbar-item'><a class='navbar-link' href='/about'>Overzicht</a></li>
-          <li class='navbar-item'><a class='navbar-link' href='/blog'>Mijn taken</a></li>
+          <li class='navbar-item'><a class='navbar-link' href='/'>Overzicht</a></li>
+          <li class='navbar-item'><a class='navbar-link' href='/tasks'>Mijn taken</a></li>
         </ul>
       </div>
     </nav>
@@ -107,7 +107,7 @@ body {
 }
 
 .home-link {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
