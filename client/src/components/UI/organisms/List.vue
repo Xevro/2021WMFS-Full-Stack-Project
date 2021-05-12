@@ -13,13 +13,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="index in 10" :key="index">
-              <td><a href="/">Naam</a></td>
-              <td class="columns">created</td>
-              <td class="columns">datumstart</td>
-              <td class="columns">datum</td>
-              <td class="columns">woorden</td>
-              <td><span class="status">status</span></td>
+            <tr v-for="(artikel, index) in data" :key="'artikel' + index">
+              <td><a href="/">{{ artikel.company }}</a></td>
+              <td class="columns">{{ artikel.created_on }}</td>
+              <td class="columns">{{ artikel.start_date }}</td>
+              <td class="columns">{{ artikel.end_date }}</td>
+              <td class="columns">{{ artikel.description }}</td>
+              <td><span class="status">{{ artikel.status }}</span></td>
               <td><a href="/">info</a></td>
             </tr>
             </tbody>
@@ -28,8 +28,10 @@
 </template>
 
 <script>
+
 export default {
-  name: 'List'
+  name: 'List',
+  props: ['data']
 }
 </script>
 

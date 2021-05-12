@@ -1,7 +1,7 @@
 <template>
   <Header/>
   <div class="lists">
-    <List/>
+    <List :data="companies"></List>
   </div>
   <Footer/>
 </template>
@@ -12,6 +12,7 @@ import Button from '@/components/UI/atoms/Button.vue'
 import Footer from '@/components/UI/atoms/Footer.vue'
 import Header from '@/components/UI/atoms/Header.vue'
 import List from '@/components/UI/organisms/List.vue'
+import companiesGegevens from '@/dummy_data/data.js'
 
 @Options({
   components: {
@@ -19,6 +20,11 @@ import List from '@/components/UI/organisms/List.vue'
     Button,
     Footer,
     Header
+  },
+  data () {
+    return {
+      companies: companiesGegevens
+    }
   }
 })
 export default class Home extends Vue {
