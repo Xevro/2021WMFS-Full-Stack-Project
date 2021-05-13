@@ -67,7 +67,24 @@ Nevertheless, Laravel-related database updates will be provided in the form of M
 
 ### Vue routes
 
+* GET | /login
+* POST | /login
+* GET | /companies/login
+* POST /companies/login
+* GET | /register
+* POST | /register
 
+* GET | /proposals
+* GET | /proposals/{proposal}/details
+
+* GET | /students/tasks/add
+* POST | /students/tasks/add
+* GET | /students/tasks
+
+* GET | /companies
+* GET | /companies/add-proposal
+* POST | /companies/add-proposal
+* GET | companies/proposals
 
 ### Laravel API
 
