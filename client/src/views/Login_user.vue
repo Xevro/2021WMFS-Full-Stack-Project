@@ -2,7 +2,7 @@
   <div class="login-area login-s2">
     <div class="container">
       <div class="login-box box-center">
-        <Form :buttonText="'Login'"/>
+        <Form :title="'Login as a student'" :buttonText="'Login'"/>
       </div>
     </div>
   </div>

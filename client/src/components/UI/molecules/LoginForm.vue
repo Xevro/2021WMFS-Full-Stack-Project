@@ -1,5 +1,6 @@
 <template>
   <form>
+    <FormTitle :title="title"/>
     <div class="login-div">
     <InputField class="input-field" type="text" title="Email" placeholder="Email"/>
     <InputField class="input-field" type="password" title="Password" placeholder="your password"/>
@@ -13,13 +14,15 @@
 <script>
 import InputField from '@/components/UI/atoms/InputTextField'
 import Button from '@/components/UI/atoms/Button'
+import FormTitle from '@/components/UI/atoms/FormTitle'
 
 export default {
   name: 'Form',
-  props: ['buttonText'],
+  props: ['buttonText', 'title'],
   components: {
     InputField,
-    Button
+    Button,
+    FormTitle
   }
 }
 </script>
