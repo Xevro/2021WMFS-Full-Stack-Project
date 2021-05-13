@@ -73,14 +73,11 @@ Nevertheless, Laravel-related database updates will be provided in the form of M
 * POST /companies/login
 * GET | /register
 * POST | /register
-
 * GET | /proposals
 * GET | /proposals/{proposal}/details
-
 * GET | /students/tasks/add
 * POST | /students/tasks/add
 * GET | /students/tasks
-
 * GET | /companies
 * GET | /companies/add-proposal
 * POST | /companies/add-proposal
