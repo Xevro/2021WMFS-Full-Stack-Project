@@ -44,12 +44,6 @@ export default {
 </script>
 
 <style scoped>
-:root {
-  --navbar-bg-color: hsl(0, 0%, 15%);
-  --navbar-text-color: hsl(0, 0%, 85%);
-  --navbar-bg-contrast: hsl(0, 0%, 25%);
-}
-
 * {
   box-sizing: border-box;
   margin: 0;

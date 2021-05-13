@@ -1,0 +1,36 @@
+<template>
+  <form>
+    <div class="login-div">
+    <InputField class="input-field" type="text" title="Email" placeholder="Email"/>
+    <InputField class="input-field" type="password" title="Password" placeholder="your password"/>
+      <div class="button-area">
+        <Button>{{ buttonText }}</Button>
+      </div>
+    </div>
+  </form>
+</template>
+
+<script>
+import InputField from '@/components/UI/atoms/InputTextField'
+import Button from '@/components/UI/atoms/Button'
+
+export default {
+  name: 'Form',
+  props: ['buttonText'],
+  components: {
+    InputField,
+    Button
+  }
+}
+</script>
+
+<style scoped>
+.input-field  {
+  margin-top: 10px;
+}
+
+.button-area {
+  margin-top: 20px;
+  float: left;
+}
+</style>
