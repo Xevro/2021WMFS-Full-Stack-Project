@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
-import LoginUser from '../views/LoginUser.vue'
-import LoginCompany from '../views/LoginCompany.vue'
-import AddTask from '../views/AddTask.vue'
-import ProposalDetails from '../views/ProposalDetails.vue'
-import RegisterCompany from '../views/RegisterCompany.vue'
+import Home from '../views/students/StudentHome.vue'
+import LoginUser from '../views/auth/LoginUser.vue'
+import LoginCompany from '../views/auth/LoginCompany.vue'
+import AddTask from '../views/students/AddTask.vue'
+import ProposalDetails from '../views/company/ProposalDetails.vue'
+import RegisterCompany from '../views/auth/RegisterCompany.vue'
+import CompanyHome from '../views/company/CompanyHome.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Tasks.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/students/StudentTasks.vue')
   },
   {
     path: '/students/login',
@@ -44,6 +45,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/proposals/id/details',
     name: 'Proposal details',
     component: ProposalDetails
+  },
+  {
+    path: '/companies',
+    name: 'Company Home',
+    component: CompanyHome
   }
 ]
 

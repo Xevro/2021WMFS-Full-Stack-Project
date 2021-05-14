@@ -13,6 +13,6 @@ import Header from '@/components/UI/organisms/Header.vue'
     Header
   }
 })
-export default class Home extends Vue {
+export default class AddTask extends Vue {
 }
 </script>

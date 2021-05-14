@@ -1,5 +1,5 @@
 <template>
-
+<p>qd</p>
 </template>
 
 <script lang="ts">
@@ -7,6 +7,6 @@ import { Options, Vue } from 'vue-class-component'
 
 @Options({
 })
-export default class UserTasks extends Vue {
+export default class StudentTasks extends Vue {
 }
 </script>

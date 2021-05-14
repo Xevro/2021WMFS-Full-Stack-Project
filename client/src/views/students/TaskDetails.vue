@@ -7,6 +7,6 @@ import { Options, Vue } from 'vue-class-component'
 
 @Options({
 })
-export default class Tasks extends Vue {
+export default class TaskDetails extends Vue {
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
-  <a :href="href" class="button"><slot/></a>
+  <a :href="href"><button type="button" :disabled="itemDisabled==='disabled'" class="button"><slot/></button></a>
 </template>
 
 <script>
 export default {
   name: 'Button',
-  props: ['href']
+  props: ['href', 'itemDisabled']
 }
 </script>
 

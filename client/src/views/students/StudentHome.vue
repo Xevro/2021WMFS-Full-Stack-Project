@@ -4,7 +4,10 @@
   <div class="lists">
     <List :data="companies" title="Overzicht van alle stage voorstellen"/>
     <div class="button-add-task">
-    <Button href="/students/tasks/add">Voeg een taak toe</Button>
+    <Button itemDisabled="disabled" href="/students/tasks/add">Voeg een taak toe</Button>
+    </div>
+    <div class="my-contract">
+      <List :data="company" title="Mijn contract"/>
     </div>
   </div>
   </div>
@@ -54,7 +57,16 @@ const companyGegevens = [
     status: 'vrij'
   }
 ]
-
+const company = [
+  {
+    company: 'bedrijf1',
+    created_on: '27-01-2021',
+    start_date: '12-03-2021',
+    end_date: '18-07-2021',
+    description: 'stage voorstel beschrijving in bedrijf x...',
+    status: 'vrij'
+  }
+]
 @Options({
   components: {
     List,
@@ -64,15 +76,20 @@ const companyGegevens = [
   },
   data () {
     return {
-      companies: companyGegevens
+      companies: companyGegevens,
+      company: company
     }
   }
 })
-export default class Home extends Vue {
+export default class StudentHome extends Vue {
 }
 </script>
 
 <style scoped>
+.my-contract {
+  margin-top: 100px;
+}
+
 .button-add-task {
   margin-top: 40px;
   margin-right: 100px;
