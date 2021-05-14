@@ -1,12 +1,11 @@
 <template>
-  <button class="button" @click="$emit('click')">
-    <slot/>
-  </button>
+  <a :href="href" class="button"><slot/></a>
 </template>
 
 <script>
 export default {
-  name: 'Button'
+  name: 'Button',
+  props: ['href']
 }
 </script>
 

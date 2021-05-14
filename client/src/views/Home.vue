@@ -3,8 +3,13 @@
   <Header/>
   <div class="lists">
     <List :data="companies" title="Overzicht van alle stage voorstellen"></List>
+    <div class="button-add-task">
+    <Button href="/students/tasks/add">Voeg een taak toe</Button>
+    </div>
   </div>
-  <Footer/>
+  </div>
+  <div class="footer">
+    <Footer/>
   </div>
 </template>
 
@@ -68,8 +73,22 @@ export default class Home extends Vue {
 </script>
 
 <style scoped>
+.button-add-task {
+  margin-top: 20px;
+}
+
 .page {
+  min-height: 80vh;
+  overflow: hidden;
+  display: block;
   position: relative;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 50px;
 }
 
 .lists {
