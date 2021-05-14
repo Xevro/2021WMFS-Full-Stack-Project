@@ -2,7 +2,7 @@
   <div class="page">
   <Header/>
   <div class="lists">
-    <List :data="companies" title="Overzicht van alle stage voorstellen"></List>
+    <List :data="companies" title="Overzicht van alle stage voorstellen"/>
     <div class="button-add-task">
     <Button href="/students/tasks/add">Voeg een taak toe</Button>
     </div>
@@ -74,7 +74,9 @@ export default class Home extends Vue {
 
 <style scoped>
 .button-add-task {
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-right: 100px;
+  float: right;
 }
 
 .page {
@@ -93,5 +95,13 @@ export default class Home extends Vue {
 
 .lists {
   padding-top: 120px;
+}
+
+@media screen and (max-width: 700px) {
+  .button-add-task {
+    margin-top: 40px;
+    margin-right: 20px;
+    float: right;
+  }
 }
 </style>

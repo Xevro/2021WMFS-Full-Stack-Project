@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             <tr v-for="(artikel, index) in data" :key="'artikel' + index">
-              <td><a href="/">{{ artikel.company }}</a></td>
+              <td><a href="/proposals/id/details">{{ artikel.company }}</a></td>
               <td class="columns">{{ artikel.created_on }}</td>
               <td class="columns">{{ artikel.start_date }}</td>
               <td class="columns">{{ artikel.end_date }}</td>

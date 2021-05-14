@@ -2,7 +2,7 @@
   <div class="login-area login-s2">
     <div class="container">
       <div class="login-box box-center">
-        <Form :title="'Login as a company'" :buttonText="'Login'"/>
+        <Form :title="'Login as a student'" :buttonText="'Login'"/>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@ import Form from '@/components/UI/molecules/LoginForm.vue'
     Form
   }
 })
-export default class Home extends Vue {
+export default class LoginUser extends Vue {
 }
 </script>
 
