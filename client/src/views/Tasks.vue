@@ -1,5 +1,12 @@
 <template>
-  <div class="tasks">
-    <h1>This is a tasks page</h1>
-  </div>
+<p>qd</p>
 </template>
+
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component'
+
+@Options({
+})
+export default class Tasks extends Vue {
+}
+</script>
