@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'HeaderStudent',
   mounted () {
     const navbar = document.getElementById('navbar')
     const navbarToggle = navbar.querySelector('.navbar-toggle')

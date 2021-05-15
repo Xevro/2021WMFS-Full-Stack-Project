@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
-import Header from '@/components/UI/organisms/Header.vue'
+import Header from '@/components/UI/organisms/HeaderStudent.vue'
 
 @Options({
   components: {

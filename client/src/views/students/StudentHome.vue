@@ -20,7 +20,7 @@
 import { Options, Vue } from 'vue-class-component'
 import Button from '@/components/UI/atoms/Button.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
-import Header from '@/components/UI/organisms/Header.vue'
+import Header from '@/components/UI/organisms/HeaderStudent.vue'
 import List from '@/components/UI/organisms/List.vue'
 // data.js gaf fouten bij de from '...', zeer vreemd
 const companyGegevens = [
