@@ -14,13 +14,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(artikel, index) in data" :key="'artikel' + index">
-              <td><a href="/proposals/id/details">{{ artikel.company }}</a></td>
-              <td class="columns">{{ artikel.created_on }}</td>
-              <td class="columns">{{ artikel.start_date }}</td>
-              <td class="columns">{{ artikel.end_date }}</td>
-              <td class="columns">{{ artikel.description }}</td>
-              <td><span class="status">{{ artikel.status }}</span></td>
+            <tr v-for="(item, index) in data" :key="'item' + index">
+              <td><a href="/proposals/id/details">{{ item.company }}</a></td>
+              <td class="columns">{{ item.created_on }}</td>
+              <td class="columns">{{ item.start_date }}</td>
+              <td class="columns">{{ item.end_date }}</td>
+              <td class="columns">{{ item.description }}</td>
+              <td><span class="status">{{ item.status }}</span></td>
               <td><a href="/">info</a></td>
             </tr>
             </tbody>
@@ -31,7 +31,7 @@
 <script>
 
 export default {
-  name: 'List',
+  name: 'ProposalsList',
   props: ['data', 'title']
 }
 </script>

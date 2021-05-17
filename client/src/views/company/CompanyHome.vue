@@ -2,12 +2,9 @@
   <div class="page">
     <Header/>
     <div class="lists">
-      <List :data="companies" title="Overzicht van alle stage voorstellen"/>
-      <div class="button-add-task">
-        <Button href="/students/tasks/add">Voeg een taak toe</Button>
-      </div>
+      <ProposalsList :data="companies" title="Mijn stage voorstellen"/>
       <div class="my-contract">
-        <List :data="company" title="Mijn sdqd"/>
+        <ProposalsList :data="companies" title="Mijn lopende stage contracten"/>
       </div>
     </div>
   </div>
@@ -18,8 +15,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
-import List from '@/components/UI/organisms/List.vue'
-import Button from '@/components/UI/atoms/Button.vue'
+import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/HeaderCompany.vue'
 
@@ -57,27 +53,15 @@ const companyGegevens = [
     status: 'vrij'
   }
 ]
-const company = [
-  {
-    company: 'bedrijf1',
-    created_on: '27-01-2021',
-    start_date: '12-03-2021',
-    end_date: '18-07-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  }
-]
 @Options({
   components: {
-    List,
-    Button,
+    ProposalsList,
     Footer,
     Header
   },
   data () {
     return {
-      companies: companyGegevens,
-      company: company
+      companies: companyGegevens
     }
   }
 })
@@ -87,12 +71,6 @@ export default class CompanyHome extends Vue {
 <style scoped>
 .my-contract {
   margin-top: 100px;
-}
-
-.button-add-task {
-  margin-top: 40px;
-  margin-right: 100px;
-  float: right;
 }
 
 .page {
@@ -111,13 +89,5 @@ export default class CompanyHome extends Vue {
 
 .lists {
   padding-top: 120px;
-}
-
-@media screen and (max-width: 700px) {
-  .button-add-task {
-    margin-top: 40px;
-    margin-right: 20px;
-    float: right;
-  }
 }
 </style>

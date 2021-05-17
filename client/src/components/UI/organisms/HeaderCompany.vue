@@ -1,7 +1,7 @@
 <template>
   <header id='navbar'>
     <nav class='navbar-container container'>
-      <a href='/' class='home-link'>
+      <a href='/companies' class='home-link'>
         Stage Tool
       </a>
       <button type='button' class='navbar-toggle' aria-label='Open navigation menu'>

@@ -2,12 +2,12 @@
   <div class="page">
   <Header/>
   <div class="lists">
-    <List :data="companies" title="Overzicht van alle stage voorstellen"/>
+    <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
     <div class="button-add-task">
     <Button itemDisabled="disabled" href="/students/tasks/add">Voeg een taak toe</Button>
     </div>
     <div class="my-contract">
-      <List :data="company" title="Mijn contract"/>
+      <ProposalsList :data="company" title="Mijn contract"/>
     </div>
   </div>
   </div>
@@ -21,7 +21,7 @@ import { Options, Vue } from 'vue-class-component'
 import Button from '@/components/UI/atoms/Button.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/HeaderStudent.vue'
-import List from '@/components/UI/organisms/List.vue'
+import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 // data.js gaf fouten bij de from '...', zeer vreemd
 const companyGegevens = [
   {
@@ -69,7 +69,7 @@ const company = [
 ]
 @Options({
   components: {
-    List,
+    ProposalsList,
     Button,
     Footer,
     Header
