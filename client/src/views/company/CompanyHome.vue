@@ -3,8 +3,11 @@
     <Header/>
     <div class="lists">
       <ProposalsList :data="companies" title="Mijn stage voorstellen"/>
+      <div class="button-add-proposal">
+        <Button itemDisabled="" href="/companies/proposals/add">Voeg een voorstel toe</Button>
+      </div>
       <div class="my-contract">
-        <ProposalsList :data="companies" title="Mijn lopende stage contracten"/>
+        <ContractsList :data="companies" title="Mijn lopende stage contracten"/>
       </div>
     </div>
   </div>
@@ -16,7 +19,9 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
+import ContractsList from '@/components/UI/organisms/ContractsList.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
+import Button from '@/components/UI/atoms/Button.vue'
 import Header from '@/components/UI/organisms/HeaderCompany.vue'
 
 const companyGegevens = [
@@ -56,6 +61,8 @@ const companyGegevens = [
 @Options({
   components: {
     ProposalsList,
+    ContractsList,
+    Button,
     Footer,
     Header
   },
@@ -71,6 +78,12 @@ export default class CompanyHome extends Vue {
 <style scoped>
 .my-contract {
   margin-top: 100px;
+}
+
+.button-add-proposal {
+  margin-top: 40px;
+  margin-right: 100px;
+  float: right;
 }
 
 .page {
