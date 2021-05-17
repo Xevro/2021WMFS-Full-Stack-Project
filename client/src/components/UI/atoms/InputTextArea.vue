@@ -21,12 +21,13 @@ label {
   text-align: left;
 }
 
-input {
+textarea {
   padding: 14px 15px;
   border-radius: 10px;
   border: 0;
-  box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.25s ease;
   min-width: 250px;
+  min-height: 120px;
 }
 </style>

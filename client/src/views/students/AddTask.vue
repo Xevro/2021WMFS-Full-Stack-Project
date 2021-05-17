@@ -2,7 +2,11 @@
   <div class="page">
     <Header/>
     <div class="content">
-      <p>sdqdd</p>
+      <div class="title-part">
+        <p>Voeg een taak toe</p>
+        <p>Voeg uw gegevens toe per dag met een beschrijving van uw stage opdracht.</p>
+      </div>
+    <AddTaskForm :buttonText="'Voeg taak toe'"/>
     </div>
   </div>
   <div class="footer">
@@ -14,9 +18,11 @@
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/HeaderStudent.vue'
+import AddTaskForm from '@/components/UI/molecules/AddTaskForm.vue'
 
 @Options({
   components: {
+    AddTaskForm,
     Footer,
     Header
   }
@@ -38,6 +44,20 @@ export default class AddTask extends Vue {
   bottom: 0;
   width: 100%;
   margin-top: 50px;
+}
+
+.title-part {
+  text-align: left;
+  margin-left: 120px;
+}
+
+.title-part p:first-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.title-part p:nth-child(2) {
+  font-size: 1.1rem;
 }
 
 .content {
