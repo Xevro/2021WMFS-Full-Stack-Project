@@ -8,6 +8,7 @@ import RegisterCompany from '../views/auth/RegisterCompany.vue'
 import CompanyHome from '../views/company/CompanyHome.vue'
 import CompanyProposals from '@/views/company/CompanyProposals.vue'
 import StudentDetails from '@/views/students/StudentDetails.vue'
+import AddProposal from '@/views/company/AddProposal.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -42,6 +43,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/companies/proposals',
     name: 'Company Proposals',
     component: CompanyProposals
+  },
+  {
+    path: '/companies/proposals/add',
+    name: 'Add Company Proposals',
+    component: AddProposal
   },
   {
     path: '/students/tasks/add',
