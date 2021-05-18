@@ -1,5 +1,8 @@
 <template>
   <div class="column-wide">
+    <div class="search-field">
+      <InputSearchField class="input-field" name="Search" type="text" placeholder="Search"/>
+    </div>
     <h2>{{ title }}</h2>
           <table class="table">
             <thead>
@@ -29,10 +32,14 @@
 </template>
 
 <script>
+import InputSearchField from '@/components/UI/atoms/InputSearchField.vue'
 
 export default {
   name: 'ProposalsList',
-  props: ['data', 'title']
+  props: ['data', 'title'],
+  components: {
+    InputSearchField
+  }
 }
 </script>
 
@@ -50,6 +57,11 @@ h2 {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
+}
+
+.search-field {
+  float: right;
+  padding-bottom: 2rem;
 }
 
 li {
@@ -90,6 +102,11 @@ a {
     max-width: 100%;
     margin-bottom: 1rem;
     background-color: transparent
+  }
+
+  .search-field {
+    padding-bottom: 30px;
+    margin-top: 10px;
   }
 
   .columns {
