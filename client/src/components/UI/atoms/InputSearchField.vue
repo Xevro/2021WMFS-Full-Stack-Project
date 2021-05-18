@@ -1,6 +1,6 @@
 <template>
   <div class="form-group">
-    <input :type="type" class="form-control" :name="name" v-bind:value="value" :placeholder="placeholder">
+    <input :type="type" class="search-icon form-control" :name="name" v-bind:value="value" :placeholder="placeholder">
   </div>
 </template>
 
@@ -18,6 +18,12 @@ label {
   margin-bottom: 5px;
   font-size: 0.95rem;
   text-align: left;
+}
+
+.search-icon {
+  background-position: 195px 10px;
+  background-image: url('~@/assets/images/search-icon.svg');
+  background-repeat: no-repeat;
 }
 
 input {
