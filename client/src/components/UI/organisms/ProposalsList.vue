@@ -21,7 +21,7 @@
               <td class="columns">{{ item.end_date }}</td>
               <td class="columns">{{ item.description }}</td>
               <td><span class="status">{{ item.status }}</span></td>
-              <td><a href="/">info</a></td>
+              <td><a href="/proposals/id/details">info</a></td>
             </tr>
             </tbody>
           </table>
@@ -50,7 +50,6 @@ h2 {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent;
 }
 
 li {

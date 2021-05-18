@@ -13,16 +13,16 @@
 ### Setup docker environment
 * Install [git](https://git-scm.com/downloads) and [Docker Desktop](https://www.docker.com/products/docker-desktop).
 * Start the Docker Desktop application
-* Run from your terminal/cmd
+* Run from your terminal/cmd:
 ```shell
 git clone https://git.ikdoeict.be/louis.dhont/2021wmfs-louisdhont.git
 ```
-* When Docker is up and running, run from your terminal/cmd
+* When Docker is up and running, run from your terminal/cmd:
 ```shell
 cd 2021wmfs-louisdhont
 docker-compose up
 ```
-* When the containers are up and running, run from a new terminal/cmd
+* When the containers are up and running, run from a new terminal/cmd:
 ```shell
 cd 2021wmfs-louisdhont
 docker-compose exec php-web bash

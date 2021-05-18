@@ -3,6 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>-->
+
+  <!-- Check the router index.ts file to find the used routes -->
    <router-view/>
 </template>
 
