@@ -17,7 +17,7 @@ import Form from '@/components/UI/molecules/LoginForm.vue'
     Form
   }
 })
-export default class LoginUser extends Vue {
+export default class LoginStudent extends Vue {
 }
 </script>
 

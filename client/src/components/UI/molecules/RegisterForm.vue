@@ -5,8 +5,10 @@
       <InputField class="input-field" type="text" title="Naam" placeholder="Naam"/>
       <InputField class="input-field" type="text" title="KBO nummer" placeholder="xxxx.xxx.xxx"/>
       <InputField class="input-field" type="text" title="Email" placeholder="Email"/>
+        <p class="error-message">E-mailadres is geen geldig e-mailadres.</p>
       <InputField class="input-field" type="password" title="Wachtwoord" placeholder="Wachtwoord"/>
       <InputField class="input-field" type="password" title="Wachtwoord controle" placeholder="Wachtwoord controle"/>
+        <p class="error-message">Beide wachtwoorden komen niet overeen.</p>
       <div class="button-area">
         <Button>{{ buttonText }}</Button>
       </div>
@@ -33,6 +35,12 @@ export default {
 <style scoped>
 .input-field  {
   margin-top: 10px;
+}
+
+.error-message {
+  font-size: 0.9rem;
+  color: #bd2130;
+  text-align: left;
 }
 
 .button-area {

@@ -3,6 +3,7 @@
     <FormTitle :title="title"/>
     <div class="login-div">
     <InputField class="input-field" type="text" title="Email" placeholder="Email"/>
+      <p class="error-message">E-mailadres is geen geldig e-mailadres.</p>
     <InputField class="input-field" type="password" title="Password" placeholder="your password"/>
       <div class="button-area">
         <Button>{{ buttonText }}</Button>

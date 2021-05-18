@@ -2,6 +2,7 @@
   <form>
     <div class="box-center">
       <InputField class="input-field" type="date" title="Datum" placeholder="Datum"/>
+      <p class="error-message">Datum bevat geen geldige datum.</p>
       <InputTextArea class="input-field" type="text" title="Beschrijving" placeholder="Typ hier uw tekst..."/>
       <div class="button-area">
         <Button>{{ buttonText }}</Button>
@@ -32,10 +33,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 .input-field  {
   margin-top: 10px;
+}
+
+.error-message {
+  font-size: 0.9rem;
+  color: #bd2130;
+  text-align: left;
 }
 
 .button-area {
