@@ -23,6 +23,8 @@ import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/HeaderStudent.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import ContractsList from '@/components/UI/organisms/ContractsList.vue'
+
+// import datas from '../../dummy_data/data.js'
 // data.js gaf fouten bij de from '...', zeer vreemd
 const companyGegevens = [
   {
