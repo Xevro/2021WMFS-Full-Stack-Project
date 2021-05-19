@@ -19,7 +19,7 @@
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
-import AddProposalForm from '@/components/UI/molecules/AddProposalForm.vue'
+import AddProposalForm from '@/components/UI/organisms/AddProposalForm.vue'
 
 @Options({
   components: {

@@ -64,7 +64,7 @@ export default class LoginStudent extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
   min-height: 100vh;
 }
 </style>

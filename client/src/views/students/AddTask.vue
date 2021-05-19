@@ -18,7 +18,7 @@
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
-import AddTaskForm from '@/components/UI/molecules/AddTaskForm.vue'
+import AddTaskForm from '@/components/UI/organisms/AddTaskForm.vue'
 
 @Options({
   components: {

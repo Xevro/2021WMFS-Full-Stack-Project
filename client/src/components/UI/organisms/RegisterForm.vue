@@ -1,48 +1,116 @@
 <template>
-  <form>
+  <form novalidate @submit.prevent="tryRegistreer">
     <FormTitle :title="title"/>
-    <div class="login-div">
-      <InputField class="input-field" type="text" title="Naam" placeholder="Naam"/>
-      <InputField class="input-field" type="text" title="KBO nummer" placeholder="xxxx.xxx.xxx"/>
-      <InputField class="input-field" type="text" title="Email" placeholder="Email"/>
-        <p class="error-message">E-mailadres is geen geldig e-mailadres.</p>
-      <InputField class="input-field" type="password" title="Wachtwoord" placeholder="Wachtwoord"/>
-      <InputField class="input-field" type="password" title="Wachtwoord controle" placeholder="Wachtwoord controle"/>
-        <p class="error-message">Beide wachtwoorden komen niet overeen.</p>
+      <label :for="id">{{ label }}</label>
+      <InputTextField id="name" required="true" v-model="name" label="Naam" type="text" :error="nameError"/>
+      <InputTextField id="kboNumber" required="true" v-model="kboNumber" label="KBO nummer" type="text" :error="kboNumberError"/>
+      <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
+      <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
+      <InputTextField id="passwordCheck" required="true" v-model="passwordCheck" label="Wachtwoord controle" type="password" :error="passwordCheckError"/>
+      <Error v-if="error" :value="error"/>
       <div class="button-area">
-        <Button>{{ buttonText }}</Button>
+        <Button :type="'submit'">Registreer</Button>
       </div>
-    </div>
   </form>
 </template>
 
 <script>
-import InputField from '@/components/UI/molecules/InputTextField'
-import Button from '@/components/UI/atoms/Button'
+import InputTextField from '@/components/UI/molecules/InputTextField'
 import FormTitle from '@/components/UI/atoms/FormTitle'
+import Error from '@/components/UI/atoms/Error'
+import Button from '@/components/UI/atoms/Button'
+const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const regexKbo = /^[01]\d{3}\.\d{3}\.\d{3}$/
 
 export default {
-  name: 'Form',
-  props: ['buttonText', 'title'],
+  name: 'RegisterForm',
+  props: ['title'],
   components: {
-    InputField,
+    InputTextField,
+    FormTitle,
     Button,
-    FormTitle
+    Error
+  },
+  data () {
+    return {
+      name: null,
+      kboNumber: null,
+      email: null,
+      password: null,
+      passwordCheck: null,
+      error: null,
+      submitted: false
+    }
+  },
+  computed: {
+    nameError () {
+      if (!this.submitted) {
+        return null
+      }
+      if (!this.name) {
+        return 'Het naam veld is verplicht en werd niet ingevuld.'
+      }
+      return null
+    },
+    kboNumberError () {
+      if (!this.submitted) {
+        return null
+      }
+      if (!this.kboNumber) {
+        return 'Het KBO nummer veld is verplicht en werd niet ingevuld.'
+      }
+      if (!regexKbo.test(this.kboNumber)) {
+        return 'Het opgegeven KBO nummer voldoet niet aan het \'xxxx.xxx.xxx\' formaat.'
+      }
+      return null
+    },
+    emailError () {
+      if (!this.submitted) {
+        return null
+      }
+      if (!this.email) {
+        return 'Email is een verplicht veld en werd niet ingevuld.'
+      }
+      if (!regexEmail.test(this.email)) {
+        return 'Het opgegeven e-mailadres voldoet niet aan de vereisten'
+      }
+      return null
+    },
+    passwordError () {
+      if (!this.submitted) {
+        return null
+      }
+      if (!this.password) {
+        return 'Het wachtwoord veld is verplicht en werd niet ingevuld.'
+      }
+      return null
+    },
+    passwordCheckError () {
+      if (!this.submitted) {
+        return null
+      }
+      if (!this.password) {
+        return 'Het wachtwoord veld is verplicht en werd niet ingevuld.'
+      }
+      return null
+    },
+    hasErrors () {
+      return this.nameError || this.kboNumberError || this.emailError || this.emailError || this.passwordCheckError
+    }
+  },
+  methods: {
+    async tryRegistreer () {
+      this.submitted = true
+      if (this.hasErrors) {
+        this.error = 'Het formulier bevat nog fouten'
+        return null
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-.input-field  {
-  margin-top: 10px;
-}
-
-.error-message {
-  font-size: 0.9rem;
-  color: #bd2130;
-  text-align: left;
-}
-
 .button-area {
   margin-top: 20px;
   float: left;

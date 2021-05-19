@@ -12,7 +12,8 @@ export default {
 <style scoped>
 .error-message {
   display: block;
-  margin-top: .2rem;
+  width: 300px;
+  margin-top: .3rem;
   font-size: .8rem;
   color: #bd2130;
   text-align: left;

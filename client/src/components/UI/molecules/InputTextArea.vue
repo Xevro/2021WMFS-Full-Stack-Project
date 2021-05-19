@@ -1,14 +1,15 @@
 <template>
   <div class="form-group">
-    <label :for="title">{{ title }}</label>
-    <textarea :type="type" class="form-control" :name="title" v-bind:value="value" :placeholder="placeholder"></textarea>
+    <label :for="id">{{ label }}</label>
+    <textarea :id="id" :required="required" :type="type" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"></textarea>
+    <Error :value="error"/>
   </div>
 </template>
 
 <script>
 export default {
   name: 'InputTextArea',
-  props: ['type', 'value', 'placeholder', 'title']
+  props: ['modelValue', 'required', 'label', 'id', 'type', 'value', 'error']
 }
 </script>
 

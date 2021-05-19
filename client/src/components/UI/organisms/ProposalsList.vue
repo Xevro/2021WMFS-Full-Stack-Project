@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import InputSearchField from '@/components/UI/atoms/InputSearchField.vue'
+import InputSearchField from '@/components/UI/molecules/InputSearchField.vue'
 
 export default {
   name: 'ProposalsList',

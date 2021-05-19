@@ -1,11 +1,12 @@
 <template>
-  <a class="button" :href="href"><slot/></a>
+  <a v-if="type !== 'submit'" class="button" :href="href"><slot/></a>
+  <button v-if="type === 'submit'" class="button" type="submit"><slot/></button>
 </template>
 
 <script>
 export default {
   name: 'Button',
-  props: ['type', 'href', 'itemDisabled']
+  props: ['type', 'href']
 }
 </script>
 

@@ -47,8 +47,6 @@ export default class LoginCompany extends Vue {
 }
 
 .login-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   min-height: 100vh;
 }
@@ -66,7 +64,7 @@ export default class LoginCompany extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
   min-height: 100vh;
 }
 </style>

@@ -1,15 +1,13 @@
 <template>
-  <form novalidate @submit.prevent="tryLogin">
+  <form novalidate @submit.prevent="Login">
     <FormTitle :title="title"/>
-    <div class="login-div">
       <label :for="id">{{ label }}</label>
       <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
       <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
       <Error v-if="error" :value="error"/>
       <div class="button-area">
-        <Button type="submit">Login</Button>
+        <Button :type="'submit'">Login</Button>
       </div>
-    </div>
   </form>
 </template>
 
@@ -64,7 +62,7 @@ export default {
     }
   },
   methods: {
-    async tryLogin () {
+    async Login () {
       this.submitted = true
 
       if (this.hasErrors) {
@@ -77,10 +75,6 @@ export default {
 </script>
 
 <style scoped>
-.login-div {
-  margin-top: 10px;
-}
-
 .button-area {
   margin-top: 20px;
   float: left;
