@@ -1,7 +1,6 @@
 <template>
   <form novalidate @submit.prevent="Login">
     <FormTitle :title="title"/>
-      <label :for="id">{{ label }}</label>
       <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
       <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
       <Error v-if="error" :value="error"/>

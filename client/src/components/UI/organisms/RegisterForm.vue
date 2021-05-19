@@ -1,7 +1,6 @@
 <template>
   <form novalidate @submit.prevent="tryRegistreer">
     <FormTitle :title="title"/>
-      <label :for="id">{{ label }}</label>
       <InputTextField id="name" required="true" v-model="name" label="Naam" type="text" :error="nameError"/>
       <InputTextField id="kboNumber" required="true" v-model="kboNumber" label="KBO nummer" type="text" :error="kboNumberError"/>
       <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
@@ -19,8 +18,11 @@ import InputTextField from '@/components/UI/molecules/InputTextField'
 import FormTitle from '@/components/UI/atoms/FormTitle'
 import Error from '@/components/UI/atoms/Error'
 import Button from '@/components/UI/atoms/Button'
+
 const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const regexKbo = /^[01]\d{3}\.\d{3}\.\d{3}$/
+const regexDigits = /\d/
+const regexCapital = /[A-Z]/
 
 export default {
   name: 'RegisterForm',
@@ -83,6 +85,15 @@ export default {
       if (!this.password) {
         return 'Het wachtwoord veld is verplicht en werd niet ingevuld.'
       }
+      if (this.password.length < 8) {
+        return 'Het wachtwoord moet minstens 8 karakters lang zijn.'
+      }
+      if (!regexDigits.test(this.password)) {
+        return 'Het wachtwoord moet minstens 1 een nummer bevatten.'
+      }
+      if (!regexCapital.test(this.password)) {
+        return 'Het wachtwoord moet minstens 1 een hoofdletter bevatten.'
+      }
       return null
     },
     passwordCheckError () {
@@ -90,20 +101,25 @@ export default {
         return null
       }
       if (!this.password) {
-        return 'Het wachtwoord veld is verplicht en werd niet ingevuld.'
+        return 'Het wachtwoord controle veld is verplicht en werd niet ingevuld.'
+      }
+      if (this.password !== this.passwordCheck) {
+        return 'Beide wachtwoorden komen niet overeen.'
       }
       return null
     },
     hasErrors () {
-      return this.nameError || this.kboNumberError || this.emailError || this.emailError || this.passwordCheckError
+      return (this.nameError || this.kboNumberError || this.emailError || this.passwordError || this.passwordCheckError)
     }
   },
   methods: {
     async tryRegistreer () {
       this.submitted = true
       if (this.hasErrors) {
-        this.error = 'Het formulier bevat nog fouten'
+        this.error = 'Het formulier bevat nog fouten.'
         return null
+      } else {
+        this.error = null
       }
     }
   }
