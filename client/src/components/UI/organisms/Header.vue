@@ -10,7 +10,11 @@
         <span class='icon-bar'></span>
       </button>
       <div class='navbar-menu'>
-        <ul class='navbar-links'>
+        <ul v-if="typeUser === 'company'" class='navbar-links'>
+          <li class='navbar-item'><a class='navbar-link' href='/companies'>Overzicht</a></li>
+          <li class='navbar-item'><a class='navbar-link' href='/companies/proposals'>Mijn voorstellen</a></li>
+        </ul>
+        <ul v-if="typeUser === 'student'" class='navbar-links'>
           <li class='navbar-item'><a class='navbar-link' href='/'>Overzicht</a></li>
           <li class='navbar-item'><a class='navbar-link' href='/tasks'>Mijn taken</a></li>
         </ul>
@@ -21,7 +25,8 @@
 
 <script>
 export default {
-  name: 'HeaderStudent',
+  name: 'Header',
+  props: ['typeUser'],
   mounted () {
     const navbar = document.getElementById('navbar')
     const navbarToggle = navbar.querySelector('.navbar-toggle')

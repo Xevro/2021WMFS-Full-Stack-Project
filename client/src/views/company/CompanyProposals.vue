@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header/>
+    <Header :type-user="'company'"/>
     <div class="lists">
       <ProposalsList :data="companies" title="Al mijn stage voorstellen"/>
     </div>
@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
-import Header from '@/components/UI/organisms/HeaderCompany.vue'
+import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 
 const companyGegevens = [

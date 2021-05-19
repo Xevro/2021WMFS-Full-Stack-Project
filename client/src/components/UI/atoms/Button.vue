@@ -1,5 +1,5 @@
 <template>
-  <a :href="href"><button type="type" :disabled="itemDisabled==='disabled'" class="button"><slot/></button></a>
+  <a class="button" :href="href"><slot/></a>
 </template>
 
 <script>

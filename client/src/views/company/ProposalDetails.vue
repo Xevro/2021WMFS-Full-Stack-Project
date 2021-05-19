@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header/>
+    <Header :type-user="'student'"/> <!-- wijzig dit met het storage atribuut -->
     <div class="content">
       <div class="add-to-favorites">
         <p>Voeg toe aan favorieten</p>
@@ -25,7 +25,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
-import Header from '@/components/UI/organisms/HeaderCompany.vue'
+import Header from '@/components/UI/organisms/Header.vue'
 
 @Options({
   components: {

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header/>
+    <Header :type-user="'student'"/>
     <div class="content">
       <div class="title-part">
         <p>Voeg een taak toe</p>
@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
-import Header from '@/components/UI/organisms/HeaderStudent.vue'
+import Header from '@/components/UI/organisms/Header.vue'
 import AddTaskForm from '@/components/UI/molecules/AddTaskForm.vue'
 
 @Options({

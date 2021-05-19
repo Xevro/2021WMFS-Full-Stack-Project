@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header/>
+    <Header :type-user="'student'"/>
     <div class="lists">
       <TasksList :data="tasks" title="Mijn taken"/>
     </div>
@@ -14,7 +14,7 @@
 import { Options, Vue } from 'vue-class-component'
 import TasksList from '@/components/UI/organisms/TasksList.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
-import Header from '@/components/UI/organisms/HeaderStudent.vue'
+import Header from '@/components/UI/organisms/Header.vue'
 const tasks = [
   {
     date: '27-01-2021',

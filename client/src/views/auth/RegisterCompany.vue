@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
-import RegisterForm from '@/components/UI/molecules/RegisterForm.vue'
+import RegisterForm from '@/components/UI/organisms/RegisterForm.vue'
 
 @Options({
   components: {

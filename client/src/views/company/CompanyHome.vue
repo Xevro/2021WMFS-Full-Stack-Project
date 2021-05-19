@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header/>
+    <Header :type-user="'company'"/>
     <div class="lists">
       <ProposalsList :data="companies" title="Mijn stage voorstellen"/>
       <div class="button-add-proposal">
@@ -22,7 +22,7 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import ContractsList from '@/components/UI/organisms/ContractsList.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Button from '@/components/UI/atoms/Button.vue'
-import Header from '@/components/UI/organisms/HeaderCompany.vue'
+import Header from '@/components/UI/organisms/Header.vue'
 
 const companyGegevens = [
   {

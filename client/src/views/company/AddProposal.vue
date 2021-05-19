@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header/>
+    <Header :type-user="'company'"/>
     <div class="content">
       <div class="title-part">
         <p>Voeg een stage voorstel toe</p>
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
-import Header from '@/components/UI/organisms/HeaderCompany.vue'
+import Header from '@/components/UI/organisms/Header.vue'
 import AddProposalForm from '@/components/UI/molecules/AddProposalForm.vue'
 
 @Options({
