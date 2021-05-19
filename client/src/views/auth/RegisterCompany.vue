@@ -2,7 +2,7 @@
   <div class="login-area login-s2">
     <div class="container">
       <div class="login-box box-center">
-        <Form :title="'Login as a company'" :buttonText="'Login'"/>
+        <RegisterForm :title="'Login as a company'" :buttonText="'Login'"/>
       </div>
     </div>
   </div>
@@ -10,11 +10,11 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
-import Form from '@/components/UI/molecules/RegisterForm.vue'
+import RegisterForm from '@/components/UI/molecules/RegisterForm.vue'
 
 @Options({
   components: {
-    Form
+    RegisterForm
   }
 })
 export default class RegisterCompany extends Vue {

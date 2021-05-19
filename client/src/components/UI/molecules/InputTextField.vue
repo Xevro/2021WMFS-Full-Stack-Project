@@ -1,14 +1,17 @@
 <template>
   <div class="form-group">
-    <label :for="title">{{ title }}</label>
-    <input :type="type" class="form-control" :name="title" v-bind:value="value" :placeholder="placeholder">
+    <label :for="id">{{ label }}</label>
+    <input :id="id" :required="required" :type="type" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)">
+    <Error :value="error"/>
   </div>
 </template>
 
 <script>
+import Error from '@/components/UI/atoms/Error'
 export default {
   name: 'InputTextField',
-  props: ['type', 'value', 'placeholder', 'title']
+  components: { Error },
+  props: ['modelValue', 'required', 'label', 'id', 'type', 'value', 'error']
 }
 </script>
 

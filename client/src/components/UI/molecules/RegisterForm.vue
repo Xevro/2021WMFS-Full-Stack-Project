@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import InputField from '@/components/UI/atoms/InputTextField'
+import InputField from '@/components/UI/molecules/InputTextField'
 import Button from '@/components/UI/atoms/Button'
 import FormTitle from '@/components/UI/atoms/FormTitle'
 

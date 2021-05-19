@@ -65,9 +65,8 @@ body {
 }
 
 #navbar {
-  --navbar-height: 64px;
   position: fixed;
-  height: var(--navbar-height);
+  height: 64px;
   background-color: white;
   left: 0;
   right: 0;
@@ -156,7 +155,7 @@ body {
 
 .navbar-menu {
   position: fixed;
-  top: var(--navbar-height);
+  top: 64px;
   bottom: 0;
   transition: opacity 0.2s ease-in-out,
   visibility 0.2s ease-in-out;
