@@ -58,6 +58,7 @@ const companyGegevens = [
     status: 'vrij'
   }
 ]
+
 @Options({
   components: {
     ProposalsList,

@@ -16,9 +16,11 @@ import Error from '@/components/UI/atoms/Error.vue'
 import FormTitle from '@/components/UI/atoms/FormTitle.vue'
 import InputTextField from '@/components/UI/molecules/InputTextField'
 const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const regexDigits = /\d/
+const regexCapital = /[A-Z]/
 
 export default {
-  name: 'Form',
+  name: 'LoginForm',
   props: ['title'],
   components: {
     InputTextField,
@@ -54,6 +56,15 @@ export default {
       if (!this.password) {
         return 'Het wachtwoord veld is verplicht en werd niet ingevuld.'
       }
+      if (this.password.length < 8) {
+        return 'Het wachtwoord moet minstens 8 karakters lang zijn.'
+      }
+      if (!regexDigits.test(this.password)) {
+        return 'Het wachtwoord moet minstens 1 een nummer bevatten.'
+      }
+      if (!regexCapital.test(this.password)) {
+        return 'Het wachtwoord moet minstens 1 een hoofdletter bevatten.'
+      }
       return null
     },
     hasErrors () {
@@ -67,6 +78,8 @@ export default {
       if (this.hasErrors) {
         this.error = 'Het formulier bevat nog fouten'
         return null
+      } else {
+        this.error = null
       }
     }
   }
