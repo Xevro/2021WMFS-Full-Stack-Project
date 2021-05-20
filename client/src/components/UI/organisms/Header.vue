@@ -11,12 +11,20 @@
       </button>
       <div class='navbar-menu'>
         <ul v-if="typeUser === 'company'" class='navbar-links'>
-          <li class='navbar-item'><a class='navbar-link' href='/companies'>Overzicht</a></li>
-          <li class='navbar-item'><a class='navbar-link' href='/companies/proposals'>Mijn voorstellen</a></li>
+          <li class='navbar-item'>
+            <router-link to="/companies" class="navbar-link">Overzicht</router-link>
+          </li>
+          <li class='navbar-item'>
+            <router-link to="/companies/proposals" class="navbar-link">Mijn voorstellen</router-link>
+          </li>
         </ul>
         <ul v-if="typeUser === 'student'" class='navbar-links'>
-          <li class='navbar-item'><a class='navbar-link' href='/'>Overzicht</a></li>
-          <li class='navbar-item'><a class='navbar-link' href='/tasks'>Mijn taken</a></li>
+          <li class='navbar-item'>
+            <router-link to="/" class="navbar-link">Overzicht</router-link>
+          </li>
+          <li class='navbar-item'>
+            <router-link to="/students/tasks" class="navbar-link">Mijn taken</router-link>
+          </li>
         </ul>
       </div>
     </nav>

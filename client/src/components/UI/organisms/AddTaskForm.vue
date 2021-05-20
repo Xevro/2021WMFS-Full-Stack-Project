@@ -2,10 +2,9 @@
   <form>
     <div class="box-center">
       <InputField class="input-field" type="date" title="Datum" placeholder="Datum"/>
-      <p class="error-message">Datum bevat geen geldige datum.</p>
       <InputTextArea class="input-field" type="text" title="Beschrijving" placeholder="Typ hier uw tekst..."/>
       <div class="button-area">
-        <Button>{{ buttonText }}</Button>
+        <Button :type="'submit'">{{ buttonText }}</Button>
       </div>
     </div>
   </form>

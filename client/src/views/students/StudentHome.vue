@@ -4,7 +4,7 @@
   <div class="lists">
     <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
     <div class="button-add-task">
-    <Button itemDisabled="" href="/students/tasks/add">Voeg een taak toe</Button>
+    <Button :href="'/students/tasks/add'">Voeg een taak toe</Button>
     </div>
     <div class="my-contract">
       <ContractsList :data="company" title="Mijn contract"/>
@@ -82,6 +82,8 @@ const company = [
       companies: companyGegevens,
       company: company
     }
+  },
+  methods: {
   }
 })
 export default class StudentHome extends Vue {

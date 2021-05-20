@@ -6,7 +6,7 @@
       <InputField class="input-field" type="date" title="Start periode"/>
       <InputTextArea class="input-field" type="text" title="Beschrijving " placeholder="Typ hier uw tekst..."/>
       <div class="button-area">
-        <Button>{{ buttonText }}</Button>
+        <Button :type="'submit'">{{ buttonText }}</Button>
       </div>
     </div>
   </form>

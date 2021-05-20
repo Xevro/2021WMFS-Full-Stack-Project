@@ -8,6 +8,7 @@
 
 <script>
 import Error from '@/components/UI/atoms/Error'
+
 export default {
   name: 'InputTextField',
   components: { Error },

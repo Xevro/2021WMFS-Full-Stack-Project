@@ -4,7 +4,7 @@
     <div class="lists">
       <ProposalsList :data="companies" title="Mijn stage voorstellen"/>
       <div class="button-add-proposal">
-        <Button itemDisabled="" href="/companies/proposals/add">Voeg een voorstel toe</Button>
+        <Button :href="'/companies/proposals/add'">Voeg een voorstel toe</Button>
       </div>
       <div class="my-contract">
         <ContractsList :data="companies" title="Mijn lopende stage contracten"/>

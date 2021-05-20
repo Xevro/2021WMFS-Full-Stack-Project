@@ -7,9 +7,14 @@
 </template>
 
 <script>
+import Error from '@/components/UI/atoms/Error'
+
 export default {
   name: 'InputTextArea',
-  props: ['modelValue', 'required', 'label', 'id', 'type', 'value', 'error']
+  props: ['modelValue', 'required', 'label', 'id', 'type', 'value', 'error'],
+  components: {
+    Error
+  }
 }
 </script>
 

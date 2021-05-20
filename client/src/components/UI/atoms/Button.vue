@@ -1,12 +1,17 @@
 <template>
-  <a v-if="type !== 'submit'" class="button" :href="href"><slot/></a>
+  <a v-if="type !== 'submit'" @click="navigateTo(href)" class="button"><slot/></a>
   <button v-if="type === 'submit'" class="button" type="submit"><slot/></button>
 </template>
 
 <script>
 export default {
   name: 'Button',
-  props: ['type', 'href']
+  props: ['type', 'href'],
+  methods: {
+    navigateTo (href) {
+      this.$router.push({ path: href })
+    }
+  }
 }
 </script>
 
