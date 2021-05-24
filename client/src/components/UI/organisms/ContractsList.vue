@@ -14,7 +14,7 @@
             </thead>
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
-              <td><a href="/students/1">{{ item.company }}</a></td> <!--id will be a custom itemname id -->
+              <td><a href="/students/1">{{ item.company }}</a></td>
               <td class="columns">{{ item.created_on }}</td>
               <td class="columns">{{ item.start_date }}</td>
               <td class="columns">{{ item.end_date }}</td>
@@ -62,13 +62,13 @@ li {
 }
 
 .table td {
-  padding: .3rem;
+  padding: .9rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6
 }
 
 .table th {
-  padding: .8rem;
+  padding: 0.8rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6
 }

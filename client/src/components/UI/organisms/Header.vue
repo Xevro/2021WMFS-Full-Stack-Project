@@ -23,6 +23,9 @@
             <router-link to="/" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
+            <router-link to="/students/1" class="navbar-link">Mijn contracten</router-link>
+          </li>
+          <li class='navbar-item'>
             <router-link to="/students/1/tasks" class="navbar-link">Mijn taken</router-link>
           </li>
         </ul>

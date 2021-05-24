@@ -6,9 +6,6 @@
     <div class="button-add-task">
     <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
     </div>
-    <div class="my-contract">
-      <ContractsList :data="company" title="Mijn contract"/>
-    </div>
   </div>
   </div>
   <div class="footer">
@@ -58,15 +55,6 @@ const companyGegevens = [
     status: 'vrij'
   }
 ]
-const company = [
-  {
-    company: 'bedrijf1',
-    created_on: '27-01-2021',
-    start_date: '12-03-2021',
-    end_date: '18-07-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...'
-  }
-]
 
 @Options({
   name: 'StudentHome',
@@ -79,8 +67,7 @@ const company = [
   },
   data () {
     return {
-      companies: companyGegevens,
-      company: company
+      companies: companyGegevens
     }
   },
   methods: {
@@ -91,10 +78,6 @@ export default class studentHome extends Vue {
 </script>
 
 <style scoped>
-.my-contract {
-  margin-top: 100px;
-}
-
 .button-add-task {
   margin-top: 40px;
   margin-right: 100px;
