@@ -2,7 +2,7 @@
   <form novalidate @submit.prevent="Verzend">
     <div class="box-center">
       <InputField class="input-field" required="true" type="date" id="date" v-model="date" label="Datum" :error="dateError"/>
-      <InputTextArea class="input-field" required="true" type="text" label="Beschrijving" v-model="description" :error="descriptionError"/>
+      <InputTextArea class="input-field" required="true" id="description" type="text" label="Beschrijving" v-model="description" :error="descriptionError"/>
       <Error v-if="error" :value="error"/>
       <div class="button-area">
         <Button :type="'submit'">Voeg taak toe</Button>
@@ -44,7 +44,6 @@ export default {
         return 'Het datum veld is een verplicht veld en werd niet ingevuld.'
       }
       if (!regexDate.test(this.date)) {
-        console.log(this.date)
         return 'De opgegeven datum voldoet niet aan de vereisten'
       }
       return null
