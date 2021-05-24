@@ -40,7 +40,7 @@ export default class Login extends Vue {
   left: -42%;
   z-index: -1;
   top: -47%;
-  box-shadow: inset 0 0 51px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 3.1875rem rgba(0, 0, 0, 0.1);
 }
 
 .login-area {
@@ -54,8 +54,8 @@ export default class Login extends Vue {
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 1rem;
+  padding-left: 1rem;
   margin-right: auto;
   margin-left: auto
 }

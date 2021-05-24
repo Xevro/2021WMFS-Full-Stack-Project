@@ -44,7 +44,7 @@ export default class AddProposal extends Vue {
   position: relative;
   bottom: 0;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 
 .title-part {
@@ -68,8 +68,8 @@ export default class AddProposal extends Vue {
 
 @media screen and (max-width: 700px) {
   .title-part {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 3.125rem;
+    margin-right: 3.125rem;
   }
 }
 </style>

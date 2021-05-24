@@ -21,11 +21,11 @@ export default {
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 7px 27px;
+  padding: 7px 1.6875rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 15px;
+  font-size: .9375rem;
   margin: 4px 2px;
   cursor: pointer;
 }

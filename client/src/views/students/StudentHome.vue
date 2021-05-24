@@ -4,7 +4,7 @@
   <div class="lists">
     <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
     <div class="button-add-task">
-    <Button :href="'/students/tasks/add'">Voeg een taak toe</Button>
+    <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
     </div>
     <div class="my-contract">
       <ContractsList :data="company" title="Mijn contract"/>
@@ -24,8 +24,6 @@ import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import ContractsList from '@/components/UI/organisms/ContractsList.vue'
 
-// import datas from '../../dummy_data/data.js'
-// data.js gaf fouten bij de from '...', zeer vreemd
 const companyGegevens = [
   {
     company: 'bedrijf1',

@@ -112,10 +112,10 @@ export default {
   align-items: center;
 }
 .input-field  {
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .button-area {
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 </style>

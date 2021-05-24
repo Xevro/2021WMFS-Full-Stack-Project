@@ -15,7 +15,7 @@
             <router-link to="/companies" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link to="/companies/proposals" class="navbar-link">Mijn voorstellen</router-link>
+            <router-link to="/companies/1/proposals" class="navbar-link">Mijn voorstellen</router-link>
           </li>
         </ul>
         <ul v-if="typeUser === 'student'" class='navbar-links'>
@@ -23,7 +23,7 @@
             <router-link to="/" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link to="/students/tasks" class="navbar-link">Mijn taken</router-link>
+            <router-link to="/students/1/tasks" class="navbar-link">Mijn taken</router-link>
           </li>
         </ul>
       </div>
@@ -78,9 +78,8 @@ body {
 }
 
 #navbar {
-  --navbar-height: 64px;
   position: fixed;
-  height: var(--navbar-height);
+  height: 4rem;
   background-color: white;
   left: 0;
   right: 0;
@@ -95,7 +94,7 @@ body {
 }
 
 .navbar-item {
-  margin: 0.4em;
+  margin: .4em;
   width: 100%;
 }
 
@@ -115,7 +114,7 @@ body {
 
 .home-link {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: bold
 }
 
 .navbar-link {
@@ -129,8 +128,8 @@ body {
   cursor: pointer;
   border: none;
   background-color: transparent;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +138,7 @@ body {
 
 .icon-bar {
   display: block;
-  width: 25px;
+  width: 1.5625rem;
   height: 4px;
   margin: 2px;
   transition: white 0.2s ease-in-out,
@@ -152,7 +151,7 @@ body {
 #navbar.opened .navbar-toggle .icon-bar:last-child {
   position: absolute;
   margin: 0;
-  width: 30px;
+  width: 1.875rem;
 }
 
 #navbar.opened .navbar-toggle .icon-bar:first-child {
@@ -169,7 +168,7 @@ body {
 
 .navbar-menu {
   position: fixed;
-  top: var(--navbar-height);
+  top: 4rem;
   bottom: 0;
   transition: opacity 0.2s ease-in-out,
   visibility 0.2s ease-in-out;
@@ -196,7 +195,7 @@ body {
   right: 0;
   margin: 1.4rem;
   border-radius: 5px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.3);
 }
 
 #navbar.opened .navbar-links {

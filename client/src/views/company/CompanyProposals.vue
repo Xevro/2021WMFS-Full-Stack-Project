@@ -89,7 +89,7 @@ export default class CompanyProposals extends Vue {
   position: relative;
   bottom: 0;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 
 .lists {

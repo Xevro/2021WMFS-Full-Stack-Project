@@ -49,7 +49,7 @@ export default class ProposalDetails extends Vue {
   position: relative;
   bottom: 0;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 
 .title {
@@ -86,7 +86,7 @@ export default class ProposalDetails extends Vue {
     float: left;
   }
   .content-info-box {
-    padding-top: 50px;
+    padding-top: 3.125rem;
   }
 }
 </style>

@@ -128,7 +128,7 @@ export default {
 
 <style scoped>
 .button-area {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   float: left;
 }
 </style>

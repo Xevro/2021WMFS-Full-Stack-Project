@@ -9,8 +9,8 @@
 footer {
   height: 70px;
   color: #111;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  padding-top: 1.25rem;
+  padding-bottom: 1.875rem;
   text-align: center;
 }
 </style>

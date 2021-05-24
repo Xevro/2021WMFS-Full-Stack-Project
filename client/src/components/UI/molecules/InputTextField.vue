@@ -19,17 +19,17 @@ export default {
 <style scoped>
 label {
   display:block;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   margin-bottom: 5px;
   font-size: 0.95rem;
   text-align: left;
 }
 
 input {
-  padding: 14px 15px;
-  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  border-radius: 0.625rem;
   border: 0;
-  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.625rem 1.625rem 0 rgba(0, 0, 0, 0.1);
   transition: all 0.25s ease;
   min-width: 250px;
 }

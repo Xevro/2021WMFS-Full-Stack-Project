@@ -18,13 +18,13 @@
             </thead>
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
-              <td><a href="/companies/proposals/">{{ item.company }}</a></td>
+              <td><a href="/companies/1/proposals/">{{ item.company }}</a></td>
               <td class="columns">{{ item.created_on }}</td>
               <td class="columns">{{ item.start_date }}</td>
               <td class="columns">{{ item.end_date }}</td>
               <td class="columns">{{ item.description }}</td>
               <td><span class="status">{{ item.status }}</span></td>
-              <td><a href="/companies/proposals/id">info</a></td>
+              <td><a href="/companies/1/proposals/1">info</a></td>
             </tr>
             </tbody>
           </table>
@@ -81,7 +81,7 @@ li {
 }
 
 .table th {
-  padding: 0.8rem;
+  padding: .8rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6
 }
@@ -93,8 +93,8 @@ a {
 
 @media screen and (max-width: 700px) {
   .column-wide {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: .625rem;
+    margin-right: .625rem;
   }
 
   .table {
@@ -105,8 +105,8 @@ a {
   }
 
   .search-field {
-    padding-bottom: 30px;
-    margin-top: 10px;
+    padding-bottom: 1.875rem;
+    margin-top: 0.625rem;
   }
 
   .columns {

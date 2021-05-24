@@ -55,7 +55,7 @@ li {
 }
 
 .table th {
-  padding: 0.8rem;
+  padding: .8rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6
 }
@@ -67,8 +67,8 @@ a {
 
 @media screen and (max-width: 700px) {
   .column-wide {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: .625rem;
+    margin-right: .625rem;
   }
 }
 </style>
