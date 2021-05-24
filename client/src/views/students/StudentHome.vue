@@ -69,7 +69,9 @@ const company = [
     description: 'stage voorstel beschrijving in bedrijf x...'
   }
 ]
+
 @Options({
+  name: 'studentHome',
   components: {
     ProposalsList,
     ContractsList,
@@ -86,7 +88,7 @@ const company = [
   methods: {
   }
 })
-export default class StudentHome extends Vue {
+export default class studentHome extends Vue {
 }
 </script>
 

@@ -13,6 +13,7 @@ import { Options, Vue } from 'vue-class-component'
 import LoginForm from '@/components/UI/organisms/LoginForm.vue'
 
 @Options({
+  name: 'studentLogin',
   components: {
     LoginForm
   }

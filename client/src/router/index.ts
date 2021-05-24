@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/students/StudentHome.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import StudentHome from '../views/students/StudentHome.vue'
 import LoginStudent from '../views/auth/LoginStudent.vue'
 import LoginCompany from '../views/auth/LoginCompany.vue'
 import AddTask from '../views/students/AddTask.vue'
@@ -9,65 +9,82 @@ import CompanyHome from '../views/company/CompanyHome.vue'
 import CompanyProposals from '@/views/company/CompanyProposals.vue'
 import StudentDetails from '@/views/students/StudentDetails.vue'
 import AddProposal from '@/views/company/AddProposal.vue'
+import StudentTasks from '@/views/students/StudentTasks.vue'
+import Error404 from '@/views/Error404.vue'
 
-const routes: Array<RouteRecordRaw> = [
+const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: {
+      name: 'studentTasks'
+    }
+  },
+  {
+    path: '/students',
+    name: 'studentHome',
+    component: StudentHome
+  },
+  {
+    path: '/students/:id',
+    name: 'studentDetails',
+    component: StudentDetails
   },
   {
     path: '/students/tasks',
-    name: 'Student Tasks',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/students/StudentTasks.vue')
-  },
-  {
-    path: '/students/login',
-    name: 'Login Student',
-    component: LoginStudent
-  },
-  {
-    path: '/companies/login',
-    name: 'Login Company',
-    component: LoginCompany
-  },
-  {
-    path: '/companies/register',
-    name: 'Register company',
-    component: RegisterCompany
-  },
-  {
-    path: '/companies/proposals',
-    name: 'Company Proposals',
-    component: CompanyProposals
-  },
-  {
-    path: '/companies/proposals/add',
-    name: 'Add Company Proposals',
-    component: AddProposal
+    name: 'studentTasks',
+    component: StudentTasks
   },
   {
     path: '/students/tasks/add',
-    name: 'Add Tasks',
+    name: 'studentAddTask',
     component: AddTask
   },
   {
-    path: '/proposals/id/details',
-    name: 'Proposal details',
-    component: ProposalDetails
-  },
-  {
-    path: '/students/id',
-    name: 'student details',
-    component: StudentDetails
+    path: '/students/login',
+    name: 'studentLogin',
+    component: LoginStudent
   },
   {
     path: '/companies',
     name: 'Company Home',
     component: CompanyHome
+  },
+  {
+    path: '/companies/login',
+    name: 'companyLogin',
+    component: LoginCompany
+  },
+  {
+    path: '/companies/register',
+    name: 'companyRegister',
+    component: RegisterCompany
+  },
+  {
+    path: '/companies/proposals',
+    name: 'companyProposals',
+    component: CompanyProposals
+  },
+  {
+    path: '/companies/proposals/add',
+    name: 'companyProposalsAdd',
+    component: AddProposal
+  },
+  {
+    path: '/companies/proposals/:id',
+    name: 'propoosalDetails',
+    component: ProposalDetails,
+    props: true
+  },
+  {
+    path: '/error404',
+    name: 'Error404',
+    component: Error404
+  },
+  {
+    path: '/:notFound(.*)',
+    redirect: {
+      name: 'Error404'
+    }
   }
 ]
 
