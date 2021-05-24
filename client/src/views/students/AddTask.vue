@@ -6,7 +6,7 @@
         <p>Voeg een taak toe</p>
         <p>Voeg uw gegevens toe per dag met een beschrijving van uw stage opdracht.</p>
       </div>
-    <AddTaskForm :buttonText="'Voeg taak toe'"/>
+    <AddTaskForm/>
     </div>
   </div>
   <div class="footer">

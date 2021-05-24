@@ -68,7 +68,7 @@ export default {
       return null
     },
     hasErrors () {
-      return this.emailError || this.emailError
+      return this.emailError || this.passwordError
     }
   },
   methods: {
