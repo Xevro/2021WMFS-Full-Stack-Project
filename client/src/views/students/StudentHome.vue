@@ -71,7 +71,7 @@ const company = [
 ]
 
 @Options({
-  name: 'studentHome',
+  name: 'StudentHome',
   components: {
     ProposalsList,
     ContractsList,

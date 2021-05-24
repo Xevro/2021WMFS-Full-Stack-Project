@@ -25,7 +25,7 @@ const regexDigits = /\d/
 const regexCapital = /[A-Z]/
 
 export default {
-  name: 'RegisterForm',
+  name: 'CompanyRegister',
   props: ['title'],
   components: {
     InputTextField,

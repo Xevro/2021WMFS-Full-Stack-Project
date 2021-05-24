@@ -18,13 +18,13 @@
             </thead>
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
-              <td><a href="/proposals/id/details">{{ item.company }}</a></td>
+              <td><a href="/companies/proposals/">{{ item.company }}</a></td>
               <td class="columns">{{ item.created_on }}</td>
               <td class="columns">{{ item.start_date }}</td>
               <td class="columns">{{ item.end_date }}</td>
               <td class="columns">{{ item.description }}</td>
               <td><span class="status">{{ item.status }}</span></td>
-              <td><a href="/proposals/id/details">info</a></td>
+              <td><a href="/companies/proposals/id">info</a></td>
             </tr>
             </tbody>
           </table>

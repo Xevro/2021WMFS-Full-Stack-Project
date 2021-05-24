@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StudentHome from '../views/students/StudentHome.vue'
-import LoginStudent from '../views/auth/LoginStudent.vue'
-import LoginCompany from '../views/auth/LoginCompany.vue'
+import Login from '../views/auth/Login.vue'
 import AddTask from '../views/students/AddTask.vue'
 import ProposalDetails from '../views/company/ProposalDetails.vue'
 import RegisterCompany from '../views/auth/RegisterCompany.vue'
@@ -16,62 +15,62 @@ const routes = [
   {
     path: '/',
     redirect: {
-      name: 'studentTasks'
+      name: 'StudentHome'
     }
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
     path: '/students',
-    name: 'studentHome',
+    name: 'StudentHome',
     component: StudentHome
   },
   {
     path: '/students/:id',
-    name: 'studentDetails',
-    component: StudentDetails
+    name: 'StudentDetails',
+    component: StudentDetails,
+    props: true
   },
   {
-    path: '/students/tasks',
-    name: 'studentTasks',
-    component: StudentTasks
+    path: '/students/:id/tasks',
+    name: 'StudentTasks',
+    component: StudentTasks,
+    props: true
   },
   {
-    path: '/students/tasks/add',
-    name: 'studentAddTask',
-    component: AddTask
-  },
-  {
-    path: '/students/login',
-    name: 'studentLogin',
-    component: LoginStudent
+    path: '/students/:id/tasks/add',
+    name: 'StudentAddTask',
+    component: AddTask,
+    props: true
   },
   {
     path: '/companies',
-    name: 'Company Home',
+    name: 'CompanyHome',
     component: CompanyHome
   },
   {
-    path: '/companies/login',
-    name: 'companyLogin',
-    component: LoginCompany
-  },
-  {
     path: '/companies/register',
-    name: 'companyRegister',
+    name: 'CompanyRegister',
     component: RegisterCompany
   },
   {
-    path: '/companies/proposals',
-    name: 'companyProposals',
-    component: CompanyProposals
+    path: '/companies/:id/proposals',
+    name: 'CompanyProposals',
+    component: CompanyProposals,
+    props: true
   },
   {
-    path: '/companies/proposals/add',
-    name: 'companyProposalsAdd',
-    component: AddProposal
+    path: '/companies/:id/proposals/add',
+    name: 'CompanyProposalsAdd',
+    component: AddProposal,
+    props: true
   },
   {
-    path: '/companies/proposals/:id',
-    name: 'propoosalDetails',
+    path: '/companies/:id/proposals/:id',
+    name: 'PropoosalDetails',
     component: ProposalDetails,
     props: true
   },

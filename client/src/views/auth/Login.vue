@@ -2,7 +2,7 @@
   <div class="login-area login-s2">
     <div class="container">
       <div class="login-box box-center">
-        <LoginForm :title="'Login as a student'"/>
+        <LoginForm :title="'Login'"/>
       </div>
     </div>
   </div>
@@ -13,12 +13,12 @@ import { Options, Vue } from 'vue-class-component'
 import LoginForm from '@/components/UI/organisms/LoginForm.vue'
 
 @Options({
-  name: 'studentLogin',
+  name: 'Login',
   components: {
     LoginForm
   }
 })
-export default class LoginStudent extends Vue {
+export default class Login extends Vue {
 }
 </script>
 

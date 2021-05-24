@@ -20,7 +20,7 @@ import Error from '@/components/UI/atoms/Error'
 const regexDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
 
 export default {
-  name: 'AddTaskForm',
+  name: 'StudentAddTask',
   components: {
     InputField,
     InputTextArea,

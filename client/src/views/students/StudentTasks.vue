@@ -30,7 +30,7 @@ const tasks = [
   }
 ]
 @Options({
-  name: 'studentTasks',
+  name: 'StudentTasks',
   components: {
     TasksList,
     Header,
