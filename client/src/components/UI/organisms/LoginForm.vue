@@ -4,6 +4,7 @@
       <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
       <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
       <Error v-if="error" :value="error"/>
+      <div class="loading" v-show="loading" role="alert">Even geduld</div>
       <div class="button-area">
         <Button :type="'submit'">Login</Button>
       </div>
@@ -33,7 +34,8 @@ export default {
       email: null,
       password: null,
       error: null,
-      submitted: false
+      submitted: false,
+      loading: false
     }
   },
   computed: {
@@ -74,6 +76,7 @@ export default {
   methods: {
     async Login () {
       this.submitted = true
+      this.loading = true
 
       if (this.hasErrors) {
         this.error = 'Het formulier bevat nog fouten'
@@ -81,6 +84,7 @@ export default {
       } else {
         this.error = null
       }
+      // use .finally code in fetch to set the loading variable false
     }
   }
 }
