@@ -1,4 +1,5 @@
 <template>
+  <!-- fix a tag - routerlink -->
   <a v-if="type !== 'submit'" @click="navigateTo(href)" class="button"><slot/></a>
   <button v-if="type === 'submit'" class="button" type="submit"><slot/></button>
 </template>

@@ -4,6 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -41,15 +42,20 @@ class LoginRequest extends FormRequest {
      */
     public function authenticate() {
         $this->ensureIsNotRateLimited();
-        $role = User::where('email', $this->email)->firstOrFail()->role;
-        if (Str::contains($role, ['coordinator', 'mentor'])) {
-            if (!Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
-                RateLimiter::hit($this->throttleKey());
+        try {
+            if (Str::contains(User::where('email', $this->email)->firstOrFail()->role, ['coordinator', 'mentor'])) {
+                if (!Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
+                    RateLimiter::hit($this->throttleKey());
 
-                throw ValidationException::withMessages([
-                    'email' => __('auth.failed'),
-                ]);
+                    throw ValidationException::withMessages([
+                        'email' => __('auth.failed'),
+                    ]);
+                }
             }
+        } catch (ModelNotFoundException $e) {
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
         }
         RateLimiter::clear($this->throttleKey());
     }

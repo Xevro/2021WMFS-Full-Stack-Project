@@ -12,13 +12,12 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Button from '@/components/UI/atoms/Button.vue'
 import Error from '@/components/UI/atoms/Error.vue'
 import FormTitle from '@/components/UI/atoms/FormTitle.vue'
 import InputTextField from '@/components/UI/molecules/InputTextField'
 const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const regexDigits = /\d/
-const regexCapital = /[A-Z]/
 
 export default {
   name: 'Login',
@@ -31,8 +30,8 @@ export default {
   },
   data () {
     return {
-      email: null,
-      password: null,
+      email: 'louis.dhont@student.odisee.be',
+      password: 'Azerty123',
       error: null,
       submitted: false,
       loading: false
@@ -58,15 +57,6 @@ export default {
       if (!this.password) {
         return 'Het wachtwoord veld is verplicht en werd niet ingevuld.'
       }
-      if (this.password.length < 8) {
-        return 'Het wachtwoord moet minstens 8 karakters lang zijn.'
-      }
-      if (!regexDigits.test(this.password)) {
-        return 'Het wachtwoord moet minstens 1 een nummer bevatten.'
-      }
-      if (!regexCapital.test(this.password)) {
-        return 'Het wachtwoord moet minstens 1 een hoofdletter bevatten.'
-      }
       return null
     },
     hasErrors () {
@@ -74,31 +64,29 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['logIn']),
     async Login () {
       this.submitted = true
+      if (this.hasErrors) {
+        return
+      }
       this.loading = true
 
       try {
-        await this.axios.get('sanctum/csrf-cookie')
-        const { data } = await this.axios.post(
-          'sanctum/login',
-          {
-            email: 'louis.dhont@student.odisee.be',
-            password: 'Azerty123'
-          }
-        )
-        console.log(data)
+        const val = await this.logIn({
+          email: this.email,
+          password: this.password
+        })
+        console.log(val)
       } catch (e) {
-        console.error(e)
+        if (e.response.status === 422) {
+          this.error = 'E-mail of wachtwoord is niet correct.'
+          return
+        }
+        this.error = 'Er is een onverwachte fout opgetreden.'
+      } finally {
+        this.loading = false
       }
-
-      if (this.hasErrors) {
-        this.error = 'Het formulier bevat nog fouten'
-        return null
-      } else {
-        this.error = null
-      }
-      // use .finally code in fetch to set the loading variable false
     }
   }
 }

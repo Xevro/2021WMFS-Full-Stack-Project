@@ -74,24 +74,22 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/proposal/assign', [CompanyProposalController::class, 'assignStudentToProposal'])->middleware(['auth']);
 });
 
-Route::post('/sanctum/login', function (Request $request) {
+Route::post('/client/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
     $role = User::where('email', $request->email)->firstOrFail()->role;
     if (Str::contains($role, ['student', 'company'])) {
         if (Auth::attempt($credentials)) {
-            // $request->session()->regenerate();
-            return response(['message' => 'The user has been authenticated successfully'], 200);
+            $request->session()->regenerate();
+            return $request->user();
         }
-        return response(['message' => 'The provided credentials do not match our records.'], 401);
-    } else {
-        return response(['message' => 'The provided credentials do not match our records.'], 401);
     }
+    return response(['message' => 'The provided credentials do not match our records.'], 401);
 });
 
-Route::post('/sanctum/logout', function (Request $request) {
+Route::post('/client/logout', function (Request $request) {
     Auth::guard('web')->logout();
     $request->session()->invalidate();
-    return response(['message' => 'The user has been logged out successfully'], 200);
+    return response(['message' => 'The user has been logged out successfully']);
 });
 
 require __DIR__ . '/auth.php';
