@@ -78,6 +78,20 @@ export default {
       this.submitted = true
       this.loading = true
 
+      try {
+        await this.axios.get('sanctum/csrf-cookie')
+        const { data } = await this.axios.post(
+          'sanctum/login',
+          {
+            email: 'louis.dhont@student.odisee.be',
+            password: 'Azerty123'
+          }
+        )
+        console.log(data)
+      } catch (e) {
+        console.error(e)
+      }
+
       if (this.hasErrors) {
         this.error = 'Het formulier bevat nog fouten'
         return null

@@ -63,13 +63,13 @@ const routes = [
     props: true
   },
   {
-    path: '/companies/:id/proposals/add',
+    path: '/companies/:compId/proposals/add',
     name: 'CompanyProposalsAdd',
     component: AddProposal,
     props: true
   },
   {
-    path: '/companies/:id/proposals/:id',
+    path: '/companies/:compId/proposals/:id',
     name: 'PropoosalDetails',
     component: ProposalDetails,
     props: true
