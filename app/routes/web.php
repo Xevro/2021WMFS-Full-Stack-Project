@@ -75,11 +75,9 @@ Route::prefix('dashboard')->group(function () {
 });
 
 Route::post('/client/login', function (Request $request) {
-    $credentials = $request->only('email', 'password');
-    $role = User::where('email', $request->email)->firstOrFail()->role;
-    if (Str::contains($role, ['student', 'company'])) {
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    if (Str::contains(User::where('email', $request->email)->firstOrFail()->role, ['student', 'company'])) {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            //$request->session()->regenerate();
             return $request->user();
         }
     }

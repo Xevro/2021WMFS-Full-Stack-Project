@@ -10,6 +10,9 @@ import StudentDetails from '@/views/students/StudentDetails.vue'
 import AddProposal from '@/views/company/AddProposal.vue'
 import StudentTasks from '@/views/students/StudentTasks.vue'
 import Error404 from '@/views/Error404.vue'
+import store from '@/store/index'
+
+// routes lazyloaden!
 
 const routes = [
   {
@@ -26,30 +29,50 @@ const routes = [
   {
     path: '/students',
     name: 'StudentHome',
-    component: StudentHome
+    component: StudentHome,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'student'
+    }
   },
   {
     path: '/students/:id',
     name: 'StudentDetails',
     component: StudentDetails,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'student'
+    }
   },
   {
     path: '/students/:id/tasks',
     name: 'StudentTasks',
     component: StudentTasks,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'student'
+    }
   },
   {
     path: '/students/:id/tasks/add',
     name: 'StudentAddTask',
     component: AddTask,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'student'
+    }
   },
   {
     path: '/companies',
     name: 'CompanyHome',
-    component: CompanyHome
+    component: CompanyHome,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'company'
+    }
   },
   {
     path: '/companies/register',
@@ -60,19 +83,31 @@ const routes = [
     path: '/companies/:id/proposals',
     name: 'CompanyProposals',
     component: CompanyProposals,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'company'
+    }
   },
   {
     path: '/companies/:compId/proposals/add',
     name: 'CompanyProposalsAdd',
     component: AddProposal,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'company'
+    }
   },
   {
     path: '/companies/:compId/proposals/:id',
     name: 'PropoosalDetails',
     component: ProposalDetails,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'company'
+    }
   },
   {
     path: '/error404',
@@ -90,6 +125,24 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
+    next({ name: 'Login' })
+    return
+  }
+  if (!to.meta.allowedRole) {
+    next()
+    return
+  }
+  if (to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') {
+    next()
+    return
+  }
+  if (to.meta.allowedRole === 'company' && store.getters.getAuthRole === 'company') {
+    next()
+  }
 })
 
 export default router

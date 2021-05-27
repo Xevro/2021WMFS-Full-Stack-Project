@@ -64,26 +64,31 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['logIn']),
+    ...mapActions(['logIn']),
     async Login () {
       this.submitted = true
       if (this.hasErrors) {
-        return
+        return null
       }
       this.loading = true
 
       try {
-        const val = await this.logIn({
+        const result = await this.logIn({
           email: this.email,
           password: this.password
         })
-        console.log(val)
-      } catch (e) {
-        if (e.response.status === 422) {
-          this.error = 'E-mail of wachtwoord is niet correct.'
-          return
+        if (result.role === 'student') {
+          await this.$router.push({ name: 'StudentHome' })
+        } else if (result.role === 'company') {
+          await this.$router.push({ name: 'CompanyHome' })
         }
+      } catch (e) {
+        /* if (e.response.status === 422) {
+          this.error = 'E-mail of wachtwoord is niet correct.'
+          return null
+        } */
         this.error = 'Er is een onverwachte fout opgetreden.'
+        return null
       } finally {
         this.loading = false
       }
