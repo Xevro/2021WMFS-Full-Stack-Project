@@ -6,7 +6,7 @@
       <Error v-if="error" :value="error"/>
       <div class="loading" v-show="loading" role="alert">Even geduld</div>
       <div class="button-area">
-        <Button :type="'submit'">Login</Button>
+        <Button :disabled="submitted" :type="'submit'">Login</Button>
       </div>
   </form>
 </template>
@@ -88,6 +88,7 @@ export default {
           return null
         } */
         this.error = 'Er is een onverwachte fout opgetreden.'
+        this.submitted = false
         return null
       } finally {
         this.loading = false

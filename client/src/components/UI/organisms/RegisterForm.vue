@@ -8,7 +8,7 @@
       <InputTextField id="passwordCheck" required="true" v-model="passwordCheck" label="Wachtwoord controle" type="password" :error="passwordCheckError"/>
       <Error v-if="error" :value="error"/>
       <div class="button-area">
-        <Button :type="'submit'">Registreer</Button>
+        <Button :disabled="submitted" :type="'submit'">Registreer</Button>
       </div>
   </form>
 </template>
@@ -119,6 +119,7 @@ export default {
         this.error = 'Het formulier bevat nog fouten.'
         return null
       } else {
+        this.submitted = false
         this.error = null
       }
     }

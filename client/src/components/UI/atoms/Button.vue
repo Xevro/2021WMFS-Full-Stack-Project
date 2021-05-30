@@ -1,13 +1,13 @@
 <template>
   <!-- fix a tag - routerlink -->
   <a v-if="type !== 'submit'" @click="navigateTo(href)" class="button"><slot/></a>
-  <button v-if="type === 'submit'" class="button" type="submit"><slot/></button>
+  <button :disabled="disabled" v-if="type === 'submit'" class="button" type="submit"><slot/></button>
 </template>
 
 <script>
 export default {
   name: 'Button',
-  props: ['type', 'href'],
+  props: ['type', 'href', 'disabled'],
   methods: {
     navigateTo (href) {
       this.$router.push({ path: href })
