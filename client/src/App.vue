@@ -5,7 +5,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
+export default {
+  ...mapActions(['tryAutoLogin']),
+  created () {
+    // autologin
+    // this.tryAutoLogin()
+    console.log('test')
+  }
+}
 </script>
 
 <style>
