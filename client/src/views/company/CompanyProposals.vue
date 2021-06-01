@@ -3,6 +3,8 @@
     <Header :type-user="'company'"/>
     <div class="lists">
       <ProposalsList :data="companies" title="Al mijn stage voorstellen"/>
+      <p v-if="nothingFound">Geen taken gevonden</p>
+      <div v-if="loading" role="alert">laden van gegevens.</div>
     </div>
   </div>
   <div class="footer">
@@ -15,51 +17,7 @@ import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
-
-const companyGegevens = [
-  {
-    company: 'bedrijf1',
-    created_on: '27-01-2021',
-    start_date: '12-03-2021',
-    end_date: '18-07-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  },
-  {
-    company: 'bedrijf2',
-    created_on: '10-02-2021',
-    start_date: '12-05-2021',
-    end_date: '07-06-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  },
-  {
-    company: 'bedrijf3',
-    created_on: '03-02-2021',
-    start_date: '26-04-2021',
-    end_date: '08-05-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  },
-  {
-    company: 'bedrijf4',
-    created_on: '27-04-2021',
-    start_date: '12-03-2021',
-    end_date: '18-07-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  }
-]
-const company = [
-  {
-    company: 'bedrijf1',
-    created_on: '27-01-2021',
-    start_date: '12-03-2021',
-    end_date: '18-07-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  }
-]
+import { myAxios } from '@/main'
 
 @Options({
   components: {
@@ -69,7 +27,34 @@ const company = [
   },
   data () {
     return {
-      companies: companyGegevens
+      companies: null,
+      nothingFound: false,
+      loading: false,
+      error: null
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.loading = true
+      console.log(this.companyId)
+      myAxios.get('api/companies/' + 1 + '/proposals')
+        .then(response => {
+          if (!response.data.data.length) {
+            this.nothingFound = true
+          }
+          this.companies = response.data.data
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        }).finally(() => {
+          this.loading = false
+          return null
+        })
+      return null
     }
   }
 })

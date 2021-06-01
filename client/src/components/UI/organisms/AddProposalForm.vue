@@ -7,7 +7,7 @@
       <InputTextArea class="input-field" required="true" type="text" id="description" label="Beschrijving" v-model="description" :error="descriptionError"/>
       <Error v-if="error" :value="error"/>
       <div class="button-area">
-        <Button :type="'submit'">Voeg voorstel toe</Button>
+        <Button :disabled="submitted" :type="'submit'">Voeg voorstel toe</Button>
       </div>
     </div>
   </form>
@@ -95,6 +95,7 @@ export default {
 
       if (this.hasErrors) {
         this.error = 'Het formulier bevat nog fouten'
+        this.submitted = false
         return null
       } else {
         this.error = null
