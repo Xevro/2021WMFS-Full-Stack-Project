@@ -30,7 +30,7 @@ export default {
   },
   data () {
     return {
-      email: 'hr@fleetmaster.com',
+      email: 'louis.dhont@student.odisee.be',
       password: 'Azerty123',
       error: null,
       submitted: false,
@@ -76,9 +76,10 @@ export default {
           email: this.email,
           password: this.password
         })
-        if (result[0].role === 'student') {
+        console.log(result)
+        if (result.role === 'student') {
           await this.$router.push({ name: 'StudentHome' })
-        } else if (result[0].role === 'company') {
+        } else if (result.role === 'company') {
           await this.$router.push({ name: 'CompanyHome', params: { id: result[0].company.id } })
         }
       } catch (e) {

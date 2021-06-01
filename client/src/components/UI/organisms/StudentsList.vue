@@ -4,16 +4,16 @@
       <table class="table">
         <thead>
         <tr>
-          <th class="columns" scope="col">Naam</th>
+          <th scope="col">Naam</th>
           <th class="columns" scope="col">studenten nummer</th>
           <th class="columns" scope="col">Mentor</th>
-          <th class="columns" scope="col">Stage status</th>
+          <th scope="col">Stage status</th>
           <th scope="col">Actie</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="(item, index) in data" :key="'item' + index">
-          <td class="columns">{{ item.firstname + ' ' + item.lastname }}</td>
+          <td>{{ item.firstname + ' ' + item.lastname }}</td>
           <td class="columns">{{ item.r_number }}</td>
           <td class="columns">{{ item.mentor.firstname + ' ' + item.mentor.lastname }}</td>
           <td><span class="status">{{ item.approved }}</span></td>

@@ -41,7 +41,9 @@ export default {
       await myAxios.get('sanctum/csrf-cookie')
       const { data } = await myAxios.post('client/login', formData)
       commit('setUser', data)
-      commit('setCompanyId', data[0].company.id)
+      if (data.role === 'company') {
+        commit('setCompanyId', data[0].company.id)
+      }
       return data
     },
     async logOut (commit: any) {

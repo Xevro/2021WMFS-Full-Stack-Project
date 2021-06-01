@@ -56,7 +56,7 @@ const routes = [
   },
   {
     path: '/students/:id/details',
-    name: 'StudentDetails',
+    name: 'StudentInfoDetails',
     component: StudentInfoDetails,
     props: true,
     meta: {
