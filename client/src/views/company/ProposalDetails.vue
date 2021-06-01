@@ -10,9 +10,9 @@
         <p>De stage loop van {{ details.start_period }} tot {{ details.end_period }}.</p>
         <p>Bedrijf: {{ details.company.name }}</p>
         <p>Email adres bedrijf: {{ details.company.user.email }}</p>
-      <div class="information-box">
-      <p class="title">Stage beschrijving</p>
-        <p>{{ details.description }}</p>
+        <div class="information-box">
+          <p class="title">Stage beschrijving</p>
+          <p>{{ details.description }}</p>
         </div>
       </div>
     </div>

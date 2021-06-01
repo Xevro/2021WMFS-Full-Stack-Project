@@ -3,6 +3,7 @@
     <Header :type-user="'student'"/>
     <div class="lists">
       <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
+      <p v-if="nothingFound">Geen taken gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
       <div class="button-add-task">
       <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
@@ -20,14 +21,12 @@ import Button from '@/components/UI/atoms/Button.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
-import ContractsList from '@/components/UI/organisms/ContractsList.vue'
 import { myAxios } from '@/main'
 
 @Options({
   name: 'StudentHome',
   components: {
     ProposalsList,
-    ContractsList,
     Button,
     Footer,
     Header
@@ -35,6 +34,7 @@ import { myAxios } from '@/main'
   data () {
     return {
       companies: null,
+      nothingFound: false,
       loading: false,
       error: null
     }
@@ -48,6 +48,9 @@ import { myAxios } from '@/main'
       this.loading = true
       myAxios.get('api/proposals')
         .then(response => {
+          if (!response.data.data.length) {
+            this.nothingFound = true
+          }
           this.companies = response.data.data
         })
         .catch(error => {

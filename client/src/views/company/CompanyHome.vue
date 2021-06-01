@@ -7,7 +7,7 @@
         <Button :href="'/companies/1/proposals/add'">Voeg een voorstel toe</Button>
       </div>
       <div class="my-contract">
-        <ContractsList :data="companies" title="Mijn lopende stage contracten"/>
+        <LikedProposalsList :data="companies" title="Mijn lopende stage contracten"/>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
-import ContractsList from '@/components/UI/organisms/ContractsList.vue'
+import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Button from '@/components/UI/atoms/Button.vue'
 import Header from '@/components/UI/organisms/Header.vue'
@@ -62,7 +62,7 @@ const companyGegevens = [
 @Options({
   components: {
     ProposalsList,
-    ContractsList,
+    LikedProposalsList,
     Button,
     Footer,
     Header

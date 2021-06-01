@@ -4,31 +4,31 @@
       <InputSearchField class="input-field" name="Search" type="text" placeholder="Search"/>
     </div>
     <h2>{{ title }}</h2>
-          <table class="table">
-            <thead>
-            <tr>
-              <th scope="col">Bedrijf</th>
-              <th class="columns" scope="col">Toegevoegd op</th>
-              <th class="columns" scope="col">Start datum</th>
-              <th class="columns" scope="col">End datum</th>
-              <th class="columns" scope="col">Beschrijving</th>
-              <th scope="col">status voorstel</th>
-              <th scope="col">Actie</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(item, index) in data" :key="'item' + index">
-              <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">{{ item.company.name }}</router-link></td>
-              <td class="columns">{{ item.created_on }}</td>
-              <td class="columns">{{ item.start_period }}</td>
-              <td class="columns">{{ item.end_period }}</td>
-              <td class="columns">{{ item.description }}</td>
-              <td><span class="status">{{ item.status }}</span></td>
-              <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">info</router-link></td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Bedrijf</th>
+          <th class="columns" scope="col">Toegevoegd op</th>
+          <th class="columns" scope="col">Start datum</th>
+          <th class="columns" scope="col">End datum</th>
+          <th class="columns" scope="col">Beschrijving</th>
+          <th scope="col">status voorstel</th>
+          <th scope="col">Actie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(item, index) in data" :key="'item' + index">
+          <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">{{ item.company.name }}</router-link></td>
+          <td class="columns">{{ item.created_on }}</td>
+          <td class="columns">{{ item.start_period }}</td>
+          <td class="columns">{{ item.end_period }}</td>
+          <td class="columns">{{ item.description }}</td>
+          <td><span class="status">{{ item.status }}</span></td>
+          <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">info</router-link></td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
 </template>
 
 <script>

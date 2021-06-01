@@ -3,6 +3,7 @@
     <Header :type-user="'student'"/>
     <div class="lists">
       <TasksList :data="tasks" title="Mijn taken"/>
+      <p v-if="nothingFound">Geen taken gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
     </div>
   </div>
@@ -29,6 +30,7 @@ import { myAxios } from '@/main'
     return {
       tasks: null,
       studentId: this.$route.params.id,
+      nothingFound: false,
       loading: false,
       error: null
     }
@@ -42,6 +44,9 @@ import { myAxios } from '@/main'
       this.loading = true
       myAxios.get('api/students/' + this.studentId + '/tasks')
         .then(response => {
+          if (!response.data.data.length) {
+            this.nothingFound = true
+          }
           this.tasks = response.data.data
         })
         .catch(error => {

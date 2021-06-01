@@ -24,8 +24,8 @@
           </li>
           <!-- PROBLEEM: router-link gebruiken zorgt ervoor dat de pagina onder de huidige pagina plakt. Enkel op de proposal details pagina -->
           <li class='navbar-item'>
-            <a href="/students/1" class="navbar-link">Mijn contracten</a>
-            <!-- <router-link :to="{ name: 'StudentDetails', params: { id: 1 } }" class="navbar-link">Mijn contracten</router-link> -->
+            <a href="/students/1" class="navbar-link">Mijn account</a>
+            <!-- <router-link :to="{ name: 'StudentDetails', params: { id: 1 } }" class="navbar-link">Mijn account</router-link> -->
           </li>
           <li class='navbar-item'>
             <router-link :to="{ name: 'StudentTasks', params: { id: 1 } }" class="navbar-link">Mijn taken</router-link>

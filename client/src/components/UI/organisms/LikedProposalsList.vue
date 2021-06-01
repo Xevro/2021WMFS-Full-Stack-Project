@@ -14,12 +14,12 @@
             </thead>
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
-              <td><a href="/students/1">{{ item.company }}</a></td>
-              <td class="columns">{{ item.created_on }}</td>
-              <td class="columns">{{ item.start_date }}</td>
-              <td class="columns">{{ item.end_date }}</td>
-              <td class="columns">{{ item.description }}</td>
-              <td><a href="/students/1">info</a></td>
+              <td><router-link :to="'/companies/' + item.proposal.company.id + '/proposals/' + item.proposal.id">{{ item.proposal.company.name }}</router-link></td>
+              <td class="columns">{{ item.proposal.created_on }}</td>
+              <td class="columns">{{ item.proposal.start_period }}</td>
+              <td class="columns">{{ item.proposal.end_period }}</td>
+              <td class="columns">{{ item.proposal.description }}</td>
+              <td><router-link :to="'/companies/' + item.proposal.company.id + '/proposals/' + item.proposal.id">info</router-link></td>
             </tr>
             </tbody>
           </table>
@@ -29,7 +29,7 @@
 <script>
 
 export default {
-  name: 'ContractsList',
+  name: 'LikedProposalsList',
   props: ['data', 'title']
 }
 </script>
@@ -40,7 +40,7 @@ h2 {
 }
 
 .column-wide {
-  margin-left: 100px;
+  margin-left: 30px;
   margin-right: 100px;
 }
 
@@ -48,7 +48,6 @@ h2 {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent;
 }
 
 li {
@@ -56,19 +55,14 @@ li {
   list-style: none
 }
 
-.status {
-  color: #1A7EF2;
-  font-weight: bold;
-}
-
 .table td {
-  padding: .9rem;
+  padding: .3rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6
 }
 
 .table th {
-  padding: 0.8rem;
+  padding: .8rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6
 }
@@ -80,8 +74,8 @@ a {
 
 @media screen and (max-width: 700px) {
   .column-wide {
-    margin-left: 0.625rem;
-    margin-right: 0.625rem;
+    margin-left: .625rem;
+    margin-right: .625rem;
   }
 
   .table {
