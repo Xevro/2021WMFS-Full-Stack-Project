@@ -25,8 +25,10 @@ export default {
     }
   },
   actions: {
-    async tryAutoLogin () {
+    async tryLogIn ({ commit }:any) {
       if (document.cookie.indexOf('XSRF-TOKEN') === -1) { // reject, geen cookie aanwezig
+        const { data } = await myAxios.get('client/login')
+        commit('setUser', data)
       }
     },
     async logIn ({ commit }:any, formData: any) {

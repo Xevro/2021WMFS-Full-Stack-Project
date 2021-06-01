@@ -51,6 +51,8 @@ Route::apiResource('companies', CompanyController::class)->middleware('auth:sanc
 // proposals through company
 Route::apiResource('companies.proposals', CompanyProposalController::class)->middleware('auth:sanctum');
 
+Route::get('/proposals', [CompanyProposalController::class, 'proposals']);
+
 // students
 Route::apiResource('students', StudentController::class)->middleware('auth:sanctum');
 

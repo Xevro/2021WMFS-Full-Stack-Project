@@ -3,6 +3,7 @@
   <Header :type-user="'student'"/>
   <div class="lists">
     <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
+    <div v-if="loading" role="alert">laden van gegevens.</div>
     <div class="button-add-task">
     <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
     </div>
@@ -20,41 +21,7 @@ import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import ContractsList from '@/components/UI/organisms/ContractsList.vue'
-
-const companyGegevens = [
-  {
-    company: 'bedrijf1',
-    created_on: '27-01-2021',
-    start_date: '12-03-2021',
-    end_date: '18-07-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  },
-  {
-    company: 'bedrijf2',
-    created_on: '10-02-2021',
-    start_date: '12-05-2021',
-    end_date: '07-06-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  },
-  {
-    company: 'bedrijf3',
-    created_on: '03-02-2021',
-    start_date: '26-04-2021',
-    end_date: '08-05-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  },
-  {
-    company: 'bedrijf4',
-    created_on: '27-04-2021',
-    start_date: '12-03-2021',
-    end_date: '18-07-2021',
-    description: 'stage voorstel beschrijving in bedrijf x...',
-    status: 'vrij'
-  }
-]
+import { myAxios } from '@/main'
 
 @Options({
   name: 'StudentHome',
@@ -67,10 +34,34 @@ const companyGegevens = [
   },
   data () {
     return {
-      companies: companyGegevens
+      companies: null,
+      loading: false,
+      post: null,
+      error: null
     }
   },
+  created () {
+    // fetch the data when the view is created and the data is
+    // already being observed
+    this.fetchData()
+  },
   methods: {
+    fetchData () {
+      this.error = this.post = null
+      this.loading = true
+      myAxios.get('api/proposals')
+        .then(response => {
+          this.companies = response.data.data
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        }).finally(() => {
+          this.loading = false
+          return null
+        })
+      return null
+    }
   }
 })
 export default class studentHome extends Vue {

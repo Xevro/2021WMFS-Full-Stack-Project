@@ -1,6 +1,7 @@
 <template>
  <div id="app">
     <router-view/>
+   <div class="loading" v-if="loading" role="alert">U wordt automatisch ingelogd.</div>
   </div>
 </template>
 
@@ -8,13 +9,20 @@
 import { mapActions } from 'vuex'
 
 export default {
-  ...mapActions(['tryAutoLogin']),
+  data () {
+    return {
+      loading: false
+    }
+  },
+  methods: {
+    ...mapActions(['tryLogIn'])
+  },
   created () {
-    // autologin
-    // this.tryAutoLogin()
-    console.log('test')
+    this.loading = true
+    // this.tryLogIn().finally(() => (this.loading = false))
   }
 }
+
 </script>
 
 <style>

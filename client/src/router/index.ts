@@ -127,7 +127,7 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
     next({ name: 'Login' })
     return
@@ -143,6 +143,6 @@ router.beforeEach((to, from, next) => {
   if (to.meta.allowedRole === 'company' && store.getters.getAuthRole === 'company') {
     next()
   }
-})
+}) */
 
 export default router

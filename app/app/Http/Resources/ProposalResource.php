@@ -19,6 +19,7 @@ class ProposalResource extends JsonResource {
             'description' => $this->description,
             'start_period' => $this->start_period,
             'end_period' => $this->end_period,
+            'created_on' => $this->created_at,
             'contract_file_location' => $this->contract_file_location,
             'company' => new CompanyResource($this->company)
         ];

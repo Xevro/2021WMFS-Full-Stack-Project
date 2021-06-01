@@ -23,6 +23,13 @@ class CompanyProposalController extends Controller {
         return ProposalResource::collection(Proposal::where('company_id', $id)->get());
     }
 
+    public function proposals() {
+        // api/companies/proposals
+        // show all proposals that are allowed
+        Gate::authorize('api-view-proposals');
+        return ProposalResource::collection(Proposal::where('visibility', 1)->get());
+    }
+
     /**
      * Store a newly created resource in storage.
      *
