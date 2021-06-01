@@ -5,6 +5,7 @@ interface User {
   email: string,
   role: string
 }
+
 interface State {
   user: User
 }
@@ -13,15 +14,20 @@ export default {
   namespaced: false,
   state: {
     user: null,
-    authRole: null
+    authRole: null,
+    companyId: null
   },
   getters: {
     isLoggedIn: ({ user }: State): boolean => !!user,
-    getAuthRole: ({ user }: State): string => user?.role
+    getAuthRole: ({ user }: State): string => user?.role,
+    getCompanyId: ({ companyId }: any): number => companyId
   },
   mutations: {
     setUser (state: State, data: User) {
       state.user = data
+    },
+    setCompanyId (state: any, id: number) {
+      state.companyId = id
     }
   },
   actions: {
@@ -35,6 +41,7 @@ export default {
       await myAxios.get('sanctum/csrf-cookie')
       const { data } = await myAxios.post('client/login', formData)
       commit('setUser', data)
+      commit('setCompanyId', data[0].company.id)
       return data
     },
     async logOut (commit: any) {

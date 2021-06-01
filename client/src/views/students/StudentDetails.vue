@@ -11,10 +11,9 @@
         <p>Stage mentor: {{  student.mentor.firstname + ' ' + student.mentor.lastname }}</p>
       </div>
       <div class="lists">
-          <LikedProposalsList :data="proposalLikes" title="Mijn leuk gevonden stage voorstellen"/>
-          <p v-if="nothingFound">Geen taken gevonden</p>
-          <div v-if="loading" role="alert">laden van gegevens.</div>
-          
+        <LikedProposalsList :data="proposalLikes" title="Mijn leuk gevonden stage voorstellen"/>
+        <p v-if="nothingFound">Geen taken gevonden</p>
+        <div v-if="loading" role="alert">laden van gegevens.</div>
       </div>
       </div>
   </div>
@@ -29,9 +28,11 @@ import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue'
 import { myAxios } from '@/main'
+import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 
 @Options({
   components: {
+    ProposalsList,
     Footer,
     Header,
     LikedProposalsList
