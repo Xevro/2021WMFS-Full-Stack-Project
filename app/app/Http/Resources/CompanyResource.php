@@ -14,7 +14,6 @@ class CompanyResource extends JsonResource {
     public function toArray($request) {
         return [
             'id' => $this->id,
-            'email' => $this->email,
             'kbo_number' => $this->kbo_number,
             'name' => $this->name,
             'user' => new UserResource($this->user)

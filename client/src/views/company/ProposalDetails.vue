@@ -6,13 +6,13 @@
         <p>Voeg toe aan favorieten</p>
       </div>
       <div class="content-info-box">
-      <h3 class="title-page">Stage voorstel #1</h3>
-      <p>De stage loop van 23-03-2021 tot 29-06-2021.</p>
-      <p>Bedrijf: BVBA E&Y</p>
+        <h3 class="title-page">Stage voorstel #{{ details.id }}</h3>
+        <p>De stage loop van {{ details.start_period }} tot {{ details.end_period }}.</p>
+        <p>Bedrijf: {{ details.company.name }}</p>
+        <p>Email adres bedrijf: {{ details.company.user.email }}</p>
       <div class="information-box">
       <p class="title">Stage beschrijving</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis et, adipiscing non, eu scelerisque nec feugiat enim. Nunc nisi, cursus in a curabitur. Metus id ornare duis feugiat tortor magna sed.Dictumst sed faucibus varius arcu a mi enim. A tellus rhoncus nunc enim eu, semper ut tellus. Augue quam viverra at ut duis arcu, tellus vestibulum consequat. Dolor praesent nec maecenas turpis egestas ipsum et dignissim.</p>
-        <p>Dis amet, ut ipsum magna condimentum libero, gravida elementum tellus. Eget aliquam purus sed id. Massa amet, semper amet, augue eu suspendisse ornare. Risus ullamcorper dolor nulla consequat est vulputate mattis. Leo, volutpat ligula suspendisse vestibulum scelerisque tincidunt at est. Feugiat quis dis commodo leo ut cursus pulvinar.</p>
+        <p>{{ details.description }}</p>
         </div>
       </div>
     </div>
@@ -26,11 +26,43 @@
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
+import { myAxios } from '@/main'
 
 @Options({
+  name: 'ProposalDetails',
   components: {
     Footer,
     Header
+  },
+  data () {
+    return {
+      details: null,
+      companyId: this.$route.params.compId,
+      proposalId: this.$route.params.id,
+      loading: false,
+      error: null
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      // this.error = this.post = null
+      this.loading = true
+      myAxios.get('api/companies/' + this.companyId + '/proposals/' + this.proposalId)
+        .then(response => {
+          this.details = response.data.data
+        })
+        .catch(error => {
+          console.log(error)
+          this.error = true
+        }).finally(() => {
+          this.loading = false
+          return null
+        })
+      return null
+    }
   }
 })
 export default class ProposalDetails extends Vue {

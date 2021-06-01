@@ -1,13 +1,13 @@
 <template>
   <div class="page">
-  <Header :type-user="'student'"/>
-  <div class="lists">
-    <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
-    <div v-if="loading" role="alert">laden van gegevens.</div>
-    <div class="button-add-task">
-    <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
+    <Header :type-user="'student'"/>
+    <div class="lists">
+      <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
+      <div v-if="loading" role="alert">laden van gegevens.</div>
+      <div class="button-add-task">
+      <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
+      </div>
     </div>
-  </div>
   </div>
   <div class="footer">
     <Footer/>
@@ -36,18 +36,15 @@ import { myAxios } from '@/main'
     return {
       companies: null,
       loading: false,
-      post: null,
       error: null
     }
   },
   created () {
-    // fetch the data when the view is created and the data is
-    // already being observed
     this.fetchData()
   },
   methods: {
     fetchData () {
-      this.error = this.post = null
+      // this.error = this.post = null
       this.loading = true
       myAxios.get('api/proposals')
         .then(response => {

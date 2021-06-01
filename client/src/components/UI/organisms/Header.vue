@@ -1,9 +1,9 @@
 <template>
   <header id='navbar'>
     <nav class='navbar-container container'>
-      <a href='/' class='home-link'>
+      <router-link to="/" class='home-link'>
         Stage Tool
-      </a>
+      </router-link>
       <button type='button' class='navbar-toggle' aria-label='Open navigation menu'>
         <span class='icon-bar'></span>
         <span class='icon-bar'></span>
@@ -12,21 +12,23 @@
       <div class='navbar-menu'>
         <ul v-if="typeUser === 'company'" class='navbar-links'>
           <li class='navbar-item'>
-            <router-link to="/companies" class="navbar-link">Overzicht</router-link>
+            <router-link :to="{ name: 'CompanyHome' }" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link to="/companies/1/proposals" class="navbar-link">Mijn voorstellen</router-link>
+            <router-link :to="{ name: 'CompanyProposals', params: { id: 1 } }" class="navbar-link">Mijn voorstellen</router-link>
           </li>
         </ul>
         <ul v-if="typeUser === 'student'" class='navbar-links'>
           <li class='navbar-item'>
             <router-link to="/" class="navbar-link">Overzicht</router-link>
           </li>
+          <!-- PROBLEEM: router-link gebruiken zorgt ervoor dat de pagina onder de huidige pagina plakt. Enkel op de proposal details pagina -->
           <li class='navbar-item'>
-            <router-link to="/students/1" class="navbar-link">Mijn contracten</router-link>
+            <a href="/students/1" class="navbar-link">Mijn contracten</a>
+            <!-- <router-link :to="{ name: 'StudentDetails', params: { id: 1 } }" class="navbar-link">Mijn contracten</router-link> -->
           </li>
           <li class='navbar-item'>
-            <router-link to="/students/1/tasks" class="navbar-link">Mijn taken</router-link>
+            <router-link :to="{ name: 'StudentTasks', params: { id: 1 } }" class="navbar-link">Mijn taken</router-link>
           </li>
         </ul>
       </div>

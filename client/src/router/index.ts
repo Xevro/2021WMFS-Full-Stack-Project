@@ -101,12 +101,12 @@ const routes = [
   },
   {
     path: '/companies/:compId/proposals/:id',
-    name: 'PropoosalDetails',
+    name: 'ProposalDetails',
     component: ProposalDetails,
     props: true,
     meta: {
       requiresAuth: true,
-      allowedRole: 'company'
+      allowedRole: 'student'
     }
   },
   {
@@ -128,7 +128,7 @@ const router = createRouter({
 })
 
 /* router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
+   if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
     next({ name: 'Login' })
     return
   }
@@ -136,7 +136,7 @@ const router = createRouter({
     next()
     return
   }
-  if (to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') {
+  if ((to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') || to.meta.allowedRole === 'both') {
     next()
     return
   }
