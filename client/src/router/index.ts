@@ -1,18 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import StudentHome from '../views/students/StudentHome.vue'
-import Login from '../views/auth/Login.vue'
-import AddTask from '../views/students/AddTask.vue'
-import ProposalDetails from '../views/company/ProposalDetails.vue'
-import RegisterCompany from '../views/auth/RegisterCompany.vue'
-import CompanyHome from '../views/company/CompanyHome.vue'
-import CompanyProposals from '@/views/company/CompanyProposals.vue'
-import StudentDetails from '@/views/students/StudentDetails.vue'
-import AddProposal from '@/views/company/AddProposal.vue'
-import StudentTasks from '@/views/students/StudentTasks.vue'
-import Error404 from '@/views/Error404.vue'
-import store from '@/store/index'
-
-// routes lazyloaden!
+const Login = () => import('@/views/auth/Login.vue')
+const StudentHome = () => import('@/views/students/StudentHome.vue')
+const StudentDetails = () => import('@/views/students/StudentDetails.vue')
+const StudentTasks = () => import('@/views/students/StudentTasks.vue')
+const AddTask = () => import('@/views/students/AddTask.vue')
+const CompanyHome = () => import('@/views/company/CompanyHome.vue')
+const CompanyProposals = () => import('@/views/company/CompanyProposals.vue')
+const RegisterCompany = () => import('@/views/auth/RegisterCompany.vue')
+const AddProposal = () => import('@/views/company/AddProposal.vue')
+const ProposalDetails = () => import('@/views/company/ProposalDetails.vue')
+const Error404 = () => import('@/views/Error404.vue')
+// import store from '@/store/index'
 
 const routes = [
   {

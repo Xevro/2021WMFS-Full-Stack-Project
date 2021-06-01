@@ -11,7 +11,7 @@
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
               <td>{{ item.date }}</td>
-              <td class="columns">{{ item.description }}</td>
+              <td class="columns">{{ item.task }}</td>
             </tr>
             </tbody>
           </table>

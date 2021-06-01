@@ -3,6 +3,7 @@
     <Header :type-user="'student'"/>
     <div class="lists">
       <TasksList :data="tasks" title="Mijn taken"/>
+      <div v-if="loading" role="alert">laden van gegevens.</div>
     </div>
   </div>
   <div class="footer">
@@ -15,20 +16,8 @@ import { Options, Vue } from 'vue-class-component'
 import TasksList from '@/components/UI/organisms/TasksList.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
-const tasks = [
-  {
-    date: '27-01-2021',
-    description: 'Nieuwe taak toevoegd op mijn stage'
-  },
-  {
-    date: '28-01-2021',
-    description: 'Netwerken ingesteld met httpd'
-  },
-  {
-    date: '29-01-2021',
-    description: 'Server herstart... Fout gevonden...'
-  }
-]
+import { myAxios } from '@/main'
+
 @Options({
   name: 'StudentTasks',
   components: {
@@ -38,7 +27,31 @@ const tasks = [
   },
   data () {
     return {
-      tasks: tasks
+      tasks: null,
+      studentId: this.$route.params.id,
+      loading: false,
+      error: null
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      // this.error = this.post = null
+      this.loading = true
+      myAxios.get('api/students/' + this.studentId + '/tasks')
+        .then(response => {
+          this.tasks = response.data.data
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        }).finally(() => {
+          this.loading = false
+          return null
+        })
+      return null
     }
   }
 })
