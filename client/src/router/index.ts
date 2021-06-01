@@ -10,6 +10,7 @@ const RegisterCompany = () => import('@/views/auth/RegisterCompany.vue')
 const AddProposal = () => import('@/views/company/AddProposal.vue')
 const ProposalDetails = () => import('@/views/company/ProposalDetails.vue')
 const Error404 = () => import('@/views/Error404.vue')
+const StudentInfoDetails = () => import('@/views/company/StudentInfoDetails.vue')
 // import store from '@/store/index'
 
 const routes = [
@@ -51,6 +52,16 @@ const routes = [
     meta: {
       requiresAuth: true,
       allowedRole: 'student'
+    }
+  },
+  {
+    path: '/students/:id/details',
+    name: 'StudentDetails',
+    component: StudentInfoDetails,
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'company'
     }
   },
   {

@@ -3,12 +3,15 @@
     <Header :type-user="'company'"/>
     <div class="lists">
       <ProposalsList :data="companies" title="Mijn actieve stage voorstellen"/>
-      <p v-if="nothingFound">Geen taken gevonden</p>
+      <p v-if="nothingFound">Geen gegevens gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
       <div class="button-add-proposal">
         <Button :href="'/companies/1/proposals/add'">Voeg een voorstel toe</Button>
       </div>
-      <div class="my-contract">
+      <div class="my-students">
+        <StudentsList :data="students" title="Studenten overzicht"/>
+        <p v-if="nothingFoundStudents">Geen gegevens gevonden</p>
+        <div v-if="loadingStudents" role="alert">laden van gegevens.</div>
       </div>
     </div>
   </div>
@@ -26,9 +29,11 @@ import Button from '@/components/UI/atoms/Button.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import { myAxios } from '@/main'
 import store from '@/store/index'
+import StudentsList from '@/components/UI/organisms/StudentsList.vue'
 
 @Options({
   components: {
+    StudentsList,
     ProposalsList,
     Button,
     Footer,
@@ -37,14 +42,18 @@ import store from '@/store/index'
   data () {
     return {
       companies: null,
+      students: null,
       companyId: store.getters.getCompanyId,
       nothingFound: false,
+      nothingFoundStudents: false,
       loading: false,
+      loadingStudents: false,
       error: null
     }
   },
   created () {
     this.fetchData()
+    this.fetchStudentData()
   },
   methods: {
     fetchData () {
@@ -65,6 +74,24 @@ import store from '@/store/index'
           return null
         })
       return null
+    },
+    fetchStudentData () {
+      this.loadingStudents = true
+      myAxios.get('api/students')
+        .then(response => {
+          if (!response.data.data.length) {
+            this.nothingFoundStudents = true
+          }
+          this.students = response.data.data
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        }).finally(() => {
+          this.loadingStudents = false
+          return null
+        })
+      return null
     }
   }
 })
@@ -72,7 +99,7 @@ export default class CompanyHome extends Vue {
 }
 </script>
 <style scoped>
-.my-contract {
+.my-students {
   margin-top: 100px;
 }
 

@@ -30,6 +30,7 @@ import { myAxios } from '@/main'
       companies: null,
       nothingFound: false,
       loading: false,
+      companyId: this.$route.params.id,
       error: null
     }
   },
@@ -40,7 +41,7 @@ import { myAxios } from '@/main'
     fetchData () {
       this.loading = true
       console.log(this.companyId)
-      myAxios.get('api/companies/' + 1 + '/proposals')
+      myAxios.get('api/companies/' + this.companyId + '/proposals')
         .then(response => {
           if (!response.data.data.length) {
             this.nothingFound = true

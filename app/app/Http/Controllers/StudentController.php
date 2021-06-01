@@ -17,10 +17,11 @@ class StudentController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index() {
         // no need to show all students
+        return StudentResource::collection(Student::all());
     }
 
     /**
