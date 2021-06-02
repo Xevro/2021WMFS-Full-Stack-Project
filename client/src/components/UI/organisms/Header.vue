@@ -1,7 +1,10 @@
 <template>
   <header id='navbar'>
     <nav class='navbar-container container'>
-      <router-link to="/" class='home-link'>
+      <router-link v-if="typeUser === 'student'" to="/students" class='home-link'>
+        Stage Tool
+      </router-link>
+      <router-link v-if="typeUser === 'company'" to="/companies" class='home-link'>
         Stage Tool
       </router-link>
       <button type='button' class='navbar-toggle' aria-label='Open navigation menu'>
@@ -22,13 +25,14 @@
           <li class='navbar-item'>
             <router-link to="/" class="navbar-link">Overzicht</router-link>
           </li>
-          <!-- PROBLEEM: router-link gebruiken zorgt ervoor dat de pagina onder de huidige pagina plakt. Enkel op de proposal details pagina -->
           <li class='navbar-item'>
-            <a href="/students/1" class="navbar-link">Mijn account</a>
-            <!-- <router-link :to="{ name: 'StudentDetails', params: { id: 1 } }" class="navbar-link">Mijn account</router-link> -->
+            <router-link :to="{ name: 'StudentDetails', params: { id: 1 } }" class="navbar-link">Mijn account</router-link>
           </li>
           <li class='navbar-item'>
             <router-link :to="{ name: 'StudentTasks', params: { id: 1 } }" class="navbar-link">Mijn taken</router-link>
+          </li>
+          <li class='navbar-item'>
+            <button @click="this.$store.dispatch('logOut')" class="navbar-link">Log uit</button>
           </li>
         </ul>
       </div>
@@ -37,6 +41,9 @@
 </template>
 
 <script>
+
+import store from '@/store/index'
+
 export default {
   name: 'Header',
   props: ['typeUser'],

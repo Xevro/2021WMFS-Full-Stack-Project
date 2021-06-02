@@ -8,10 +8,8 @@
 // import { mapActions } from 'vuex' <div v-if="loading" role="alert">U wordt automatisch ingelogd.</div>
 
 export default {
-  data () {
-    return {
-      loading: false
-    }
+  created () {
+    this.$store.dispatch('tryAutoLogIn', { route: this.$route })
   }
 }
 </script>

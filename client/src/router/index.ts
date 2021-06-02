@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store/index'
+
 const Login = () => import('@/views/auth/Login.vue')
 const StudentHome = () => import('@/views/students/StudentHome.vue')
 const StudentDetails = () => import('@/views/students/StudentDetails.vue')
@@ -11,7 +13,6 @@ const AddProposal = () => import('@/views/company/AddProposal.vue')
 const ProposalDetails = () => import('@/views/company/ProposalDetails.vue')
 const Error404 = () => import('@/views/Error404.vue')
 const StudentInfoDetails = () => import('@/views/company/StudentInfoDetails.vue')
-// import store from '@/store/index'
 
 const routes = [
   {
@@ -23,7 +24,11 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      requiresAuth: false,
+      allowedRole: 'both'
+    }
   },
   {
     path: '/students',
@@ -136,22 +141,20 @@ const router = createRouter({
   routes
 })
 
-/* router.beforeEach((to, from, next) => {
-   if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
-    next({ name: 'Login' })
-    return
-  }
-  if (!to.meta.allowedRole) {
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !store.getters.isLoggedIn) next({ name: 'Login' })
+  else next()
+  if (to.meta.allowedRole === 'both') {
     next()
     return
   }
-  if ((to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') || to.meta.allowedRole === 'both') {
+  if (to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') {
     next()
     return
   }
   if (to.meta.allowedRole === 'company' && store.getters.getAuthRole === 'company') {
     next()
   }
-}) */
+})
 
 export default router
