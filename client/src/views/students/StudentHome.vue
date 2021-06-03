@@ -3,10 +3,15 @@
     <Header :type-user="'student'"/>
     <div class="lists">
       <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
-      <p v-if="nothingFound">Geen taken gevonden</p>
+      <p v-if="nothingFound">Geen stages gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
       <div class="button-add-task">
-      <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
+        <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
+      </div>
+      <div class="lists">
+        <liked-proposals-list :data="likedProposals" title="Mijn leukgevonden stage voorstellen"/>
+        <p v-if="nothingFound">Geen stages gevonden</p>
+        <div v-if="loading" role="alert">laden van gegevens.</div>
       </div>
     </div>
   </div>
@@ -22,10 +27,13 @@ import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import { myAxios } from '@/main'
+import store from '@/store/index'
+import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue'
 
 @Options({
   name: 'StudentHome',
   components: {
+    LikedProposalsList,
     ProposalsList,
     Button,
     Footer,
@@ -34,6 +42,10 @@ import { myAxios } from '@/main'
   data () {
     return {
       companies: null,
+      studentId: 1,
+      likedProposals: null,
+      nothingFoundProposals: false,
+      loadingProposals: false,
       nothingFound: false,
       loading: false,
       error: null
@@ -41,6 +53,7 @@ import { myAxios } from '@/main'
   },
   created () {
     this.fetchData()
+    this.fetchLikedProposalsData()
   },
   methods: {
     fetchData () {
@@ -58,6 +71,25 @@ import { myAxios } from '@/main'
           this.errored = true
         }).finally(() => {
           this.loading = false
+          return null
+        })
+      return null
+    },
+    fetchLikedProposalsData () {
+      // this.error = this.post = null
+      this.loadingProposals = true
+      myAxios.get('api/students/' + 1 + '/likes')
+        .then(response => {
+          if (!response.data.data.length) {
+            this.nothingFoundProposals = true
+          }
+          this.likedProposals = response.data.data
+        })
+        .catch(error => {
+          console.log(error)
+          this.errored = true
+        }).finally(() => {
+          this.loadingProposals = false
           return null
         })
       return null

@@ -14,13 +14,13 @@ interface State {
 export default {
   namespaced: false,
   state: {
-    user: null,
-    role: null
+    user: null
   },
   getters: {
     isLoggedIn: ({ user }: State): boolean => !!user,
     getAuthRole: () => localStorage.getItem('role'),
-    getCompanyId: () => localStorage.getItem('companyId')
+    getCompanyId: () => localStorage.getItem('companyId'),
+    getStudentId: () => localStorage.getItem('studentId')
   },
   mutations: {
     setUser (state: State, data: User) {
@@ -31,19 +31,12 @@ export default {
     },
     setCompanyId (state: any, id: number) {
       localStorage.setItem('companyId', String(id))
+    },
+    setStudentId (state: any, id: number) {
+      localStorage.setItem('studentId', String(id))
     }
   },
   actions: {
-    /* getUserData ({ commit }:any) {
-      return 'louis'
-      await myAxios.get('/api/user')
-        .then(response => {
-          commit('setUser', response)
-        })
-        .catch(() => {
-          localStorage.removeItem('authToken')
-        })
-    }, */
     async sendRegisterRequest ({ commit }:any, data: any) {
       return await myAxios.post('/client/register', data)
         .then(response => {
@@ -55,8 +48,6 @@ export default {
         await myAxios.get('api/user').then(response => {
           commit('setUser', response.data)
           localStorage.setItem('role', response.data.role)
-          console.log(response.data.role + ' roleeeeee')
-          // commit('setAuthRole', response.data.role)
         })
       } catch (e) {
         console.log('Error: ' + e)
@@ -71,8 +62,8 @@ export default {
       const { data } = await myAxios.post('client/login', formData)
       commit('setUser', data[0])
       localStorage.setItem('role', data[0].role)
-      // commit('setAuthRole', data[0].role)
       if (data[0].role === 'student') {
+        commit('setStudentId', data[0].student.id)
         await router.push({ name: 'StudentHome' })
       } else if (data[0].role === 'company') {
         commit('setCompanyId', data[0].company.id)

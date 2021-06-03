@@ -145,7 +145,6 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem('token') === null) {
       next({ name: 'Login', params: { nextUrl: to.fullPath } })
     } else {
-      console.log('authrole index: ' + store.getters.getAuthRole)
       if (to.meta.allowedRole === 'both') {
         next()
       } else if (to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') {

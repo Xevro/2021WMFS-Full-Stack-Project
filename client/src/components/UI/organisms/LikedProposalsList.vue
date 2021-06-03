@@ -40,7 +40,7 @@ h2 {
 }
 
 .column-wide {
-  margin-left: 30px;
+  margin-left: 100px;
   margin-right: 100px;
 }
 
