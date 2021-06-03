@@ -72,16 +72,10 @@ export default {
       }
       this.loading = true
       try {
-        const result = await this.logIn({
+        await this.logIn({
           email: this.email,
           password: this.password
         })
-        if (result.role === 'student') {
-          await this.$router.push({ name: 'StudentHome' })
-        } else if (result.role === 'company') {
-          // vraag user gegevens op
-          await this.$router.push({ name: 'CompanyHome', params: { id: 1 } })
-        }
       } catch (e) {
         /* if (e.response.status === 422) {
           this.error = 'E-mail of wachtwoord is niet correct.'

@@ -48,6 +48,9 @@ export default {
   name: 'Header',
   props: ['typeUser'],
   methods: {
+    getId () {
+      return 1 // this.$store.getters.getCompanyId()
+    },
     logout () {
       store.dispatch('logOut')
     }

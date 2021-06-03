@@ -98,8 +98,8 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-view-companies', function (User $user) {
             return $user->role == 'student';
         });
-        Gate::define('api-view-companies-details', function (User $user) {
-            return $user->role == 'student' || $user->role == 'company';
+        Gate::define('api-view-companies-details', function (User $user, $id) {
+            return ($user->role == 'student' || $user->role == 'company') && (Auth::user()->company->id == $id || Auth::user()->student->id == $id);
         });
         Gate::define('api-update-company', function (User $user, $id) {
             return $user->role == 'company' && Auth::user()->company->id == $id;
@@ -107,14 +107,17 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-view-proposals', function (User $user, $id) {
             return $user->role == 'student' || $user->role == 'company' && Auth::user()->company->id == $id;
         });
+        Gate::define('api-view-proposals-all', function (User $user) {
+            return $user->role == 'student' || $user->role == 'company';
+        });
         Gate::define('api-view-proposal', function (User $user) {
             return $user->role == 'student' || $user->role == 'company';
         });
         Gate::define('api-update-proposal', function (User $user, $id) {
             return $user->role == 'company' && Auth::user()->company->id == $id;
         });
-        Gate::define('api-view-tasks', function (User $user) {
-            return $user->role == 'student' || $user->role == 'company';
+        Gate::define('api-view-tasks', function (User $user, $studentId) {
+            return ($user->role == 'student' || $user->role == 'company') && Auth::user()->student->id == $studentId;
         });
         Gate::define('api-add-task', function (User $user, $id) {
             return $user->role == 'student' && Auth::user()->student->id == $id;

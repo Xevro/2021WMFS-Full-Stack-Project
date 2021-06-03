@@ -15,7 +15,7 @@ class StudentTaskController extends Controller {
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index($studentId) {
-        Gate::authorize('api-view-tasks');
+        Gate::authorize('api-view-tasks', $studentId);
         return StudentTaskResource::collection(Task::where('student_id', $studentId)->get());
     }
 

@@ -38,7 +38,7 @@ class CompanyController extends Controller {
      * @return CompanyResource
      */
     public function show($id) {
-        Gate::authorize('api-view-companies-details');
+        Gate::authorize('api-view-companies-details', $id);
         return new CompanyResource(Company::findOrFail($id));
     }
 

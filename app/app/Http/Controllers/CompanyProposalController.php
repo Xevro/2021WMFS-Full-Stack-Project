@@ -26,7 +26,7 @@ class CompanyProposalController extends Controller {
     public function proposals() {
         // api/companies/proposals
         // show all proposals that are allowed
-        Gate::authorize('api-view-proposals');
+        Gate::authorize('api-view-proposals-all');
         return ProposalResource::collection(Proposal::where('visibility', 1)->get());
     }
 

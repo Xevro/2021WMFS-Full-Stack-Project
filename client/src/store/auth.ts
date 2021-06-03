@@ -15,16 +15,19 @@ export default {
   namespaced: false,
   state: {
     user: null,
-    authRole: null
+    role: null
   },
   getters: {
     isLoggedIn: ({ user }: State): boolean => !!user,
-    getAuthRole: ({ user }: State): string => user?.role,
+    getAuthRole: () => localStorage.getItem('role'),
     getCompanyId: () => localStorage.getItem('companyId')
   },
   mutations: {
     setUser (state: State, data: User) {
       state.user = data
+    },
+    setAuthRole (state: State, role: any) {
+      state.user.role = role
     },
     setCompanyId (state: any, id: number) {
       localStorage.setItem('companyId', String(id))
@@ -47,29 +50,37 @@ export default {
           commit('setUser', response.data)
         })
     },
-    async tryAutoLogIn ({ commit }:any, route: any) {
-      if (document.cookie.indexOf('XSRF-TOKEN') !== -1) {
-        try {
-          const userInfo = await myAxios.get('api/user')
-          commit('setUser', userInfo)
-          // console.log(route)
-          // await router.push(route.href.fullPath)
-        } catch (e) {
-          console.log('Error: ' + e)
-        }
+    async tryAutoLogIn ({ commit }:any) {
+      try {
+        await myAxios.get('api/user').then(response => {
+          commit('setUser', response.data)
+          localStorage.setItem('role', response.data.role)
+          console.log(response.data.role + ' roleeeeee')
+          // commit('setAuthRole', response.data.role)
+        })
+      } catch (e) {
+        console.log('Error: ' + e)
       }
     },
     async logIn ({ commit }:any, formData: any) {
-      await myAxios.get('sanctum/csrf-cookie')
+      const res = await myAxios.get('sanctum/csrf-cookie')
+      if (res.status === 204) {
+        localStorage.clear()
+        localStorage.setItem('token', res.config.headers['X-XSRF-TOKEN'].substring(0, res.config.headers['X-XSRF-TOKEN'].length - 1))
+      }
       const { data } = await myAxios.post('client/login', formData)
       commit('setUser', data[0])
-      console.log(data[0].company.id)
-      if (data[0].role === 'company') {
+      localStorage.setItem('role', data[0].role)
+      // commit('setAuthRole', data[0].role)
+      if (data[0].role === 'student') {
+        await router.push({ name: 'StudentHome' })
+      } else if (data[0].role === 'company') {
         commit('setCompanyId', data[0].company.id)
+        await router.push({ name: 'CompanyHome', params: { id: data[0].company.id } })
       }
-      return data[0]
     },
     async logOut ({ commit }:any) {
+      localStorage.clear()
       document.cookie = 'XSRF-TOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;'
       await myAxios.post('client/logout')
       commit('setUser', { id: null, email: null, role: null })

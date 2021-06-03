@@ -58,7 +58,6 @@ import StudentsList from '@/components/UI/organisms/StudentsList.vue'
   methods: {
     fetchData () {
       this.loading = true
-      console.log(this.companyId)
       myAxios.get('api/companies/' + this.companyId + '/proposals')
         .then(response => {
           if (!response.data.data.length) {

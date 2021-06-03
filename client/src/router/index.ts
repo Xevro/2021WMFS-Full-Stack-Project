@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store/index'
-
 const Login = () => import('@/views/auth/Login.vue')
 const StudentHome = () => import('@/views/students/StudentHome.vue')
 const StudentDetails = () => import('@/views/students/StudentDetails.vue')
@@ -120,7 +119,7 @@ const routes = [
     props: true,
     meta: {
       requiresAuth: true,
-      allowedRole: 'student'
+      allowedRole: 'both'
     }
   },
   {
@@ -142,17 +141,22 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !store.getters.isLoggedIn) next({ name: 'Login' })
-  else next()
-  if (to.meta.allowedRole === 'both') {
-    next()
-    return
-  }
-  if (to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') {
-    next()
-    return
-  }
-  if (to.meta.allowedRole === 'company' && store.getters.getAuthRole === 'company') {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem('token') === null) {
+      next({ name: 'Login', params: { nextUrl: to.fullPath } })
+    } else {
+      console.log('authrole index: ' + store.getters.getAuthRole)
+      if (to.meta.allowedRole === 'both') {
+        next()
+      } else if (to.meta.allowedRole === 'student' && store.getters.getAuthRole === 'student') {
+        next()
+      } else if (to.meta.allowedRole === 'company' && store.getters.getAuthRole === 'company') {
+        next()
+      } else {
+        next({ name: 'Login' })
+      }
+    }
+  } else {
     next()
   }
 })
