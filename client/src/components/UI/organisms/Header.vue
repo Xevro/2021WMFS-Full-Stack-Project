@@ -1,10 +1,10 @@
 <template>
   <header id='navbar'>
     <nav class='navbar-container container'>
-      <router-link v-if="typeUser === 'student'" to="/students" class='home-link'>
+      <router-link v-if="role === 'student'" to="/students" class='home-link'>
         Stage Tool
       </router-link>
-      <router-link v-if="typeUser === 'company'" to="/companies" class='home-link'>
+      <router-link v-if="role === 'company'" to="/companies" class='home-link'>
         Stage Tool
       </router-link>
       <button type='button' class='navbar-toggle' aria-label='Open navigation menu'>
@@ -13,15 +13,18 @@
         <span class='icon-bar'></span>
       </button>
       <div class='navbar-menu'>
-        <ul v-if="typeUser === 'company'" class='navbar-links'>
+        <ul v-if="role === 'company'" class='navbar-links'>
           <li class='navbar-item'>
             <router-link :to="{ name: 'CompanyHome' }" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link :to="{ name: 'CompanyProposals', params: { id: 1 } }" class="navbar-link">Mijn voorstellen</router-link>
+            <router-link :to="{ name: 'CompanyProposals', params: { id: 2 } }" class="navbar-link">Mijn stages</router-link>
+          </li>
+          <li class='navbar-item'>
+            <button @click="logout" class="button-logout navbar-link">Log uit</button>
           </li>
         </ul>
-        <ul v-if="typeUser === 'student'" class='navbar-links'>
+        <ul v-if="role === 'student'" class='navbar-links'>
           <li class='navbar-item'>
             <router-link to="/" class="navbar-link">Overzicht</router-link>
           </li>
@@ -47,6 +50,11 @@ import store from '@/store/index'
 export default {
   name: 'Header',
   props: ['typeUser'],
+  computed: {
+    role () {
+      return store.getters.getAuthRole
+    }
+  },
   methods: {
     getId () {
       return 1 // this.$store.getters.getCompanyId()

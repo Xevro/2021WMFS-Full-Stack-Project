@@ -1,12 +1,12 @@
 <template>
   <div class="page">
-    <Header :type-user="'company'"/>
+    <Header/>
     <div class="lists">
       <ProposalsList :data="companies" title="Mijn actieve stage voorstellen"/>
       <p v-if="nothingFound">Geen gegevens gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
       <div class="button-add-proposal">
-        <Button :href="'/companies/1/proposals/add'">Voeg een voorstel toe</Button>
+        <Button :href="'/companies/' + companyId + '/proposals/add'">Voeg een voorstel toe</Button>
       </div>
       <div class="my-students">
         <StudentsList :data="students" title="Studenten overzicht"/>
