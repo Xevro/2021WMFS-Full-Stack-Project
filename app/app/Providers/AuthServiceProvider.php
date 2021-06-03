@@ -104,8 +104,8 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-update-company', function (User $user, $id) {
             return $user->role == 'company' && Auth::user()->company->id == $id;
         });
-        Gate::define('api-view-proposals', function (User $user) {
-            return $user->role == 'student' || $user->role == 'company';
+        Gate::define('api-view-proposals', function (User $user, $id) {
+            return $user->role == 'student' || $user->role == 'company' && Auth::user()->company->id == $id;
         });
         Gate::define('api-view-proposal', function (User $user) {
             return $user->role == 'student' || $user->role == 'company';

@@ -15,20 +15,19 @@ export default {
   namespaced: false,
   state: {
     user: null,
-    authRole: null,
-    companyId: null
+    authRole: null
   },
   getters: {
     isLoggedIn: ({ user }: State): boolean => !!user,
     getAuthRole: ({ user }: State): string => user?.role,
-    getCompanyId: ({ companyId }: any): number => companyId
+    getCompanyId: () => localStorage.getItem('companyId')
   },
   mutations: {
     setUser (state: State, data: User) {
       state.user = data
     },
     setCompanyId (state: any, id: number) {
-      state.companyId = id
+      localStorage.setItem('companyId', String(id))
     }
   },
   actions: {
@@ -63,9 +62,12 @@ export default {
     async logIn ({ commit }:any, formData: any) {
       await myAxios.get('sanctum/csrf-cookie')
       const { data } = await myAxios.post('client/login', formData)
-      commit('setUser', data)
-      console.log(data)
-      return data
+      commit('setUser', data[0])
+      console.log(data[0].company.id)
+      if (data[0].role === 'company') {
+        commit('setCompanyId', data[0].company.id)
+      }
+      return data[0]
     },
     async logOut ({ commit }:any) {
       document.cookie = 'XSRF-TOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;'

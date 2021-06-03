@@ -19,7 +19,7 @@ class CompanyProposalController extends Controller {
     public function index($id) {
         // api/companies/{id}/proposals
         // show all proposals of that company
-        Gate::authorize('api-view-proposals');
+        Gate::authorize('api-view-proposals', $id);
         return ProposalResource::collection(Proposal::where('company_id', $id)->get());
     }
 

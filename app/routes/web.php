@@ -75,10 +75,15 @@ Route::prefix('dashboard')->group(function () {
 });
 
 Route::post('/client/login', function (Request $request) {
-    if (Str::contains(User::where('email', $request->email)->firstOrFail()->role, ['student', 'company'])) {
+    $user = User::where('email', $request->email)->firstOrFail();
+    if (Str::contains($user->role, ['student', 'company'])) {
         if (Auth::attempt($request->only('email', 'password'))) {
             //$request->session()->regenerate();
-            return $request->user();
+            if ($user->role === 'student') {
+                return User::where('email', $request->email)->with('student')->get();
+            } else if ($user->role === 'company') {
+                return User::where('email', $request->email)->with('company')->get();
+            }
         }
     }
     return response(['message' => 'The provided credentials do not match our records.'], 401);
