@@ -54,7 +54,7 @@ export default {
           const userInfo = await myAxios.get('api/user')
           commit('setUser', userInfo)
           // console.log(route)
-          // router.push(route.href.fullPath)
+          // await router.push(route.href.fullPath)
         } catch (e) {
           console.log('Error: ' + e)
         }
@@ -64,13 +64,14 @@ export default {
       await myAxios.get('sanctum/csrf-cookie')
       const { data } = await myAxios.post('client/login', formData)
       commit('setUser', data)
+      console.log(data)
       return data
     },
-    async logOut (commit: any) {
+    async logOut ({ commit }:any) {
+      document.cookie = 'XSRF-TOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;'
       await myAxios.post('client/logout')
-      commit('setUser', null)
-      // document.cookie = 'XSRF-TOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;'
-      // router.push({ name: 'Login' })
+      commit('setUser', { id: null, email: null, role: null })
+      await router.push({ name: 'Login' })
     }
   }
 }

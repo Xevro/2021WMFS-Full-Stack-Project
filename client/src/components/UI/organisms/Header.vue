@@ -32,7 +32,7 @@
             <router-link :to="{ name: 'StudentTasks', params: { id: 1 } }" class="navbar-link">Mijn taken</router-link>
           </li>
           <li class='navbar-item'>
-            <button @click="this.$store.dispatch('logOut')" class="navbar-link">Log uit</button>
+            <button @click="logout" class="button-logout navbar-link">Log uit</button>
           </li>
         </ul>
       </div>
@@ -47,6 +47,11 @@ import store from '@/store/index'
 export default {
   name: 'Header',
   props: ['typeUser'],
+  methods: {
+    logout () {
+      store.dispatch('logOut')
+    }
+  },
   mounted () {
     const navbar = document.getElementById('navbar')
     const navbarToggle = navbar.querySelector('.navbar-toggle')
@@ -87,6 +92,16 @@ body {
   padding-right: 1.4rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+.button-logout {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 #navbar {
