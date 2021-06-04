@@ -11,6 +11,7 @@
       <div class="liked-list">
         <liked-proposals-list :data="likedProposals" title="Mijn favoriete stage voorstellen"/>
         <p v-if="nothingFound">Geen stages gevonden</p>
+        <div v-if="loadingProposals" role="alert">laden van gegevens.</div>
         <div v-if="loading" role="alert">laden van gegevens.</div>
       </div>
     </div>

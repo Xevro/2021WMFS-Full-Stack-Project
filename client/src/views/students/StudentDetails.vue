@@ -92,10 +92,12 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
             this.nothingFound = true
           }
           this.student = response.data.data
+          this.nothingFound = false
         })
         .catch(error => {
           console.log(error)
           this.error = true
+          this.nothingFound = true
         }).finally(() => {
           this.loadingStudent = false
           return null
