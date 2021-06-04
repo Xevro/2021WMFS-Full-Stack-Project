@@ -1,11 +1,12 @@
 <template>
-  <form novalidate @submit.prevent="Verzend">
+  <form novalidate @submit.prevent="verzend">
     <div class="box-center">
-      <InputField id="title" required="true" v-model="title" label="Titel voorstel" type="text" :error="titleError"/>
+      <!-- <InputField id="title" required="true" v-model="title" label="Titel voorstel" type="text" :error="titleError"/> -->
       <InputField class="input-field" required="true" type="date" id="startperiod" v-model="startPeriod" label="Start periode" :error="startPeriodError"/>
       <InputField class="input-field" required="true" type="date" id="endperiod" v-model="endPeriod" label="Eind periode" :error="endPeriodError"/>
       <InputTextArea class="input-field" required="true" type="text" id="description" label="Beschrijving" v-model="description" :error="descriptionError"/>
       <Error v-if="error" :value="error"/>
+      <div class="loading" v-show="loading" role="alert">Even geduld</div>
       <div class="button-area">
         <Button :disabled="submitted" :type="'submit'">Voeg voorstel toe</Button>
       </div>
@@ -18,6 +19,7 @@ import InputField from '@/components/UI/molecules/InputTextField'
 import InputTextArea from '@/components/UI/molecules/InputTextArea'
 import Button from '@/components/UI/atoms/Button'
 import Error from '@/components/UI/atoms/Error'
+import { myAxios } from '@/main'
 
 const regexDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
 
@@ -31,6 +33,7 @@ export default {
   },
   data () {
     return {
+      companyId: this.$route.params.id,
       title: null,
       startPeriod: null,
       endPeriod: null,
@@ -86,19 +89,38 @@ export default {
       return null
     },
     hasErrors () {
-      return this.titleError || this.startPeriodError || this.endPeriodError || this.descriptionError
+      return this.startPeriodError || this.endPeriodError || this.descriptionError // this.titleError ||
     }
   },
   methods: {
-    async Verzend () {
+    async verzend () {
       this.submitted = true
-
       if (this.hasErrors) {
         this.error = 'Het formulier bevat nog fouten'
         this.submitted = false
         return null
       } else {
         this.error = null
+      }
+      this.loading = true
+      try {
+        await myAxios.post('api/companies/' + this.companyId + '/proposals', {
+          description: this.description,
+          start_period: this.startPeriod,
+          end_period: this.endPeriod
+        }).then(() => {
+          this.$router.push({ name: 'CompanyHome' })
+        })
+      } catch (e) {
+        if (e.response.status === 422) {
+          this.error = 'Datum of beschrijving is niet correct.'
+          return null
+        }
+        this.error = 'Er is een onverwachte fout opgetreden.'
+        this.submitted = false
+        return null
+      } finally {
+        this.loading = false
       }
     }
   }
