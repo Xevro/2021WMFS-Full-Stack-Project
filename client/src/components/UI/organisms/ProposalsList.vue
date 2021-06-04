@@ -22,7 +22,7 @@
           <td class="columns">{{ item.created_on }}</td>
           <td class="columns">{{ item.start_period }}</td>
           <td class="columns">{{ item.end_period }}</td>
-          <td class="columns">{{ item.description }}</td>
+          <td class="columns">{{ item.description.length > 50 ? item.description.substring(0, 50 - 3) + "..." : item.description }}</td>
           <td><span class="status">{{ item.status }}</span></td>
           <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">info</router-link></td>
         </tr>

@@ -11,7 +11,7 @@
         <p>Aantal dagen gelopen stage: {{ student.completed_days }}</p>
         <p>Stage mentor: {{  student.mentor.firstname + ' ' + student.mentor.lastname }}</p>
       </div>
-      <div class="list">
+      <div class="list-proposals">
         <LikedProposalsList :data="proposalLikes" title="Mijn favoriete stage voorstellen"/>
         <p v-if="nothingFound">Geen voorstellen gevonden</p>
         <div v-if="loading" role="alert">laden van gegevens.</div>
@@ -138,9 +138,14 @@ export default class studentDetails extends Vue {
   position: relative;
 }
 
-.list, .contract {
+.list-proposals {
   text-align: center;
 }
+
+.contract {
+  text-align: center;
+}
+
 .footer {
   position: relative;
   bottom: 0;
@@ -155,10 +160,6 @@ export default class studentDetails extends Vue {
   text-align: left;
 }
 
-.information {
-  margin-left: 30px;
-}
-
 @media screen and (max-width: 700px) {
   .information {
     margin-top: 40px;
@@ -166,8 +167,7 @@ export default class studentDetails extends Vue {
   }
   .content {
     padding-top: 50px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: 0;
     text-align: left;
   }
 }

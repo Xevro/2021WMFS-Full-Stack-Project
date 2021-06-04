@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProposalResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Mentor;
 use App\Models\Proposal;

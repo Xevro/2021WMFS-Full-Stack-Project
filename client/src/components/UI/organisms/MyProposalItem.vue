@@ -17,7 +17,7 @@
               <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">{{ item.company.name }}</router-link></td>
               <td class="columns">{{ item.start_period }}</td>
               <td class="columns">{{ item.end_period }}</td>
-              <td class="columns">{{ item.description }}</td>
+              <td class="columns">{{ item.description.length > 50 ? item.description.substring(0, 50 - 3) + "..." : item.description }}</td>
               <td class="columns">{{ item.status }}</td>
               <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">info</router-link></td>
             </tr>

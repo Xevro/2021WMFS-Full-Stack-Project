@@ -138,5 +138,8 @@ export default class studentHome extends Vue {
     margin-right: 20px;
     float: right;
   }
+  .liked-list {
+    margin: 0;
+  }
 }
 </style>

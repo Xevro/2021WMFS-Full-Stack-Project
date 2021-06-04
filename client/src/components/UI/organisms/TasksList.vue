@@ -40,7 +40,6 @@ h2 {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent;
 }
 
 li {
@@ -69,6 +68,17 @@ a {
   .column-wide {
     margin-left: .625rem;
     margin-right: .625rem;
+  }
+
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent
+  }
+
+  .columns {
+    display: none;
   }
 }
 </style>

@@ -18,7 +18,7 @@
               <td class="columns">{{ item.proposal.created_on }}</td>
               <td class="columns">{{ item.proposal.start_period }}</td>
               <td class="columns">{{ item.proposal.end_period }}</td>
-              <td class="columns">{{ item.proposal.description }}</td>
+              <td class="columns">{{ item.proposal.description.length > 50 ? item.proposal.description.substring(0, 50 - 3) + "..." : item.proposal.description }}</td>
               <td><router-link :to="'/companies/' + item.proposal.company.id + '/proposals/' + item.proposal.id">info</router-link></td>
             </tr>
             </tbody>
@@ -68,11 +68,6 @@ a {
 }
 
 @media screen and (max-width: 700px) {
-  .column-wide {
-    margin-left: .625rem;
-    margin-right: .625rem;
-  }
-
   .table {
     width: 100%;
     max-width: 100%;

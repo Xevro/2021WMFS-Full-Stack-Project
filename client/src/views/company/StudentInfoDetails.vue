@@ -10,6 +10,11 @@
         <p>Aantal dagen gelopen stage: {{ student.completed_days }}</p>
         <p>Stage mentor: {{  student.mentor.firstname + ' ' + student.mentor.lastname }}</p>
       </div>
+      <div class="list">
+        <TasksList :data="tasks" title="Mijn taken"/>
+        <p v-if="nothingFound">Geen taken gevonden</p>
+        <div v-if="loading" role="alert">laden van gegevens.</div>
+      </div>
     </div>
   </div>
   <div class="footer">
@@ -22,27 +27,33 @@ import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue'
-import { myAxios } from '@/main'
+import TasksList from '@/components/UI/organisms/TasksList.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
+import { myAxios } from '@/main'
 
 @Options({
   components: {
     ProposalsList,
+    TasksList,
+    LikedProposalsList,
     Footer,
-    Header,
-    LikedProposalsList
+    Header
   },
   data () {
     return {
       studentId: this.$route.params.id,
       proposalLikes: null,
       student: null,
+      tasks: null,
+      noTasksFound: false,
       nothingFound: false,
-      loading: false
+      loading: false,
+      loadingTasks: false
     }
   },
   created () {
     this.fetchStudentData()
+    this.fetchTasksData()
   },
   methods: {
     fetchStudentData () {
@@ -59,6 +70,26 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
           this.error = true
         }).finally(() => {
           this.loading = false
+          return null
+        })
+      return null
+    },
+    fetchTasksData () {
+      this.loadingTasks = true
+      myAxios.get('api/students/' + this.studentId + '/tasks')
+        .then(response => {
+          if (!response.data.data.length) {
+            this.noTasksFound = true
+          }
+          this.tasks = response.data.data
+          this.noTasksFound = false
+        })
+        .catch(error => {
+          console.log(error)
+          this.error = true
+          this.noTasksFound = true
+        }).finally(() => {
+          this.loadingTasks = false
           return null
         })
       return null
@@ -82,6 +113,10 @@ export default class StudentInfoDetails extends Vue {
   bottom: 0;
   width: 100%;
   margin-top: 3.125rem;
+}
+
+.list {
+  text-align: center;
 }
 
 .content {

@@ -45,7 +45,6 @@ import { myAxios } from '@/main'
   },
   methods: {
     fetchData () {
-      // this.error = this.post = null
       this.loading = true
       myAxios.get('api/students/' + this.studentId + '/tasks')
         .then(response => {
@@ -53,10 +52,12 @@ import { myAxios } from '@/main'
             this.nothingFound = true
           }
           this.tasks = response.data.data
+          this.nothingFound = false
         })
         .catch(error => {
           console.log(error)
           this.errored = true
+          this.nothingFound = true
         }).finally(() => {
           this.loading = false
           return null
