@@ -30,7 +30,7 @@ Route::get('/user', function (Request $request) {
 Route::post('/register/companies', function (Request $request) {
     $request->validate([
         'email' => 'required|email|unique:users',
-        'kbo_number' => 'required|unique:companies|numeric',
+        'kbo_number' => 'required|unique:companies',
         'name' => 'required|unique:companies|max:125',
         'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
         'password_confirmation' => 'required|min:8',
@@ -43,7 +43,16 @@ Route::post('/register/companies', function (Request $request) {
         if ($request->file('profile_image')) {
             $request->file('profile_image')->store('images');
         }
-        return ['message' => 'The company has been created'];
+        $user = User::where('email', $request->email)->firstOrFail();
+        if (Str::contains($user->role, ['student', 'company'])) {
+            if (Auth::attempt($request->only('email', 'password'))) {
+                //$request->session()->regenerate();
+                if ($user->role === 'company') {
+                    return User::where('email', $request->email)->with('company')->get();
+                }
+            }
+        }
+        // return ['message' => 'The company has been created'];
     }
 });
 

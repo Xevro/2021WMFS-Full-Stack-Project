@@ -71,7 +71,7 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('companies')->insert([
             'user_id' => 3,
-            'kbo_number' => 182722,
+            'kbo_number' => "03912.349.292",
             'name' => "BVBA E&Y",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -79,7 +79,7 @@ class StagetoolSeeder extends Seeder {
 
         DB::table('companies')->insert([
             'user_id' => 4,
-            'kbo_number' => 192827,
+            'kbo_number' => "0192.482.192",
             'name' => "Fleetmaster",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

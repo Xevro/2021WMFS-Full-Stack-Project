@@ -37,11 +37,17 @@ export default {
     }
   },
   actions: {
-    async sendRegisterRequest ({ commit }:any, data: any) {
-      return await myAxios.post('/client/register', data)
-        .then(response => {
-          commit('setUser', response.data)
-        })
+    async sendRegisterRequest ({ commit }:any, formData: any) {
+      const res = await myAxios.get('sanctum/csrf-cookie')
+      if (res.status === 204) {
+        localStorage.clear()
+        localStorage.setItem('token', res.config.headers['X-XSRF-TOKEN'].substring(0, res.config.headers['X-XSRF-TOKEN'].length - 1))
+      }
+      const { data } = await myAxios.post('api/register/companies', formData)
+      commit('setUser', data[0])
+      localStorage.setItem('role', data[0].role)
+      commit('setCompanyId', data[0].company.id)
+      await router.push({ name: 'CompanyHome', params: { id: data[0].company.id } })
     },
     async tryAutoLogIn ({ commit }:any) {
       try {

@@ -1,13 +1,16 @@
 <template>
   <form novalidate @submit.prevent="Login">
     <FormTitle :title="title"/>
-      <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
-      <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
-      <Error v-if="error" :value="error"/>
-      <div class="loading" v-show="loading" role="alert">Even geduld</div>
-      <div class="button-area">
-        <Button :disabled="submitted" :type="'submit'">Login</Button>
-      </div>
+    <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
+    <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
+    <Error v-if="error" :value="error"/>
+    <div class="loading" v-show="loading" role="alert">Even geduld</div>
+    <div class="txt-box">
+    <p>Bent u een bedrijf en hebt u nog geen account? <router-link :to="{ name: 'CompanyRegister' }" class="register-txt">Klik hier</router-link></p>
+    </div>
+    <div class="button-area">
+      <Button :disabled="submitted" :type="'submit'">Login</Button>
+    </div>
   </form>
 </template>
 
@@ -30,7 +33,7 @@ export default {
   },
   data () {
     return {
-      email: 'hr@fleetmaster.com', // hr@fleetmaster.com    louis.dhont@student.odisee.be
+      email: 'louis.dhont@student.odisee.be', // hr@fleetmaster.com    louis.dhont@student.odisee.be
       password: 'Azerty123',
       error: null,
       submitted: false,
@@ -77,10 +80,10 @@ export default {
           password: this.password
         })
       } catch (e) {
-        /* if (e.response.status === 422) {
+        if (e.response.status === 422) {
           this.error = 'E-mail of wachtwoord is niet correct.'
           return null
-        } */
+        }
         this.error = 'Er is een onverwachte fout opgetreden.'
         this.submitted = false
         return null
@@ -96,5 +99,20 @@ export default {
 .button-area {
   margin-top: 1.25rem;
   float: left;
+}
+
+.loading {
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.txt-box {
+  font-size: 0.9rem;
+}
+
+.register-txt {
+  font-size: 0.9rem;
+  color: #1A7EF2;
+  text-decoration: none;
 }
 </style>

@@ -5,6 +5,9 @@
       <TasksList :data="tasks" title="Mijn taken"/>
       <p v-if="nothingFound">Geen taken gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
+      <div class="button-add-task">
+        <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
+      </div>
     </div>
   </div>
   <div class="footer">
@@ -17,12 +20,14 @@ import { Options, Vue } from 'vue-class-component'
 import TasksList from '@/components/UI/organisms/TasksList.vue'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
+import Button from '@/components/UI/atoms/Button.vue'
 import { myAxios } from '@/main'
 
 @Options({
   name: 'StudentTasks',
   components: {
     TasksList,
+    Button,
     Header,
     Footer
   },
@@ -77,6 +82,12 @@ export default class StudentTasks extends Vue {
   bottom: 0;
   width: 100%;
   margin-top: 3.125rem;
+}
+
+.button-add-task {
+  margin-top: 40px;
+  margin-right: 100px;
+  float: right;
 }
 
 .lists {

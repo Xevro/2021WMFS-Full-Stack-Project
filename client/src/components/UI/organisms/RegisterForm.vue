@@ -1,15 +1,19 @@
 <template>
   <form novalidate @submit.prevent="tryRegistreer">
     <FormTitle :title="title"/>
-      <InputTextField id="name" required="true" v-model="name" label="Naam" type="text" :error="nameError"/>
-      <InputTextField id="kboNumber" required="true" v-model="kboNumber" label="KBO nummer" type="text" :error="kboNumberError"/>
-      <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
-      <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
-      <InputTextField id="passwordCheck" required="true" v-model="passwordCheck" label="Wachtwoord controle" type="password" :error="passwordCheckError"/>
-      <Error v-if="error" :value="error"/>
-      <div class="button-area">
-        <Button :disabled="submitted" :type="'submit'">Registreer</Button>
-      </div>
+    <InputTextField id="name" required="true" v-model="name" label="Naam" type="text" :error="nameError"/>
+    <InputTextField id="kboNumber" required="true" v-model="kboNumber" label="KBO nummer" type="text" :error="kboNumberError"/>
+    <InputTextField id="email" required="true" v-model="email" label="E-mail" type="email" :error="emailError"/>
+    <InputTextField id="password" required="true" v-model="password" label="Wachtwoord" type="password" :error="passwordError"/>
+    <InputTextField id="passwordCheck" required="true" v-model="passwordCheck" label="Wachtwoord controle" type="password" :error="passwordCheckError"/>
+    <Error v-if="error" :value="error"/>
+    <div class="loading" v-show="loading" role="alert">Even geduld</div>
+    <div class="txt-box">
+      <p>Hebt u al een account? <router-link :to="{ name: 'Login' }" class="register-txt">Login</router-link></p>
+    </div>
+    <div class="button-area">
+      <Button :disabled="submitted" :type="'submit'">Registreer</Button>
+    </div>
   </form>
 </template>
 
@@ -18,6 +22,7 @@ import InputTextField from '@/components/UI/molecules/InputTextField'
 import FormTitle from '@/components/UI/atoms/FormTitle'
 import Error from '@/components/UI/atoms/Error'
 import Button from '@/components/UI/atoms/Button'
+import { mapActions } from 'vuex'
 
 const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const regexKbo = /^[01]\d{3}\.\d{3}\.\d{3}$/
@@ -41,7 +46,8 @@ export default {
       password: null,
       passwordCheck: null,
       error: null,
-      submitted: false
+      submitted: false,
+      loading: false
     }
   },
   computed: {
@@ -113,14 +119,32 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['sendRegisterRequest']),
     async tryRegistreer () {
       this.submitted = true
       if (this.hasErrors) {
         this.error = 'Het formulier bevat nog fouten.'
         return null
-      } else {
+      }
+      this.loading = true
+      try {
+        await this.sendRegisterRequest({
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.passwordCheck,
+          kbo_number: this.kboNumber,
+          name: this.name
+        })
+      } catch (e) {
+        if (e.response.status === 422) {
+          this.error = 'Er zijn één of meerdere velden niet correct.'
+          return null
+        }
+        this.error = 'Er is een onverwachte fout opgetreden.'
         this.submitted = false
-        this.error = null
+        return null
+      } finally {
+        this.loading = false
       }
     }
   }
@@ -131,5 +155,20 @@ export default {
 .button-area {
   margin-top: 1.25rem;
   float: left;
+}
+
+.loading {
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.txt-box {
+  font-size: 0.9rem;
+}
+
+.register-txt {
+  font-size: 0.9rem;
+  color: #1A7EF2;
+  text-decoration: none;
 }
 </style>
