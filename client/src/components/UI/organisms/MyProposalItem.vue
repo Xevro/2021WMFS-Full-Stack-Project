@@ -5,21 +5,21 @@
             <thead>
             <tr>
               <th scope="col">Student</th>
-              <th class="columns" scope="col">Toegevoegd op</th>
               <th class="columns" scope="col">Start datum</th>
               <th class="columns" scope="col">End datum</th>
               <th class="columns" scope="col">Beschrijving</th>
+              <th class="columns" scope="col">Status</th>
               <th scope="col">Actie</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
-              <td><router-link :to="'/companies/' + item.proposal.company.id + '/proposals/' + item.proposal.id">{{ item.proposal.company.name }}</router-link></td>
-              <td class="columns">{{ item.proposal.created_on }}</td>
-              <td class="columns">{{ item.proposal.start_period }}</td>
-              <td class="columns">{{ item.proposal.end_period }}</td>
-              <td class="columns">{{ item.proposal.description }}</td>
-              <td><router-link :to="'/companies/' + item.proposal.company.id + '/proposals/' + item.proposal.id">info</router-link></td>
+              <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">{{ item.company.name }}</router-link></td>
+              <td class="columns">{{ item.start_period }}</td>
+              <td class="columns">{{ item.end_period }}</td>
+              <td class="columns">{{ item.description }}</td>
+              <td class="columns">{{ item.status }}</td>
+              <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">info</router-link></td>
             </tr>
             </tbody>
           </table>
@@ -29,7 +29,7 @@
 <script>
 
 export default {
-  name: 'LikedProposalsList',
+  name: 'MyProposalItem',
   props: ['data', 'title']
 }
 </script>

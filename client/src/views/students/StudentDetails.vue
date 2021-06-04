@@ -2,7 +2,8 @@
   <div class="page">
     <Header :type-user="'student'"/> <!-- wijzig dit met het storage atribuut -->
     <div class="content">
-      <div class="information">
+      <p v-if="noStudentData">Kon geen gegevens ophalen</p>
+      <div v-if="!noStudentData" class="information">
         <div v-if="loadingStudent" role="alert">laden van gegevens.</div>
         <h3 class="title-page">{{ student.firstname + ' ' + student.lastname }}</h3>
         <p>Studenten nummer: {{ student.r_number }}</p>
@@ -10,10 +11,15 @@
         <p>Aantal dagen gelopen stage: {{ student.completed_days }}</p>
         <p>Stage mentor: {{  student.mentor.firstname + ' ' + student.mentor.lastname }}</p>
       </div>
-      <div class="lists">
-        <LikedProposalsList :data="proposalLikes" title="Mijn leuk gevonden stage voorstellen"/>
-        <p v-if="nothingFound">Geen taken gevonden</p>
+      <div class="list">
+        <LikedProposalsList :data="proposalLikes" title="Mijn favoriete stage voorstellen"/>
+        <p v-if="nothingFound">Geen voorstellen gevonden</p>
         <div v-if="loading" role="alert">laden van gegevens.</div>
+      </div>
+      <div class="contract">
+        <MyProposal :data="contract" title="Mijn contract"/>
+        <p v-if="noContractFound">Geen contract gevonden</p>
+        <div v-if="loadingContract" role="alert">laden van gegevens.</div>
       </div>
       </div>
   </div>
@@ -27,12 +33,14 @@ import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue'
+import MyProposal from '@/components/UI/organisms/MyProposalItem.vue'
 import { myAxios } from '@/main'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 
 @Options({
   components: {
     ProposalsList,
+    MyProposal,
     Footer,
     Header,
     LikedProposalsList
@@ -40,16 +48,21 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
   data () {
     return {
       studentId: this.$route.params.id,
+      contract: null,
       proposalLikes: null,
       student: null,
       loadingStudent: false,
       nothingFound: false,
-      loading: false
+      noStudentData: false,
+      noContractFound: false,
+      loading: false,
+      loadingContract: false
     }
   },
   created () {
     this.fetchData()
     this.fetchStudentData()
+    this.fetchContractData()
   },
   methods: {
     fetchData () {
@@ -57,14 +70,14 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
       myAxios.get('api/students/' + this.studentId + '/likes')
         .then(response => {
           if (!response.data.data.length) {
-            this.nothingFound = true
+            this.noStudentData = true
           }
           this.proposalLikes = response.data.data
-          this.nothingFound = false
         })
         .catch(error => {
           console.log(error)
           this.error = true
+          this.noStudentData = true
         }).finally(() => {
           this.loading = false
           return null
@@ -88,6 +101,26 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
           return null
         })
       return null
+    },
+    fetchContractData () {
+      this.loadingContract = true
+      myAxios.get('api/students/' + this.studentId + '/contract')
+        .then(response => {
+          if (!response.data.length) {
+            this.noContractFound = true
+          }
+          console.log(response.data)
+          this.contract = response.data
+        })
+        .catch(error => {
+          console.log(error)
+          this.error = true
+          this.noContractFound = true
+        }).finally(() => {
+          this.loadingContract = false
+          return null
+        })
+      return null
     }
   }
 })
@@ -103,7 +136,7 @@ export default class studentDetails extends Vue {
   position: relative;
 }
 
-.lists {
+.list, .contract {
   text-align: center;
 }
 .footer {

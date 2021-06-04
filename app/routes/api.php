@@ -65,6 +65,7 @@ Route::get('/proposals', [CompanyProposalController::class, 'proposals']);
 
 // students
 Route::apiResource('students', StudentController::class)->middleware('auth:sanctum');
+Route::get('/students/{student}/contract', [StudentController::class, 'contract']);
 
 Route::apiResource('students.tasks', StudentTaskController::class)->middleware('auth:sanctum');
 Route::apiResource('students.likes', StudentLikeController::class)->middleware('auth:sanctum');

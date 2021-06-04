@@ -135,6 +135,13 @@ class AuthServiceProvider extends ServiceProvider {
             return $user->role == 'student' && Auth::user()->student->id == $id;
         });
 
+        Gate::define('api-view-contract', function (User $user, $id) {
+            return $user->role == 'student' && Auth::user()->student->id == $id;
+        });
+
+        Gate::define('api-view-all-student', function (User $user) {
+            return $user->role == 'company';
+        });
         Gate::define('api-view-student-likes', function (User $user, $id) {
             return $user->role == 'student' && Auth::user()->student->id == $id;
         });

@@ -48,7 +48,6 @@ import { myAxios } from '@/main'
   },
   methods: {
     fetchData () {
-      // this.error = this.post = null
       this.loading = true
       myAxios.get('api/companies/' + this.companyId + '/proposals/' + this.proposalId)
         .then(response => {

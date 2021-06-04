@@ -4,12 +4,12 @@
     <div class="lists">
       <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
       <p v-if="nothingFound">Geen stages gevonden</p>
-      <div v-if="loading" role="alert">laden van gegevens.</div>
+      <div v-if="loadingCompanies" role="alert">laden van gegevens.</div>
       <div class="button-add-task">
         <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
       </div>
-      <div class="lists">
-        <liked-proposals-list :data="likedProposals" title="Mijn leukgevonden stage voorstellen"/>
+      <div class="liked-list">
+        <liked-proposals-list :data="likedProposals" title="Mijn favoriete stage voorstellen"/>
         <p v-if="nothingFound">Geen stages gevonden</p>
         <div v-if="loading" role="alert">laden van gegevens.</div>
       </div>
@@ -27,7 +27,7 @@ import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import { myAxios } from '@/main'
-import store from '@/store/index'
+// import store from '@/store/index'
 import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue'
 
 @Options({
@@ -48,6 +48,7 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
       loadingProposals: false,
       nothingFound: false,
       loading: false,
+      loadingCompanies: false,
       error: null
     }
   },
@@ -57,8 +58,7 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
   },
   methods: {
     fetchData () {
-      // this.error = this.post = null
-      this.loading = true
+      this.loadingCompanies = true
       myAxios.get('api/proposals')
         .then(response => {
           if (!response.data.data.length) {
@@ -69,16 +69,16 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
         .catch(error => {
           console.log(error)
           this.errored = true
+          this.nothingFound = true
         }).finally(() => {
-          this.loading = false
+          this.loadingCompanies = false
           return null
         })
       return null
     },
     fetchLikedProposalsData () {
-      // this.error = this.post = null
       this.loadingProposals = true
-      myAxios.get('api/students/' + 1 + '/likes')
+      myAxios.get('api/students/' + 1 + '/likes') // fix id
         .then(response => {
           if (!response.data.data.length) {
             this.nothingFoundProposals = true
@@ -88,6 +88,7 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
         .catch(error => {
           console.log(error)
           this.errored = true
+          this.nothingFoundProposals = true
         }).finally(() => {
           this.loadingProposals = false
           return null
@@ -121,8 +122,13 @@ export default class studentHome extends Vue {
   margin-top: 50px;
 }
 
-.lists {
+.lists, .liked-list {
   padding-top: 120px;
+}
+
+.liked-list {
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 @media screen and (max-width: 700px) {

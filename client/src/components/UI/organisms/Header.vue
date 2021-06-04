@@ -18,7 +18,7 @@
             <router-link :to="{ name: 'CompanyHome' }" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link :to="{ name: 'CompanyProposals', params: { id: 2 } }" class="navbar-link">Mijn stages</router-link>
+            <router-link :to="{ name: 'CompanyProposals', params: { id: 1 } }" class="navbar-link">Mijn stages</router-link>
           </li>
           <li class='navbar-item'>
             <button @click="logout" class="button-logout navbar-link">Log uit</button>
