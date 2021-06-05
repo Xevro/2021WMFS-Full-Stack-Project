@@ -18,7 +18,7 @@
             <router-link :to="{ name: 'CompanyHome' }" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link :to="{ name: 'CompanyProposals', params: { id: 1 } }" class="navbar-link">Mijn stages</router-link>
+            <router-link :to="{ name: 'CompanyProposals', params: { id: companyId } }" class="navbar-link">Mijn stages</router-link>
           </li>
           <li class='navbar-item'>
             <button @click="logout" class="button-logout navbar-link">Log uit</button>
@@ -29,10 +29,10 @@
             <router-link to="/" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link :to="{ name: 'StudentDetails', params: { id: 1 } }" class="navbar-link">Mijn account</router-link>
+            <router-link :to="{ name: 'StudentDetails', params: { id: studentId } }" class="navbar-link">Mijn account</router-link>
           </li>
           <li class='navbar-item'>
-            <router-link :to="{ name: 'StudentTasks', params: { id: 1 } }" class="navbar-link">Mijn taken</router-link>
+            <router-link :to="{ name: 'StudentTasks', params: { id: studentId } }" class="navbar-link">Mijn taken</router-link>
           </li>
           <li class='navbar-item'>
             <button @click="logout" class="button-logout navbar-link">Log uit</button>
@@ -52,6 +52,12 @@ export default {
   computed: {
     role () {
       return store.getters.getAuthRole
+    },
+    studentId () {
+      return store.getters.getStudentId
+    },
+    companyId () {
+      return store.getters.getCompanyId
     }
   },
   methods: {

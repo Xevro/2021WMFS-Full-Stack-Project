@@ -6,7 +6,7 @@
       <p v-if="nothingFound">Geen stages gevonden</p>
       <div v-if="loadingCompanies" role="alert">laden van gegevens.</div>
       <div class="button-add-task">
-        <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
+        <Button :href="'/students/' + studentId + '/tasks/add'">Voeg een taak toe</Button>
       </div>
       <div class="liked-list">
         <liked-proposals-list :data="likedProposals" title="Mijn favoriete stage voorstellen"/>
@@ -28,7 +28,7 @@ import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import { myAxios } from '@/main'
-// import store from '@/store/index'
+import store from '@/store/index'
 import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue'
 
 @Options({
@@ -43,7 +43,7 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
   data () {
     return {
       companies: null,
-      studentId: 1,
+      studentId: store.getters.getStudentId,
       likedProposals: null,
       nothingFoundProposals: false,
       loadingProposals: false,

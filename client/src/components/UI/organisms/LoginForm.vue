@@ -33,7 +33,7 @@ export default {
   },
   data () {
     return {
-      email: 'louis.dhont@student.odisee.be', // this.email hr@fleetmaster.com  louis.dhont@student.odisee.be
+      email: 'hr@fleetmaster.com', // this.email hr@fleetmaster.com  louis.dhont@student.odisee.be
       password: 'Azerty123', // this.password
       error: null,
       submitted: false,

@@ -6,7 +6,7 @@
       <p v-if="nothingFound">Geen taken gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
       <div class="button-add-task">
-        <Button :href="'/students/1/tasks/add'">Voeg een taak toe</Button>
+        <Button :href="'/students/' + studentId + '/tasks/add'">Voeg een taak toe</Button>
       </div>
     </div>
   </div>
