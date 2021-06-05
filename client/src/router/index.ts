@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store/index'
+const Error404 = () => import('@/views/Error404.vue')
 const Login = () => import('@/views/auth/Login.vue')
+const RegisterCompany = () => import('@/views/auth/RegisterCompany.vue')
 const StudentHome = () => import('@/views/students/StudentHome.vue')
 const StudentDetails = () => import('@/views/students/StudentDetails.vue')
 const StudentTasks = () => import('@/views/students/StudentTasks.vue')
 const AddTask = () => import('@/views/students/AddTask.vue')
+const StudentTaskDetail = () => import('@/views/students/StudentTaskDetail.vue')
 const CompanyHome = () => import('@/views/company/CompanyHome.vue')
 const CompanyProposals = () => import('@/views/company/CompanyProposals.vue')
-const RegisterCompany = () => import('@/views/auth/RegisterCompany.vue')
 const AddProposal = () => import('@/views/company/AddProposal.vue')
 const ProposalDetails = () => import('@/views/company/ProposalDetails.vue')
-const Error404 = () => import('@/views/Error404.vue')
 const StudentInfoDetails = () => import('@/views/company/StudentInfoDetails.vue')
 
 const routes = [
@@ -52,6 +53,16 @@ const routes = [
     path: '/students/:id/tasks',
     name: 'StudentTasks',
     component: StudentTasks,
+    props: true,
+    meta: {
+      requiresAuth: true,
+      allowedRole: 'student'
+    }
+  },
+  {
+    path: '/students/:studentId/tasks/:taskId',
+    name: 'StudentTaskDetail',
+    component: StudentTaskDetail,
     props: true,
     meta: {
       requiresAuth: true,

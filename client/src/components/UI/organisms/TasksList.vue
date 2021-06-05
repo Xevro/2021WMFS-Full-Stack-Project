@@ -6,12 +6,14 @@
             <tr>
               <th scope="col">Datum</th>
               <th scope="col">Beschrijving</th>
+              <th scope="col">info</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
               <td>{{ item.date }}</td>
               <td class="columns">{{ item.task }}</td>
+              <td><router-link :to="'/students/' + item.student.id + '/tasks/' + item.id">info</router-link></td>
             </tr>
             </tbody>
           </table>
