@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Proposal;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -110,8 +111,8 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-view-proposals-all', function (User $user) {
             return $user->role == 'student' || $user->role == 'company';
         });
-        Gate::define('api-view-proposal', function (User $user) {
-            return $user->role == 'student' || $user->role == 'company';
+        Gate::define('api-view-proposal', function (User $user, $proposalId) {
+            return ($user->role == 'company') || ($user->role == 'student' && Proposal::where('id', $proposalId)->where('visibility', 1)->first());
         });
         Gate::define('api-update-proposal', function (User $user, $id) {
             return $user->role == 'company' && Auth::user()->company->id == $id;

@@ -60,8 +60,8 @@ class CompanyProposalController extends Controller {
     public function show($companyId, $proposalId) {
         // api/companies/{company}/proposals/{proposal}
         // show specific proposal of specific company
-        Gate::authorize('api-view-proposal');
-        return new ProposalResource(Proposal::where('company_id', $companyId)->where('id', $proposalId)->first()); // ->where('visibility', 1)
+        Gate::authorize('api-view-proposal', $proposalId);
+        return new ProposalResource(Proposal::where('company_id', $companyId)->where('id', $proposalId)->first());
     }
 
     /**

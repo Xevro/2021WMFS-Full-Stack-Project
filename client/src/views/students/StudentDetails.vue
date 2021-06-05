@@ -1,7 +1,13 @@
 <template>
   <div class="page">
     <Header :type-user="'student'"/> <!-- wijzig dit met het storage atribuut -->
-    <div class="content">
+    <div v-if="noStudentData" class="content">
+      <p>Kon de gegevens niet ophalen.</p>
+    </div>
+    <div v-if="loading" class="content">
+      <p>Bezig met het ophalen van de gegevens.</p>
+    </div>
+    <div v-if="student" class="content">
       <p v-if="noStudentData">Kon geen gegevens ophalen</p>
       <div v-if="!noStudentData" class="information">
         <div v-if="loadingStudent" role="alert">laden van gegevens.</div>
@@ -76,7 +82,6 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
         })
         .catch(error => {
           console.log(error)
-          this.error = true
           this.noStudentData = true
         }).finally(() => {
           this.loading = false

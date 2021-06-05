@@ -1,7 +1,13 @@
 <template>
   <div class="page">
     <Header :type-user="'student'"/> <!-- wijzig dit met het storage atribuut -->
-    <div class="content">
+    <div v-if="error" class="content">
+      <p>Kon de gegevens niet ophalen.</p>
+    </div>
+    <div v-if="loading" class="content">
+      <p>Bezig met het ophalen van de gegevens.</p>
+    </div>
+    <div v-if="details" class="content">
       <div class="add-to-favorites">
         <p>Voeg toe aan favorieten</p>
       </div>
@@ -51,6 +57,10 @@ import { myAxios } from '@/main'
       this.loading = true
       myAxios.get('api/companies/' + this.companyId + '/proposals/' + this.proposalId)
         .then(response => {
+          if (response.data.data == null) {
+            this.error = true
+            return
+          }
           this.details = response.data.data
         })
         .catch(error => {

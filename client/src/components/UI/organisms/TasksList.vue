@@ -12,7 +12,7 @@
             <tbody>
             <tr v-for="(item, index) in data" :key="'item' + index">
               <td>{{ item.date }}</td>
-              <td class="columns">{{ item.task }}</td>
+              <td>{{ item.task.length > 50 ? item.task.substring(0, 50 - 3) + "..." : item.task }}</td>
               <td><router-link :to="'/students/' + item.student.id + '/tasks/' + item.id">info</router-link></td>
             </tr>
             </tbody>
