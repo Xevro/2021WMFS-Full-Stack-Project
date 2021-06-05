@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header :type-user="'student'"/>
+    <Header/>
     <div class="lists">
       <TasksList :data="tasks" title="Mijn taken"/>
       <p v-if="nothingFound">Geen taken gevonden</p>

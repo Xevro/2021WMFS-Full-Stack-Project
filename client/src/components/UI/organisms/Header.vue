@@ -49,7 +49,6 @@ import store from '@/store/index'
 
 export default {
   name: 'Header',
-  props: ['typeUser'],
   computed: {
     role () {
       return store.getters.getAuthRole

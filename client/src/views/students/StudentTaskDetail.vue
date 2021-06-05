@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header :type-user="'student'"/> <!-- wijzig dit met het storage atribuut -->
+    <Header/>
     <div v-if="error" class="content">
       <p>Kon de gegevens niet ophalen.</p>
     </div>

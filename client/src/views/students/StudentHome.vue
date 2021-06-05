@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header :type-user="'student'"/>
+    <Header/>
     <div class="lists">
       <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
       <p v-if="nothingFound">Geen stages gevonden</p>

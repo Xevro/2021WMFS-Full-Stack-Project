@@ -163,6 +163,12 @@ router.beforeEach((to, from, next) => {
       } else if (to.meta.allowedRole === 'company' && store.getters.getAuthRole === 'company') {
         next()
       } else {
+        if (store.getters.getAuthRole === 'company' && to.meta.allowedRole === 'student') {
+          next({ name: 'CompanyHome' })
+        }
+        if (store.getters.getAuthRole === 'student' && to.meta.allowedRole === 'company') {
+          next({ name: 'StudentHome' })
+        }
         next({ name: 'Login' })
       }
     }

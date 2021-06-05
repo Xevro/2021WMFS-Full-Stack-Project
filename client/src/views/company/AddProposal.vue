@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header :type-user="'company'"/>
+    <Header/>
     <div class="content">
       <div class="title-part">
         <p>Voeg een stage voorstel toe</p>

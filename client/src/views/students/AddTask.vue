@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header :type-user="'student'"/>
+    <Header/>
     <div class="content">
       <div class="title-part">
         <p>Voeg een taak toe</p>

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <Header :type-user="'company'"/>
+    <Header/>
     <div class="lists">
       <ProposalsList :data="companies" title="Al mijn stage voorstellen"/>
       <p v-if="nothingFound">Geen taken gevonden</p>
