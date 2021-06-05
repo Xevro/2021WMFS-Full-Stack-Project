@@ -1,7 +1,13 @@
 <template>
   <div class="page">
     <Header :type-user="'student'"/> <!-- wijzig dit met het storage atribuut -->
-    <div class="content">
+    <div v-if="noTasksFound || nothingFound" class="content">
+      <p>Kon de gegevens niet ophalen.</p>
+    </div>
+    <div v-if="loading" class="content">
+      <p>Bezig met het ophalen van de gegevens.</p>
+    </div>
+    <div v-if="student" class="content">
       <div class="information">
         <div v-if="loading" role="alert">laden van gegevens.</div>
         <h3 class="title-page">{{ student.firstname + ' ' + student.lastname }}</h3>
@@ -64,10 +70,12 @@ import { myAxios } from '@/main'
             this.nothingFound = true
           }
           this.student = response.data.data
+          this.nothingFound = false
         })
         .catch(error => {
           console.log(error)
           this.error = true
+          this.noTasksFound = true
         }).finally(() => {
           this.loading = false
           return null

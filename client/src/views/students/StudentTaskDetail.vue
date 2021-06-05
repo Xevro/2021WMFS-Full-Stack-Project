@@ -9,7 +9,7 @@
     </div>
     <div v-if="details" class="content">
       <div class="content-info-box">
-        <h3>Datum: {{ details.date }}</h3>
+        <h2>Details van de stagetaak op {{ details.date }}</h2>
         <div class="information-box">
           <p class="title">Taak beschrijving</p>
           <p>{{ details.task }}</p>

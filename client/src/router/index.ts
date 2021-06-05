@@ -66,7 +66,7 @@ const routes = [
     props: true,
     meta: {
       requiresAuth: true,
-      allowedRole: 'student'
+      allowedRole: 'both'
     }
   },
   {
