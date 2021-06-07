@@ -25,7 +25,8 @@ docker-compose up
 * When the containers are up and running, run from a new terminal/cmd:
 ```shell
 cd 2021wmfs-louisdhont
-docker-compose exec php-web bash
+docker ps
+docker exec -it { php-web container id } bash
 ```
 From the Bash terminal in the php-web container, run the following commands:
 ```shell

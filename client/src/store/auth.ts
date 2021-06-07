@@ -52,11 +52,18 @@ export default {
     async tryAutoLogIn ({ commit }:any) {
       try {
         await myAxios.get('api/user').then(response => {
+          if (response.data.length == null) {
+            myAxios.post('client/logout')
+            commit('setUser', { id: null, email: null, role: null })
+            router.push({ name: 'Login' })
+          }
           commit('setUser', response.data)
           localStorage.setItem('role', response.data.role)
         })
       } catch (e) {
-        commit('logOut')
+        await myAxios.post('client/logout')
+        commit('setUser', { id: null, email: null, role: null })
+        await router.push({ name: 'Login' })
         console.log('Error: ' + e)
       }
     },

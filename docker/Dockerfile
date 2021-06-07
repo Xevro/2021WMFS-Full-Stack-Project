@@ -6,5 +6,9 @@ RUN apt-get update && apt-get install -y libzip-dev zip && docker-php-ext-instal
 RUN apt-get install -y locales locales-all
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && apt-get install -y nodejs
+COPY /containers/.env .env
 WORKDIR /var/www
+# Run Compser Install
+RUN composer install -d /var/www
+RUN php /var/www/artisan key:generate
 VOLUME /usr/local/etc/php
