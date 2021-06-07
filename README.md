@@ -34,6 +34,13 @@ composer install
 cp .env.example .env
 php artisan key:generate
 ```
+
+* If you want to use the developers container, you have to install the dependencies. Run from a new terminal/cmd:
+```shell
+cd 2021wmfs-louisdhont/client
+npm install
+```
+
 * Browse to [http://localhost:8083](http://localhost:8083) to view the administrator page
 * Browse to [http://localhost:8080](http://localhost:8080) to view the stagetool SPA
 * Browse to [http://localhost:8082](http://localhost:8082) to view the stagetool SPA in developer mode
