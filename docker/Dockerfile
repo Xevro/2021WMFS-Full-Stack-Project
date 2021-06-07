@@ -9,7 +9,3 @@ RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && apt-get install -
 
 WORKDIR /var/www
 VOLUME /usr/local/etc/php
-
-COPY run.sh /usr/local/bin/run.sh
-RUN chmod +x /usr/local/bin/run.sh
-CMD ["run.sh"]
