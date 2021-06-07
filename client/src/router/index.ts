@@ -1,18 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store/index'
-const Error404 = () => import('@/views/Error404.vue')
-const Login = () => import('@/views/auth/Login.vue')
-const RegisterCompany = () => import('@/views/auth/RegisterCompany.vue')
-const StudentHome = () => import('@/views/students/StudentHome.vue')
-const StudentDetails = () => import('@/views/students/StudentDetails.vue')
-const StudentTasks = () => import('@/views/students/StudentTasks.vue')
-const AddTask = () => import('@/views/students/AddTask.vue')
-const StudentTaskDetail = () => import('@/views/students/StudentTaskDetail.vue')
-const CompanyHome = () => import('@/views/company/CompanyHome.vue')
-const CompanyProposals = () => import('@/views/company/CompanyProposals.vue')
-const AddProposal = () => import('@/views/company/AddProposal.vue')
-const ProposalDetails = () => import('@/views/company/ProposalDetails.vue')
-const StudentInfoDetails = () => import('@/views/company/StudentInfoDetails.vue')
 
 const routes = [
   {
@@ -24,8 +11,9 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login,
+    component: () => import('@/views/auth/Login.vue'),
     meta: {
+      title: 'Login - Stagetool',
       requiresAuth: false,
       allowedRole: 'both'
     }
@@ -33,8 +21,9 @@ const routes = [
   {
     path: '/students',
     name: 'StudentHome',
-    component: StudentHome,
+    component: () => import('@/views/students/StudentHome.vue'),
     meta: {
+      title: 'Student home - Stagetool',
       requiresAuth: true,
       allowedRole: 'student'
     }
@@ -42,9 +31,10 @@ const routes = [
   {
     path: '/students/:id',
     name: 'StudentDetails',
-    component: StudentDetails,
+    component: () => import('@/views/students/StudentDetails.vue'),
     props: true,
     meta: {
+      title: 'Student details - Stagetool',
       requiresAuth: true,
       allowedRole: 'student'
     }
@@ -52,9 +42,10 @@ const routes = [
   {
     path: '/students/:id/tasks',
     name: 'StudentTasks',
-    component: StudentTasks,
+    component: () => import('@/views/students/StudentTasks.vue'),
     props: true,
     meta: {
+      title: 'Student taken overzicht - Stagetool',
       requiresAuth: true,
       allowedRole: 'student'
     }
@@ -62,9 +53,10 @@ const routes = [
   {
     path: '/students/:studentId/tasks/:taskId',
     name: 'StudentTaskDetail',
-    component: StudentTaskDetail,
+    component: () => import('@/views/students/StudentTaskDetail.vue'),
     props: true,
     meta: {
+      title: 'Taken detail - Stagetool',
       requiresAuth: true,
       allowedRole: 'both'
     }
@@ -72,9 +64,10 @@ const routes = [
   {
     path: '/students/:id/details',
     name: 'StudentInfoDetails',
-    component: StudentInfoDetails,
+    component: () => import('@/views/company/StudentInfoDetails.vue'),
     props: true,
     meta: {
+      title: 'Student informatie - Stagetool',
       requiresAuth: true,
       allowedRole: 'company'
     }
@@ -82,9 +75,10 @@ const routes = [
   {
     path: '/students/:id/tasks/add',
     name: 'StudentAddTask',
-    component: AddTask,
+    component: () => import('@/views/students/AddTask.vue'),
     props: true,
     meta: {
+      title: 'Voeg een taak toe - Stagetool',
       requiresAuth: true,
       allowedRole: 'student'
     }
@@ -92,8 +86,9 @@ const routes = [
   {
     path: '/companies',
     name: 'CompanyHome',
-    component: CompanyHome,
+    component: () => import('@/views/company/CompanyHome.vue'),
     meta: {
+      title: 'Company home - Stagetool',
       requiresAuth: true,
       allowedRole: 'company'
     }
@@ -101,14 +96,18 @@ const routes = [
   {
     path: '/companies/register',
     name: 'CompanyRegister',
-    component: RegisterCompany
+    component: () => import('@/views/auth/RegisterCompany.vue'),
+    meta: {
+      title: 'Registreer bedrijf - Stagetool'
+    }
   },
   {
     path: '/companies/:id/proposals',
     name: 'CompanyProposals',
-    component: CompanyProposals,
+    component: () => import('@/views/company/CompanyProposals.vue'),
     props: true,
     meta: {
+      title: 'Company voorstellen - Stagetool',
       requiresAuth: true,
       allowedRole: 'company'
     }
@@ -116,9 +115,10 @@ const routes = [
   {
     path: '/companies/:compId/proposals/add',
     name: 'CompanyProposalsAdd',
-    component: AddProposal,
+    component: () => import('@/views/company/AddProposal.vue'),
     props: true,
     meta: {
+      title: 'Voeg een voorstel toe - Stagetool',
       requiresAuth: true,
       allowedRole: 'company'
     }
@@ -126,9 +126,10 @@ const routes = [
   {
     path: '/companies/:compId/proposals/:id',
     name: 'ProposalDetails',
-    component: ProposalDetails,
+    component: () => import('@/views/company/ProposalDetails.vue'),
     props: true,
     meta: {
+      title: 'Voorstel detail - Stagetool',
       requiresAuth: true,
       allowedRole: 'both'
     }
@@ -136,7 +137,10 @@ const routes = [
   {
     path: '/error404',
     name: 'Error404',
-    component: Error404
+    component: () => import('@/views/Error404.vue'),
+    meta: {
+      title: 'Error 404 - Stagetool'
+    }
   },
   {
     path: '/:notFound(.*)',
@@ -152,6 +156,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to.matched.slice().reverse().find(r => r.meta && r.meta.title)) {
+    document.title = String(to.meta.title)
+  }
+
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (localStorage.getItem('token') === null) {
       next({ name: 'Login', params: { nextUrl: to.fullPath } })

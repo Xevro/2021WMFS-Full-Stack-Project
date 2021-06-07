@@ -56,6 +56,7 @@ export default {
           localStorage.setItem('role', response.data.role)
         })
       } catch (e) {
+        commit('logOut')
         console.log('Error: ' + e)
       }
     },

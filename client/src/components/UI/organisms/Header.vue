@@ -61,9 +61,6 @@ export default {
     }
   },
   methods: {
-    getId () {
-      return 1 // this.$store.getters.getCompanyId()
-    },
     logout () {
       store.dispatch('logOut')
     }
