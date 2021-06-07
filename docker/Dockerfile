@@ -8,9 +8,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && apt-get install -y nodejs
 
 WORKDIR /var/www
-
-# Run Composer Install
-RUN 2021wmfs-louisdhont_php-web COPY .env.example .env
-RUN 2021wmfs-louisdhont_php-web composer install
-RUN 2021wmfs-louisdhont_php-web php artisan key:generate
 VOLUME /usr/local/etc/php
+
+COPY run.sh /usr/local/bin/run.sh
+RUN chmod +x /usr/local/bin/run.sh
+CMD ["run.sh"]
