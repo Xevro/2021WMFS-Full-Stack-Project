@@ -9,7 +9,8 @@ RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && apt-get install -
 
 WORKDIR /var/www
 
-# Run Compser Install
-RUN composer install -d /var/www
-RUN php /var/www/artisan key:generate
+# Run Composer Install
+RUN 2021wmfs-louisdhont_php-web COPY .env.example .env
+RUN 2021wmfs-louisdhont_php-web composer install
+RUN 2021wmfs-louisdhont_php-web php artisan key:generate
 VOLUME /usr/local/etc/php
