@@ -3,8 +3,7 @@ FROM node:lts-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json package-lock.json ./
-RUN yarn install --prod
-RUN yarn add @vue/cli -g
+RUN yarn install
 COPY . /app
 RUN npm rebuild node-sass
 RUN yarn run build
