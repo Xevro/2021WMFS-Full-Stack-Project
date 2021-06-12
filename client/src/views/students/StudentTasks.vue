@@ -48,15 +48,17 @@ import { myAxios } from '@/main'
       this.loading = true
       myAxios.get('api/students/' + this.studentId + '/tasks')
         .then(response => {
-          if (!response.data.data.length) {
+          if (response.data.data.length === 0) {
             this.nothingFound = true
+            return null
           }
           this.tasks = response.data.data
           this.nothingFound = false
+          return null
         })
         .catch(error => {
           console.log(error)
-          this.errored = true
+          this.error = 'Er is een onverwachte fout opgetreden.'
           this.nothingFound = true
         }).finally(() => {
           this.loading = false

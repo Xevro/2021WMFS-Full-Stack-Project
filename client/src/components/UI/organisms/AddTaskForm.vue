@@ -4,7 +4,7 @@
       <InputField class="input-field" required="true" type="date" id="date" v-model="date" label="Datum" :error="dateError"/>
       <InputTextArea class="input-field" required="true" id="description" type="text" label="Beschrijving" v-model="description" :error="descriptionError"/>
       <Error v-if="error" :value="error"/>
-      <div class="loading" v-show="loading" role="alert">Even geduld</div>
+      <div class="loading" v-show="submitted" role="alert">Even geduld</div>
       <div class="button-area">
         <Button :disabled="submitted" :type="'submit'">Voeg taak toe</Button>
       </div>
@@ -35,8 +35,7 @@ export default {
       date: null,
       description: null,
       error: null,
-      submitted: false,
-      loading: false
+      submitted: false
     }
   },
   computed: {
@@ -69,7 +68,7 @@ export default {
     }
   },
   methods: {
-    async verzend () {
+    verzend () {
       this.submitted = true
       if (this.hasErrors) {
         this.error = 'Het formulier bevat nog fouten'
@@ -78,13 +77,20 @@ export default {
       } else {
         this.error = null
       }
-      this.loading = true
       try {
-        await myAxios.post('api/students/' + this.studentId + '/tasks', {
-          task: this.description,
-          date: this.date
-        }).then(() => {
-          this.$router.push({ name: 'StudentHome' })
+        myAxios.get('api/students/' + this.studentId + '/contract').then(async (response) => {
+          if (response.data.data.length !== 0) {
+            await myAxios.post('api/students/' + this.studentId + '/tasks', {
+              task: this.description,
+              date: this.date
+            }).then(() => {
+              this.$router.push({ name: 'StudentHome' })
+            })
+          } else {
+            this.error = 'U hebt geen contract lopen om een taak over in te sturen.'
+            this.submitted = false
+            return null
+          }
         })
       } catch (e) {
         if (e.response.status === 422) {
@@ -95,7 +101,7 @@ export default {
         this.submitted = false
         return null
       } finally {
-        this.loading = false
+        this.submitted = false
       }
     }
   }

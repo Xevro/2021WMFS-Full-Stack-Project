@@ -8,8 +8,8 @@
       <p>Bezig met het ophalen van de gegevens.</p>
     </div>
     <div v-if="student" class="content">
-      <p v-if="noStudentData">Kon geen gegevens ophalen</p>
-      <div v-if="!noStudentData" class="information">
+      <p v-if="nothingFound">Kon geen gegevens ophalen</p>
+      <div v-if="!nothingFound" class="information">
         <div v-if="loadingStudent" role="alert">laden van gegevens.</div>
         <h3 class="title-page">{{ student.firstname + ' ' + student.lastname }}</h3>
         <p>Studenten nummer: {{ student.r_number }}</p>
@@ -19,8 +19,11 @@
       </div>
       <div class="list-proposals">
         <LikedProposalsList :data="proposalLikes" title="Mijn favoriete stage voorstellen"/>
-        <p v-if="nothingFound">Geen voorstellen gevonden</p>
+        <p v-if="noFavoritesFound">Geen voorstellen gevonden</p>
         <div v-if="loading" role="alert">laden van gegevens.</div>
+      </div>
+      <div class="button-add-task">
+        <Button :href="'/students/' + studentId + '/tasks/add'">Voeg een taak toe</Button>
       </div>
       <div class="contract">
         <MyProposal :data="contract" title="Mijn contract"/>
@@ -42,11 +45,13 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
 import MyProposal from '@/components/UI/organisms/MyProposalItem.vue'
 import { myAxios } from '@/main'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
+import Button from '@/components/UI/atoms/Button.vue'
 
 @Options({
   components: {
     ProposalsList,
     MyProposal,
+    Button,
     Footer,
     Header,
     LikedProposalsList
@@ -59,7 +64,7 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
       student: null,
       loadingStudent: false,
       nothingFound: false,
-      noStudentData: false,
+      noFavoritesFound: false,
       noContractFound: false,
       loading: false,
       loadingContract: false
@@ -75,14 +80,17 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
       this.loading = true
       myAxios.get('api/students/' + this.studentId + '/likes')
         .then(response => {
-          if (!response.data.data.length) {
-            this.noStudentData = true
+          if (response.data.data.length === 0) {
+            this.noFavoritesFound = true
+            return null
           }
           this.proposalLikes = response.data.data
+          this.noFavoritesFound = false
+          return null
         })
         .catch(error => {
           console.log(error)
-          this.noStudentData = true
+          this.noFavoritesFound = true
         }).finally(() => {
           this.loading = false
           return null
@@ -93,11 +101,12 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
       this.loadingStudent = true
       myAxios.get('api/students/' + this.studentId)
         .then(response => {
-          if (!response.data.data.length) {
+          if (response.data.data.length === 0) {
             this.nothingFound = true
           }
           this.student = response.data.data
           this.nothingFound = false
+          return null
         })
         .catch(error => {
           console.log(error)
@@ -113,11 +122,13 @@ import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
       this.loadingContract = true
       myAxios.get('api/students/' + this.studentId + '/contract')
         .then(response => {
-          if (!response.data.length) {
+          console.log(response.data.data.length)
+          if (response.data.data.length === 0) {
             this.noContractFound = true
+            return null
           }
-          console.log(response.data)
-          this.contract = response.data
+          this.contract = response.data.data
+          this.loadingContract = false
         })
         .catch(error => {
           console.log(error)
@@ -136,6 +147,13 @@ export default class studentDetails extends Vue {
 </script>
 
 <style scoped>
+.button-add-task {
+  margin-top: 40px;
+  margin-bottom: 50px;
+  margin-right: 100px;
+  float: right;
+}
+
 .page {
   min-height: 80vh;
   overflow: hidden;

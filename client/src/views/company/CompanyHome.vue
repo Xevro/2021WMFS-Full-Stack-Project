@@ -60,10 +60,12 @@ import StudentsList from '@/components/UI/organisms/StudentsList.vue'
       this.loading = true
       myAxios.get('api/companies/' + this.companyId + '/proposals')
         .then(response => {
-          if (!response.data.data.length) {
+          if (response.data.data.length === 0) {
             this.nothingFound = true
+            return null
           }
           this.companies = response.data.data
+          this.nothingFound = false
         })
         .catch(error => {
           console.log(error)
@@ -78,8 +80,9 @@ import StudentsList from '@/components/UI/organisms/StudentsList.vue'
       this.loadingStudents = true
       myAxios.get('api/students')
         .then(response => {
-          if (!response.data.data.length) {
+          if (response.data.data.length === 0) {
             this.nothingFoundStudents = true
+            return null
           }
           this.students = response.data.data
         })

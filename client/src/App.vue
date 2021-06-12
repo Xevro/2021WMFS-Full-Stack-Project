@@ -5,11 +5,10 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex' <div v-if="loading" role="alert">U wordt automatisch ingelogd.</div>
 
 export default {
   created () {
-    this.$store.dispatch('tryAutoLogIn') //  { route: this.$route }
+    this.$store.dispatch('tryAutoLogIn')
   }
 }
 </script>

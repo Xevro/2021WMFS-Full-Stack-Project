@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProposalResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Mentor;
 use App\Models\Proposal;
@@ -26,8 +27,11 @@ class StudentController extends Controller {
 
     public function contract($id) {
         Gate::authorize('api-view-contract', $id);
-        $proposal_id = Student::where('id', $id)->where('approved', 'Approved')->pluck('proposal_id');
-        return Proposal::where('id', $proposal_id)->with('company')->get();
+        $student = Student::where('id', $id)->first(); //->where('approved', 'Approved')
+        if ($student->proposal_id === 0) {
+            return ['data' => []];
+        }
+        return ProposalResource::collection(Proposal::where('id', $student->proposal_id)->get());
     }
 
     /**

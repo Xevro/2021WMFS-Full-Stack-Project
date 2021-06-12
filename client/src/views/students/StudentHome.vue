@@ -5,9 +5,6 @@
       <ProposalsList :data="companies" title="Overzicht van alle stage voorstellen"/>
       <p v-if="nothingFound">Geen stages gevonden</p>
       <div v-if="loadingCompanies" role="alert">laden van gegevens.</div>
-      <div class="button-add-task">
-        <Button :href="'/students/' + studentId + '/tasks/add'">Voeg een taak toe</Button>
-      </div>
       <div class="liked-list">
         <liked-proposals-list :data="likedProposals" title="Mijn favoriete stage voorstellen"/>
         <p v-if="nothingFound">Geen stages gevonden</p>
@@ -103,12 +100,6 @@ export default class studentHome extends Vue {
 </script>
 
 <style scoped>
-.button-add-task {
-  margin-top: 40px;
-  margin-right: 100px;
-  float: right;
-}
-
 .page {
   min-height: 80vh;
   overflow: hidden;

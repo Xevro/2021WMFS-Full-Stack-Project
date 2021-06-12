@@ -57,7 +57,11 @@
                                     {{ $companies->links() }}
                                 </div>
                                 @else
-                                    <p>Geen resultaten gevonden die {{ $term }} bevatte.</p>
+                                    @if($term)
+                                        <p>Geen resultaten gevonden die {{ $term }} bevatte.</p>
+                                    @else
+                                        <p>Geen resultaten gevonden.</p>
+                                    @endif
                                 @endif
                             </div>
                         </div>

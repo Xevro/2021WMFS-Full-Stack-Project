@@ -3,8 +3,11 @@
     <Header/>
     <div class="lists">
       <ProposalsList :data="companies" title="Al mijn stage voorstellen"/>
-      <p v-if="nothingFound">Geen taken gevonden</p>
+      <p v-if="nothingFound">Geen stages voorstellen gevonden</p>
       <div v-if="loading" role="alert">laden van gegevens.</div>
+      <div class="button-add-proposal">
+        <Button :href="'/companies/' + companyId + '/proposals/add'">Voeg een voorstel toe</Button>
+      </div>
     </div>
   </div>
   <div class="footer">
@@ -17,11 +20,13 @@ import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
+import Button from '@/components/UI/atoms/Button.vue'
 import { myAxios } from '@/main'
 
 @Options({
   components: {
     ProposalsList,
+    Button,
     Footer,
     Header
   },
@@ -68,6 +73,12 @@ export default class CompanyProposals extends Vue {
   overflow: hidden;
   display: block;
   position: relative;
+}
+
+.button-add-proposal {
+  margin-top: 40px;
+  margin-right: 100px;
+  float: right;
 }
 
 .footer {
