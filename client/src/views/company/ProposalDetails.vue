@@ -49,7 +49,7 @@ import store from '@/store/index'
     role () {
       return store.getters.getAuthRole
     },
-    studentId () {
+    getStudentId () {
       return store.getters.getStudentId
     }
   },
@@ -66,11 +66,13 @@ import store from '@/store/index'
   },
   created () {
     this.fetchData()
-    this.favoritesStatus()
+    if (this.role === 'student') {
+      this.favoritesStatus()
+    }
   },
   methods: {
     favoritesStatus () {
-      myAxios.get('api/students/' + this.studentId + '/likes/' + this.proposalId).then(async (response) => {
+      myAxios.get('api/students/' + this.getStudentId + '/likes/' + this.proposalId).then(async (response) => {
         if (response.data.data.length === 0) {
           this.favorietenTekst = 'Voeg toe aan favorieten'
           return null
@@ -106,16 +108,16 @@ import store from '@/store/index'
       this.disableButton = true
       try {
         this.favorietenTekst = 'Even geduld.'
-        myAxios.get('api/students/' + this.studentId + '/likes/' + this.proposalId).then(async (response) => {
+        myAxios.get('api/students/' + this.getStudentId + '/likes/' + this.proposalId).then(async (response) => {
           if (response.data.data.length === 0) {
-            await myAxios.post('api/students/' + this.studentId + '/likes', {
+            await myAxios.post('api/students/' + this.getStudentId + '/likes', {
               student_id: this.studentId,
               proposal_id: this.proposalId
             }).then(() => {
               this.$router.push({ name: 'StudentHome' })
             })
           } else {
-            await myAxios.delete('api/students/' + this.studentId + '/likes/' + this.proposalId).then((response) => {
+            await myAxios.delete('api/students/' + this.getStudentId + '/likes/' + this.proposalId).then((response) => {
               if (response.data.message === 'The like has been deleted') {
                 this.$router.push({ name: 'StudentHome' })
               }
