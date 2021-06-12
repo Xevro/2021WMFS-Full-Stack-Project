@@ -2,14 +2,16 @@
   <div class="page">
     <Header/>
     <div v-if="error" class="content">
-      <p>Kon de gegevens niet ophalen.</p>
+      <p>{{ error }}</p>
     </div>
     <div v-if="loading" class="content">
       <p>Bezig met het ophalen van de gegevens.</p>
     </div>
     <div v-if="details" class="content">
-      <div class="add-to-favorites">
-        <p>Voeg toe aan favorieten</p>
+      <div v-if="role === 'student'" class="add-to-favorites">
+        <form novalidate @submit.prevent="addToFavorites">
+        <Button :type="'submit'"> {{ favorietenTekst }}</Button>
+        </form>
       </div>
       <div class="content-info-box">
         <h3 class="title-page">Stage voorstel #{{ details.id }}</h3>
@@ -32,17 +34,29 @@
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
+import Button from '@/components/UI/atoms/Button.vue'
 import { myAxios } from '@/main'
+import store from '@/store/index'
 
 @Options({
   name: 'ProposalDetails',
   components: {
+    Button,
     Footer,
     Header
+  },
+  computed: {
+    role () {
+      return store.getters.getAuthRole
+    },
+    studentId () {
+      return store.getters.getStudentId
+    }
   },
   data () {
     return {
       details: null,
+      favorietenTekst: null,
       companyId: this.$route.params.compId,
       proposalId: this.$route.params.id,
       loading: false,
@@ -51,26 +65,70 @@ import { myAxios } from '@/main'
   },
   created () {
     this.fetchData()
+    this.favoritesStatus()
   },
   methods: {
+    favoritesStatus () {
+      myAxios.get('api/students/' + this.studentId + '/likes/' + this.proposalId).then(async (response) => {
+        if (response.data.data.length === 0) {
+          this.favorietenTekst = 'Voeg toe aan favorieten'
+          return null
+        } else {
+          this.favorietenTekst = 'Verwijder uit favorieten'
+          return null
+        }
+      })
+    },
     fetchData () {
       this.loading = true
       myAxios.get('api/companies/' + this.companyId + '/proposals/' + this.proposalId)
         .then(response => {
-          if (response.data.data == null) {
-            this.error = true
-            return
+          if (response.data.data.length === 0) {
+            this.error = 'Kon geen gegevens ophalen.'
+            return null
           }
           this.details = response.data.data
+          this.loading = false
+          return null
         })
         .catch(error => {
           console.log(error)
-          this.error = true
+          this.error = 'Kon geen gegevens ophalen.'
+          return null
         }).finally(() => {
           this.loading = false
           return null
         })
       return null
+    },
+    addToFavorites () {
+      try {
+        this.favorietenTekst = 'Even geduld.'
+        myAxios.get('api/students/' + this.studentId + '/likes/' + this.proposalId).then(async (response) => {
+          if (response.data.data.length === 0) {
+            await myAxios.post('api/students/' + this.studentId + '/likes', {
+              student_id: this.studentId,
+              proposal_id: this.proposalId
+            }).then(() => {
+              this.$router.push({ name: 'StudentHome' })
+            })
+          } else {
+            await myAxios.delete('api/students/' + this.studentId + '/likes/' + this.proposalId).then((response) => {
+              if (response.data.message === 'The like has been deleted') {
+                this.$router.push({ name: 'StudentHome' })
+              }
+            })
+            return null
+          }
+        })
+      } catch (e) {
+        if (e.response.status === 422) {
+          this.error = 'Er is een onverwachte fout opgetreden.'
+          return null
+        }
+        this.error = 'Er is een onverwachte fout opgetreden.'
+        return null
+      }
     }
   }
 })
@@ -108,7 +166,6 @@ export default class ProposalDetails extends Vue {
 }
 
 .add-to-favorites {
-  width: 200px;
   float: right;
 }
 

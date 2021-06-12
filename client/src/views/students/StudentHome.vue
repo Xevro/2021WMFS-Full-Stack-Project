@@ -7,7 +7,7 @@
       <div v-if="loadingCompanies" role="alert">laden van gegevens.</div>
       <div class="liked-list">
         <liked-proposals-list :data="likedProposals" title="Mijn favoriete stage voorstellen"/>
-        <p v-if="nothingFound">Geen stages gevonden</p>
+        <p v-if="nothingFoundProposals">Geen favoriete voorstellen gevonden</p>
         <div v-if="loadingProposals" role="alert">laden van gegevens.</div>
         <div v-if="loading" role="alert">laden van gegevens.</div>
       </div>
@@ -37,10 +37,15 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
     Footer,
     Header
   },
+  computed: {
+    getStudentId () {
+      return store.getters.getStudentId
+    }
+  },
   data () {
     return {
       companies: null,
-      studentId: store.getters.getStudentId,
+      studentId: this.getStudentId,
       likedProposals: null,
       nothingFoundProposals: false,
       loadingProposals: false,
@@ -63,6 +68,7 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
             this.nothingFound = true
           }
           this.companies = response.data.data
+          return null
         })
         .catch(error => {
           console.log(error)
@@ -76,12 +82,13 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
     },
     fetchLikedProposalsData () {
       this.loadingProposals = true
-      myAxios.get('api/students/' + 1 + '/likes') // fix id
+      myAxios.get('api/students/' + this.getStudentId + '/likes')
         .then(response => {
           if (!response.data.data.length) {
             this.nothingFoundProposals = true
           }
           this.likedProposals = response.data.data
+          return null
         })
         .catch(error => {
           console.log(error)

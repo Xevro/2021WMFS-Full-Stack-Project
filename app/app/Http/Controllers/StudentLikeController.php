@@ -50,6 +50,9 @@ class StudentLikeController extends Controller {
      */
     public function show($studentId, $proposalId) {
         Gate::authorize('api-view-student-like', $studentId);
+        if (!Like::where('student_id', $studentId)->where('proposal_id', $proposalId)->first()) {
+            return ['data' => []];
+        }
         return new StudentLikeResource(Like::where('student_id', $studentId)->where('proposal_id', $proposalId)->first());
     }
 
