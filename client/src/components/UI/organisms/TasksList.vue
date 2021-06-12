@@ -34,8 +34,8 @@ h2 {
 }
 
 .column-wide {
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .table {
@@ -77,10 +77,6 @@ a {
     max-width: 100%;
     margin-bottom: 1rem;
     background-color: transparent
-  }
-
-  .columns {
-    display: none;
   }
 }
 </style>

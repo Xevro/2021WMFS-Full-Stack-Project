@@ -1,9 +1,6 @@
 <template>
   <div class="page">
     <Header/>
-    <div v-if="noTasksFound || nothingFound" class="content">
-      <p>Kon de gegevens niet ophalen.</p>
-    </div>
     <div v-if="loading" class="content">
       <p>Bezig met het ophalen van de gegevens.</p>
     </div>
@@ -18,8 +15,7 @@
       </div>
       <div class="list">
         <TasksList :data="tasks" title="Mijn taken"/>
-        <p v-if="nothingFound">Geen taken gevonden</p>
-        <div v-if="loading" role="alert">laden van gegevens.</div>
+        <p v-if="noTasksFound">Geen taken gevonden</p>
       </div>
     </div>
   </div>
@@ -66,11 +62,12 @@ import { myAxios } from '@/main'
       this.loading = true
       myAxios.get('api/students/' + this.studentId)
         .then(response => {
-          if (!response.data.data.length) {
+          if (response.data.data.length === 0) {
             this.nothingFound = true
           }
           this.student = response.data.data
           this.nothingFound = false
+          return null
         })
         .catch(error => {
           console.log(error)
@@ -86,11 +83,13 @@ import { myAxios } from '@/main'
       this.loadingTasks = true
       myAxios.get('api/students/' + this.studentId + '/tasks')
         .then(response => {
-          if (!response.data.data.length) {
+          if (response.data.data.length === 0) {
             this.noTasksFound = true
+            return null
           }
           this.tasks = response.data.data
           this.noTasksFound = false
+          return null
         })
         .catch(error => {
           console.log(error)

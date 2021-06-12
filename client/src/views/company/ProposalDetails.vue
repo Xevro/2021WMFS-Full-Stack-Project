@@ -10,7 +10,7 @@
     <div v-if="details" class="content">
       <div v-if="role === 'student'" class="add-to-favorites">
         <form novalidate @submit.prevent="addToFavorites">
-        <Button :type="'submit'"> {{ favorietenTekst }}</Button>
+          <Button :disabled="disableButton" :type="'submit'"> {{ favorietenTekst }}</Button>
         </form>
       </div>
       <div class="content-info-box">
@@ -56,6 +56,7 @@ import store from '@/store/index'
   data () {
     return {
       details: null,
+      disableButton: false,
       favorietenTekst: null,
       companyId: this.$route.params.compId,
       proposalId: this.$route.params.id,
@@ -102,6 +103,7 @@ import store from '@/store/index'
       return null
     },
     addToFavorites () {
+      this.disableButton = true
       try {
         this.favorietenTekst = 'Even geduld.'
         myAxios.get('api/students/' + this.studentId + '/likes/' + this.proposalId).then(async (response) => {
@@ -122,6 +124,7 @@ import store from '@/store/index'
           }
         })
       } catch (e) {
+        this.disableButton = false
         if (e.response.status === 422) {
           this.error = 'Er is een onverwachte fout opgetreden.'
           return null
@@ -162,7 +165,7 @@ export default class ProposalDetails extends Vue {
 }
 
 .information-box {
- width: 50%;
+ width: 70%;
 }
 
 .add-to-favorites {
@@ -181,10 +184,17 @@ export default class ProposalDetails extends Vue {
     width: 100%;
   }
   .add-to-favorites {
+    margin-top: 30px;
     float: left;
   }
   .content-info-box {
-    padding-top: 3.125rem;
+    margin-top: 100px;
+  }
+  .content {
+    padding-top: 80px;
+    margin-left: 80px;
+    margin-right: 80px;
+    text-align: left;
   }
 }
 </style>

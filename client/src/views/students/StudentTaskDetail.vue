@@ -92,13 +92,8 @@ export default class StudentTaskDetail extends Vue {
   font-weight: bold;
 }
 
-.title-page {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
 .information-box {
-  width: 50%;
+  width: 70%;
 }
 
 .content {
@@ -112,8 +107,16 @@ export default class StudentTaskDetail extends Vue {
   .information-box {
     width: 100%;
   }
+
   .content-info-box {
     padding-top: 3.125rem;
+  }
+
+  .content {
+    padding-top: 80px;
+    margin-left: 80px;
+    margin-right: 80px;
+    text-align: left;
   }
 }
 </style>
