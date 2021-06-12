@@ -33,8 +33,8 @@ export default {
   },
   data () {
     return {
-      email: 'louis.dhont@student.odisee.be', // this.email hr@fleetmaster.com  louis.dhont@student.odisee.be
-      password: 'Azerty123', // this.password
+      email: this.email,
+      password: this.password,
       error: null,
       submitted: false,
       loading: false
@@ -85,6 +85,7 @@ export default {
           return null
         }
         this.error = 'Er is een onverwachte fout opgetreden.'
+        this.password = null
         this.submitted = false
         return null
       } finally {

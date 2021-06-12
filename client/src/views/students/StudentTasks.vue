@@ -95,5 +95,7 @@ export default class StudentTasks extends Vue {
 
 .lists {
   padding-top: 120px;
+  margin-left: 120px;
+  margin-right: 120px;
 }
 </style>

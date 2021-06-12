@@ -22,13 +22,13 @@
         <p v-if="noFavoritesFound">Geen voorstellen gevonden</p>
         <div v-if="loading" role="alert">laden van gegevens.</div>
       </div>
-      <div class="button-add-task">
-        <Button :href="'/students/' + studentId + '/tasks/add'">Voeg een taak toe</Button>
-      </div>
       <div class="contract">
         <MyProposal :data="contract" title="Mijn contract"/>
         <p v-if="noContractFound">Geen contract gevonden</p>
         <div v-if="loadingContract" role="alert">laden van gegevens.</div>
+      </div>
+      <div class="button-add-task" v-if="contract">
+        <Button :href="'/students/' + studentId + '/tasks/add'">Voeg een taak toe</Button>
       </div>
       </div>
   </div>
@@ -150,7 +150,6 @@ export default class studentDetails extends Vue {
 .button-add-task {
   margin-top: 40px;
   margin-bottom: 50px;
-  margin-right: 100px;
   float: right;
 }
 
@@ -189,8 +188,9 @@ export default class studentDetails extends Vue {
     margin-left: 10px;
   }
   .content {
-    padding-top: 50px;
-    margin: 0;
+    marggin-top: 30px;
+    margin-left: 70px;
+    margin-right: 70px;
     text-align: left;
   }
 }
