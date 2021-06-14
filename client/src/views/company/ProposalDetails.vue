@@ -111,7 +111,7 @@ import store from '@/store/index'
         myAxios.get('api/students/' + this.getStudentId + '/likes/' + this.proposalId).then(async (response) => {
           if (response.data.data.length === 0) {
             await myAxios.post('api/students/' + this.getStudentId + '/likes', {
-              student_id: this.studentId,
+              student_id: this.getStudentId,
               proposal_id: this.proposalId
             }).then(() => {
               this.$router.push({ name: 'StudentHome' })

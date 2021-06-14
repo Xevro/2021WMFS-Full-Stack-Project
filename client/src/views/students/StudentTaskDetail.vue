@@ -29,7 +29,7 @@ import Header from '@/components/UI/organisms/Header.vue'
 import { myAxios } from '@/main'
 
 @Options({
-  name: 'StudentTaskDetail', // studentId  taskId
+  name: 'StudentTaskDetail',
   components: {
     Footer,
     Header

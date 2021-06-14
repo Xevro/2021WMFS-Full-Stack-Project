@@ -122,7 +122,6 @@ import Button from '@/components/UI/atoms/Button.vue'
       this.loadingContract = true
       myAxios.get('api/students/' + this.studentId + '/contract')
         .then(response => {
-          console.log(response.data.data.length)
           if (response.data.data.length === 0) {
             this.noContractFound = true
             return null
