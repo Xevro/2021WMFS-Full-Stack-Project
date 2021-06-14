@@ -3,8 +3,8 @@
     <div class="box-center">
       <InputField class="input-field" required="true" type="date" id="date" v-model="date" label="Datum" :error="dateError"/>
       <InputTextArea class="input-field" required="true" id="description" type="text" label="Beschrijving" v-model="description" :error="descriptionError"/>
+      <div class="loading" v-if="submitted">Even geduld</div>
       <Error v-if="error" :value="error"/>
-      <div class="loading" v-show="submitted" role="alert">Even geduld</div>
       <div class="button-area">
         <Button :disabled="submitted" :type="'submit'">Voeg taak toe</Button>
       </div>
@@ -87,7 +87,7 @@ export default {
               this.$router.push({ name: 'StudentHome' })
             })
           } else {
-            this.error = 'U hebt geen contract lopen om een taak over in te sturen.'
+            this.error = 'U hebt geen contract lopen om een taak in te sturen.'
             this.submitted = false
             return null
           }

@@ -1,7 +1,6 @@
 <template>
   <form novalidate @submit.prevent="verzend">
     <div class="box-center">
-      <!-- <InputField id="title" required="true" v-model="title" label="Titel voorstel" type="text" :error="titleError"/> -->
       <InputField class="input-field" required="true" type="date" id="startperiod" v-model="startPeriod" label="Start periode" :error="startPeriodError"/>
       <InputField class="input-field" required="true" type="date" id="endperiod" v-model="endPeriod" label="Eind periode" :error="endPeriodError"/>
       <InputTextArea class="input-field" required="true" type="text" id="description" label="Beschrijving" v-model="description" :error="descriptionError"/>

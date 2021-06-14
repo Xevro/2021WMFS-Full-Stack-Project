@@ -8,7 +8,7 @@
       <p>Bezig met het ophalen van de gegevens.</p>
     </div>
     <div v-if="details" class="content">
-      <div class="buttton-area">
+      <div v-if="role === 'student'" class="buttton-area">
         <form novalidate @submit.prevent="removeTask">
           <Button :type="'submit'">{{ buttonText }}</Button>
         </form>
@@ -88,7 +88,7 @@ import store from '@/store/index'
     },
     removeTask () {
       try {
-        this.buttonText = 'Even geduld.'
+        this.buttonText = 'Even geduld'
         myAxios.delete('api/students/' + this.getStudentId + '/tasks/' + this.taskId).then((response) => {
           if (response.data.message === 'The task has been deleted') {
             this.$router.push({ name: 'StudentHome' })

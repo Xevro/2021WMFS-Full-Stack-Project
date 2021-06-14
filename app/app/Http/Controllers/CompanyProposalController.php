@@ -89,14 +89,9 @@ class CompanyProposalController extends Controller {
      * @return string[]
      */
     public function destroy($companyId, $proposalId) {
-        Gate::authorize('api-delete-proposal', $companyId);
-        // also make option to inform the company that it has been declined
-        if (Proposal::where('company_id', Auth::user()->company->id)->where('id', $proposalId)->first()) {
-            if (Proposal::destroy($proposalId)) {
-                return ['message' => 'The proposal has been deleted'];
-            } else {
-                return ['message' => 'Could not delete the proposal'];
-            }
+        Gate::authorize('api-delete-proposal', [$companyId, $proposalId]);
+        if (Proposal::destroy($proposalId)) {
+            return ['message' => 'The proposal has been deleted'];
         } else {
             return ['message' => 'Could not delete the proposal'];
         }

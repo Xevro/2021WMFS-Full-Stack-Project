@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Proposal;
+use App\Models\Student;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -126,8 +127,9 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-update-task', function (User $user, $taskId) {
             return $user->role == 'student' && Auth::user()->student->id == Task::findOrFail($taskId)->student_id;
         });
-        Gate::define('api-delete-proposal', function (User $user, $id) {
-            return $user->role == 'company' && Auth::user()->company->id == $id;
+        Gate::define('api-delete-proposal', function (User $user, $companyId, $proposalId) {
+            return ($user->role == 'company') && (Auth::user()->company->id == $companyId) && (Proposal::where('company_id', $companyId)->where('id', $proposalId)->first())
+                && (Student::where('proposal_id', '=', $proposalId)->count() === 0);
         });
         Gate::define('api-view-student', function (User $user, $id) {
             return ($user->role == 'company') || ($user->role == 'student' && Auth::user()->student->id == $id);
@@ -137,7 +139,7 @@ class AuthServiceProvider extends ServiceProvider {
         });
 
         Gate::define('api-view-contract', function (User $user, $id) {
-            return $user->role == 'student' && Auth::user()->student->id == $id;
+            return ($user->role == 'student' && Auth::user()->student->id == $id) || ($user->role == 'company' && Proposal::where('id', Student::where('id', $id)->first()->proposal_id)->where('company_id', $user->company->id)->first());
         });
 
         Gate::define('api-view-all-student', function (User $user) {

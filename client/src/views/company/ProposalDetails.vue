@@ -1,13 +1,13 @@
 <template>
   <div class="page">
     <Header/>
-    <div v-if="error" class="content">
-      <p>{{ error }}</p>
-    </div>
     <div v-if="loading" class="content">
       <p>Bezig met het ophalen van de gegevens.</p>
     </div>
     <div v-if="details" class="content">
+      <div v-if="error">
+        <p>{{ error }}</p>
+      </div>
       <div v-if="role === 'student'" class="buttton-area">
         <form novalidate @submit.prevent="addToFavorites">
           <Button :disabled="disableButton" :type="'submit'"> {{ buttonText }}</Button>
@@ -118,7 +118,7 @@ import store from '@/store/index'
     addToFavorites () {
       this.disableButton = true
       try {
-        this.buttonText = 'Even geduld.'
+        this.buttonText = 'Even geduld'
         myAxios.get('api/students/' + this.getStudentId + '/likes/' + this.proposalId).then(async (response) => {
           if (response.data.data.length === 0) {
             await myAxios.post('api/students/' + this.getStudentId + '/likes', {
@@ -148,14 +148,19 @@ import store from '@/store/index'
     },
     removeProposal () {
       try {
-        this.buttonText = 'Even geduld.'
+        this.buttonText = 'Even geduld'
         myAxios.delete('api/companies/' + this.getCompanyId + '/proposals/' + this.proposalId).then((response) => {
           if (response.data.message === 'The proposal has been deleted') {
             this.$router.push({ name: 'CompanyHome' })
           }
+        }).catch((e) => {
+          this.error = 'Het stage voorstel kon niet worden verwijderen omdat het mogelijks al toegewezen is aan een student.'
+          this.buttonText = 'Verwijder stage voorstel'
+          return null
         })
       } catch (e) {
         this.disableButton = false
+        console.log(e.response.status)
         if (e.response.status === 422) {
           this.error = 'Er is een onverwachte fout opgetreden.'
           return null

@@ -20,12 +20,10 @@
       <div class="list-proposals">
         <LikedProposalsList :data="proposalLikes" title="Mijn favoriete stage voorstellen"/>
         <p v-if="noFavoritesFound">Geen voorstellen gevonden</p>
-        <div v-if="loading" role="alert">laden van gegevens.</div>
       </div>
       <div class="contract">
         <MyProposal :data="contract" title="Mijn contract"/>
         <p v-if="noContractFound">Geen contract gevonden</p>
-        <div v-if="loadingContract" role="alert">laden van gegevens.</div>
       </div>
       <div class="button-add-task" v-if="contract">
         <Button :href="'/students/' + studentId + '/tasks/add'">Voeg een taak toe</Button>
@@ -62,12 +60,10 @@ import Button from '@/components/UI/atoms/Button.vue'
       contract: null,
       proposalLikes: null,
       student: null,
-      loadingStudent: false,
       nothingFound: false,
       noFavoritesFound: false,
       noContractFound: false,
-      loading: false,
-      loadingContract: false
+      loading: false
     }
   },
   created () {
@@ -98,7 +94,6 @@ import Button from '@/components/UI/atoms/Button.vue'
       return null
     },
     fetchStudentData () {
-      this.loadingStudent = true
       myAxios.get('api/students/' + this.studentId)
         .then(response => {
           if (response.data.data.length === 0) {
@@ -112,14 +107,10 @@ import Button from '@/components/UI/atoms/Button.vue'
           console.log(error)
           this.error = true
           this.nothingFound = true
-        }).finally(() => {
-          this.loadingStudent = false
-          return null
         })
       return null
     },
     fetchContractData () {
-      this.loadingContract = true
       myAxios.get('api/students/' + this.studentId + '/contract')
         .then(response => {
           if (response.data.data.length === 0) {
@@ -133,9 +124,6 @@ import Button from '@/components/UI/atoms/Button.vue'
           console.log(error)
           this.error = true
           this.noContractFound = true
-        }).finally(() => {
-          this.loadingContract = false
-          return null
         })
       return null
     }
@@ -181,13 +169,21 @@ export default class studentDetails extends Vue {
   text-align: left;
 }
 
+.contract {
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
 @media screen and (max-width: 700px) {
   .information {
     margin-top: 40px;
     margin-left: 10px;
   }
+
   .content {
-    marggin-top: 30px;
+    margin-top: 30px;
     margin-left: 70px;
     margin-right: 70px;
     text-align: left;
