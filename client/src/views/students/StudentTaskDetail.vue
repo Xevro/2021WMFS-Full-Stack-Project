@@ -8,6 +8,11 @@
       <p>Bezig met het ophalen van de gegevens.</p>
     </div>
     <div v-if="details" class="content">
+      <div class="buttton-area">
+        <form novalidate @submit.prevent="removeTask">
+          <Button :type="'submit'">{{ buttonText }}</Button>
+        </form>
+      </div>
       <div class="content-info-box">
         <h2>Details van de stagetaak op {{ details.date }}</h2>
         <div class="information-box">
@@ -26,11 +31,14 @@
 import { Options, Vue } from 'vue-class-component'
 import Footer from '@/components/UI/organisms/Footer.vue'
 import Header from '@/components/UI/organisms/Header.vue'
+import Button from '@/components/UI/atoms/Button.vue'
 import { myAxios } from '@/main'
+import store from '@/store/index'
 
 @Options({
   name: 'StudentTaskDetail',
   components: {
+    Button,
     Footer,
     Header
   },
@@ -39,12 +47,24 @@ import { myAxios } from '@/main'
       details: null,
       studentId: this.$route.params.studentId,
       taskId: this.$route.params.taskId,
+      buttonText: null,
       loading: false,
       error: null
     }
   },
+  computed: {
+    role () {
+      return store.getters.getAuthRole
+    },
+    getStudentId () {
+      return store.getters.getStudentId
+    }
+  },
   created () {
     this.fetchData()
+    if (this.role === 'student') {
+      this.buttonText = 'Verwijder taak'
+    }
   },
   methods: {
     fetchData () {
@@ -65,6 +85,27 @@ import { myAxios } from '@/main'
           return null
         })
       return null
+    },
+    removeTask () {
+      try {
+        this.buttonText = 'Even geduld.'
+        myAxios.delete('api/students/' + this.getStudentId + '/tasks/' + this.taskId).then((response) => {
+          if (response.data.message === 'The task has been deleted') {
+            this.$router.push({ name: 'StudentHome' })
+          } else {
+            this.error = 'Er is een onverwachte fout opgetreden.'
+            return null
+          }
+        })
+      } catch (e) {
+        this.disableButton = false
+        if (e.response.status === 422) {
+          this.error = 'Er is een onverwachte fout opgetreden.'
+          return null
+        }
+        this.error = 'Er is een onverwachte fout opgetreden.'
+        return null
+      }
     }
   }
 })
@@ -103,6 +144,10 @@ export default class StudentTaskDetail extends Vue {
   text-align: left;
 }
 
+.buttton-area {
+  float: right;
+}
+
 @media screen and (max-width: 700px) {
   .information-box {
     width: 100%;
@@ -110,6 +155,12 @@ export default class StudentTaskDetail extends Vue {
 
   .content-info-box {
     padding-top: 3.125rem;
+    margin-top: 30px;
+  }
+
+  .buttton-area {
+    margin-top: 30px;
+    float: left;
   }
 
   .content {

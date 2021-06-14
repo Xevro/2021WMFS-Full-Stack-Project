@@ -6,6 +6,7 @@ use App\Http\Resources\StudentTaskResource;
 use App\Models\Student;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class StudentTaskController extends Controller {
@@ -72,10 +73,16 @@ class StudentTaskController extends Controller {
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return string[]
      */
-    public function destroy($id) {
+    public function destroy($studentId, $taskId) {
         // api/students/{student}/tasks/{task}
+        Gate::authorize('api-delete-task', [$studentId, $taskId]);
+        if (Task::where('student_id', Auth::user()->student->id)->where('id', $taskId)->delete()) {
+            return ['message' => 'The task has been deleted'];
+        } else {
+            return ['message' => 'Could not delete the task record'];
+        }
     }
 
     /* ** WEB controller methodes ** */

@@ -155,5 +155,8 @@ class AuthServiceProvider extends ServiceProvider {
         Gate::define('api-delete-like', function (User $user, $id) {
             return $user->role == 'student' && Auth::user()->student->id == $id;
         });
+        Gate::define('api-delete-task', function (User $user, $studentId, $taskId) {
+            return $user->role == 'student' && Auth::user()->student->id == $studentId && Task::where('student_id', $studentId)->where('id', $taskId)->first();
+        });
     }
 }
