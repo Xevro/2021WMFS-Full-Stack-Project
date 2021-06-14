@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysqldb
--- Gegenereerd op: 05 mei 2021 om 20:46
--- Serverversie: 5.7.33
+-- Gegenereerd op: 14 jun 2021 om 18:45
+-- Serverversie: 5.7.34
 -- PHP-versie: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -46,8 +46,10 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`id`, `user_id`, `kbo_number`, `name`, `profile_image`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 3, '182722', 'BVBA E&Y', NULL, NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(2, 4, '192827', 'Fleetmaster', NULL, NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23');
+(1, 3, '0312.349.292', 'Apple', NULL, NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(2, 4, '0192.482.192', 'ML6', NULL, NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(3, 5, '0481.128.838', 'Fleetmaster', NULL, NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(4, 9, '0129.232.222', 'test', NULL, NULL, '2021-06-14 10:58:42', '2021-06-14 10:58:42');
 
 -- --------------------------------------------------------
 
@@ -85,9 +87,10 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`student_id`, `proposal_id`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL),
-(1, 2, NULL, NULL),
-(2, 1, NULL, NULL);
+(1, 3, '2021-06-14 12:52:55', '2021-06-14 12:52:55'),
+(1, 5, '2021-06-14 10:43:08', '2021-06-14 10:43:08'),
+(1, 6, '2021-06-14 15:12:23', '2021-06-14 15:12:23'),
+(2, 4, '2021-06-14 18:34:49', '2021-06-14 18:34:49');
 
 -- --------------------------------------------------------
 
@@ -111,9 +114,9 @@ CREATE TABLE `mentors` (
 --
 
 INSERT INTO `mentors` (`id`, `user_id`, `firstname`, `lastname`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Joris', 'Maervoet', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(2, 2, 'Sven', 'knockaert', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(3, 7, 'Johan', 'Donne', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23');
+(1, 1, 'Joris', 'Maervoet', NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(2, 2, 'Sven', 'knockaert', NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(3, 8, 'Johan', 'Donne', NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07');
 
 -- --------------------------------------------------------
 
@@ -142,8 +145,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2021_02_24_115104_create_proposals_table', 1),
 (8, '2021_02_24_115116_create_students_table', 1),
 (9, '2021_02_24_115134_create_tasks_table', 1),
-(10, '2021_02_24_115416_create_likes_table', 1),
-(11, '2021_02_24_115531_create_traineeship_days_table', 1);
+(10, '2021_02_24_115416_create_likes_table', 1);
 
 -- --------------------------------------------------------
 
@@ -202,9 +204,12 @@ CREATE TABLE `proposals` (
 --
 
 INSERT INTO `proposals` (`id`, `visibility`, `status`, `description`, `start_period`, `end_period`, `contract_file_location`, `company_id`, `created_at`, `updated_at`) VALUES
-(1, 0, 'In afwachting', 'een stage tool ontwikkelen.', '2021-04-09', '2021-04-09', '/', 1, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(2, 1, 'Goedgekeurd', 'een stage tool ontwikkelen voor studenten.', '2021-04-09', '2021-04-09', '/', 2, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(3, 0, 'In afwachting', 'een stage tool ontwikkelen.', '2021-04-09', '2021-04-09', '/', 2, '2021-04-09 14:56:23', '2021-04-09 14:56:23');
+(1, 0, 'In afwachting', 'De Remote Sensing unit van VITO ontwikkelt en opereert innovatieve aardobservatiesystemen die helpen om grip te krijgen op de grote maatschappelijke en economische uitdagingen waar onze planeet voor staat. Onze projecten bevinden zich in de sfeer van data distributie, on-demand beeldverwerking op grote en schaalbare platformen en Big Data analytics om informatie uit satelliet en airborne (UAV, drones) gegevens te halen waarbij deze datasets enorm snel in omvang groeien (van terabytes tot petabytes).\n\nDe resulterende informatie wordt vandaag via verschillende online applicaties aangeboden aan onze eindgebruikers. Door de stijgende vraag naar interactieve visualisaties en cross platform integraties, zijn we op zoek naar iemand die een actieve rol kan spelen in het ontwerpen en ontwikkelen van online applicaties en bijhorende backend systemen. De wereld van remote sensing biedt hierin verschillende uitdagingen die vragen voor creatieve oplossingen met een rechtstreekse impact op een breed spectrum van eindgebruikers.', '2021-06-14', '2021-06-14', '/', 1, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(3, 1, 'Goedgekeurd', 'Voor onze software factory in Kortrijk zijn we op zoek naar een Junior Java Developer. Als Junior Java Developer maak je deel uit van een dynamisch team dat op een Agile / Scrum manier is georganiseerd: beheer van een product backlog, pokerplanningsessies, dagelijkse stand-up meetings, opsplitsing van het werk in sprints van 2 tot 3 weken, retrospectives, ...\nDeze manier van werken laat elk teamlid toe sterk bij het project betrokken te zijn en bij te dragen aan de richtingen die bepaald worden.\nJe neemt deel aan de ontwikkeling van nieuwe toepassingen op basis van de bestaande ontwikkelingsstandaarden en frameworks.\nOp basis van de functionele analysedocumenten, opgesteld door de analisten en de technische richtlijnen van de architecten, zorg je voor de ontwikkeling, de testing en de documentatie van de ontwikkelde toepassingen.\nJe bent ook verantwoordelijk voor het oplossen van bugs in de code, evolutief onderhoud en voor het ontwikkelen van nieuwe functies.', '2021-06-14', '2021-06-14', '/', 1, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(4, 1, 'Goedgekeurd', 'Is data-analyse één van jouw sterktes en ben je vertrouwd met de principes van datawarehousing en data science? Heb je interesse in het Vlaamse gezondheidsbeleid? Werk je graag in teamverband? Het Departement WVG en het agentschap Zorg en Gezondheid zijn op zoek naar een leergierige data-analist die zelfstandig aan de slag gaat met zijn data technische kennis.\n\nAls data-analist zet je de beschikbare data om in bruikbare en bevattelijke informatie en kennis voor je collega\'s die het gezondheidsbeleid ondersteunen.. Met jouw inlevingsvermogen ben je in staat om de organisatiebehoeften te detecteren en daarop in te spelen. Wij zoeken een nieuwe collega met kennis van relationele databanken, (NO)SQL, data science en datawarehouse concepten, een teamplayer die gestructureerd te werk gaat en een initiatiefnemer die het aandurft om projecten te leiden.', '2021-06-14', '2021-06-14', '/', 2, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(5, 1, 'Goedgekeurd', 'Als Data Analyst vertaal je de business behoeften om nieuwe interoperabiliteitsstandaarden, nieuwe transacties en nieuwe procedures te kunnen uitwerken. Je modelleert, standaardiseert en vereenvoudigt de gegevensuitwisseling tussen de verschillende actoren van de gezondheidszorg. Je werkt nieuwe HL7 FHIR technische artefacten uit en legt deze vast. Tevens zal je ook werken rond het onderhoud van KMEHR berichten.\nJe neemt deel aan de onderhandelingen en promoot bij alle actoren van de gezondheidszorg de standaarden die het eHealth-platform heeft ontwikkeld.\nJe onderhoudt de grammatica van de berichten inzake interoperabiliteitsstandaarden en laat ze evalueren (onderhoud FHIR artefacten, XSD, XML, ...). Hiervoor werk je samen met andere instanties verantwoordelijk voor de nationale en internationale standaarden.', '2021-06-14', '2021-06-14', '/', 2, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(6, 1, 'Goedgekeurd', 'Als Data Architect speel je een centrale rol in het ontwerp en de ontwikkeling van het platform voor gegevensanalyse. Je neemt actief deel aan de invoering van een strategie met als doel om naar een meer datagerichte organisatie te evolueren.\nJe superviseert het ontwerp van de gegevensarchitectuur en de technische architectuur van het gegevensplatform, met inbegrip van de verwerving en de integratie van de gegevens, de gegevensmodellering, het transformatie- en kwaliteitsproces, het beheer van de masterdata, de gegevensopslag en de datamarts.\nJe creëert een robuuste en duurzame architectuur die rekening houdt met de huidige en toekomstige businessbehoeften, met de budgettaire voorwaarden, de beschikbaarheid van de gegevens en de nodige resources.\nJe evalueert en selecteert de nodige tools en componenten die nodig zijn voor een optimaal beheer van de gegevens (aankoop van gegevens, opslag van gegevens, gegevenskwaliteit, governance van gegevens, visualisatie van de gegevens en advanced analytics).\nJe superviseert de ontwikkeling van conceptuele, logische en fysieke gegevensmodellen, van ETL-scripts, van definities van metagegevens, van modellen voor businessgegevens, van requests en rapporten, van werkprocessen en van onderhoudsprocedures.\nJe zorgt ervoor dat de technische architectuur (van de gegevensopslag, met inbegrip van de fysieke componenten en hun functionaliteiten) correct gedocumenteerd wordt.\nJe coördineert het werk van de data- en BI-architecten alsook de technische verantwoordelijken van de ontwikkelteams.\nJe evalueert tot slot de huidige technische architectuur en schat de capaciteit van het systeem in om te beantwoorden aan de verwerkingsbehoeften op korte en lange termijn.', '2021-06-14', '2021-06-14', '/', 3, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(7, 0, 'In afwachting', 'Je werkt samen met de softwarearchitecten en de verschillende infrastructuurteams om de ontwikkelde toepassingen en systemen in het ecosysteem van Smals te integreren. Je zorgt ervoor dat de IT-oplossingen ontworpen en geïmplementeerd worden in overeenstemming met de business- en technische vereisten en in lijn met de IT-strategie.\nJe documenteert je keuzes en communiceert die met de verschillende betrokken teams. Je publiceert \"best practices\" en kan de ontwikkelingsteams begeleiden.\nAls deel van de infrastructuurteams ontwerp en onderhoud je kostenefficiënte en duurzame architecturen in lijn met de bedrijfsdoelstellingen.\nAls facilitator vorm je de link tussen de ontwikkelingsteams en de operationele teams. Je bent dus betrokken bij het begrijpen van de behoeften en beperkingen van de business.\nJe neemt deel aan de implementatie en promotie van CI/CD (Continuous Integration / Continuous Delivery) en IaC (Infrastructure as Code) praktijken. Je integreert de ontwikkelings-, test- en operationele aspecten in je visie.\nJe komt tussen in de review van de technische architecturen van applicaties (infrastructuurlaag), op basis van de niet-functionele behoeften van de klant (Service Level) en de catalogus van diensten die door de operationele teams worden ondersteund.', '2021-06-14', '2021-06-14', '/', 3, '2021-06-14 10:28:07', '2021-06-14 10:28:07');
 
 -- --------------------------------------------------------
 
@@ -234,8 +239,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `firstname`, `lastname`, `r_number`, `allowed`, `approved`, `proposal_id`, `completed_days`, `mentor_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 5, 'Louis', 'D\'Hont', 'r1039382', 1, 'not approved', 0, 0, 1, NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(2, 6, 'Guido', 'Pallemans', 'r0284739', 1, 'not approved', 0, 0, 2, NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23');
+(1, 6, 'Louis', 'D\'Hont', 'r1039382', 1, 'Goedgekeurd', 3, 0, 1, NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(2, 7, 'Guido', 'Pallemans', 'r0284739', 1, 'In afwachting', 0, 0, 2, NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07');
 
 -- --------------------------------------------------------
 
@@ -258,9 +263,8 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `task`, `date`, `student_id`, `created_at`, `updated_at`) VALUES
-(1, 'Vandaag de migrations en seeder geschreven', '2021-04-09', 1, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(2, 'Een serverfout gefixed in de seeder', '2021-04-09', 1, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(3, 'Een nieuwe API gebouwd', '2021-04-09', 2, '2021-04-09 14:56:23', '2021-04-09 14:56:23');
+(4, 'qsddqdsdsddsqd', '2021-07-22', 1, '2021-06-14 13:50:25', '2021-06-14 13:50:25'),
+(5, 'qsdqdqdsdqdqsd', '2021-06-10', 2, '2021-06-14 18:35:04', '2021-06-14 18:35:04');
 
 -- --------------------------------------------------------
 
@@ -284,13 +288,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'joris.maervoet@odisee.be', '$2y$10$D7l4fqop97eWGjNXbyQvJ.0nuYVlglyPjwcH4FYfoK22cUpaMYpey', 'mentor', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(2, 'sven.knockaert@odisee.be', '$2y$10$25TkBV0djUypRZitgewxbex9Ilfjp6/GOdjhJ9f5NUr.7fOXLrFZO', 'coordinator', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(3, 'company@comp.com', '$2y$10$Qp4s4yypp7VSS.nD.TcQYOWv1Kqeacz61xFnS8Xsz2dv2jvgCtnUu', 'company', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(4, 'hr@fleetmaster.com', '$2y$10$nuQedMb7cniOF1SlCIxQ1eeHt3b/fC/zKlwihbXofk6.gdy0I7BkO', 'company', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(5, 'louis.dhont@student.odisee.be', '$2y$10$z40FKTQ6rXTiZdc50uO6guhxz1QbQ6VMO6rf7MONDnYLyDDHXRPjm', 'student', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(6, 'guido.pallemans@student.odisee.be', '$2y$10$/6mhK0OZHO7UhCaMsDg6xu6ZGSmQiRdv0.X.jPiow1Mz9LUvTa/J2', 'student', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23'),
-(7, 'johan.donne@odisee.be', '$2y$10$5/Gbp39qpI6.Ouy9PWOlBu4KUMXDd9BkGdepzgGMGe3CSMCk8u.UW', 'mentor', NULL, '2021-04-09 14:56:23', '2021-04-09 14:56:23');
+(1, 'joris.maervoet@odisee.be', '$2y$10$uN8Ty.bNOp82oc7N0EBbGuIKE95jW4seHH7Rn8/5M0eB4mXHGhOde', 'mentor', NULL, '2021-06-14 10:28:06', '2021-06-14 10:28:06'),
+(2, 'sven.knockaert@odisee.be', '$2y$10$iJ2fQiSB0BPlSbEexgk9TuDKEztEzzgSx019SH7C57JmJlgiimzWe', 'coordinator', NULL, '2021-06-14 10:28:06', '2021-06-14 10:28:06'),
+(3, 'info@apple.com', '$2y$10$cYNY8jzLH04IsjaBuwJgEuwxVeWSXgrNRV.fNTitu7EUOaZv1m/HS', 'company', NULL, '2021-06-14 10:28:06', '2021-06-14 10:28:06'),
+(4, 'hr@ml6.com', '$2y$10$d/v3MtuqCR9K084vmulTnOL569VNz8XgPAju6Yle/i.oye2M4J/uK', 'company', NULL, '2021-06-14 10:28:06', '2021-06-14 10:28:06'),
+(5, 'hr@fleetmaster.com', '$2y$10$.IuityanOaDkBTCeUHl6X.XTXCQ1ypNo/18YUr3J4qaj72ev03bf2', 'company', NULL, '2021-06-14 10:28:06', '2021-06-14 10:28:06'),
+(6, 'louis.dhont@student.odisee.be', '$2y$10$ROiN9vWL2pQZz07he/1RFOk3mPUla859rKttFBueGJP3Fahk7tuBO', 'student', NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(7, 'guido.pallemans@student.odisee.be', '$2y$10$VbUz3mNYPszLGpFJQDPAK.z42H4Wj4Q0kjUvnrS5xzwmsU23WK6z6', 'student', NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(8, 'johan.donne@odisee.be', '$2y$10$TkJct9MfokrlBcVHviLIReKQzkTQkdPK5Sib.9xlvIMW5zX3Xl/Ee', 'mentor', NULL, '2021-06-14 10:28:07', '2021-06-14 10:28:07'),
+(9, 'test@test.be', '$2y$10$PaIP4fHZTiGQLNsD/ljFseAMO3PHUUN19TTKln5Tr4n/8lSpqygAi', 'company', NULL, '2021-06-14 10:58:42', '2021-06-14 10:58:42');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -383,7 +389,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `failed_jobs`
@@ -401,7 +407,7 @@ ALTER TABLE `mentors`
 -- AUTO_INCREMENT voor een tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT voor een tabel `personal_access_tokens`
@@ -413,7 +419,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT voor een tabel `proposals`
 --
 ALTER TABLE `proposals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `students`
@@ -425,13 +431,13 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT voor een tabel `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
