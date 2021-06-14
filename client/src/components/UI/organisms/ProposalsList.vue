@@ -1,7 +1,7 @@
 <template>
   <div class="column-wide">
     <div class="search-field">
-      <InputSearchField class="input-field" name="Search" type="text" placeholder="Search"/>
+      <InputSearchField class="input-field" name="Search"  v-model="searchClient" type="text" placeholder="Search"/>
     </div>
     <h2>{{ title }}</h2>
       <table class="table">
@@ -17,7 +17,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(item, index) in data" :key="'item' + index">
+        <tr v-for="(item, index) in data" :key="index">
           <td><router-link :to="'/companies/' + item.company.id + '/proposals/' + item.id">{{ item.company.name }}</router-link></td>
           <td class="columns">{{ item.created_on }}</td>
           <td class="columns">{{ item.start_period }}</td>
@@ -39,6 +39,18 @@ export default {
   props: ['data', 'title'],
   components: {
     InputSearchField
+  },
+  data () {
+    return {
+      searchClient: null
+    }
+  },
+  methods: {
+    filteredList () {
+      return this.data.filter(item => {
+        return !this.searchClient || item.company.name.toLowerCase().includes(this.searchClient.toLowerCase())
+      })
+    }
   }
 }
 </script>
