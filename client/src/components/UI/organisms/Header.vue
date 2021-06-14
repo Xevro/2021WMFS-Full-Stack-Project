@@ -26,7 +26,7 @@
         </ul>
         <ul v-if="role === 'student'" class='navbar-links'>
           <li class='navbar-item'>
-            <router-link to="/" class="navbar-link">Overzicht</router-link>
+            <router-link :to="{ name: 'StudentHome' }" class="navbar-link">Overzicht</router-link>
           </li>
           <li class='navbar-item'>
             <router-link :to="{ name: 'StudentDetails', params: { id: studentId } }" class="navbar-link">Mijn account</router-link>

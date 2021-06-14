@@ -56,6 +56,27 @@ Route::post('/register/companies', function (Request $request) {
     }
 });
 
+Route::post('/client/login', function (Request $request) {
+    $user = User::where('email', $request->email)->firstOrFail();
+    if (Str::contains($user->role, ['student', 'company'])) {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            //$request->session()->regenerate();
+            if ($user->role === 'student') {
+                return User::where('email', $request->email)->with('student')->get();
+            } else if ($user->role === 'company') {
+                return User::where('email', $request->email)->with('company')->get();
+            }
+        }
+    }
+    return response(['message' => 'The provided credentials do not match our records.'], 401);
+});
+
+Route::post('/client/logout', function (Request $request) {
+    Auth::guard('web')->logout();
+    $request->session()->invalidate();
+    return response(['message' => 'The user has been logged out successfully']);
+});
+
 // companies
 Route::apiResource('companies', CompanyController::class)->middleware('auth:sanctum');
 // proposals through company

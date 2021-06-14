@@ -5,11 +5,7 @@ use App\Http\Controllers\CompanyProposalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentTaskController;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,27 +68,6 @@ Route::prefix('dashboard')->group(function () {
     //add student to proposal
     Route::get('/proposal/assign', [CompanyProposalController::class, 'showAssignStudentToProposal'])->middleware(['auth']);
     Route::post('/proposal/assign', [CompanyProposalController::class, 'assignStudentToProposal'])->middleware(['auth']);
-});
-
-Route::post('/client/login', function (Request $request) {
-    $user = User::where('email', $request->email)->firstOrFail();
-    if (Str::contains($user->role, ['student', 'company'])) {
-        if (Auth::attempt($request->only('email', 'password'))) {
-            //$request->session()->regenerate();
-            if ($user->role === 'student') {
-                return User::where('email', $request->email)->with('student')->get();
-            } else if ($user->role === 'company') {
-                return User::where('email', $request->email)->with('company')->get();
-            }
-        }
-    }
-    return response(['message' => 'The provided credentials do not match our records.'], 401);
-});
-
-Route::post('/client/logout', function (Request $request) {
-    Auth::guard('web')->logout();
-    $request->session()->invalidate();
-    return response(['message' => 'The user has been logged out successfully']);
 });
 
 require __DIR__ . '/auth.php';

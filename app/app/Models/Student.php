@@ -22,7 +22,7 @@ class Student extends Model {
         return $this->belongsToMany(Like::class);
     }
 
-    public function proposals() {
+    public function proposal() {
         return $this->belongsTo(Proposal::class);
     }
 

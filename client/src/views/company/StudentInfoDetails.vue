@@ -13,7 +13,7 @@
         <p>Aantal dagen gelopen stage: {{ student.completed_days }}</p>
         <p>Stage mentor: {{  student.mentor.firstname + ' ' + student.mentor.lastname }}</p>
       </div>
-      <div class="list">
+      <div v-if="showTasks" class="list">
         <TasksList :data="tasks" title="Mijn taken"/>
         <p v-if="noTasksFound">Geen taken gevonden</p>
       </div>
@@ -32,6 +32,7 @@ import LikedProposalsList from '@/components/UI/organisms/LikedProposalsList.vue
 import TasksList from '@/components/UI/organisms/TasksList.vue'
 import ProposalsList from '@/components/UI/organisms/ProposalsList.vue'
 import { myAxios } from '@/main'
+import store from '@/store/index'
 
 @Options({
   components: {
@@ -41,6 +42,11 @@ import { myAxios } from '@/main'
     Footer,
     Header
   },
+  computed: {
+    getRole () {
+      return store.getters.getAuthRole()
+    }
+  },
   data () {
     return {
       studentId: this.$route.params.id,
@@ -49,6 +55,7 @@ import { myAxios } from '@/main'
       tasks: null,
       noTasksFound: false,
       nothingFound: false,
+      showTasks: false,
       loading: false,
       loadingTasks: false
     }
@@ -66,6 +73,9 @@ import { myAxios } from '@/main'
             this.nothingFound = true
           }
           this.student = response.data.data
+          if (this.student.proposal.company.id === parseInt(store.getters.getCompanyId)) {
+            this.showTasks = true
+          }
           this.nothingFound = false
           return null
         })

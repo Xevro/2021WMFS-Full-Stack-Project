@@ -22,7 +22,7 @@ class StudentController extends Controller {
      */
     public function index() {
         Gate::authorize('api-view-all-student');
-        return StudentResource::collection(Student::all());
+        return StudentResource::collection(Student::where('allowed', 1)->get());
     }
 
     public function contract($id) {

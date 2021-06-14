@@ -26,8 +26,8 @@ export default {
     setUser (state: State, data: User) {
       state.user = data
     },
-    setAuthRole (state: State, role: any) {
-      state.user.role = role
+    setAuthRole (state: any, role: string) {
+      localStorage.setItem('role', String(role))
     },
     setCompanyId (state: any, id: number) {
       localStorage.setItem('companyId', String(id))
@@ -53,7 +53,7 @@ export default {
       try {
         await myAxios.get('api/user').then(response => {
           commit('setUser', response.data)
-          localStorage.setItem('role', response.data.role)
+          commit('setAuthRole', response.data.role)
         })
       } catch (e) {
         await myAxios.post('client/logout')
@@ -68,9 +68,9 @@ export default {
         localStorage.clear()
         localStorage.setItem('token', res.config.headers['X-XSRF-TOKEN'].substring(0, res.config.headers['X-XSRF-TOKEN'].length - 1))
       }
-      const { data } = await myAxios.post('client/login', formData)
+      const { data } = await myAxios.post('api/client/login', formData)
       commit('setUser', data[0])
-      localStorage.setItem('role', data[0].role)
+      commit('setAuthRole', data[0].role)
       if (data[0].role === 'student') {
         commit('setStudentId', data[0].student.id)
         await router.push({ name: 'StudentHome' })
@@ -82,7 +82,7 @@ export default {
     async logOut ({ commit }:any) {
       localStorage.clear()
       document.cookie = 'XSRF-TOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;'
-      await myAxios.post('client/logout')
+      await myAxios.post('api/client/logout')
       commit('setUser', { id: null, email: null, role: null })
       await router.push({ name: 'Login' })
     }

@@ -4,7 +4,7 @@
           <table class="table">
             <thead>
             <tr>
-              <th scope="col">Student</th>
+              <th scope="col">Bedrijf</th>
               <th class="columns" scope="col">Start datum</th>
               <th class="columns" scope="col">End datum</th>
               <th class="columns" scope="col">Beschrijving</th>
