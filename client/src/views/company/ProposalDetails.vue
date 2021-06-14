@@ -8,9 +8,14 @@
       <p>Bezig met het ophalen van de gegevens.</p>
     </div>
     <div v-if="details" class="content">
-      <div v-if="role === 'student'" class="add-to-favorites">
+      <div v-if="role === 'student'" class="buttton-area">
         <form novalidate @submit.prevent="addToFavorites">
-          <Button :disabled="disableButton" :type="'submit'"> {{ favorietenTekst }}</Button>
+          <Button :disabled="disableButton" :type="'submit'"> {{ buttonText }}</Button>
+        </form>
+      </div>
+      <div v-if="role === 'company'" class="buttton-area">
+        <form novalidate @submit.prevent="removeProposal">
+          <Button :type="'submit'">{{ buttonText }}</Button>
         </form>
       </div>
       <div class="content-info-box">
@@ -51,13 +56,16 @@ import store from '@/store/index'
     },
     getStudentId () {
       return store.getters.getStudentId
+    },
+    getCompanyId () {
+      return store.getters.getCompanyId
     }
   },
   data () {
     return {
       details: null,
       disableButton: false,
-      favorietenTekst: null,
+      buttonText: null,
       companyId: this.$route.params.compId,
       proposalId: this.$route.params.id,
       loading: false,
@@ -69,15 +77,18 @@ import store from '@/store/index'
     if (this.role === 'student') {
       this.favoritesStatus()
     }
+    if (this.role === 'company') {
+      this.buttonText = 'Verwijder stage voorstel'
+    }
   },
   methods: {
     favoritesStatus () {
       myAxios.get('api/students/' + this.getStudentId + '/likes/' + this.proposalId).then(async (response) => {
         if (response.data.data.length === 0) {
-          this.favorietenTekst = 'Voeg toe aan favorieten'
+          this.buttonText = 'Voeg toe aan favorieten'
           return null
         } else {
-          this.favorietenTekst = 'Verwijder uit favorieten'
+          this.buttonText = 'Verwijder uit favorieten'
           return null
         }
       })
@@ -107,7 +118,7 @@ import store from '@/store/index'
     addToFavorites () {
       this.disableButton = true
       try {
-        this.favorietenTekst = 'Even geduld.'
+        this.buttonText = 'Even geduld.'
         myAxios.get('api/students/' + this.getStudentId + '/likes/' + this.proposalId).then(async (response) => {
           if (response.data.data.length === 0) {
             await myAxios.post('api/students/' + this.getStudentId + '/likes', {
@@ -123,6 +134,24 @@ import store from '@/store/index'
               }
             })
             return null
+          }
+        })
+      } catch (e) {
+        this.disableButton = false
+        if (e.response.status === 422) {
+          this.error = 'Er is een onverwachte fout opgetreden.'
+          return null
+        }
+        this.error = 'Er is een onverwachte fout opgetreden.'
+        return null
+      }
+    },
+    removeProposal () {
+      try {
+        this.buttonText = 'Even geduld.'
+        myAxios.delete('api/companies/' + this.getCompanyId + '/proposals/' + this.proposalId).then((response) => {
+          if (response.data.message === 'The proposal has been deleted') {
+            this.$router.push({ name: 'CompanyHome' })
           }
         })
       } catch (e) {
@@ -170,7 +199,7 @@ export default class ProposalDetails extends Vue {
  width: 70%;
 }
 
-.add-to-favorites {
+.buttton-area {
   float: right;
 }
 
@@ -185,7 +214,7 @@ export default class ProposalDetails extends Vue {
   .information-box {
     width: 100%;
   }
-  .add-to-favorites {
+  .buttton-area {
     margin-top: 30px;
     float: left;
   }
